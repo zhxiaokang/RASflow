@@ -1,2 +1,2 @@
-# RAN-Seq_analysis
+# RAN-Seq-analysis
 RNA-Seq analysis for cod (gadus morhua)
