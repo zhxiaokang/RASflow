@@ -1,0 +1,17 @@
+name: RNA-Seq-analysis
+channels:
+  - conda-forge
+  - bioconda
+  - r
+  - defaults
+dependencies:
+  - snakemake=3.13.2
+  - graphviz=2.38.0
+# command tool installs
+  - R=3.3.2
+  - python=3.5.1
+# bioconda channel installs
+  - hisat2=2.1.0
+  - samtools=1.4.1
+  - bioconductor-edger
+  - bioconductor-deseq2=1.14.1
