@@ -1,0 +1,78 @@
+configfile: "../configs/config_batch3_essa_oldTrans.yaml"
+
+samples = [160212, 1726812]
+indexes = list(range(1, 9))
+
+rule all:
+    input:
+        final = expand(config["OUTPUTPATH"] + "countFile/{sample}.countmerged.idx", sample = samples)
+
+rule indexTrans:
+    input:
+        trans = config["TRANS"]
+    output:
+        indexes = expand(config["OUTPUTPATH"] + "indexes/index.{index}.ht2", index = indexes)
+    params:
+        index = config["OUTPUTPATH"] + "indexes/index"
+    shell:
+        "hisat2-build -p {config[NCORE]} {input.trans} {params.index}"
+
+rule getReads:
+    input:
+        key = config["KEY"]
+    output:
+        forward = temp(config["OUTPUTPATH"] + "reads/{sample}_forward.fastq.gz"),
+        reverse = temp(config["OUTPUTPATH"] + "reads/{sample}_reverse.fastq.gz")
+    run:
+        shell("scp -i {input.key} {config[NELSIN]}/{wildcards.sample}*_S*_R1_001.fastq.gz {output.forward}")
+        shell("scp -i {input.key} {config[NELSIN]}/{wildcards.sample}*_S*_R2_001.fastq.gz {output.reverse}")
+
+rule alignment:
+    input:
+        index = expand(config["OUTPUTPATH"] + "indexes/index.{index}.ht2", index = indexes),
+        forward = config["OUTPUTPATH"] + "reads/{sample}_forward.fastq.gz",
+        reverse = config["OUTPUTPATH"] + "reads/{sample}_reverse.fastq.gz"
+    output:
+        sam = config["OUTPUTPATH"] + "samFile/{sample}.sam",
+        bam = config["OUTPUTPATH"] + "bamFile/{sample}.bam"
+    wildcard_constraints:
+        sample = "\d+"
+    params:
+        index = config["OUTPUTPATH"] + "indexes/index"
+    benchmark:
+        config["OUTPUTPATH"] + "benchmarks/{sample}.hisat2.benchmark.txt"
+    shell:
+        "hisat2 -p {config[NCORE]} -x {params.index} -1 {input.forward} -2 {input.reverse} -S {output.sam}"
+        " && samtools view -b -S {output.sam} > {output.bam}"
+
+rule sortIndex:
+    input:
+        bam = config["OUTPUTPATH"] + "bamFile/{sample}.bam"
+    output:
+        sort = config["OUTPUTPATH"] + "bamFile/{sample}.sort.bam"
+    wildcard_constraints:
+        sample = "\d+"
+    shell:
+        "samtools sort {input.bam} -o {output.sort} && samtools index {output.sort}"
+
+rule featureCount:
+    input:
+        sort = config["OUTPUTPATH"] + "bamFile/{sample}.sort.bam"
+    output:
+        count = config["OUTPUTPATH"] + "countFile/{sample}.count"
+    wildcard_constraints:
+        sample = "\d+"
+    shell:
+        "samtools idxstats {input.sort} > {output.count}"
+
+rule mergeTransGene:
+    input:
+        transCount = config["OUTPUTPATH"] + "countFile/{sample}.count"
+    output:
+        geneCount = config["OUTPUTPATH"] + "countFile/{sample}.countmerged.idx"
+    wildcard_constraints:
+        sample = "\d+"
+    shell:
+        "cd ../scripts/ && javac -cp opencsv-1.8.jar:. sumgenescod.java && java -cp opencsv-1.8.jar:. sumgenescod codgenelist.csv {input}"
+
+ 
