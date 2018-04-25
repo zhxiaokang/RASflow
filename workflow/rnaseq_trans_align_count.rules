@@ -1,6 +1,6 @@
 configfile: "../configs/config_batch3_essa_oldTrans.yaml"
 
-samples = [160212, 1726812]
+samples = [160412, 160512, 160812, 162712, 162812, 163112, 163512, 164612, 165612, 166012, 167512, 167912, 168112, 168412, 168612, 1708012, 1708612, 1709112, 1709212]
 indexes = list(range(1, 9))
 
 rule all:
@@ -24,8 +24,8 @@ rule getReads:
         forward = temp(config["OUTPUTPATH"] + "reads/{sample}_forward.fastq.gz"),
         reverse = temp(config["OUTPUTPATH"] + "reads/{sample}_reverse.fastq.gz")
     run:
-        shell("scp -i {input.key} {config[NELSIN]}/{wildcards.sample}*_S*_R1_001.fastq.gz {output.forward}")
-        shell("scp -i {input.key} {config[NELSIN]}/{wildcards.sample}*_S*_R2_001.fastq.gz {output.reverse}")
+        shell("scp -i {input.key} {config[NELSIN]}/{wildcards.sample}_S*_R1_001.fastq.gz {output.forward}")
+        shell("scp -i {input.key} {config[NELSIN]}/{wildcards.sample}_S*_R2_001.fastq.gz {output.reverse}")
 
 rule alignment:
     input:
