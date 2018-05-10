@@ -1,0 +1,83 @@
+configfile: "../configs/config_batch3_essa_oldTrans.yaml"
+
+samples = [160412]
+groups = ["control", "PAH_low", "PAH_high", "PFAS_low", "PFAS_high", "station_4", "station_3", "station_2", "station_1"]
+chemicals = ["PAH_low", "PAH_high", "PFAS_low", "PFAS_high"]
+stations = ["station_1", "station_2", "station_3"]
+
+rule all:
+    input:
+        chemical = expand(config["OUTPUTPATH"] + "DEA/dea_control_{chemical}.csv", chemical = chemicals),
+        station = expand(config["OUTPUTPATH"] + "DEA/dea_station_4_{station}.csv", station = stations)
+
+# The rule below is not flexibal, needs to change manually, the used script combine.sh is only suitable for PAH_PFAS
+rule combineSamples:
+    input:
+        geneCount = expand(config["OUTPUTPATH"] + "countFile/{sample}.countmerged.idx", sample = samples)
+    output:
+        expand(config["OUTPUTPATH"] + "countFile/{group}.countmerged.idx", group = groups)
+    params:
+        path = config["OUTPUTPATH"] + "countFile"
+    shell:
+        "cp ../scripts/combine.sh {params.path} && cd {params.path} && bash combine.sh && rm combine.sh"
+
+rule prepareDEA:
+    input:
+        control = config["OUTPUTPATH"] + "countFile/control.countmerged.idx",
+        PAH_low = config["OUTPUTPATH"] + "countFile/PAH_low.countmerged.idx",
+        PAH_high = config["OUTPUTPATH"] + "countFile/PAH_high.countmerged.idx",
+        PFAS_low = config["OUTPUTPATH"] + "countFile/PFAS_low.countmerged.idx",
+        PFAS_high = config["OUTPUTPATH"] + "countFile/PFAS_high.countmerged.idx",
+        station_4 = config["OUTPUTPATH"] + "countFile/station_4.countmerged.idx",
+        station_3 = config["OUTPUTPATH"] + "countFile/station_3.countmerged.idx",
+        station_2 = config["OUTPUTPATH"] + "countFile/station_2.countmerged.idx",
+        station_1 = config["OUTPUTPATH"] + "countFile/station_1.countmerged.idx"
+    output:
+        control_PAH_low = config["OUTPUTPATH"] + "DEA/control_PAH_low",
+        control_PAH_high = config["OUTPUTPATH"] + "DEA/control_PAH_high",
+        control_PFAS_low = config["OUTPUTPATH"] + "DEA/control_PFAS_low",
+        control_PFAS_high = config["OUTPUTPATH"] + "DEA/control_PFAS_high",
+        station_4_station_3 = config["OUTPUTPATH"] + "DEA/station_4_station_3",
+        station_4_station_2 = config["OUTPUTPATH"] + "DEA/station_4_station_2",
+        station_4_station_1 = config["OUTPUTPATH"] + "DEA/station_4_station_1"
+    shell:
+        "paste {input.control} <(cut -f2- {input.PAH_low}) >> {output.control_PAH_low} && "
+        "paste {input.control} <(cut -f2- {input.PAH_high}) >> {output.control_PAH_high} && "
+        "paste {input.control} <(cut -f2- {input.PFAS_low}) >> {output.control_PFAS_low} && "
+        "paste {input.control} <(cut -f2- {input.PFAS_high}) >> {output.control_PFAS_high} && "
+        "paste {input.station_4} <(cut -f2- {input.station_3}) >> {output.station_4_station_3} && "
+        "paste {input.station_4} <(cut -f2- {input.station_2}) >> {output.station_4_station_2} && "
+        "paste {input.station_4} <(cut -f2- {input.station_1}) >> {output.station_4_station_1}"
+
+rule DEA:
+    input:
+        control_PAH_low = config["OUTPUTPATH"] + "DEA/control_PAH_low",
+        control_PAH_high = config["OUTPUTPATH"] + "DEA/control_PAH_high",
+        control_PFAS_low = config["OUTPUTPATH"] + "DEA/control_PFAS_low",
+        control_PFAS_high = config["OUTPUTPATH"] + "DEA/control_PFAS_high",
+        station_4_station_3 = config["OUTPUTPATH"] + "DEA/station_4_station_3",
+        station_4_station_2 = config["OUTPUTPATH"] + "DEA/station_4_station_2",
+        station_4_station_1 = config["OUTPUTPATH"] + "DEA/station_4_station_1"
+    output:
+        control_PAH_low_dea = config["OUTPUTPATH"] + "DEA/dea_control_PAH_low.csv",
+        control_PAH_low_deg = config["OUTPUTPATH"] + "DEA/deg_control_PAH_low.csv",
+        control_PAH_high_dea = config["OUTPUTPATH"] + "DEA/dea_control_PAH_high.csv",
+        control_PAH_high_deg = config["OUTPUTPATH"] + "DEA/deg_control_PAH_high.csv",
+        control_PFAS_low_dea = config["OUTPUTPATH"] + "DEA/dea_control_PFAS_low.csv",
+        control_PFAS_low_deg = config["OUTPUTPATH"] + "DEA/deg_control_PFAS_low.csv",
+        control_PFAS_high_dea = config["OUTPUTPATH"] + "DEA/dea_control_PFAS_high.csv",
+        control_PFAS_high_deg = config["OUTPUTPATH"] + "DEA/deg_control_PFAS_high.csv",
+        station_4_station_3_dea = config["OUTPUTPATH"] + "DEA/dea_station_4_station_3.csv",
+        station_4_station_3_deg = config["OUTPUTPATH"] + "DEA/deg_station_4_station_3.csv",
+        station_4_station_2_dea = config["OUTPUTPATH"] + "DEA/dea_station_4_station_2.csv",
+        station_4_station_2_deg = config["OUTPUTPATH"] + "DEA/deg_station_4_station_2.csv",
+        station_4_station_1_dea = config["OUTPUTPATH"] + "DEA/dea_station_4_station_1.csv",
+        station_4_station_1_deg = config["OUTPUTPATH"] + "DEA/deg_station_4_station_1.csv"
+    shell:
+        "Rscript ../scripts/dea.edger.R {input.control_PAH_low} 6 4 {output.control_PAH_low_dea} {output.control_PAH_low_deg} && "
+        "Rscript ../scripts/dea.edger.R {input.control_PAH_high} 6 5 {output.control_PAH_high_dea} {output.control_PAH_high_deg} && "
+        "Rscript ../scripts/dea.edger.R {input.control_PFAS_low} 6 5 {output.control_PFAS_low_dea} {output.control_PFAS_low_deg} && "
+        "Rscript ../scripts/dea.edger.R {input.control_PFAS_high} 6 4 {output.control_PFAS_high_dea} {output.control_PFAS_high_deg} && "
+        "Rscript ../scripts/dea.edger.R {input.station_4_station_3} 5 3 {output.station_4_station_3_dea} {output.station_4_station_3_deg} && "
+        "Rscript ../scripts/dea.edger.R {input.station_4_station_2} 5 4 {output.station_4_station_2_dea} {output.station_4_station_2_deg} && "
+        "Rscript ../scripts/dea.edger.R {input.station_4_station_1} 5 4 {output.station_4_station_1_dea} {output.station_4_station_1_deg}"
