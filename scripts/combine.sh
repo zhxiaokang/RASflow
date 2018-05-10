@@ -4,46 +4,67 @@
 
 <<COMMENT
 The group information is here:
-
-control group (DMSO) (8 samples):
-1, 6, 12, 18, 25, 31, 38, 44
-
-BaP_10nM (7 samples):
-2, 7, 13, 19, 26, 32, 45
-
-BaP_1000nM (7 samples):
-3, 8, 14, 20, 27, 33, 39
-
-EE2_10nM (7 samples):
-4, 9, 15, 21, 34, 40, 47
-
-EE2_1000nM (6 samples):
-5, 16, 22, 28, 35, 48
-
-BaP_10nM + EE2_10nM (6 samples):
-10, 23, 29, 36, 42, 49
-
-BaP_1000nM + EE2_1000nM (6 samples):
-11, 17, 24, 30, 37, 50
+control group for PAHs and PFAS exposure (6 samples):
+1716412, 1716512, 1716812, 1717012, 1717812, 1718012
+PAH_low (4 samples):
+1708012, 1708612, 1709112, 1709212
+PAH_high (5 samples):
+1724712, 1725412, 1725712, 1725912, 1726812
+PFAS_low (5 samples):
+1709912, 1710012, 1710312, 1710412, 1710512
+PFAS_high (4 samples):
+1722912, 1723512, 1723812, 1723912
+Reference site (station 4) (5 samples):
+167512, 167912, 168112, 168412, 168612
+Station 1 (4 samples):
+160212, 160412, 160512, 160812
+Station 2 (4 samples):
+162712, 162812, 163112, 163512
+Station 3 (3 samples):
+164612, 165612, 166012
 COMMENT
 
-echo -e 'Gene_id\tsample_1\tsample_6\tsample_12\tsample_18\tsample_25\tsample_31\tsample_38\tsample_44' > control.countmerged.idx
-paste <(awk -F'"' '{print $2"\t"$6}' 1.countmerged.idx) <(awk -F'"' '{print $6}' 6.countmerged.idx) <(awk -F'"' '{print $6}' 12.countmerged.idx) <(awk -F'"' '{print $6}' 18.countmerged.idx) <(awk -F'"' '{print $6}' 25.countmerged.idx) <(awk -F'"' '{print $6}' 31.countmerged.idx) <(awk -F'"' '{print $6}' 38.countmerged.idx) <(awk -F'"' '{print $6}' 44.countmerged.idx) >> control.countmerged.idx
+<<COMMENT
+## A small Python code to help to generate the header for each output file
+from __future__ import print_function  # if it's Python 2.7
+list = [1, 2, 3]  # put the sample IDs for each group
+group = 'control'  # fill in the group name
+print('echo -e \'Gene_id', end = '')
+for id in list:
+    print('\\tsample_' + str(id), end = '')
+print('\' > ' + group + '.countmerged.idx')
+## To help to generate the command line of "paste"
+print('paste <(awk -F\'\"\' \'{print $2}\' ' + str(list[0]) + '.countmerged.idx) ', end = '')
+for id in list:
+    print('<(awk -F\'\"\' \'{print $6}\' ' + str(id) + '.countmerged.idx) ', end = '')
+print('>> ' + group + '.countmerged.idx\n')
 
-echo -e 'Gene_id\tsample_2\tsample_7\tsample_13\tsample_19\tsample_26\tsample_32\tsample_45' > BaP_low.countmerged.idx
-paste <(awk -F'"' '{print $2"\t"$6}' 2.countmerged.idx) <(awk -F'"' '{print $6}' 7.countmerged.idx) <(awk -F'"' '{print $6}' 13.countmerged.idx) <(awk -F'"' '{print $6}' 19.countmerged.idx) <(awk -F'"' '{print $6}' 26.countmerged.idx) <(awk -F'"' '{print $6}' 32.countmerged.idx) <(awk -F'"' '{print $6}' 45.countmerged.idx) >> BaP_low.countmerged.idx
+COMMENT
 
-echo -e 'Gene_id\tsample_3\tsample_8\tsample_14\tsample_20\tsample_27\tsample_33\tsample_39' > BaP_high.countmerged.idx
-paste <(awk -F'"' '{print $2"\t"$6}' 3.countmerged.idx) <(awk -F'"' '{print $6}' 8.countmerged.idx) <(awk -F'"' '{print $6}' 14.countmerged.idx) <(awk -F'"' '{print $6}' 20.countmerged.idx) <(awk -F'"' '{print $6}' 27.countmerged.idx) <(awk -F'"' '{print $6}' 33.countmerged.idx) <(awk -F'"' '{print $6}' 39.countmerged.idx) >> BaP_high.countmerged.idx
+echo -e 'Gene_id\tsample_1716412\tsample_1716512\tsample_1716812\tsample_1717012\tsample_1717812\tsample_1718012' > control.countmerged.idx
+paste <(awk -F'"' '{print $2}' 1716412.countmerged.idx) <(awk -F'"' '{print $6}' 1716412.countmerged.idx) <(awk -F'"' '{print $6}' 1716512.countmerged.idx) <(awk -F'"' '{print $6}' 1716812.countmerged.idx) <(awk -F'"' '{print $6}' 1717012.countmerged.idx) <(awk -F'"' '{print $6}' 1717812.countmerged.idx) <(awk -F'"' '{print $6}' 1718012.countmerged.idx) >> control.countmerged.idx
 
-echo -e 'Gene_id\tsample_4\tsample_9\tsample_15\tsample_21\tsample_34\tsample_40\tsample_47' > EE2_low.countmerged.idx
-paste <(awk -F'"' '{print $2"\t"$6}' 4.countmerged.idx) <(awk -F'"' '{print $6}' 9.countmerged.idx) <(awk -F'"' '{print $6}' 15.countmerged.idx) <(awk -F'"' '{print $6}' 21.countmerged.idx) <(awk -F'"' '{print $6}' 34.countmerged.idx) <(awk -F'"' '{print $6}' 40.countmerged.idx) <(awk -F'"' '{print $6}' 47.countmerged.idx) >> EE2_low.countmerged.idx
+echo -e 'Gene_id\tsample_1708012\tsample_1708612\tsample_1709112\tsample_1709212' > PAH_low.countmerged.idx
+paste <(awk -F'"' '{print $2}' 1708012.countmerged.idx) <(awk -F'"' '{print $6}' 1708012.countmerged.idx) <(awk -F'"' '{print $6}' 1708612.countmerged.idx) <(awk -F'"' '{print $6}' 1709112.countmerged.idx) <(awk -F'"' '{print $6}' 1709212.countmerged.idx) >> PAH_low.countmerged.idx
 
-echo -e 'Gene_id\tsample_5\tsample_16\tsample_22\tsample_28\tsample_35\tsample_48' > EE2_high.countmerged.idx
-paste <(awk -F'"' '{print $2"\t"$6}' 5.countmerged.idx) <(awk -F'"' '{print $6}' 16.countmerged.idx) <(awk -F'"' '{print $6}' 22.countmerged.idx) <(awk -F'"' '{print $6}' 28.countmerged.idx) <(awk -F'"' '{print $6}' 35.countmerged.idx) <(awk -F'"' '{print $6}' 48.countmerged.idx) >> EE2_high.countmerged.idx
+echo -e 'Gene_id\tsample_1724712\tsample_1725412\tsample_1725712\tsample_1725912\tsample_1726812' > PAH_high.countmerged.idx
+paste <(awk -F'"' '{print $2}' 1724712.countmerged.idx) <(awk -F'"' '{print $6}' 1724712.countmerged.idx) <(awk -F'"' '{print $6}' 1725412.countmerged.idx) <(awk -F'"' '{print $6}' 1725712.countmerged.idx) <(awk -F'"' '{print $6}' 1725912.countmerged.idx) <(awk -F'"' '{print $6}' 1726812.countmerged.idx) >> PAH_high.countmerged.idx
 
-echo -e 'Gene_id\tsample_10\tsample_23\tsample_29\tsample_36\tsample_42\tsample_49' > Mix_low.countmerged.idx
-paste <(awk -F'"' '{print $2"\t"$6}' 10.countmerged.idx) <(awk -F'"' '{print $6}' 23.countmerged.idx) <(awk -F'"' '{print $6}' 29.countmerged.idx) <(awk -F'"' '{print $6}' 36.countmerged.idx) <(awk -F'"' '{print $6}' 42.countmerged.idx) <(awk -F'"' '{print $6}' 49.countmerged.idx) >> Mix_low.countmerged.idx
+echo -e 'Gene_id\tsample_1709912\tsample_1710012\tsample_1710312\tsample_1710412\tsample_1710512' > PFAS_low.countmerged.idx
+paste <(awk -F'"' '{print $2}' 1709912.countmerged.idx) <(awk -F'"' '{print $6}' 1709912.countmerged.idx) <(awk -F'"' '{print $6}' 1710012.countmerged.idx) <(awk -F'"' '{print $6}' 1710312.countmerged.idx) <(awk -F'"' '{print $6}' 1710412.countmerged.idx) <(awk -F'"' '{print $6}' 1710512.countmerged.idx) >> PFAS_low.countmerged.idx
 
-echo -e 'Gene_id\tsample_11\tsample_17\tsample_24\tsample_30\tsample_37\tsample_50' > Mix_high.countmerged.idx
-paste <(awk -F'"' '{print $2"\t"$6}' 11.countmerged.idx) <(awk -F'"' '{print $6}' 17.countmerged.idx) <(awk -F'"' '{print $6}' 24.countmerged.idx) <(awk -F'"' '{print $6}' 30.countmerged.idx) <(awk -F'"' '{print $6}' 37.countmerged.idx) <(awk -F'"' '{print $6}' 50.countmerged.idx) >> Mix_high.countmerged.idx
+echo -e 'Gene_id\tsample_1722912\tsample_1723512\tsample_1723812\tsample_1723912' > PFAS_high.countmerged.idx
+paste <(awk -F'"' '{print $2}' 1722912.countmerged.idx) <(awk -F'"' '{print $6}' 1722912.countmerged.idx) <(awk -F'"' '{print $6}' 1723512.countmerged.idx) <(awk -F'"' '{print $6}' 1723812.countmerged.idx) <(awk -F'"' '{print $6}' 1723912.countmerged.idx) >> PFAS_high.countmerged.idx
+
+echo -e 'Gene_id\tsample_167512\tsample_167912\tsample_168112\tsample_168412\tsample_168612' > station_4.countmerged.idx
+paste <(awk -F'"' '{print $2}' 167512.countmerged.idx) <(awk -F'"' '{print $6}' 167512.countmerged.idx) <(awk -F'"' '{print $6}' 167912.countmerged.idx) <(awk -F'"' '{print $6}' 168112.countmerged.idx) <(awk -F'"' '{print $6}' 168412.countmerged.idx) <(awk -F'"' '{print $6}' 168612.countmerged.idx) >> station_4.countmerged.idx
+
+echo -e 'Gene_id\tsample_160212\tsample_160412\tsample_160512\tsample_160812' > station_1.countmerged.idx
+paste <(awk -F'"' '{print $2}' 160212.countmerged.idx) <(awk -F'"' '{print $6}' 160212.countmerged.idx) <(awk -F'"' '{print $6}' 160412.countmerged.idx) <(awk -F'"' '{print $6}' 160512.countmerged.idx) <(awk -F'"' '{print $6}' 160812.countmerged.idx) >> station_1.countmerged.idx
+
+echo -e 'Gene_id\tsample_162712\tsample_162812\tsample_163112\tsample_163512' > station_2.countmerged.idx
+paste <(awk -F'"' '{print $2}' 162712.countmerged.idx) <(awk -F'"' '{print $6}' 162712.countmerged.idx) <(awk -F'"' '{print $6}' 162812.countmerged.idx) <(awk -F'"' '{print $6}' 163112.countmerged.idx) <(awk -F'"' '{print $6}' 163512.countmerged.idx) >> station_2.countmerged.idx
+
+echo -e 'Gene_id\tsample_164612\tsample_165612\tsample_166012' > station_3.countmerged.idx
+paste <(awk -F'"' '{print $2}' 164612.countmerged.idx) <(awk -F'"' '{print $6}' 164612.countmerged.idx) <(awk -F'"' '{print $6}' 165612.countmerged.idx) <(awk -F'"' '{print $6}' 166012.countmerged.idx) >> station_3.countmerged.idx
+
