@@ -7,8 +7,8 @@ stations = ["station_1", "station_2", "station_3"]
 
 rule all:
     input:
-        chemical = expand(config["OUTPUTPATH"] + "DEA/dea_control_{chemical}.csv", chemical = chemicals),
-        station = expand(config["OUTPUTPATH"] + "DEA/dea_station_4_{station}.csv", station = stations)
+        chemical = expand(config["OUTPUTPATH"] + "DEA/edger/dea_control_{chemical}.csv", chemical = chemicals),
+        station = expand(config["OUTPUTPATH"] + "DEA/edger/dea_station_4_{station}.csv", station = stations)
 
 # The rule below is not flexibal, needs to change manually, the used script combine.sh is only suitable for PAH_PFAS
 rule combineSamples:
@@ -59,25 +59,46 @@ rule DEA:
         station_4_station_2 = config["OUTPUTPATH"] + "DEA/station_4_station_2",
         station_4_station_1 = config["OUTPUTPATH"] + "DEA/station_4_station_1"
     output:
-        control_PAH_low_dea = config["OUTPUTPATH"] + "DEA/dea_control_PAH_low.csv",
-        control_PAH_low_deg = config["OUTPUTPATH"] + "DEA/deg_control_PAH_low.csv",
-        control_PAH_high_dea = config["OUTPUTPATH"] + "DEA/dea_control_PAH_high.csv",
-        control_PAH_high_deg = config["OUTPUTPATH"] + "DEA/deg_control_PAH_high.csv",
-        control_PFAS_low_dea = config["OUTPUTPATH"] + "DEA/dea_control_PFAS_low.csv",
-        control_PFAS_low_deg = config["OUTPUTPATH"] + "DEA/deg_control_PFAS_low.csv",
-        control_PFAS_high_dea = config["OUTPUTPATH"] + "DEA/dea_control_PFAS_high.csv",
-        control_PFAS_high_deg = config["OUTPUTPATH"] + "DEA/deg_control_PFAS_high.csv",
-        station_4_station_3_dea = config["OUTPUTPATH"] + "DEA/dea_station_4_station_3.csv",
-        station_4_station_3_deg = config["OUTPUTPATH"] + "DEA/deg_station_4_station_3.csv",
-        station_4_station_2_dea = config["OUTPUTPATH"] + "DEA/dea_station_4_station_2.csv",
-        station_4_station_2_deg = config["OUTPUTPATH"] + "DEA/deg_station_4_station_2.csv",
-        station_4_station_1_dea = config["OUTPUTPATH"] + "DEA/dea_station_4_station_1.csv",
-        station_4_station_1_deg = config["OUTPUTPATH"] + "DEA/deg_station_4_station_1.csv"
+        edger_control_PAH_low_dea = config["OUTPUTPATH"] + "DEA/edger/dea_control_PAH_low.csv",
+        edger_control_PAH_low_deg = config["OUTPUTPATH"] + "DEA/edger/deg_control_PAH_low.csv",
+        edger_control_PAH_high_dea = config["OUTPUTPATH"] + "DEA/edger/dea_control_PAH_high.csv",
+        edger_control_PAH_high_deg = config["OUTPUTPATH"] + "DEA/edger/deg_control_PAH_high.csv",
+        edger_control_PFAS_low_dea = config["OUTPUTPATH"] + "DEA/edger/dea_control_PFAS_low.csv",
+        edger_control_PFAS_low_deg = config["OUTPUTPATH"] + "DEA/edger/deg_control_PFAS_low.csv",
+        edger_control_PFAS_high_dea = config["OUTPUTPATH"] + "DEA/edger/dea_control_PFAS_high.csv",
+        edger_control_PFAS_high_deg = config["OUTPUTPATH"] + "DEA/edger/deg_control_PFAS_high.csv",
+        edger_station_4_station_3_dea = config["OUTPUTPATH"] + "DEA/edger/dea_station_4_station_3.csv",
+        edger_station_4_station_3_deg = config["OUTPUTPATH"] + "DEA/edger/deg_station_4_station_3.csv",
+        edger_station_4_station_2_dea = config["OUTPUTPATH"] + "DEA/edger/dea_station_4_station_2.csv",
+        edger_station_4_station_2_deg = config["OUTPUTPATH"] + "DEA/edger/deg_station_4_station_2.csv",
+        edger_station_4_station_1_dea = config["OUTPUTPATH"] + "DEA/edger/dea_station_4_station_1.csv",
+        edger_station_4_station_1_deg = config["OUTPUTPATH"] + "DEA/edger/deg_station_4_station_1.csv",
+        deseq2_control_PAH_low_dea = config["OUTPUTPATH"] + "DEA/deseq2/dea_control_PAH_low.csv",
+        deseq2_control_PAH_low_deg = config["OUTPUTPATH"] + "DEA/deseq2/deg_control_PAH_low.csv",
+        deseq2_control_PAH_high_dea = config["OUTPUTPATH"] + "DEA/deseq2/dea_control_PAH_high.csv",
+        deseq2_control_PAH_high_deg = config["OUTPUTPATH"] + "DEA/deseq2/deg_control_PAH_high.csv",
+        deseq2_control_PFAS_low_dea = config["OUTPUTPATH"] + "DEA/deseq2/dea_control_PFAS_low.csv",
+        deseq2_control_PFAS_low_deg = config["OUTPUTPATH"] + "DEA/deseq2/deg_control_PFAS_low.csv",
+        deseq2_control_PFAS_high_dea = config["OUTPUTPATH"] + "DEA/deseq2/dea_control_PFAS_high.csv",
+        deseq2_control_PFAS_high_deg = config["OUTPUTPATH"] + "DEA/deseq2/deg_control_PFAS_high.csv",
+        deseq2_station_4_station_3_dea = config["OUTPUTPATH"] + "DEA/deseq2/dea_station_4_station_3.csv",
+        deseq2_station_4_station_3_deg = config["OUTPUTPATH"] + "DEA/deseq2/deg_station_4_station_3.csv",
+        deseq2_station_4_station_2_dea = config["OUTPUTPATH"] + "DEA/deseq2/dea_station_4_station_2.csv",
+        deseq2_station_4_station_2_deg = config["OUTPUTPATH"] + "DEA/deseq2/deg_station_4_station_2.csv",
+        deseq2_station_4_station_1_dea = config["OUTPUTPATH"] + "DEA/deseq2/dea_station_4_station_1.csv",
+        deseq2_station_4_station_1_deg = config["OUTPUTPATH"] + "DEA/deseq2/deg_station_4_station_1.csv"
     shell:
-        "Rscript ../scripts/dea.edger.R {input.control_PAH_low} 6 4 {output.control_PAH_low_dea} {output.control_PAH_low_deg} && "
-        "Rscript ../scripts/dea.edger.R {input.control_PAH_high} 6 5 {output.control_PAH_high_dea} {output.control_PAH_high_deg} && "
-        "Rscript ../scripts/dea.edger.R {input.control_PFAS_low} 6 5 {output.control_PFAS_low_dea} {output.control_PFAS_low_deg} && "
-        "Rscript ../scripts/dea.edger.R {input.control_PFAS_high} 6 4 {output.control_PFAS_high_dea} {output.control_PFAS_high_deg} && "
-        "Rscript ../scripts/dea.edger.R {input.station_4_station_3} 5 3 {output.station_4_station_3_dea} {output.station_4_station_3_deg} && "
-        "Rscript ../scripts/dea.edger.R {input.station_4_station_2} 5 4 {output.station_4_station_2_dea} {output.station_4_station_2_deg} && "
-        "Rscript ../scripts/dea.edger.R {input.station_4_station_1} 5 4 {output.station_4_station_1_dea} {output.station_4_station_1_deg}"
+        "Rscript ../scripts/dea.edger.R {input.control_PAH_low} 6 4 {output.edger_control_PAH_low_dea} {output.edger_control_PAH_low_deg} && "
+        "Rscript ../scripts/dea.edger.R {input.control_PAH_high} 6 5 {output.edger_control_PAH_high_dea} {output.edger_control_PAH_high_deg} && "
+        "Rscript ../scripts/dea.edger.R {input.control_PFAS_low} 6 5 {output.edger_control_PFAS_low_dea} {output.edger_control_PFAS_low_deg} && "
+        "Rscript ../scripts/dea.edger.R {input.control_PFAS_high} 6 4 {output.edger_control_PFAS_high_dea} {output.edger_control_PFAS_high_deg} && "
+        "Rscript ../scripts/dea.edger.R {input.station_4_station_3} 5 3 {output.edger_station_4_station_3_dea} {output.edger_station_4_station_3_deg} && "
+        "Rscript ../scripts/dea.edger.R {input.station_4_station_2} 5 4 {output.edger_station_4_station_2_dea} {output.edger_station_4_station_2_deg} && "
+        "Rscript ../scripts/dea.edger.R {input.station_4_station_1} 5 4 {output.edger_station_4_station_1_dea} {output.edger_station_4_station_1_deg} && "
+        "Rscript ../scripts/dea.deseq2.R {input.control_PAH_low} 6 4 {output.deseq2_control_PAH_low_dea} {output.deseq2_control_PAH_low_deg} && "
+        "Rscript ../scripts/dea.deseq2.R {input.control_PAH_high} 6 5 {output.deseq2_control_PAH_high_dea} {output.deseq2_control_PAH_high_deg} && "
+        "Rscript ../scripts/dea.deseq2.R {input.control_PFAS_low} 6 5 {output.deseq2_control_PFAS_low_dea} {output.deseq2_control_PFAS_low_deg} && "
+        "Rscript ../scripts/dea.deseq2.R {input.control_PFAS_high} 6 4 {output.deseq2_control_PFAS_high_dea} {output.deseq2_control_PFAS_high_deg} && "
+        "Rscript ../scripts/dea.deseq2.R {input.station_4_station_3} 5 3 {output.deseq2_station_4_station_3_dea} {output.deseq2_station_4_station_3_deg} && "
+        "Rscript ../scripts/dea.deseq2.R {input.station_4_station_2} 5 4 {output.deseq2_station_4_station_2_dea} {output.deseq2_station_4_station_2_deg} && "
+        "Rscript ../scripts/dea.deseq2.R {input.station_4_station_1} 5 4 {output.deseq2_station_4_station_1_dea} {output.deseq2_station_4_station_1_deg}"
