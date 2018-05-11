@@ -55,8 +55,9 @@ dea <- lrt$table
 
 # differentially expressed genes
 toptag <- topTags(lrt, n = nrow(y$genes), p.value = 0.05)
-deg <- toptag$table[, -1]  # remove the column "genes" just to make it consistent with dea
+deg <- toptag$table
 
 # save the DEA result and DEGs to files
 write.csv(dea, args[4])
-write.csv(deg, args[5])
+write.csv(deg, args[5], row.names = F)  # remove the row names (index number) just to make it consistent with dea
+
