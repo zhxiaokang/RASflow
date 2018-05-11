@@ -7,8 +7,11 @@ stations = ["station_1", "station_2", "station_3"]
 
 rule all:
     input:
-        chemical = expand(config["OUTPUTPATH"] + "DEA/edger/dea_control_{chemical}.csv", chemical = chemicals),
-        station = expand(config["OUTPUTPATH"] + "DEA/edger/dea_station_4_{station}.csv", station = stations)
+        chemical_dea = expand(config["OUTPUTPATH"] + "DEA/edger/dea_control_{chemical}.csv", chemical = chemicals),
+        station_dea = expand(config["OUTPUTPATH"] + "DEA/edger/dea_station_4_{station}.csv", station = stations),
+        chemical_deg = expand(config["OUTPUTPATH"] + "DEA/edger/deg_control_{chemical}.csv", chemical = chemicals),
+        station_deg = expand(config["OUTPUTPATH"] + "DEA/edger/deg_station_4_{station}.csv", station = stations)
+
 
 # The rule below is not flexibal, needs to change manually, the used script combine.sh is only suitable for PAH_PFAS
 rule combineSamples:
