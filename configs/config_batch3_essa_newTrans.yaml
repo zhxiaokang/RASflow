@@ -1,0 +1,6 @@
+# Please check the first 4 parameters, and adjust them according to your demande
+NELSIN: "u11bd@nelstor0.cbu.uib.no:Projects/UiB_Goksoyr_dCod_1_2017/dCod_Batch3"
+OUTPUTPATH: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa_newTrans/output/"
+KEY: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt"
+TRANS: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/ref/trans/trinitytranscripts_basedongenemodel_ver3_20181009.fasta"
+NCORE: "20"
