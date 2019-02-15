@@ -1,0 +1,1 @@
+samtools idxstats ../../data/RNA-Seq-analysis/output/bamFile/1726812.sort.bam > ../../data/RNA-Seq-analysis/output/countFile/1726812.count

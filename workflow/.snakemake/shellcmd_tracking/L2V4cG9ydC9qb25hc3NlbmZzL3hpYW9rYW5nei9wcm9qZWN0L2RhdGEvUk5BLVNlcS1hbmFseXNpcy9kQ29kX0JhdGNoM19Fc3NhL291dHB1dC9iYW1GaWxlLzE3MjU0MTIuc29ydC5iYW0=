@@ -1,0 +1,1 @@
+samtools sort /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1725412.bam -o /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1725412.sort.bam && samtools index /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1725412.sort.bam

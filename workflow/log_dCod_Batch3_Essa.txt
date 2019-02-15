@@ -1,0 +1,1887 @@
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	24	alignment
+	1	all
+	24	featureCount
+	24	getReads
+	1	indexTrans
+	24	sortIndex
+	98
+
+rule indexTrans:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/ref/trans/trinitytranscripts_basedongenemodel_ver3_20181009.fasta
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2
+    jobid: 73
+
+Settings:
+  Output files: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.*.ht2"
+  Line rate: 6 (line is 64 bytes)
+  Lines per side: 1 (side is 64 bytes)
+  Offset rate: 4 (one in 16)
+  FTable chars: 10
+  Strings: unpacked
+  Local offset rate: 3 (one in 8)
+  Local fTable chars: 6
+  Local sequence length: 57344
+  Local sequence overlap between two consecutive indexes: 1024
+  Endianness: little
+  Actual local endianness: little
+  Sanity checking: disabled
+  Assertions: disabled
+  Random seed: 0
+  Sizeofs: void*:8, int:4, long:8, size_t:8
+Input files DNA, FASTA:
+  /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/ref/trans/trinitytranscripts_basedongenemodel_ver3_20181009.fasta
+Reading reference sizes
+  Time reading reference sizes: 00:00:02
+Calculating joined length
+Writing header
+Reserving space for joined string
+Joining reference sequences
+  Time to join reference sequences: 00:00:01
+  Time to read SNPs and splice sites: 00:00:00
+Using parameters --bmax 15258261 --dcv 1024
+  Doing ahead-of-time memory usage test
+  Passed!  Constructing with these parameters: --bmax 15258261 --dcv 1024
+Constructing suffix-array element generator
+Building DifferenceCoverSample
+  Building sPrime
+  Building sPrimeOrder
+  V-Sorting samples
+  V-Sorting samples time: 00:00:06
+  Allocating rank array
+  Ranking v-sort output
+  Ranking v-sort output time: 00:00:00
+  Invoking Larsson-Sadakane on ranks
+  Invoking Larsson-Sadakane on ranks time: 00:00:01
+  Sanity-checking and returning
+Building samples
+Reserving space for 12 sample suffixes
+Generating random suffixes
+QSorting 12 sample offsets, eliminating duplicates
+QSorting sample offsets, eliminating duplicates time: 00:00:00
+Multikey QSorting 12 samples
+  (Using difference cover)
+  Multikey QSorting samples time: 00:00:00
+Calculating bucket sizes
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Split 2, merged 7; iterating...
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Split 1, merged 0; iterating...
+Splitting and merging
+  Splitting and merging time: 00:00:00
+Avg bucket size: 1.01722e+07 (target: 15258260)
+Converting suffix-array elements to index image
+Allocating ftab, absorbFtab
+Entering GFM loop
+Getting block 1 of 8
+Getting block 2 of 8
+  Reserving size (15258261) for bucket 2
+  Reserving size (15258261) for bucket 1
+Getting block 3 of 8
+  Reserving size (15258261) for bucket 3
+Getting block 5 of 8
+  Reserving size (15258261) for bucket 5
+Getting block 4 of 8
+  Reserving size (15258261) for bucket 4
+Getting block 6 of 8
+  Reserving size (15258261) for bucket 6
+Getting block 7 of 8
+  Reserving size (15258261) for bucket 7
+  Calculating Z arrays for bucket 2
+  Entering block accumulator loop for bucket 2:
+  Calculating Z arrays for bucket 1
+  Entering block accumulator loop for bucket 1:
+  Calculating Z arrays for bucket 7
+  Entering block accumulator loop for bucket 7:
+Getting block 8 of 8
+  Reserving size (15258261) for bucket 8
+  Calculating Z arrays for bucket 3
+  Entering block accumulator loop for bucket 3:
+  Calculating Z arrays for bucket 4
+  Entering block accumulator loop for bucket 4:
+  Calculating Z arrays for bucket 6
+  Entering block accumulator loop for bucket 6:
+  Calculating Z arrays for bucket 5
+  Entering block accumulator loop for bucket 5:
+  Calculating Z arrays for bucket 8
+  Entering block accumulator loop for bucket 8:
+  bucket 2: 10%
+  bucket 4: 10%
+  bucket 8: 10%
+  bucket 2: 20%
+  bucket 4: 20%
+  bucket 1: 10%
+  bucket 2: 30%
+  bucket 8: 20%
+  bucket 3: 10%
+  bucket 6: 10%
+  bucket 2: 40%
+  bucket 4: 30%
+  bucket 5: 10%
+  bucket 7: 10%
+  bucket 2: 50%
+  bucket 8: 30%
+  bucket 4: 40%
+  bucket 1: 20%
+  bucket 2: 60%
+  bucket 2: 70%
+  bucket 4: 50%
+  bucket 8: 40%
+  bucket 3: 20%
+  bucket 6: 20%
+  bucket 2: 80%
+  bucket 5: 20%
+  bucket 4: 60%
+  bucket 2: 90%
+  bucket 1: 30%
+  bucket 8: 50%
+  bucket 7: 20%
+  bucket 2: 100%
+  Sorting block of length 5792302 for bucket 2
+  (Using difference cover)
+  bucket 4: 70%
+  bucket 8: 60%
+  bucket 4: 80%
+  bucket 3: 30%
+  bucket 6: 30%
+  bucket 1: 40%
+  bucket 4: 90%
+  bucket 5: 30%
+  bucket 8: 70%
+  bucket 4: 100%
+  Sorting block of length 13125614 for bucket 4
+  (Using difference cover)
+  bucket 7: 30%
+  bucket 8: 80%
+  bucket 1: 50%
+  bucket 3: 40%
+  bucket 6: 40%
+  bucket 8: 90%
+  bucket 5: 40%
+  bucket 1: 60%
+  bucket 8: 100%
+  Sorting block of length 9453307 for bucket 8
+  (Using difference cover)
+  bucket 6: 50%
+  bucket 3: 50%
+  bucket 7: 40%
+  bucket 6: 60%
+  bucket 1: 70%
+  bucket 5: 50%
+  bucket 6: 70%
+  bucket 3: 60%
+  bucket 6: 80%
+  bucket 1: 80%
+  bucket 7: 50%
+  bucket 6: 90%
+  bucket 5: 60%
+  bucket 6: 100%
+  Sorting block of length 9418655 for bucket 6
+  (Using difference cover)
+  bucket 1: 90%
+  bucket 3: 70%
+  bucket 7: 60%
+  bucket 1: 100%
+  Sorting block of length 10624827 for bucket 1
+  (Using difference cover)
+  bucket 5: 70%
+  bucket 3: 80%
+  bucket 3: 90%
+  bucket 7: 70%
+  bucket 5: 80%
+  bucket 3: 100%
+  Sorting block of length 9502144 for bucket 3
+  (Using difference cover)
+  bucket 7: 80%
+  bucket 5: 90%
+  bucket 7: 90%
+  bucket 5: 100%
+  Sorting block of length 9981871 for bucket 5
+  (Using difference cover)
+  bucket 7: 100%
+  Sorting block of length 13478663 for bucket 7
+  (Using difference cover)
+  Sorting block time: 00:00:05
+Returning block of 5792303 for bucket 2
+  Sorting block time: 00:00:09
+Returning block of 9453308 for bucket 8
+  Sorting block time: 00:00:09
+Returning block of 9418656 for bucket 6
+  Sorting block time: 00:00:09
+Returning block of 9502145 for bucket 3
+  Sorting block time: 00:00:09
+Returning block of 10624828 for bucket 1
+  Sorting block time: 00:00:09
+Returning block of 9981872 for bucket 5
+  Sorting block time: 00:00:13
+Returning block of 13125615 for bucket 4
+  Sorting block time: 00:00:11
+Returning block of 13478664 for bucket 7
+Exited GFM loop
+fchr[A]: 0
+fchr[C]: 18885951
+fchr[G]: 40602646
+fchr[T]: 62511350
+fchr[$]: 81377390
+Exiting GFM::buildToDisk()
+Returning from initFromVector
+Wrote 33199174 bytes to primary GFM file: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2
+Wrote 20344352 bytes to secondary GFM file: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2
+Re-opening _in1 and _in2 as input streams
+Returning from GFM constructor
+Returning from initFromVector
+Wrote 350337517 bytes to primary GFM file: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2
+Wrote 20388630 bytes to secondary GFM file: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2
+Re-opening _in5 and _in5 as input streams
+Returning from HierEbwt constructor
+Headers:
+    len: 81377390
+    gbwtLen: 81377391
+    nodes: 81377391
+    sz: 20344348
+    gbwtSz: 20344348
+    lineRate: 6
+    offRate: 4
+    offMask: 0xfffffff0
+    ftabChars: 10
+    eftabLen: 0
+    eftabSz: 0
+    ftabLen: 1048577
+    ftabSz: 4194308
+    offsLen: 5086087
+    offsSz: 20344348
+    lineSz: 64
+    sideSz: 64
+    sideGbwtSz: 48
+    sideGbwtLen: 192
+    numSides: 423841
+    numLines: 423841
+    gbwtTotLen: 27125824
+    gbwtTotSz: 27125824
+    reverse: 0
+    linearFM: Yes
+Total time for call to driver() for forward index: 00:02:19
+Finished job 73.
+1 of 98 steps (1%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1709212_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1709212_reverse.fastq.gz
+    jobid: 78
+    wildcards: sample=1709212
+
+Finished job 78.
+2 of 98 steps (2%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1709212_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1709212_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1709212.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1709212.sam
+    jobid: 53
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1709212.hisat2.benchmark.txt
+    wildcards: sample=1709212
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+32292256 reads; of these:
+  32292256 (100.00%) were paired; of these:
+    8306060 (25.72%) aligned concordantly 0 times
+    12607744 (39.04%) aligned concordantly exactly 1 time
+    11378452 (35.24%) aligned concordantly >1 times
+    ----
+    8306060 pairs aligned concordantly 0 times; of these:
+      106373 (1.28%) aligned discordantly 1 time
+    ----
+    8199687 pairs aligned 0 times concordantly or discordantly; of these:
+      16399374 mates make up the pairs; of these:
+        13829920 (84.33%) aligned 0 times
+        1506108 (9.18%) aligned exactly 1 time
+        1063346 (6.48%) aligned >1 times
+78.59% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1709212_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1709212_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1709212.sam.
+Finished job 53.
+3 of 98 steps (3%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1709212.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1709212.sort.bam
+    jobid: 29
+    wildcards: sample=1709212
+
+[bam_sort_core] merging from 40 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1709212.bam.
+Finished job 29.
+4 of 98 steps (4%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1709112_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1709112_reverse.fastq.gz
+    jobid: 87
+    wildcards: sample=1709112
+
+Finished job 87.
+5 of 98 steps (5%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1709112_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1709112_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1709112.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1709112.sam
+    jobid: 62
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1709112.hisat2.benchmark.txt
+    wildcards: sample=1709112
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+339373936 reads; of these:
+  339373936 (100.00%) were paired; of these:
+    85436109 (25.17%) aligned concordantly 0 times
+    132598799 (39.07%) aligned concordantly exactly 1 time
+    121339028 (35.75%) aligned concordantly >1 times
+    ----
+    85436109 pairs aligned concordantly 0 times; of these:
+      852251 (1.00%) aligned discordantly 1 time
+    ----
+    84583858 pairs aligned 0 times concordantly or discordantly; of these:
+      169167716 mates make up the pairs; of these:
+        147029914 (86.91%) aligned 0 times
+        12946750 (7.65%) aligned exactly 1 time
+        9191052 (5.43%) aligned >1 times
+78.34% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1709112_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1709112_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1709112.sam.
+Finished job 62.
+6 of 98 steps (6%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1709112.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1709112.sort.bam
+    jobid: 38
+    wildcards: sample=1709112
+
+[bam_sort_core] merging from 414 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1709112.bam.
+Finished job 38.
+7 of 98 steps (7%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1725712_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1725712_reverse.fastq.gz
+    jobid: 91
+    wildcards: sample=1725712
+
+Finished job 91.
+8 of 98 steps (8%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1725712_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1725712_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1725712.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1725712.sam
+    jobid: 66
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1725712.hisat2.benchmark.txt
+    wildcards: sample=1725712
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+73865437 reads; of these:
+  73865437 (100.00%) were paired; of these:
+    20473698 (27.72%) aligned concordantly 0 times
+    27948847 (37.84%) aligned concordantly exactly 1 time
+    25442892 (34.44%) aligned concordantly >1 times
+    ----
+    20473698 pairs aligned concordantly 0 times; of these:
+      196815 (0.96%) aligned discordantly 1 time
+    ----
+    20276883 pairs aligned 0 times concordantly or discordantly; of these:
+      40553766 mates make up the pairs; of these:
+        35151236 (86.68%) aligned 0 times
+        3339661 (8.24%) aligned exactly 1 time
+        2062869 (5.09%) aligned >1 times
+76.21% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1725712_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1725712_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1725712.sam.
+Finished job 66.
+9 of 98 steps (9%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1725712.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1725712.sort.bam
+    jobid: 42
+    wildcards: sample=1725712
+
+[bam_sort_core] merging from 90 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1725712.bam.
+Finished job 42.
+10 of 98 steps (10%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1726812_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1726812_reverse.fastq.gz
+    jobid: 74
+    wildcards: sample=1726812
+
+Finished job 74.
+11 of 98 steps (11%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1726812_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1726812_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1726812.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1726812.sam
+    jobid: 49
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1726812.hisat2.benchmark.txt
+    wildcards: sample=1726812
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+24777082 reads; of these:
+  24777082 (100.00%) were paired; of these:
+    6344792 (25.61%) aligned concordantly 0 times
+    9801003 (39.56%) aligned concordantly exactly 1 time
+    8631287 (34.84%) aligned concordantly >1 times
+    ----
+    6344792 pairs aligned concordantly 0 times; of these:
+      85591 (1.35%) aligned discordantly 1 time
+    ----
+    6259201 pairs aligned 0 times concordantly or discordantly; of these:
+      12518402 mates make up the pairs; of these:
+        10579351 (84.51%) aligned 0 times
+        1159718 (9.26%) aligned exactly 1 time
+        779333 (6.23%) aligned >1 times
+78.65% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1726812_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1726812_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1726812.sam.
+Finished job 49.
+12 of 98 steps (12%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1726812.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1726812.sort.bam
+    jobid: 25
+    wildcards: sample=1726812
+
+[bam_sort_core] merging from 30 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1726812.bam.
+Finished job 25.
+13 of 98 steps (13%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1723512_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1723512_reverse.fastq.gz
+    jobid: 76
+    wildcards: sample=1723512
+
+Finished job 76.
+14 of 98 steps (14%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1723512_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1723512_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1723512.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1723512.sam
+    jobid: 51
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1723512.hisat2.benchmark.txt
+    wildcards: sample=1723512
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+39919600 reads; of these:
+  39919600 (100.00%) were paired; of these:
+    11233760 (28.14%) aligned concordantly 0 times
+    14869672 (37.25%) aligned concordantly exactly 1 time
+    13816168 (34.61%) aligned concordantly >1 times
+    ----
+    11233760 pairs aligned concordantly 0 times; of these:
+      162665 (1.45%) aligned discordantly 1 time
+    ----
+    11071095 pairs aligned 0 times concordantly or discordantly; of these:
+      22142190 mates make up the pairs; of these:
+        18670233 (84.32%) aligned 0 times
+        1854569 (8.38%) aligned exactly 1 time
+        1617388 (7.30%) aligned >1 times
+76.62% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1723512_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1723512_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1723512.sam.
+Finished job 51.
+15 of 98 steps (15%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1723512.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1723512.sort.bam
+    jobid: 27
+    wildcards: sample=1723512
+
+[bam_sort_core] merging from 49 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1723512.bam.
+Finished job 27.
+16 of 98 steps (16%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1723912_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1723912_reverse.fastq.gz
+    jobid: 86
+    wildcards: sample=1723912
+
+Finished job 86.
+17 of 98 steps (17%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1723912_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1723912_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1723912.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1723912.sam
+    jobid: 61
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1723912.hisat2.benchmark.txt
+    wildcards: sample=1723912
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+22999314 reads; of these:
+  22999314 (100.00%) were paired; of these:
+    6041032 (26.27%) aligned concordantly 0 times
+    8945655 (38.90%) aligned concordantly exactly 1 time
+    8012627 (34.84%) aligned concordantly >1 times
+    ----
+    6041032 pairs aligned concordantly 0 times; of these:
+      85423 (1.41%) aligned discordantly 1 time
+    ----
+    5955609 pairs aligned 0 times concordantly or discordantly; of these:
+      11911218 mates make up the pairs; of these:
+        9952006 (83.55%) aligned 0 times
+        1127814 (9.47%) aligned exactly 1 time
+        831398 (6.98%) aligned >1 times
+78.36% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1723912_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1723912_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1723912.sam.
+Finished job 61.
+18 of 98 steps (18%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1723912.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1723912.sort.bam
+    jobid: 37
+    wildcards: sample=1723912
+
+[bam_sort_core] merging from 28 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1723912.bam.
+Finished job 37.
+19 of 98 steps (19%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1716412_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1716412_reverse.fastq.gz
+    jobid: 82
+    wildcards: sample=1716412
+
+Finished job 82.
+20 of 98 steps (20%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1716412_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1716412_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1716412.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1716412.sam
+    jobid: 57
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1716412.hisat2.benchmark.txt
+    wildcards: sample=1716412
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+35594808 reads; of these:
+  35594808 (100.00%) were paired; of these:
+    9247821 (25.98%) aligned concordantly 0 times
+    13930562 (39.14%) aligned concordantly exactly 1 time
+    12416425 (34.88%) aligned concordantly >1 times
+    ----
+    9247821 pairs aligned concordantly 0 times; of these:
+      94812 (1.03%) aligned discordantly 1 time
+    ----
+    9153009 pairs aligned 0 times concordantly or discordantly; of these:
+      18306018 mates make up the pairs; of these:
+        15872219 (86.70%) aligned 0 times
+        1431655 (7.82%) aligned exactly 1 time
+        1002144 (5.47%) aligned >1 times
+77.70% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1716412_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1716412_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1716412.sam.
+Finished job 57.
+21 of 98 steps (21%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1716412.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1716412.sort.bam
+    jobid: 33
+    wildcards: sample=1716412
+
+[bam_sort_core] merging from 44 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1716412.bam.
+Finished job 33.
+22 of 98 steps (22%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1717012_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1717012_reverse.fastq.gz
+    jobid: 75
+    wildcards: sample=1717012
+
+Finished job 75.
+23 of 98 steps (23%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1717012_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1717012_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1717012.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1717012.sam
+    jobid: 50
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1717012.hisat2.benchmark.txt
+    wildcards: sample=1717012
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+100443298 reads; of these:
+  100443298 (100.00%) were paired; of these:
+    25326920 (25.22%) aligned concordantly 0 times
+    39570812 (39.40%) aligned concordantly exactly 1 time
+    35545566 (35.39%) aligned concordantly >1 times
+    ----
+    25326920 pairs aligned concordantly 0 times; of these:
+      288802 (1.14%) aligned discordantly 1 time
+    ----
+    25038118 pairs aligned 0 times concordantly or discordantly; of these:
+      50076236 mates make up the pairs; of these:
+        42366926 (84.60%) aligned 0 times
+        4408446 (8.80%) aligned exactly 1 time
+        3300864 (6.59%) aligned >1 times
+78.91% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1717012_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1717012_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1717012.sam.
+Finished job 50.
+24 of 98 steps (24%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1717012.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1717012.sort.bam
+    jobid: 26
+    wildcards: sample=1717012
+
+[bam_sort_core] merging from 123 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1717012.bam.
+Finished job 26.
+25 of 98 steps (26%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710312_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710312_reverse.fastq.gz
+    jobid: 94
+    wildcards: sample=1710312
+
+Finished job 94.
+26 of 98 steps (27%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710312_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710312_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710312.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1710312.sam
+    jobid: 69
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1710312.hisat2.benchmark.txt
+    wildcards: sample=1710312
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+27285797 reads; of these:
+  27285797 (100.00%) were paired; of these:
+    7503048 (27.50%) aligned concordantly 0 times
+    10200681 (37.38%) aligned concordantly exactly 1 time
+    9582068 (35.12%) aligned concordantly >1 times
+    ----
+    7503048 pairs aligned concordantly 0 times; of these:
+      96950 (1.29%) aligned discordantly 1 time
+    ----
+    7406098 pairs aligned 0 times concordantly or discordantly; of these:
+      14812196 mates make up the pairs; of these:
+        12641405 (85.34%) aligned 0 times
+        1181254 (7.97%) aligned exactly 1 time
+        989537 (6.68%) aligned >1 times
+76.84% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710312_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710312_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1710312.sam.
+Finished job 69.
+27 of 98 steps (28%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710312.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710312.sort.bam
+    jobid: 45
+    wildcards: sample=1710312
+
+[bam_sort_core] merging from 34 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710312.bam.
+Finished job 45.
+28 of 98 steps (29%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1722912_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1722912_reverse.fastq.gz
+    jobid: 83
+    wildcards: sample=1722912
+
+Finished job 83.
+29 of 98 steps (30%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1722912_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1722912_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1722912.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1722912.sam
+    jobid: 58
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1722912.hisat2.benchmark.txt
+    wildcards: sample=1722912
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+39922553 reads; of these:
+  39922553 (100.00%) were paired; of these:
+    10192652 (25.53%) aligned concordantly 0 times
+    15505336 (38.84%) aligned concordantly exactly 1 time
+    14224565 (35.63%) aligned concordantly >1 times
+    ----
+    10192652 pairs aligned concordantly 0 times; of these:
+      153819 (1.51%) aligned discordantly 1 time
+    ----
+    10038833 pairs aligned 0 times concordantly or discordantly; of these:
+      20077666 mates make up the pairs; of these:
+        16769861 (83.52%) aligned 0 times
+        1803757 (8.98%) aligned exactly 1 time
+        1504048 (7.49%) aligned >1 times
+79.00% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1722912_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1722912_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1722912.sam.
+Finished job 58.
+30 of 98 steps (31%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1722912.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1722912.sort.bam
+    jobid: 34
+    wildcards: sample=1722912
+
+[bam_sort_core] merging from 49 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1722912.bam.
+Finished job 34.
+31 of 98 steps (32%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710512_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710512_reverse.fastq.gz
+    jobid: 90
+    wildcards: sample=1710512
+
+Finished job 90.
+32 of 98 steps (33%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710512_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710512_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710512.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1710512.sam
+    jobid: 65
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1710512.hisat2.benchmark.txt
+    wildcards: sample=1710512
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+65194998 reads; of these:
+  65194998 (100.00%) were paired; of these:
+    17124499 (26.27%) aligned concordantly 0 times
+    25283524 (38.78%) aligned concordantly exactly 1 time
+    22786975 (34.95%) aligned concordantly >1 times
+    ----
+    17124499 pairs aligned concordantly 0 times; of these:
+      190747 (1.11%) aligned discordantly 1 time
+    ----
+    16933752 pairs aligned 0 times concordantly or discordantly; of these:
+      33867504 mates make up the pairs; of these:
+        28847893 (85.18%) aligned 0 times
+        3033759 (8.96%) aligned exactly 1 time
+        1985852 (5.86%) aligned >1 times
+77.88% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710512_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710512_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1710512.sam.
+Finished job 65.
+33 of 98 steps (34%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710512.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710512.sort.bam
+    jobid: 41
+    wildcards: sample=1710512
+
+[bam_sort_core] merging from 80 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710512.bam.
+Finished job 41.
+34 of 98 steps (35%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1716512_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1716512_reverse.fastq.gz
+    jobid: 96
+    wildcards: sample=1716512
+
+Finished job 96.
+35 of 98 steps (36%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1716512_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1716512_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1716512.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1716512.sam
+    jobid: 71
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1716512.hisat2.benchmark.txt
+    wildcards: sample=1716512
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+58503722 reads; of these:
+  58503722 (100.00%) were paired; of these:
+    16715336 (28.57%) aligned concordantly 0 times
+    21739392 (37.16%) aligned concordantly exactly 1 time
+    20048994 (34.27%) aligned concordantly >1 times
+    ----
+    16715336 pairs aligned concordantly 0 times; of these:
+      201351 (1.20%) aligned discordantly 1 time
+    ----
+    16513985 pairs aligned 0 times concordantly or discordantly; of these:
+      33027970 mates make up the pairs; of these:
+        28345402 (85.82%) aligned 0 times
+        2584638 (7.83%) aligned exactly 1 time
+        2097930 (6.35%) aligned >1 times
+75.77% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1716512_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1716512_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1716512.sam.
+Finished job 71.
+36 of 98 steps (37%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1716512.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1716512.sort.bam
+    jobid: 47
+    wildcards: sample=1716512
+
+[bam_sort_core] merging from 71 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1716512.bam.
+Finished job 47.
+37 of 98 steps (38%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1718012_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1718012_reverse.fastq.gz
+    jobid: 77
+    wildcards: sample=1718012
+
+Finished job 77.
+38 of 98 steps (39%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1718012_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1718012_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1718012.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1718012.sam
+    jobid: 52
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1718012.hisat2.benchmark.txt
+    wildcards: sample=1718012
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+76978762 reads; of these:
+  76978762 (100.00%) were paired; of these:
+    20911533 (27.17%) aligned concordantly 0 times
+    29716175 (38.60%) aligned concordantly exactly 1 time
+    26351054 (34.23%) aligned concordantly >1 times
+    ----
+    20911533 pairs aligned concordantly 0 times; of these:
+      189530 (0.91%) aligned discordantly 1 time
+    ----
+    20722003 pairs aligned 0 times concordantly or discordantly; of these:
+      41444006 mates make up the pairs; of these:
+        36200175 (87.35%) aligned 0 times
+        3394507 (8.19%) aligned exactly 1 time
+        1849324 (4.46%) aligned >1 times
+76.49% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1718012_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1718012_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1718012.sam.
+Finished job 52.
+39 of 98 steps (40%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1718012.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1718012.sort.bam
+    jobid: 28
+    wildcards: sample=1718012
+
+[bam_sort_core] merging from 93 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1718012.bam.
+Finished job 28.
+40 of 98 steps (41%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1709912_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1709912_reverse.fastq.gz
+    jobid: 80
+    wildcards: sample=1709912
+
+Finished job 80.
+41 of 98 steps (42%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1709912_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1709912_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1709912.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1709912.sam
+    jobid: 55
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1709912.hisat2.benchmark.txt
+    wildcards: sample=1709912
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+44454282 reads; of these:
+  44454282 (100.00%) were paired; of these:
+    11246131 (25.30%) aligned concordantly 0 times
+    17145729 (38.57%) aligned concordantly exactly 1 time
+    16062422 (36.13%) aligned concordantly >1 times
+    ----
+    11246131 pairs aligned concordantly 0 times; of these:
+      151512 (1.35%) aligned discordantly 1 time
+    ----
+    11094619 pairs aligned 0 times concordantly or discordantly; of these:
+      22189238 mates make up the pairs; of these:
+        18909055 (85.22%) aligned 0 times
+        1821537 (8.21%) aligned exactly 1 time
+        1458646 (6.57%) aligned >1 times
+78.73% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1709912_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1709912_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1709912.sam.
+Finished job 55.
+42 of 98 steps (43%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1709912.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1709912.sort.bam
+    jobid: 31
+    wildcards: sample=1709912
+
+[bam_sort_core] merging from 55 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1709912.bam.
+Finished job 31.
+43 of 98 steps (44%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1716812_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1716812_reverse.fastq.gz
+    jobid: 88
+    wildcards: sample=1716812
+
+Finished job 88.
+44 of 98 steps (45%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1716812_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1716812_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1716812.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1716812.sam
+    jobid: 63
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1716812.hisat2.benchmark.txt
+    wildcards: sample=1716812
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+323667476 reads; of these:
+  323667476 (100.00%) were paired; of these:
+    87983432 (27.18%) aligned concordantly 0 times
+    125883475 (38.89%) aligned concordantly exactly 1 time
+    109800569 (33.92%) aligned concordantly >1 times
+    ----
+    87983432 pairs aligned concordantly 0 times; of these:
+      1341163 (1.52%) aligned discordantly 1 time
+    ----
+    86642269 pairs aligned 0 times concordantly or discordantly; of these:
+      173284538 mates make up the pairs; of these:
+        145145811 (83.76%) aligned 0 times
+        16180435 (9.34%) aligned exactly 1 time
+        11958292 (6.90%) aligned >1 times
+77.58% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1716812_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1716812_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1716812.sam.
+Finished job 63.
+45 of 98 steps (46%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1716812.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1716812.sort.bam
+    jobid: 39
+    wildcards: sample=1716812
+
+[bam_sort_core] merging from 390 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1716812.bam.
+Finished job 39.
+46 of 98 steps (47%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1717812_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1717812_reverse.fastq.gz
+    jobid: 85
+    wildcards: sample=1717812
+
+Finished job 85.
+47 of 98 steps (48%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1717812_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1717812_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1717812.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1717812.sam
+    jobid: 60
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1717812.hisat2.benchmark.txt
+    wildcards: sample=1717812
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+75779931 reads; of these:
+  75779931 (100.00%) were paired; of these:
+    21227718 (28.01%) aligned concordantly 0 times
+    28362773 (37.43%) aligned concordantly exactly 1 time
+    26189440 (34.56%) aligned concordantly >1 times
+    ----
+    21227718 pairs aligned concordantly 0 times; of these:
+      190388 (0.90%) aligned discordantly 1 time
+    ----
+    21037330 pairs aligned 0 times concordantly or discordantly; of these:
+      42074660 mates make up the pairs; of these:
+        36989484 (87.91%) aligned 0 times
+        2998086 (7.13%) aligned exactly 1 time
+        2087090 (4.96%) aligned >1 times
+75.59% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1717812_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1717812_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1717812.sam.
+Finished job 60.
+48 of 98 steps (49%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1717812.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1717812.sort.bam
+    jobid: 36
+    wildcards: sample=1717812
+
+[bam_sort_core] merging from 92 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1717812.bam.
+Finished job 36.
+49 of 98 steps (50%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1725412_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1725412_reverse.fastq.gz
+    jobid: 93
+    wildcards: sample=1725412
+
+Finished job 93.
+50 of 98 steps (51%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1725412_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1725412_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1725412.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1725412.sam
+    jobid: 68
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1725412.hisat2.benchmark.txt
+    wildcards: sample=1725412
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+38673350 reads; of these:
+  38673350 (100.00%) were paired; of these:
+    11154203 (28.84%) aligned concordantly 0 times
+    14536401 (37.59%) aligned concordantly exactly 1 time
+    12982746 (33.57%) aligned concordantly >1 times
+    ----
+    11154203 pairs aligned concordantly 0 times; of these:
+      169876 (1.52%) aligned discordantly 1 time
+    ----
+    10984327 pairs aligned 0 times concordantly or discordantly; of these:
+      21968654 mates make up the pairs; of these:
+        17973927 (81.82%) aligned 0 times
+        2236395 (10.18%) aligned exactly 1 time
+        1758332 (8.00%) aligned >1 times
+76.76% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1725412_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1725412_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1725412.sam.
+Finished job 68.
+51 of 98 steps (52%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1725412.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1725412.sort.bam
+    jobid: 44
+    wildcards: sample=1725412
+
+[bam_sort_core] merging from 47 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1725412.bam.
+Finished job 44.
+52 of 98 steps (53%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1725912_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1725912_reverse.fastq.gz
+    jobid: 79
+    wildcards: sample=1725912
+
+Finished job 79.
+53 of 98 steps (54%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1725912_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1725912_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1725912.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1725912.sam
+    jobid: 54
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1725912.hisat2.benchmark.txt
+    wildcards: sample=1725912
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+49746562 reads; of these:
+  49746562 (100.00%) were paired; of these:
+    14298603 (28.74%) aligned concordantly 0 times
+    18439531 (37.07%) aligned concordantly exactly 1 time
+    17008428 (34.19%) aligned concordantly >1 times
+    ----
+    14298603 pairs aligned concordantly 0 times; of these:
+      173659 (1.21%) aligned discordantly 1 time
+    ----
+    14124944 pairs aligned 0 times concordantly or discordantly; of these:
+      28249888 mates make up the pairs; of these:
+        24243703 (85.82%) aligned 0 times
+        2242193 (7.94%) aligned exactly 1 time
+        1763992 (6.24%) aligned >1 times
+75.63% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1725912_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1725912_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1725912.sam.
+Finished job 54.
+54 of 98 steps (55%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1725912.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1725912.sort.bam
+    jobid: 30
+    wildcards: sample=1725912
+
+[bam_sort_core] merging from 61 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1725912.bam.
+Finished job 30.
+55 of 98 steps (56%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1708612_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1708612_reverse.fastq.gz
+    jobid: 95
+    wildcards: sample=1708612
+
+Finished job 95.
+56 of 98 steps (57%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1708612_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1708612_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1708612.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1708612.sam
+    jobid: 70
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1708612.hisat2.benchmark.txt
+    wildcards: sample=1708612
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+43221371 reads; of these:
+  43221371 (100.00%) were paired; of these:
+    10484542 (24.26%) aligned concordantly 0 times
+    17155043 (39.69%) aligned concordantly exactly 1 time
+    15581786 (36.05%) aligned concordantly >1 times
+    ----
+    10484542 pairs aligned concordantly 0 times; of these:
+      165448 (1.58%) aligned discordantly 1 time
+    ----
+    10319094 pairs aligned 0 times concordantly or discordantly; of these:
+      20638188 mates make up the pairs; of these:
+        17179370 (83.24%) aligned 0 times
+        1887650 (9.15%) aligned exactly 1 time
+        1571168 (7.61%) aligned >1 times
+80.13% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1708612_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1708612_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1708612.sam.
+Finished job 70.
+57 of 98 steps (58%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1708612.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1708612.sort.bam
+    jobid: 46
+    wildcards: sample=1708612
+
+[bam_sort_core] merging from 53 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1708612.bam.
+Finished job 46.
+58 of 98 steps (59%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710412_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710412_reverse.fastq.gz
+    jobid: 92
+    wildcards: sample=1710412
+
+Finished job 92.
+59 of 98 steps (60%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710412_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710412_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710412.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1710412.sam
+    jobid: 67
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1710412.hisat2.benchmark.txt
+    wildcards: sample=1710412
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+29911903 reads; of these:
+  29911903 (100.00%) were paired; of these:
+    8892844 (29.73%) aligned concordantly 0 times
+    10923220 (36.52%) aligned concordantly exactly 1 time
+    10095839 (33.75%) aligned concordantly >1 times
+    ----
+    8892844 pairs aligned concordantly 0 times; of these:
+      186877 (2.10%) aligned discordantly 1 time
+    ----
+    8705967 pairs aligned 0 times concordantly or discordantly; of these:
+      17411934 mates make up the pairs; of these:
+        13997453 (80.39%) aligned 0 times
+        1692577 (9.72%) aligned exactly 1 time
+        1721904 (9.89%) aligned >1 times
+76.60% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710412_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710412_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1710412.sam.
+Finished job 67.
+60 of 98 steps (61%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710412.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710412.sort.bam
+    jobid: 43
+    wildcards: sample=1710412
+
+[bam_sort_core] merging from 37 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710412.bam.
+Finished job 43.
+61 of 98 steps (62%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1724712_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1724712_reverse.fastq.gz
+    jobid: 84
+    wildcards: sample=1724712
+
+Finished job 84.
+62 of 98 steps (63%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1724712_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1724712_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1724712.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1724712.sam
+    jobid: 59
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1724712.hisat2.benchmark.txt
+    wildcards: sample=1724712
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+55682267 reads; of these:
+  55682267 (100.00%) were paired; of these:
+    16093615 (28.90%) aligned concordantly 0 times
+    20983426 (37.68%) aligned concordantly exactly 1 time
+    18605226 (33.41%) aligned concordantly >1 times
+    ----
+    16093615 pairs aligned concordantly 0 times; of these:
+      291183 (1.81%) aligned discordantly 1 time
+    ----
+    15802432 pairs aligned 0 times concordantly or discordantly; of these:
+      31604864 mates make up the pairs; of these:
+        25126546 (79.50%) aligned 0 times
+        3514109 (11.12%) aligned exactly 1 time
+        2964209 (9.38%) aligned >1 times
+77.44% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1724712_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1724712_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1724712.sam.
+Finished job 59.
+63 of 98 steps (64%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1724712.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1724712.sort.bam
+    jobid: 35
+    wildcards: sample=1724712
+
+[bam_sort_core] merging from 68 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1724712.bam.
+Finished job 35.
+64 of 98 steps (65%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710012_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710012_reverse.fastq.gz
+    jobid: 97
+    wildcards: sample=1710012
+
+Finished job 97.
+65 of 98 steps (66%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710012_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710012_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710012.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1710012.sam
+    jobid: 72
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1710012.hisat2.benchmark.txt
+    wildcards: sample=1710012
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+75300690 reads; of these:
+  75300690 (100.00%) were paired; of these:
+    21809471 (28.96%) aligned concordantly 0 times
+    27848515 (36.98%) aligned concordantly exactly 1 time
+    25642704 (34.05%) aligned concordantly >1 times
+    ----
+    21809471 pairs aligned concordantly 0 times; of these:
+      451338 (2.07%) aligned discordantly 1 time
+    ----
+    21358133 pairs aligned 0 times concordantly or discordantly; of these:
+      42716266 mates make up the pairs; of these:
+        34048339 (79.71%) aligned 0 times
+        4318414 (10.11%) aligned exactly 1 time
+        4349513 (10.18%) aligned >1 times
+77.39% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710012_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1710012_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1710012.sam.
+Finished job 72.
+66 of 98 steps (67%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710012.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710012.sort.bam
+    jobid: 48
+    wildcards: sample=1710012
+
+[bam_sort_core] merging from 92 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710012.bam.
+Finished job 48.
+67 of 98 steps (68%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1723812_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1723812_reverse.fastq.gz
+    jobid: 89
+    wildcards: sample=1723812
+
+Finished job 89.
+68 of 98 steps (69%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1723812_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1723812_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1723812.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1723812.sam
+    jobid: 64
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1723812.hisat2.benchmark.txt
+    wildcards: sample=1723812
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+24967093 reads; of these:
+  24967093 (100.00%) were paired; of these:
+    6558585 (26.27%) aligned concordantly 0 times
+    9864374 (39.51%) aligned concordantly exactly 1 time
+    8544134 (34.22%) aligned concordantly >1 times
+    ----
+    6558585 pairs aligned concordantly 0 times; of these:
+      100085 (1.53%) aligned discordantly 1 time
+    ----
+    6458500 pairs aligned 0 times concordantly or discordantly; of these:
+      12917000 mates make up the pairs; of these:
+        10757941 (83.29%) aligned 0 times
+        1222762 (9.47%) aligned exactly 1 time
+        936297 (7.25%) aligned >1 times
+78.46% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1723812_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1723812_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1723812.sam.
+Finished job 64.
+69 of 98 steps (70%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1723812.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1723812.sort.bam
+    jobid: 40
+    wildcards: sample=1723812
+
+[bam_sort_core] merging from 31 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1723812.bam.
+Finished job 40.
+70 of 98 steps (71%) done
+
+rule getReads:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1708012_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1708012_reverse.fastq.gz
+    jobid: 81
+    wildcards: sample=1708012
+
+Finished job 81.
+71 of 98 steps (72%) done
+
+rule alignment:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1708012_forward.fastq.gz, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.1.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.2.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.3.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.4.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.5.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.6.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.7.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index.8.ht2, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1708012_reverse.fastq.gz
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1708012.bam, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1708012.sam
+    jobid: 56
+    benchmark: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/benchmarks/1708012.hisat2.benchmark.txt
+    wildcards: sample=1708012
+
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_PAPER = "nb_NO.UTF-8",
+	LC_MEASUREMENT = "nb_NO.UTF-8",
+	LC_CTYPE = "UTF-8",
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("en_US.UTF-8").
+57403811 reads; of these:
+  57403811 (100.00%) were paired; of these:
+    16326060 (28.44%) aligned concordantly 0 times
+    21336086 (37.17%) aligned concordantly exactly 1 time
+    19741665 (34.39%) aligned concordantly >1 times
+    ----
+    16326060 pairs aligned concordantly 0 times; of these:
+      174938 (1.07%) aligned discordantly 1 time
+    ----
+    16151122 pairs aligned 0 times concordantly or discordantly; of these:
+      32302244 mates make up the pairs; of these:
+        28057030 (86.86%) aligned 0 times
+        2410620 (7.46%) aligned exactly 1 time
+        1834594 (5.68%) aligned >1 times
+75.56% overall alignment rate
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1708012_forward.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/reads/1708012_reverse.fastq.gz.
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/samFile/1708012.sam.
+Finished job 56.
+72 of 98 steps (73%) done
+
+rule sortIndex:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1708012.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1708012.sort.bam
+    jobid: 32
+    wildcards: sample=1708012
+
+[bam_sort_core] merging from 70 files...
+Removing temporary output file /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1708012.bam.
+Finished job 32.
+73 of 98 steps (74%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1709112.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1709112.count
+    jobid: 14
+    wildcards: sample=1709112
+
+Finished job 14.
+74 of 98 steps (76%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1716812.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1716812.count
+    jobid: 15
+    wildcards: sample=1716812
+
+Finished job 15.
+75 of 98 steps (77%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1717012.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1717012.count
+    jobid: 2
+    wildcards: sample=1717012
+
+Finished job 2.
+76 of 98 steps (78%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710012.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1710012.count
+    jobid: 24
+    wildcards: sample=1710012
+
+Finished job 24.
+77 of 98 steps (79%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1725712.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1725712.count
+    jobid: 18
+    wildcards: sample=1725712
+
+Finished job 18.
+78 of 98 steps (80%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1717812.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1717812.count
+    jobid: 12
+    wildcards: sample=1717812
+
+Finished job 12.
+79 of 98 steps (81%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1718012.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1718012.count
+    jobid: 4
+    wildcards: sample=1718012
+
+Finished job 4.
+80 of 98 steps (82%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710512.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1710512.count
+    jobid: 17
+    wildcards: sample=1710512
+
+Finished job 17.
+81 of 98 steps (83%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1716512.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1716512.count
+    jobid: 23
+    wildcards: sample=1716512
+
+Finished job 23.
+82 of 98 steps (84%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1708012.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1708012.count
+    jobid: 8
+    wildcards: sample=1708012
+
+Finished job 8.
+83 of 98 steps (85%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1724712.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1724712.count
+    jobid: 11
+    wildcards: sample=1724712
+
+Finished job 11.
+84 of 98 steps (86%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1725912.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1725912.count
+    jobid: 6
+    wildcards: sample=1725912
+
+Finished job 6.
+85 of 98 steps (87%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1709912.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1709912.count
+    jobid: 7
+    wildcards: sample=1709912
+
+Warning: The index file is older than the data file: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1709912.sort.bam.bai
+Finished job 7.
+86 of 98 steps (88%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1708612.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1708612.count
+    jobid: 22
+    wildcards: sample=1708612
+
+Finished job 22.
+87 of 98 steps (89%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1723512.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1723512.count
+    jobid: 3
+    wildcards: sample=1723512
+
+Finished job 3.
+88 of 98 steps (90%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1722912.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1722912.count
+    jobid: 10
+    wildcards: sample=1722912
+
+Finished job 10.
+89 of 98 steps (91%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1725412.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1725412.count
+    jobid: 20
+    wildcards: sample=1725412
+
+Finished job 20.
+90 of 98 steps (92%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1716412.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1716412.count
+    jobid: 9
+    wildcards: sample=1716412
+
+Warning: The index file is older than the data file: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1716412.sort.bam.bai
+Finished job 9.
+91 of 98 steps (93%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1709212.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1709212.count
+    jobid: 5
+    wildcards: sample=1709212
+
+Finished job 5.
+92 of 98 steps (94%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710412.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1710412.count
+    jobid: 19
+    wildcards: sample=1710412
+
+Finished job 19.
+93 of 98 steps (95%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1710312.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1710312.count
+    jobid: 21
+    wildcards: sample=1710312
+
+Finished job 21.
+94 of 98 steps (96%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1726812.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1726812.count
+    jobid: 1
+    wildcards: sample=1726812
+
+Finished job 1.
+95 of 98 steps (97%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1723812.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1723812.count
+    jobid: 16
+    wildcards: sample=1723812
+
+Finished job 16.
+96 of 98 steps (98%) done
+
+rule featureCount:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/bamFile/1723912.sort.bam
+    output: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1723912.count
+    jobid: 13
+    wildcards: sample=1723912
+
+Finished job 13.
+97 of 98 steps (99%) done
+
+localrule all:
+    input: /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1716412.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1716512.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1716812.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1717012.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1717812.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1718012.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1708012.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1708612.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1709112.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1709212.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1724712.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1725412.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1725712.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1725912.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1726812.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1709912.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1710012.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1710312.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1710412.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1710512.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1722912.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1723512.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1723812.count, /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/countFile/1723912.count
+    jobid: 0
+
+Finished job 0.
+98 of 98 steps (100%) done

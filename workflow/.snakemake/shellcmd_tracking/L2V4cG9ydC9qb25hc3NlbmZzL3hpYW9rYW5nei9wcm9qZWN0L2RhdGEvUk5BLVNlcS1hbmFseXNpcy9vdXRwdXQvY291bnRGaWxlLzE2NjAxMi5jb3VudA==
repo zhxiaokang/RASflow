@@ -1,0 +1,1 @@
+samtools idxstats /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/output/bamFile/166012.sort.bam > /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/output/countFile/166012.count
