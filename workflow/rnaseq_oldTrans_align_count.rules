@@ -1,0 +1,70 @@
+configfile: "../configs/config_batch5_TimeResp_PCLS.yaml"
+
+samples = ["C12-1", "C12-2", "C12-3", "C12-4", "C12-5", "C24-1", "C24-2", "C24-3", "C24-4", "C24-5", "C48-1", "C48-2", "C48-3", "C48-4", "C48-5", "D1", "D2", "D3", "D4", "D5", "E12-1", "E12-2", "E12-3", "E12-4", "E12-5", "E24-2", "E24-3", "E24-4", "E24-5", "E48-1", "E48-2", "E48-3", "E48-4", "E48-5", "Mx-1", "Mx-2", "Mx-3", "Mx-4", "Mx-5", "OP1", "OP2", "OP3", "OP5"]
+indexes = list(range(1, 9))
+
+rule all:
+    input:
+        final = expand(config["OUTPUTPATH"] + "countFile/{sample}.countmerged.idx", sample = samples)
+
+rule indexTrans:
+    input:
+        trans = config["TRANS"]
+    output:
+        indexes = expand(config["OUTPUTPATH"] + "indexes/index.{index}.ht2", index = indexes)
+    params:
+        index = config["OUTPUTPATH"] + "indexes/index"
+    shell:
+        "hisat2-build -p {config[NCORE]} {input.trans} {params.index}"
+
+rule getReads:
+    input:
+        key = config["KEY"]
+    output:
+        forward = temp(config["OUTPUTPATH"] + "reads/{sample}_forward.fastq.gz"),
+        reverse = temp(config["OUTPUTPATH"] + "reads/{sample}_reverse.fastq.gz")
+    run:
+        shell("scp -i {input.key} {config[NELSIN]}/{wildcards.sample}_*_R1_001.fastq.gz {output.forward}")
+        shell("scp -i {input.key} {config[NELSIN]}/{wildcards.sample}_*_R2_001.fastq.gz {output.reverse}")
+
+rule alignment:
+    input:
+        index = expand(config["OUTPUTPATH"] + "indexes/index.{index}.ht2", index = indexes),
+        forward = config["OUTPUTPATH"] + "reads/{sample}_forward.fastq.gz",
+        reverse = config["OUTPUTPATH"] + "reads/{sample}_reverse.fastq.gz"
+    output:
+        sam = config["OUTPUTPATH"] + "samFile/{sample}.sam",
+        bam = config["OUTPUTPATH"] + "bamFile/{sample}.bam"
+    params:
+        index = config["OUTPUTPATH"] + "indexes/index"
+    benchmark:
+        config["OUTPUTPATH"] + "benchmarks/{sample}.hisat2.benchmark.txt"
+    shell:
+        "hisat2 -p {config[NCORE]} -x {params.index} -1 {input.forward} -2 {input.reverse} -S {output.sam}"
+        " && samtools view -b -S {output.sam} > {output.bam}"
+
+rule sortIndex:
+    input:
+        bam = config["OUTPUTPATH"] + "bamFile/{sample}.bam"
+    output:
+        sort = config["OUTPUTPATH"] + "bamFileSort/{sample}.sort.bam"
+    shell:
+        "samtools sort {input.bam} -o {output.sort} && samtools index {output.sort}"
+
+rule featureCount:
+    input:
+        sort = config["OUTPUTPATH"] + "bamFileSort/{sample}.sort.bam"
+    output:
+        count = config["OUTPUTPATH"] + "countFile/{sample}.count"
+    shell:
+        "samtools idxstats {input.sort} > {output.count}"
+
+rule mergeTransGene:
+    input:
+        transCount = config["OUTPUTPATH"] + "countFile/{sample}.count"
+    output:
+        geneCount = config["OUTPUTPATH"] + "countFile/{sample}.countmerged.idx"
+    shell:
+        "cd ../scripts/ && javac -cp opencsv-1.8.jar:. sumgenescod.java && java -cp opencsv-1.8.jar:. sumgenescod codgenelist.csv {input}"
+
+ 
