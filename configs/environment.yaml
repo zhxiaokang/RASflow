@@ -14,4 +14,5 @@ dependencies:
   - hisat2=2.1.0
   - samtools=1.4.1
   - bioconductor-edger
+  - r-statmod
   - bioconductor-deseq2=1.14.1
