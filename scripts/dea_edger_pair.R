@@ -23,11 +23,11 @@ groups <- factor(c(rep("C", numDuplicate), rep("T", numDuplicate)))
 # Put the data into a DGEList object
 y <- DGEList(counts = countTable[,2:(length(samples)+1)], genes = countTable[,1])
 
-# Filtering
-countsPerMillion <- cpm(y)
-countCheck <- countsPerMillion > 1
-keep <- which(rowSums(countCheck) >= 2)
-y <- y[keep, ]
+## Filtering
+# countsPerMillion <- cpm(y)
+# countCheck <- countsPerMillion > 1
+# keep <- which(rowSums(countCheck) >= 2)
+# y <- y[keep, ]
 
 # Normalization
 y <- calcNormFactors(y, method="TMM")
@@ -55,7 +55,9 @@ fit <- glmFit(y, design)
 lrt <- glmLRT(fit)
 
 # the DEA result for all the genes
-dea <- lrt$table
+# dea <- lrt$table
+toptag <- topTags(lrt, n = nrow(y$genes), p.value = 1)
+dea <- toptag$table  # just to add one more column of FDR 
 
 # differentially expressed genes
 toptag <- topTags(lrt, n = nrow(y$genes), p.value = 0.05)
