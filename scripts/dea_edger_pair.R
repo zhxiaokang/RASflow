@@ -64,5 +64,5 @@ toptag <- topTags(lrt, n = nrow(y$genes), p.value = 0.05)
 deg <- toptag$table
 
 # save the DEA result and DEGs to files
-write.csv(dea, args[2])
+write.csv(dea, args[2], row.names = F)
 write.csv(deg, args[3], row.names = F)  # remove the row names (index number) just to make it consistent with dea
