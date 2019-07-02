@@ -1,8 +1,8 @@
-configfile: "../configs/config_batch5_TimeResp_PCLS.yaml"
+import pandas as pd
+configfile: "../configs/config_trans.yaml"
 
-samples = ["C12-1", "C12-2", "C12-3", "C12-4", "C12-5", "C24-1", "C24-2", "C24-3", "C24-4", "C24-5", "C48-1", "C48-2", "C48-3", "C48-4", "C48-5", "D1", "D2", "D3", "D4", "D5", "E12-1", "E12-2", "E12-3", "E12-4", "E12-5", "E24-1", "E24-2", "E24-3", "E24-4", "E24-5", "E48-1", "E48-2", "E48-3", "E48-4", "E48-5", "Mx-1", "Mx-2", "Mx-3", "Mx-4", "Mx-5", "OP1", "OP2", "OP3", "OP4", "OP5"]
-groups = ["C12", "C24", "C48", "E12", "E24", "E48", "D", "Mx", "OP"]
-chemicals = ["E12", "E24", "E48", "D", "Mx", "OP"]
+samples = pd.read_table(config["SAMPLES"], header = 0)['sample']
+groups = pd.read_table(config["SAMPLES"], header = 0)['group']
 
 rule all:
     input:

@@ -1,7 +1,8 @@
-configfile: "../configs/config_batch5_Liver_Invivo7.yaml"
+import pandas as pd
+configfile: "../configs/config_trans.yaml"
 
-samples = ["I7-1", "I7-2", "I7-3", "I7-4", "I7-5", "I7-6", "I7-7", "I7-8", "I7-9", "I7-10", "I7-11", "I7-12", "I7-13", "I7-14", "I7-15", "I7-16", "I7-17", "I7-18", "I7-19", "I7-20", "I7-21", "I7-22", "I7-23", "I7-24", "I7-25", "I7-26", "I7-27", "I7-28", "I7-29", "I7-30", "I7-31", "I7-32"]
-groups = ["CTR20h", "CTR48h", "EE220h", "EE248h", "BPA20h", "MXC20h"]
+samples = pd.read_table(config["SAMPLES"], header = 0)['sample']
+groups = pd.read_table(config["SAMPLES"], header = 0)['group']
 
 rule all:
     input:
