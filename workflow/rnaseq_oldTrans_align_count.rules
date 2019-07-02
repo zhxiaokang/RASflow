@@ -34,7 +34,7 @@ rule alignment:
         reverse = config["OUTPUTPATH"] + "reads/{sample}_reverse.fastq.gz"
     output:
         sam = temp(config["OUTPUTPATH"] + "samFile/{sample}.sam"),
-        bam = temp(config["OUTPUTPATH"] + "bamFile/{sample}.bam")
+        bam = config["OUTPUTPATH"] + "bamFile/{sample}.bam"
     params:
         index = config["OUTPUTPATH"] + "indexes/index"
     benchmark:
