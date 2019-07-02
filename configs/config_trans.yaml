@@ -1,4 +1,4 @@
-# Please check the first 4 parameters, and adjust them according to your demande
+# Please check the parameters, and adjust them according to your circumstance
 NELSIN: "u11bd@nelstor0.cbu.uib.no:Projects/UiB_Goksoyr_dCod_1_2017/dCod_Batch3"
 OUTPUTPATH: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/output"
 KEY: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt"
