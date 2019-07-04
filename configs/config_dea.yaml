@@ -1,0 +1,14 @@
+# Please check the parameters, and adjust them according to your circumstance
+OUTPUTPATH: "../output"
+METAFILE: "metadata.tsv"
+
+PAIR: FALSE  # Is this a pair test or not?
+
+COMPARISON:
+  control: ["oil_control", "oil_control"]
+  treat: ["oil_high", "oil_low"]
+  # length of 'control' should agree with that of 'treat'
+
+FILTER:
+  yesOrNo: FALSE
+  cpm: 1
