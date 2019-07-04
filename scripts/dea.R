@@ -7,9 +7,8 @@ library(edgeR)
 yaml.file <- yaml.load_file('config_dea.yaml')
 
 # extract the information from the yaml file
-comparison <- yaml.file$COMPARISON
-controls <- comparison$control  # all groups used as control
-treats <- comparison$treat  # all groups used as treat, should correspond to control
+controls <- yaml.file$CONTROL  # all groups used as control
+treats <- yaml.file$TREAT  # all groups used as treat, should correspond to control
 filter.need <- yaml.file$FILTER$yesOrNo
 cpm.threshold <- yaml.file$FILTER$cpm
 pair.test <- yaml.file$PAIR
