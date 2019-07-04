@@ -1,0 +1,34 @@
+import pandas as pd
+import numpy as np
+
+configfile: "../configs/config_dea.yaml"
+
+samples = np.array(pd.read_table(config["METAFILE"], header = 0)['sample'])
+groups = np.unique(np.array(pd.read_table(config["METAFILE"], header = 0)['group']))
+control = config["CONTROL"][0]
+treat = config["TREAT"][0]
+
+rule all:
+    input:
+        dea = config["OUTPUTPATH"] + "/DEA/" + "dea_" + control + "_" + treat + ".csv"
+
+rule combineSamples:
+    input:
+        sampleCount = expand(config["OUTPUTPATH"] + "/countFile/{sample}_count.tsv", sample = samples),
+        metafile = config["METAFILE"]
+    output:
+        groupCount = expand(config["OUTPUTPATH"] + "/countFile/{group}_count.tsv", group = groups)
+    params:
+        path = config["OUTPUTPATH"] + "countFile"
+    shell:
+        "python ../combine2group.py"
+
+rule DEA:
+    input:
+        groupCount = expand(config["OUTPUTPATH"] + "/countFile/{group}_count.tsv", group = groups)
+    output:
+        normCount = config["OUTPUTPATH"] + "/DEA/" + control + "_" + treat + "_norm.csv",
+        dea = config["OUTPUTPATH"] + "/DEA/" + "dea_" + control + "_" + treat + ".csv", 
+        deg = config["OUTPUTPATH"] + "/DEA/" + "deg_" + control + "_" + treat + ".csv"
+    shell:
+        "Rscript ../scripts/dea.R"
