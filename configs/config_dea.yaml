@@ -1,13 +1,12 @@
 # Please check the parameters, and adjust them according to your circumstance
-OUTPUTPATH: "../output"
-METAFILE: "metadata.tsv"
+OUTPUTPATH: "/export/jonassen/xiaokangz/project/RNA-Seq-analysis/output"
+METAFILE: "/export/jonassen/xiaokangz/project/RNA-Seq-analysis/configs/metadata.tsv"
 
 PAIR: FALSE  # Is this a pair test or not?
 
-COMPARISON:
-  control: ["oil_control", "oil_control"]
-  treat: ["oil_high", "oil_low"]
-  # length of 'control' should agree with that of 'treat'
+CONTROL: ["oil_control", "oil_control"]
+TREAT: ["oil_high", "oil_low"]
+# length of 'CONTROL' should agree with that of 'TREAT'
 
 FILTER:
   yesOrNo: FALSE
