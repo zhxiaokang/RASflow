@@ -12,7 +12,7 @@ def load_globals():
 	with open('../configs/config_dea.yaml') as yamlfile:
 		config = yaml.load(yamlfile)
     
-	samples = np.array(pd.read_table(config["MEATFILE"], header = 0)['sample'])
+	samples = np.array(pd.read_table(config["METAFILE"], header = 0)['sample'])
 
 	groups = np.array(pd.read_table(config["METAFILE"], header = 0)['group'])
 
