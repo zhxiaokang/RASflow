@@ -1,5 +1,5 @@
 # RAN-Seq-analysis
-RNA-Seq analysis for cod (gadus morhua)
+RNA-Seq analysis workflow using Snakemake
 ## Snakemake environment setup
 Install miniconda and set up Snakemake environment according to Snakemake Tutorial.
 
