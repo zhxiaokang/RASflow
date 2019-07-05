@@ -2,12 +2,12 @@
 OUTPUTPATH: "/export/jonassen/xiaokangz/project/RNA-Seq-analysis/output"
 METAFILE: "/export/jonassen/xiaokangz/project/RNA-Seq-analysis/configs/metadata.tsv"
 
-PAIR: FALSE  # Is this a pair test or not?
+PAIR: FALSE  # Is this a pair test or not? (TRUE or FALSE)
 
 CONTROL: ["oil_control", "oil_control"]
 TREAT: ["oil_high", "oil_low"]
 # length of 'CONTROL' should agree with that of 'TREAT'
 
 FILTER:
-  yesOrNo: FALSE
-  cpm: 1
+  yesOrNo: FALSE  # Filter out low expressed genes or not? (TRUE or FALSE)
+  cpm: 1  # if yes for filter, what's the threshold of cpm?
