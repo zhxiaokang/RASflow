@@ -6,7 +6,7 @@ indexes = list(range(1, 9))
 
 rule all:
     input:
-        final = expand(config["OUTPUTPATH"] + "/countFile/{sample}.countmerged.idx", sample = samples)
+        formatCount = expand(config["FINALOUTPUT"] + "/countFile/{sample}_count.csv", sample = samples)
 
 rule indexTrans:
     input:
