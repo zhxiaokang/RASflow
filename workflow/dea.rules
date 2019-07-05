@@ -21,7 +21,7 @@ rule combineSamples:
     params:
         path = config["OUTPUTPATH"] + "countFile"
     shell:
-        "python ../combine2group.py"
+        "python ../scripts/combine2group.py"
 
 rule DEA:
     input:
