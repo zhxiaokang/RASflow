@@ -66,6 +66,4 @@ rule mergeTransGene:
     output:
         geneCount = config["OUTPUTPATH"] + "/countFile/{sample}.countmerged.idx"
     shell:
-        "cd ../scripts/ && javac -cp opencsv-1.8.jar:. sumgenescod.java && java -cp opencsv-1.8.jar:. sumgenescod codgenelist.csv {input}"
-
- 
+        "cd ../scripts && javac -cp opencsv-1.8.jar:. sumgenescod.java && java -cp opencsv-1.8.jar:. sumgenescod codgenelist.csv {input} && sh formatCount.sh"
