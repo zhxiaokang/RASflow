@@ -4,5 +4,5 @@ METAFILE: "../configs/metadata.tsv"
 OUTPUTPATH: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/output"  # intermediate output. do not upload to github
 FINALOUTPUT: "/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/output"
 KEY: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt"
-TRANS: "/export/jonassenfs/eileenh/project/data/RNA-Seq-analysis/ref/trans/Gadus_morhua.gadMor1.cdna.all.fa"
+TRANS: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/ref/trans/Gadus_morhua.gadMor1.cdna.all.fa"
 NCORE: "40"
