@@ -39,15 +39,15 @@ def combine_group(name_group, id_list):
 	group_count['ID'] = id_list
 
 	for sample in samples_group:
-		group_count["sample_" + sample] = np.array(pd.read_table(sample + "_count.tsv", header = None))[:, 1]
+		group_count["sample_" + str(sample)] = np.array(pd.read_table("../output/countFile/" + str(sample) + "_count.tsv", header = None))[:, 1]
 	
 	# write to file
-	group_count.to_csv(name_group + "_count.tsv", sep = "\t", header = True, index = False)
+	group_count.to_csv("../output/countFile/" + str(name_group) + "_count.tsv", sep = "\t", header = True, index = False)
 
 def get_id_list():
 
 	# extract the id list from the count file
-	id_list = np.array(pd.read_table(samples[0] + "_count.tsv", header = None))[:, 0]
+	id_list = np.array(pd.read_table("../output/countFile/" + str(samples[0]) + "_count.tsv", header = None))[:, 0]
 	return id_list
 
 
