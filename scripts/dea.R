@@ -4,7 +4,7 @@ library(edgeR)
 # Use edgeR to do DEA
 
 # load the config file
-yaml.file <- yaml.load_file('config_dea.yaml')
+yaml.file <- yaml.load_file('../configs/config_dea.yaml')
 
 # extract the information from the yaml file
 controls <- yaml.file$CONTROL  # all groups used as control
@@ -25,8 +25,8 @@ if (num.control != num.treat) {
 num.comparison <- num.control
 
 DEA <- function(control, treat) {
-  count.control <- read.table(paste(control, 'count.tsv', sep = '_'), header = TRUE, row.names = 1)
-  count.treat <- read.table(paste(treat, 'count.tsv', sep = '_'), header = TRUE, row.names = 1)
+  count.control <- read.table(paste('../output/countFile/', control, '_count.tsv', sep = ''), header = TRUE, row.names = 1)
+  count.treat <- read.table(paste('../output/countFile/', treat, '_count.tsv', sep = ''), header = TRUE, row.names = 1)
   count.table <- cbind(count.control, count.treat)  # merge the control and treat tables together
   
   # number of samples in control and treat groups (should be the same if it's a pair test)
@@ -55,7 +55,7 @@ DEA <- function(control, treat) {
   
   # save the normalized count table
   count.table.norm <- cpm(y)
-  write.csv(count.table.norm, paste(control, treat, 'norm.csv', sep = '_'))
+  write.csv(count.table.norm, paste('../output/countFile/', control, '_', treat, '_norm.csv', sep = ''))
   
   # Do DEA !!!
   # define the group
@@ -98,8 +98,8 @@ DEA <- function(control, treat) {
   deg <- toptag$table
   
   # save the DEA result and DEGs to files
-  write.csv(dea, paste('dea_', control, '_', treat, '.csv', sep = ''), row.names = F)
-  write.csv(deg, paste('deg_', control, '_', treat, '.csv', sep = ''), row.names = F) 
+  write.csv(dea, paste('../output/DEA/dea_', control, '_', treat, '.csv', sep = ''), row.names = F)
+  write.csv(deg, paste('../output/DEA/deg_', control, '_', treat, '.csv', sep = ''), row.names = F) 
 }
 
 # the main function
