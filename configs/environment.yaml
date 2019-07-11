@@ -16,3 +16,4 @@ dependencies:
   - bioconductor-edger
   - r-statmod
   - bioconductor-deseq2=1.14.1
+  - qualimap=2.2.2c
