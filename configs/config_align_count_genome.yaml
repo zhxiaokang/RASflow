@@ -6,5 +6,5 @@ FINALOUTPUT: "/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/output/genom
 KEY: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt"
 END: "pair"
 GENOME: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/ref/genome/Gadus_morhua.gadMor1.dna.toplevel.fa"
-GTF: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/ref/annotation/Gadus_morhua.gadMor1.96.gtf"
+ANNOTATION: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/ref/annotation/Gadus_morhua.gadMor1.96.gtf"
 NCORE: "30"

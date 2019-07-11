@@ -31,7 +31,7 @@ rule indexGenome:
         index = config["OUTPUTPATH"] + "/indexes/index"
     shell:
         "hisat2-build -p {config[NCORE]} {input.genome} {params.index}"
-        "&& hisat2_extract_splice_sites.py {config[GTF]} > {output.splicesites}"
+        "&& hisat2_extract_splice_sites.py {config[ANNOTATION]} > {output.splicesites}"
 
 rule alignment:
     input:
@@ -65,9 +65,9 @@ rule sortIndex:
 rule featureCount:
     input:
         sort = config["OUTPUTPATH"] + "/bamFileSort/{sample}.sort.bam",
-        gtf = config["GTF"]
+        annotation = config["ANNOTATION"]
     output:
         count = config["FINALOUTPUT"] + "/countFile/{sample}.count"
     shell:
-        "htseq-count -f bam -i gene_id -s no -t exon {input.sort} {input.gtf} > {output.count}"
+        "htseq-count -f bam -i gene_id -s no -t exon {input.sort} {input.annotation} > {output.count}"
 
