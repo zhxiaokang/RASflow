@@ -1,0 +1,10 @@
+# Please check the parameters, and adjust them according to your circumstance
+NELSIN: "u11bd@nelstor0.cbu.uib.no:Projects/UiB_Goksoyr_dCod_1_2017/dCod_Batch5_20190416/Liver_Invivo7/fastq_files"
+METAFILE: "../configs/metadata.tsv"
+OUTPUTPATH: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/output/genome"  # intermediate output. do not upload to github
+FINALOUTPUT: "/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/output/genome"
+KEY: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt"
+END: "pair"
+GENOME: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/ref/genome/Gadus_morhua.gadMor1.dna.toplevel.fa"
+GTF: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/ref/annotation/Gadus_morhua.gadMor1.96.gtf"
+NCORE: "30"
