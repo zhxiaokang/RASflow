@@ -7,4 +7,5 @@ KEY: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelst
 END: "pair"
 GENOME: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/ref/genome/Gadus_morhua.gadMor1.dna.toplevel.fa"
 ANNOTATION: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/ref/annotation/Gadus_morhua.gadMor1.96.gtf"
+ATTRIBUTE: "gene_id"  # the attribute used in annotation file. It's usually "gene_id", but double check that
 NCORE: "30"
