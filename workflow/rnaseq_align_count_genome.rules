@@ -69,5 +69,7 @@ rule featureCount:
     output:
         count = config["FINALOUTPUT"] + "/countFile/{sample}.count"
     shell:
-        "htseq-count -f bam -i config["ATTRIBUTE"] -s no -t exon {input.sort} {input.annotation} > {output.count}"
-
+        if config["END"]=="pair":
+            "featureCounts -p -T {config[NCORE]} -t exon -g {config["ATTRIBUTE"]} -a {input.annotation} -o {output.count} {input.sort}"
+        else:
+            "featureCounts -s -T {config[NCORE]} -t exon -g {config["ATTRIBUTE"]} -a {input.annotation} -o {output.count} {input.sort}"
