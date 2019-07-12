@@ -13,7 +13,8 @@ dependencies:
 # bioconda channel installs
   - hisat2=2.1.0
   - samtools=1.4.1
-  - bioconductor-edger
+  - subread=1.6.4  # featureCounts included
+  - bioconductor-edger=3.16.5
   - r-statmod
   - bioconductor-deseq2=1.14.1
   - qualimap=2.2.2c
