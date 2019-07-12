@@ -17,6 +17,7 @@ Open your terminal in the directory of the repository RNA-Seq-analysis/ and run 
 conda env create --name RNA-Seq-analysis --file ./configs/environment.yaml
 ```
 Then activate the environment:
+
 For Linux and Mac:
 ```
 source activate RNA-Seq-analysis
