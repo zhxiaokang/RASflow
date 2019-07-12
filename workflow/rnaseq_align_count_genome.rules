@@ -69,5 +69,5 @@ rule featureCount:
     output:
         count = config["FINALOUTPUT"] + "/countFile/{sample}.count"
     shell:
-        "htseq-count -f bam -i gene_id -s no -t exon {input.sort} {input.annotation} > {output.count}"
+        "htseq-count -f bam -i config["ATTRIBUTE"] -s no -t exon {input.sort} {input.annotation} > {output.count}"
 
