@@ -70,6 +70,6 @@ rule featureCount:
         count = config["FINALOUTPUT"] + "/countFile/{sample}.count"
     run:
         if config["END"]=="pair":
-            shell("featureCounts -p -T {config[NCORE]} -t exon -g {config["ATTRIBUTE"]} -a {input.annotation} -o {output.count} {input.sort}")
+            shell("featureCounts -p -T {config[NCORE]} -t exon -g {config[ATTRIBUTE]} -a {input.annotation} -o {output.count} {input.sort}")
         else:
-            shell("featureCounts -s -T {config[NCORE]} -t exon -g {config["ATTRIBUTE"]} -a {input.annotation} -o {output.count} {input.sort}")
+            shell("featureCounts -s -T {config[NCORE]} -t exon -g {config[ATTRIBUTE]} -a {input.annotation} -o {output.count} {input.sort}")
