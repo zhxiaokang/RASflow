@@ -46,13 +46,13 @@ rule alignment:
         index = config["OUTPUTPATH"] + "/indexes/index"
     benchmark:
         config["OUTPUTPATH"] + "/benchmarks/{sample}.hisat2.benchmark.txt"
-    shell:
+    run:
         if config["END"]=="pair":
-            "hisat2 -p {config[NCORE]} --known-splicesite-infile {input.splicesites} -x {params.index} -1 {input.forward} -2 {input.reverse} -S {output.sam}"
-            " && samtools view -@ {config[NCORE]} -b -S {output.sam} > {output.bam}"
+            shell("hisat2 -p {config[NCORE]} --known-splicesite-infile {input.splicesites} -x {params.index} -1 {input.forward} -2 {input.reverse} -S {output.sam}")
+            shell("samtools view -@ {config[NCORE]} -b -S {output.sam} > {output.bam}")
         else:
-            "hisat2 -p {config[NCORE]} --known-splicesite-infile {input.splicesites} -x {params.index} -U {input.forward} -S {output.sam}"
-            " && samtools view -@ {config[NCORE]} -b -S {output.sam} > {output.bam}"
+            shell("hisat2 -p {config[NCORE]} --known-splicesite-infile {input.splicesites} -x {params.index} -U {input.forward} -S {output.sam}")
+            shell("samtools view -@ {config[NCORE]} -b -S {output.sam} > {output.bam}")
 
 rule sortIndex:
     input:
@@ -68,8 +68,8 @@ rule featureCount:
         annotation = config["ANNOTATION"]
     output:
         count = config["FINALOUTPUT"] + "/countFile/{sample}.count"
-    shell:
+    run:
         if config["END"]=="pair":
-            "featureCounts -p -T {config[NCORE]} -t exon -g {config["ATTRIBUTE"]} -a {input.annotation} -o {output.count} {input.sort}"
+            shell("featureCounts -p -T {config[NCORE]} -t exon -g {config["ATTRIBUTE"]} -a {input.annotation} -o {output.count} {input.sort}")
         else:
-            "featureCounts -s -T {config[NCORE]} -t exon -g {config["ATTRIBUTE"]} -a {input.annotation} -o {output.count} {input.sort}"
+            shell("featureCounts -s -T {config[NCORE]} -t exon -g {config["ATTRIBUTE"]} -a {input.annotation} -o {output.count} {input.sort}")
