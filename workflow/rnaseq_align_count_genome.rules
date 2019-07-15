@@ -15,9 +15,9 @@ rule getReads:
     run:
         if config["END"]=="pair":
             shell("cp {config[INPUTPATH]}/{wildcards.sample}_*R1*.fastq.gz {output.forward}")
-            shell("cp {input.key} {config[INPUTPATH]}/{wildcards.sample}_*R2*.fastq.gz {output.reverse}")
+            shell("cp {config[INPUTPATH]}/{wildcards.sample}_*R2*.fastq.gz {output.reverse}")
         else:
-            shell("scp -i {input.key} {config[INPUTPATH]}/{wildcards.sample}*.fastq.gz {output.forward}")
+            shell("cp {config[INPUTPATH]}/{wildcards.sample}*.fastq.gz {output.forward}")
 
 rule indexGenome:
     input:
