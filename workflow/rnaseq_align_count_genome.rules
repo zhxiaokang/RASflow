@@ -6,7 +6,7 @@ indexes = list(range(1, 9))
 
 rule all:
     input:
-        formatCount = expand(config["FINALOUTPUT"] + "/countFile/{sample}.count", sample = samples)
+        formatCount = expand(config["FINALOUTPUT"] + "/countFile/{sample}_count.tsv", sample = samples)
 
 rule getReads:
     input:
@@ -67,9 +67,9 @@ rule featureCount:
         sort = config["OUTPUTPATH"] + "/bamFileSort/{sample}.sort.bam",
         annotation = config["ANNOTATION"]
     output:
-        count = config["FINALOUTPUT"] + "/countFile/{sample}.count"
+        count = config["FINALOUTPUT"] + "/countFile/{sample}_count.tsv"
     run:
         if config["END"]=="pair":
-            shell("featureCounts -p -T {config[NCORE]} -t exon -g {config[ATTRIBUTE]} -a {input.annotation} -o {output.count} {input.sort}")
+            shell("featureCounts -p -T {config[NCORE]} -t exon -g {config[ATTRIBUTE]} -a {input.annotation} -o {output.count} {input.sort} | tail -n +3 {output.count} | cut -f1,7 > temp && mv temp {output.count}")
         else:
-            shell("featureCounts -s -T {config[NCORE]} -t exon -g {config[ATTRIBUTE]} -a {input.annotation} -o {output.count} {input.sort}")
+            shell("featureCounts -s -T {config[NCORE]} -t exon -g {config[ATTRIBUTE]} -a {input.annotation} -o {output.count} {input.sort} | tail -n +3 {output.count} | cut -f1,7 > temp && mv temp {output.count}")
