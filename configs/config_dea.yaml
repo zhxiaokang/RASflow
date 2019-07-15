@@ -1,13 +1,16 @@
 # Please check the parameters, and adjust them according to your circumstance
-OUTPUTPATH: "/export/jonassen/xiaokangz/project/RNA-Seq-analysis/output"
-METAFILE: "/export/jonassen/xiaokangz/project/RNA-Seq-analysis/configs/metadata.tsv"
+INPUTPATH: "output/countFile"
+OUTPUTPATH: "output/dea"
+METAFILE: "configs/metadata.tsv"
 
 PAIR: FALSE  # Is this a pair test or not? (TRUE or FALSE)
 
-CONTROL: ["oil_control", "oil_control"]
-TREAT: ["oil_high", "oil_low"]
-# length of 'CONTROL' should agree with that of 'TREAT'
+## the comparison(s) you want to do. If multiple comparisons, specify each pair (CONTROL & TREAT) in order respectively
+CONTROL: ["Untreated"]
+TREAT: ["Dexamethasone"]
+## length of 'CONTROL' should agree with that of 'TREAT'
+## what you fill in there should agree with the "group" column in metadata.tsv
 
 FILTER:
-  yesOrNo: FALSE  # Filter out low expressed genes or not? (TRUE or FALSE)
+  yesOrNo: TRUE  # Filter out low expressed genes or not? (TRUE or FALSE)
   cpm: 1  # if yes for filter, what's the threshold of cpm?

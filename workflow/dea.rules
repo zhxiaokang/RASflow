@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-configfile: "../configs/config_dea.yaml"
+configfile: "configs/config_dea.yaml"
 
 samples = np.array(pd.read_table(config["METAFILE"], header = 0)['sample'])
 groups = np.unique(np.array(pd.read_table(config["METAFILE"], header = 0)['group']))
@@ -14,7 +14,7 @@ rule all:
 
 rule combineSamples:
     input:
-        sampleCount = expand(config["OUTPUTPATH"] + "/countFile/{sample}_count.tsv", sample = samples),
+        sampleCount = expand(config["INPUTPATH"] + "/{sample}_count.tsv", sample = samples),
         metafile = config["METAFILE"]
     output:
         groupCount = expand(config["OUTPUTPATH"] + "/countFile/{group}_count.tsv", group = groups)
