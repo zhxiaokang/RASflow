@@ -21,7 +21,7 @@ rule combineSamples:
     params:
         path = config["OUTPUTPATH"] + "countFile"
     shell:
-        "python ../scripts/combine2group.py"
+        "python scripts/combine2group.py"
 
 rule DEA:
     input:
@@ -31,4 +31,4 @@ rule DEA:
         dea = config["OUTPUTPATH"] + "/DEA/" + "dea_" + control + "_" + treat + ".csv", 
         deg = config["OUTPUTPATH"] + "/DEA/" + "deg_" + control + "_" + treat + ".csv"
     shell:
-        "Rscript ../scripts/dea.R"
+        "Rscript scripts/dea.R"

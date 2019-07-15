@@ -7,9 +7,9 @@ import numpy as np
 
 def load_globals():
 	
-	global samples; global groups
+	global samples; global groups; global config
 
-	with open('../configs/config_dea.yaml') as yamlfile:
+	with open('configs/config_dea.yaml') as yamlfile:
 		config = yaml.load(yamlfile)
     
 	samples = np.array(pd.read_table(config["METAFILE"], header = 0)['sample'])
@@ -47,7 +47,7 @@ def combine_group(name_group, id_list):
 def get_id_list():
 
 	# extract the id list from the count file
-	id_list = np.array(pd.read_table("../output/countFile/" + str(samples[0]) + "_count.tsv", header = None))[:, 0]
+	id_list = np.array(pd.read_table(config["INPUTPATH"] + '/' + str(samples[0]) + "_count.tsv", header = None))[:, 0]
 	return id_list
 
 
