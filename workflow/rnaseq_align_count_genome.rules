@@ -1,5 +1,5 @@
 import pandas as pd
-configfile: "../configs/config_align_count_genome.yaml"
+configfile: "./configs/config_align_count_genome.yaml"
 
 samples = pd.read_table(config["METAFILE"], header = 0)['sample']
 indexes = list(range(1, 9))
