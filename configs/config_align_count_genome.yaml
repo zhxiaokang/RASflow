@@ -1,24 +1,24 @@
 # Please check the parameters, and adjust them according to your circumstance
 
 ## the path to fastq files
-INPUTPATH: "../data/example/fastq"
+INPUTPATH: "./data/example/fastq"
 
 ## if you use a key to access to the data, otherwise ignore this
 KEY: "" 
 
 ## the meta file describing the experiment settings
-METAFILE: "../configs/metadata.tsv"
+METAFILE: "./configs/metadata.tsv"
 
 ## paths for intermediate and final outputs
-OUTPUTPATH: "../data/RNA-Seq-analysis/output/genome"  # intermediate output. do not upload to github
-FINALOUTPUT: "../output/genome"
+OUTPUTPATH: "./data/RNA-Seq-analysis/output/genome"  # intermediate output. do not upload to github
+FINALOUTPUT: "./output/genome"
 
 ## is the sequencing paired-end or single-end?
 END: "pair"
 
 ## genome and annotation files
-GENOME: "../data/example/ref/genome/Homo_sapiens.GRCh38.dna.chromosome.1.1.10M.fa"
-ANNOTATION: "../data/example/ref/annotation/Homo_sapiens.GRCh38.93.1.1.10M.gtf"
+GENOME: "./data/example/ref/genome/Homo_sapiens.GRCh38.dna.chromosome.1.1.10M.fa"
+ANNOTATION: "./data/example/ref/annotation/Homo_sapiens.GRCh38.93.1.1.10M.gtf"
 ATTRIBUTE: "gene_id"  # the attribute used in annotation file. It's usually "gene_id", but double check that since it may also be "gene", "ID"...
 
 ## number of cores you want to allocate to this workflow
