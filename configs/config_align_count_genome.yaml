@@ -10,8 +10,8 @@ KEY: ""
 METAFILE: "configs/metadata.tsv"
 
 ## paths for intermediate and final outputs
-OUTPUTPATH: "data/RNA-Seq-analysis/output/genome"  # intermediate output. do not upload to github
-FINALOUTPUT: "output/genome"
+OUTPUTPATH: "data/output"  # intermediate output. do not upload to github
+FINALOUTPUT: "output"
 
 ## is the sequencing paired-end or single-end?
 END: "pair"
@@ -25,7 +25,7 @@ ATTRIBUTE: "gene_id"  # the attribute used in annotation file. It's usually "gen
 NCORE: "30"  # Use command "getconf _NPROCESSORS_ONLN" to check the number of cores/CPU on your machine
 
 ## aligner
-ALIGNER: "hisat2"  # or you may want to use "STAR"
+ALIGNER: "hisat2"  # default is "hisat2", or you may want to use "STAR"
 
 ## tool for feature count
-COUNTER: "featureCounts"  # or you may want to use "htseq-count"
+COUNTER: "featureCounts"  # default is "featureCounts", or you may want to use "htseq-count"
