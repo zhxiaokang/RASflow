@@ -65,13 +65,12 @@ rule featureCount:
         sort = config["OUTPUTPATH"] + "/bamFileSort/{sample}.sort.bam",
         annotation = config["ANNOTATION"]
     output:
-        out_featureCounts = temp(config["FINALOUTPUT"] + "/countFile/{sample}_featureCounts.txt"),
         count = config["FINALOUTPUT"] + "/countFile/{sample}_count.tsv"
     run:
         if config["COUNTER"]=="featureCounts":
             if config["END"]=="pair":
-                shell("featureCounts -p -T {config[NCORE]} -t exon -g {config[ATTRIBUTE]} -a {input.annotation} -o {output.out_featureCounts} {input.sort} && tail -n +3 {output.out_featureCounts} | cut -f1,7 > {output.count}")
+                shell("featureCounts -p -T {config[NCORE]} -t exon -g {config[ATTRIBUTE]} -a {input.annotation} -o {output.count} {input.sort} && tail -n +3 {output.count} | cut -f1,7 > temp.{wildcards.sample} && mv temp.{wildcards.sample} {output.count}")
             else:
-                shell("featureCounts -s -T {config[NCORE]} -t exon -g {config[ATTRIBUTE]} -a {input.annotation} -o {output.out_featureCounts} {input.sort} && tail -n +3 {output.ouot_featureCounts} | cut -f1,7 > {output.count}")
-        elif config[COUNTER]=="htseq-count":
-            shell("htseq-count -f bam -i {config[ATTRIBUTE]} -s no -t exon {input.sort} {input.annotation} > {output.count}")
+                shell("featureCounts -s -T {config[NCORE]} -t exon -g {config[ATTRIBUTE]} -a {input.annotation} -o {output.count} {input.sort} && tail -n +3 {output.count} | cut -f1,7 > temp.{wildcards.sample} && mv temp.{wildcards.sample} {output.count}")
+        elif config["COUNTER"]=="htseq-count":
+            shell("htseq-count -f bam -i {config[ATTRIBUTE]} -s no -t exon {input.sort} {input.annotation} | sed '/^__/ d' > {output.count}")
