@@ -9,17 +9,15 @@ rule all:
         formatCount = expand(config["FINALOUTPUT"] + "/countFile/{sample}_count.tsv", sample = samples)
 
 rule getReads:
-    input:
-        key = config["KEY"]
     output:
         forward = temp(config["OUTPUTPATH"] + "/reads/{sample}_forward.fastq.gz") if config["END"]=="pair" else temp(config["OUTPUTPATH"] + "/reads/{sample}.fastq.gz"),
         reverse = temp(config["OUTPUTPATH"] + "/reads/{sample}_reverse.fastq.gz") if config["END"]=="pair" else None
     run:
         if config["END"]=="pair":
-            shell("scp -i {input.key} {config[NELSIN]}/{wildcards.sample}_*R1*.fastq.gz {output.forward}")
-            shell("scp -i {input.key} {config[NELSIN]}/{wildcards.sample}_*R2*.fastq.gz {output.reverse}")
+            shell("cp {config[INPUTPATH]}/{wildcards.sample}_*R1*.fastq.gz {output.forward}")
+            shell("cp {input.key} {config[INPUTPATH]}/{wildcards.sample}_*R2*.fastq.gz {output.reverse}")
         else:
-            shell("scp -i {input.key} {config[NELSIN]}/{wildcards.sample}*.fastq.gz {output.forward}")
+            shell("scp -i {input.key} {config[INPUTPATH]}/{wildcards.sample}*.fastq.gz {output.forward}")
 
 rule indexGenome:
     input:
@@ -60,7 +58,7 @@ rule sortIndex:
     output:
         sort = config["OUTPUTPATH"] + "/bamFileSort/{sample}.sort.bam"
     shell:
-        "samtools sort -@ {config[NCORE]} {input.bam} -o {output.sort} && samtools index {output.sort}"
+        "samtools sort -n -@ {config[NCORE]} {input.bam} -o {output.sort} && samtools index {output.sort}"
 
 rule featureCount:
     input:
@@ -69,7 +67,10 @@ rule featureCount:
     output:
         count = config["FINALOUTPUT"] + "/countFile/{sample}_count.tsv"
     run:
-        if config["END"]=="pair":
-            shell("featureCounts -p -T {config[NCORE]} -t exon -g {config[ATTRIBUTE]} -a {input.annotation} -o {output.count} {input.sort} | tail -n +3 {output.count} | cut -f1,7 > temp && mv temp {output.count}")
-        else:
-            shell("featureCounts -s -T {config[NCORE]} -t exon -g {config[ATTRIBUTE]} -a {input.annotation} -o {output.count} {input.sort} | tail -n +3 {output.count} | cut -f1,7 > temp && mv temp {output.count}")
+        if config[COUNTER]=="featureCounts":
+            if config["END"]=="pair":
+                shell("featureCounts -p -T {config[NCORE]} -t exon -g {config[ATTRIBUTE]} -a {input.annotation} -o {output.count} {input.sort} | tail -n +3 {output.count} | cut -f1,7 > temp && mv temp {output.count}")
+            else:
+                shell("featureCounts -s -T {config[NCORE]} -t exon -g {config[ATTRIBUTE]} -a {input.annotation} -o {output.count} {input.sort} | tail -n +3 {output.count} | cut -f1,7 > temp && mv temp {output.count}")
+        elif config[COUNTER]=="htseq-count":
+            shell("htseq-count -f bam -i {config[ATTRIBUTE]} -s no -t exon {input.sort} {input.annotation} > {output.count}")
