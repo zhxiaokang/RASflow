@@ -1,11 +1,31 @@
 # Please check the parameters, and adjust them according to your circumstance
-NELSIN: "u11bd@nelstor0.cbu.uib.no:Projects/UiB_Goksoyr_dCod_1_2017/dCod_Batch5_20190416/Liver_Invivo7/fastq_files"
+
+## the path to fastq files
+INPUTPATH: "../data/example/fastq"
+
+## if you use a key to access to the data, otherwise ignore this
+KEY: "" 
+
+## the meta file describing the experiment settings
 METAFILE: "../configs/metadata.tsv"
-OUTPUTPATH: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/output/genome"  # intermediate output. do not upload to github
-FINALOUTPUT: "/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/output/genome"
-KEY: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/key/u11bd@nelstor0.cbu.uib.no.txt"
+
+## paths for intermediate and final outputs
+OUTPUTPATH: "../data/RNA-Seq-analysis/output/genome"  # intermediate output. do not upload to github
+FINALOUTPUT: "../output/genome"
+
+## is the sequencing paired-end or single-end?
 END: "pair"
-GENOME: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/ref/genome/Gadus_morhua.gadMor1.dna.toplevel.fa"
-ANNOTATION: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/ref/annotation/Gadus_morhua.gadMor1.96.gtf"
+
+## genome and annotation files
+GENOME: "../data/example/ref/genome/Homo_sapiens.GRCh38.dna.chromosome.1.1.10M.fa"
+ANNOTATION: "../data/example/ref/annotation/Homo_sapiens.GRCh38.93.1.1.10M.gtf"
 ATTRIBUTE: "gene_id"  # the attribute used in annotation file. It's usually "gene_id", but double check that since it may also be "gene", "ID"...
-NCORE: "30"  # number of cores you want to allocate to this workflow. Use command "getconf _NPROCESSORS_ONLN" to check the number of cores/CPU on your machine
+
+## number of cores you want to allocate to this workflow
+NCORE: "30"  # Use command "getconf _NPROCESSORS_ONLN" to check the number of cores/CPU on your machine
+
+## aligner
+ALIGNER: "hisat2"  # or you may want to use "STAR"
+
+## tool for feature count
+COUNTER: "featureCounts"  # or you may want to use "htseq-count"
