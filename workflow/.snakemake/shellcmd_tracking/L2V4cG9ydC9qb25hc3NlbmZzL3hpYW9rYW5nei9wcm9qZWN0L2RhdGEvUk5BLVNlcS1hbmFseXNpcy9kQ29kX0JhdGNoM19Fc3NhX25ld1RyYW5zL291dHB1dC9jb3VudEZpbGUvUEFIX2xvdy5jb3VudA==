@@ -1,1 +1,0 @@
-cp ../scripts/combine_essa_pah_pfas.sh /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa_newTrans/output/countFile && cd /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa_newTrans/output/countFile && bash combine_essa_pah_pfas.sh && rm combine_essa_pah_pfas.sh

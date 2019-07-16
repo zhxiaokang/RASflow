@@ -1,1 +1,0 @@
-cd ../scripts/ && javac -cp opencsv-1.8.jar:. sumgenescod.java && java -cp opencsv-1.8.jar:. sumgenescod codgenelist.csv /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/output/countFile/164612.count

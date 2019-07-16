@@ -1,1 +1,0 @@
-hisat2-build -p 10 ../../data/RNA-Seq-analysis/ref/trans/Gadus_morhua.gadMor1.cds.all.fa ../../data/RNA-Seq-analysis/outputindexes/index

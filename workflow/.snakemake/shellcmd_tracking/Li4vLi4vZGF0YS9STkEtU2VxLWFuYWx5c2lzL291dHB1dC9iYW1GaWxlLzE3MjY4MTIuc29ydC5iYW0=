@@ -1,1 +1,0 @@
-samtools sort ../../data/RNA-Seq-analysis/output/bamFile/1726812.bam -o ../../data/RNA-Seq-analysis/output/bamFile/1726812.sort.bam && samtools index ../../data/RNA-Seq-analysis/output/bamFile/1726812.sort.bam

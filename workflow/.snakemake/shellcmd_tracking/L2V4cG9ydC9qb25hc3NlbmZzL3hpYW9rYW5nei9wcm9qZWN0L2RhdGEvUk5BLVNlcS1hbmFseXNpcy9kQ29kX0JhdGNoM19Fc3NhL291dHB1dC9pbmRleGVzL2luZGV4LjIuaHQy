@@ -1,1 +1,0 @@
-hisat2-build -p 20 /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/ref/trans/trinitytranscripts_basedongenemodel_ver3_20181009.fasta /export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/dCod_Batch3_Essa/output/indexes/index
