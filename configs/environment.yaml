@@ -5,17 +5,18 @@ channels:
   - r
   - defaults
 dependencies:
-  - snakemake=3.13.2
+  - snakemake=5.3.0
   - graphviz=2.40.1
 # command tool installs
-  - R=3.3.2
-  - python=3.5.1
+  - R=3.5.1
+  - python=3.6.7
 # bioconda channel installs
+  - multiqc=1.5
   - hisat2=2.1.0
-  - samtools=1.4.1
+  - samtools=1.9
   - subread=1.6.4  # featureCounts included
   - htseq=0.11.2  # htseq-count included
-  - bioconductor-edger=3.16.5
+  - r-yaml=2.2.0
+  - bioconductor-edger=3.26.0
   - r-statmod=1.4.30
-  - bioconductor-deseq2=1.14.1
-  - qualimap=2.2.2c
+  - qualimap=2.2.2a
