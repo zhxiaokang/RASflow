@@ -11,6 +11,8 @@ dependencies:
   - R=3.5.1
   - python=3.6.7
 # bioconda channel installs
+  - fastqc=0.11.8
+  - trim-galore=0.6.2
   - multiqc=1.5
   - hisat2=2.1.0
   - samtools=1.9
