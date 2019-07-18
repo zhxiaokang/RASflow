@@ -1,0 +1,12 @@
+import pandas as pd
+configfile: "configs/config_quality_control.yaml"
+
+rule qualityControl:
+    output:
+        fastqc_report = config["OUTPUTPATH"] + "/multiqc_report.html"
+    params:
+        inputpath = config["INPUTPATH"],
+        outputpath = config["OUTPUTPATH"]
+    shell:
+        "fastqc --outdir={params.outputpath} {params.inputpath}/* && multiqc -o {params.outputpath} {params.outputpath}"
+

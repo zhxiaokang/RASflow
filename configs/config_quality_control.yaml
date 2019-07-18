@@ -1,0 +1,8 @@
+# Please check the parameters, and adjust them according to your circumstance
+
+## the path to fastq files
+INPUTPATH: "data/example/fastq"
+
+## paths for intermediate outputs
+OUTPUTPATH: "data/example/fastqc"  # intermediate output. do not upload to github
+
