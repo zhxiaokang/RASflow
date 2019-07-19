@@ -6,3 +6,5 @@ INPUTPATH: "data/example/fastq"
 ## paths for intermediate outputs
 OUTPUTPATH: "data/example/fastqc"  # intermediate output. do not upload to github
 
+## number of cores you want to allocate to this workflow
+NCORE: "6"  # number of files that fastqc processes simultaneously

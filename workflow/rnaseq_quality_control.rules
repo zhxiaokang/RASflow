@@ -8,5 +8,5 @@ rule qualityControl:
         inputpath = config["INPUTPATH"],
         outputpath = config["OUTPUTPATH"]
     shell:
-        "fastqc --outdir={params.outputpath} {params.inputpath}/* && multiqc -o {params.outputpath} {params.outputpath}"
+        "fastqc -t config[NCORE] -o {params.outputpath} {params.inputpath}/* && multiqc -o {params.outputpath} {params.outputpath}"
 
