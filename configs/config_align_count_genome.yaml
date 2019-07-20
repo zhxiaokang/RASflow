@@ -1,7 +1,7 @@
 # Please check the parameters, and adjust them according to your circumstance
 
 ## the path to fastq files
-INPUTPATH: "data/example/fastq"
+INPUTPATH: "data/example/fastq_pair"
 
 ## if you use a key to access to the data, otherwise ignore this
 KEY: "" 
@@ -13,7 +13,7 @@ METAFILE: "configs/metadata.tsv"
 OUTPUTPATH: "data/output"  # intermediate output. do not upload to github
 FINALOUTPUT: "output"
 
-## is the sequencing paired-end or single-end?
+## is the sequencing paired-end or pair-end?
 END: "pair"
 
 ## genome and annotation files

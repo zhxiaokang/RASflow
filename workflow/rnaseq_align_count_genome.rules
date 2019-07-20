@@ -1,22 +1,27 @@
 import pandas as pd
 configfile: "configs/config_align_count_genome.yaml"
 
-samples = pd.read_table(config["METAFILE"], header = 0)['sample']
+samples = pd.read_csv(config["METAFILE"], sep = '\t', header = 0)['sample']
 indexes = list(range(1, 9))
+end = config["END"]
 
 rule all:
     input:
         formatCount = expand(config["FINALOUTPUT"] + "/countFile/{sample}_count.tsv", sample = samples)
 
-rule getReads:
-    output:
-        forward = temp(config["OUTPUTPATH"] + "/reads/{sample}_forward.fastq.gz") if config["END"]=="pair" else temp(config["OUTPUTPATH"] + "/reads/{sample}.fastq.gz"),
-        reverse = temp(config["OUTPUTPATH"] + "/reads/{sample}_reverse.fastq.gz") if config["END"]=="pair" else None
-    run:
-        if config["END"]=="pair":
-            shell("cp {config[INPUTPATH]}/{wildcards.sample}_*R1*.fastq.gz {output.forward}")
+if end == "pair":
+    rule getReads:
+        output:
+            forward = temp(config["OUTPUTPATH"] + "/reads/{sample}_forward.fastq.gz"),
+            reverse = temp(config["OUTPUTPATH"] + "/reads/{sample}_reverse.fastq.gz")
+        run:
+            shell("cp {config[INPUTPATH]}/{wildcards.sample}_*R1*.fastq.gz {output.forward}"),
             shell("cp {config[INPUTPATH]}/{wildcards.sample}_*R2*.fastq.gz {output.reverse}")
-        else:
+else:
+    rule getReads:
+        output:
+            forward = temp(config["OUTPUTPATH"] + "/reads/{sample}.fastq.gz")
+        run:
             shell("cp {config[INPUTPATH]}/{wildcards.sample}*.fastq.gz {output.forward}")
 
 rule indexGenome:
@@ -31,24 +36,37 @@ rule indexGenome:
         "hisat2-build -p {config[NCORE]} {input.genome} {params.index}"
         "&& hisat2_extract_splice_sites.py {config[ANNOTATION]} > {output.splicesites}"
 
-rule alignment:
-    input:
-        index = expand(config["OUTPUTPATH"] + "/indexes/index.{index}.ht2", index = indexes),
-        splicesites = config["OUTPUTPATH"] + "/splicesites.txt",
-        forward = config["OUTPUTPATH"] + "/reads/{sample}_forward.fastq.gz" if config["END"]=="pair" else temp(config["OUTPUTPATH"] + "/reads/{sample}.fastq.gz"),
-        reverse = config["OUTPUTPATH"] + "/reads/{sample}_reverse.fastq.gz" if config["END"]=="pair" else None
-    output:
-        sam = temp(config["OUTPUTPATH"] + "/samFile/{sample}.sam"),
-        bam = temp(config["OUTPUTPATH"] + "/bamFile/{sample}.bam")
-    params:
-        index = config["OUTPUTPATH"] + "/indexes/index"
-    benchmark:
-        config["OUTPUTPATH"] + "/benchmarks/{sample}.hisat2.benchmark.txt"
-    run:
-        if config["END"]=="pair":
+if end == "pair":
+    rule alignment:
+        input:
+            index = expand(config["OUTPUTPATH"] + "/indexes/index.{index}.ht2", index = indexes),
+            splicesites = config["OUTPUTPATH"] + "/splicesites.txt",
+            forward = config["OUTPUTPATH"] + "/reads/{sample}_forward.fastq.gz",
+            reverse = config["OUTPUTPATH"] + "/reads/{sample}_reverse.fastq.gz"
+        output:
+            sam = temp(config["OUTPUTPATH"] + "/samFile/{sample}.sam"),
+            bam = temp(config["OUTPUTPATH"] + "/bamFile/{sample}.bam")
+        params:
+            index = config["OUTPUTPATH"] + "/indexes/index"
+        benchmark:
+            config["OUTPUTPATH"] + "/benchmarks/{sample}.hisat2.benchmark.txt"
+        run:
             shell("hisat2 -p {config[NCORE]} --known-splicesite-infile {input.splicesites} -x {params.index} -1 {input.forward} -2 {input.reverse} -S {output.sam}")
             shell("samtools view -@ {config[NCORE]} -b -S {output.sam} > {output.bam}")
-        else:
+else:
+    rule alignment:
+        input:
+            index = expand(config["OUTPUTPATH"] + "/indexes/index.{index}.ht2", index = indexes),
+            splicesites = config["OUTPUTPATH"] + "/splicesites.txt",
+            forward = config["OUTPUTPATH"] + "/reads/{sample}.fastq.gz"
+        output:
+            sam = temp(config["OUTPUTPATH"] + "/samFile/{sample}.sam"),
+            bam = temp(config["OUTPUTPATH"] + "/bamFile/{sample}.bam")
+        params:
+            index = config["OUTPUTPATH"] + "/indexes/index"
+        benchmark:
+            config["OUTPUTPATH"] + "/benchmarks/{sample}.hisat2.benchmark.txt"
+        run:
             shell("hisat2 -p {config[NCORE]} --known-splicesite-infile {input.splicesites} -x {params.index} -U {input.forward} -S {output.sam}")
             shell("samtools view -@ {config[NCORE]} -b -S {output.sam} > {output.bam}")
 
@@ -71,6 +89,6 @@ rule featureCount:
             if config["END"]=="pair":
                 shell("featureCounts -p -T {config[NCORE]} -t exon -g {config[ATTRIBUTE]} -a {input.annotation} -o {output.count} {input.sort} && tail -n +3 {output.count} | cut -f1,7 > temp.{wildcards.sample} && mv temp.{wildcards.sample} {output.count}")
             else:
-                shell("featureCounts -s -T {config[NCORE]} -t exon -g {config[ATTRIBUTE]} -a {input.annotation} -o {output.count} {input.sort} && tail -n +3 {output.count} | cut -f1,7 > temp.{wildcards.sample} && mv temp.{wildcards.sample} {output.count}")
+                shell("featureCounts -T {config[NCORE]} -t exon -g {config[ATTRIBUTE]} -a {input.annotation} -o {output.count} {input.sort} && tail -n +3 {output.count} | cut -f1,7 > temp.{wildcards.sample} && mv temp.{wildcards.sample} {output.count}")
         elif config["COUNTER"]=="htseq-count":
             shell("htseq-count -f bam -i {config[ATTRIBUTE]} -s no -t exon {input.sort} {input.annotation} | sed '/^__/ d' > {output.count}")
