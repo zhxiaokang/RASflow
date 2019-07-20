@@ -10,5 +10,5 @@ OUTPUTPATH: "data/example/trim"  # intermediate output. do not upload to github
 METAFILE: "configs/metadata.tsv"
 
 ## is the sequencing paired-end or single-end?
-END: "pair"
+END: "pair"  # "pair" or "single"
 
