@@ -1,7 +1,7 @@
 # Please check the parameters, and adjust them according to your circumstance
 
 ## the path to fastq files
-INPUTPATH: "data/example/fastq"
+INPUTPATH: "data/example/fastq_pair"
 
 ## paths for intermediate outputs
 OUTPUTPATH: "data/example/trim"  # intermediate output. do not upload to github
