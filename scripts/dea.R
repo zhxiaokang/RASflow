@@ -17,7 +17,7 @@ meta.file <- yaml.file$METAFILE
 # extract the metadata
 meta.data <- read.csv(meta.file, header = TRUE, sep = '\t')
 group.all <- meta.data$group
-subject.all <- meta.data$group
+subject.all <- meta.data$subject
 
 num.control <- length(controls)  # number of comparisons that the user wants to do
 num.treat <- length(treats)  # should equals to num.control
