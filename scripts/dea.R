@@ -12,6 +12,12 @@ treats <- yaml.file$TREAT  # all groups used as treat, should correspond to cont
 filter.need <- yaml.file$FILTER$yesOrNo
 cpm.threshold <- yaml.file$FILTER$cpm
 pair.test <- yaml.file$PAIR
+meta.file <- yaml.file$METAFILE
+
+# extract the metadata
+meta.data <- read.csv(meta.file, header = TRUE, sep = '\t')
+group.all <- meta.data$group
+subject.all <- meta.data$subject
 
 num.control <- length(controls)  # number of comparisons that the user wants to do
 num.treat <- length(treats)  # should equals to num.control
@@ -59,18 +65,18 @@ DEA <- function(control, treat) {
   
   # Do DEA !!!
   # define the group
-  subject <- factor(c(seq(1, num.sample.control), seq(1, num.sample.treat)))
-  groups <- factor(c(rep("C", num.sample.control), rep("T", num.sample.treat)))
+  subject <- factor(subject.all[c(which(group.all == control), which(group.all == treat))])
+  group <- factor(group.all[c(which(group.all == control), which(group.all == treat))])
   
   y$samples$subject <- subject
-  y$samples$group <- groups
+  y$samples$group <- group
   
   # The design matrix
   if (pair.test) {
-    design <- model.matrix(~subject+groups)
+    design <- model.matrix(~subject+group)
   }
   else {
-    design <- model.matrix(~groups)
+    design <- model.matrix(~group)
   }
   rownames(design) <- colnames(y)
   

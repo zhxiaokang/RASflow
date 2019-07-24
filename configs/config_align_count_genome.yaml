@@ -1,10 +1,10 @@
 # Please check the parameters, and adjust them according to your circumstance
 
 ## the path to fastq files
-INPUTPATH: "data/example/fastq_pair"
+INPUTPATH: "u11bd@nelstor0.cbu.uib.no:Projects/UiB_Goksoyr_dCod_1_2017/PCLS_BaP-EE2_RNAseq"
 
 ## if you use a key to access to the data, otherwise ignore this
-KEY: "" 
+KEY: "/Home/ii/xiaokangz/key/u11bd@nelstor0.cbu.uib.no.txt" 
 
 ## the meta file describing the experiment settings
 METAFILE: "configs/metadata.tsv"
@@ -17,12 +17,12 @@ FINALOUTPUT: "output"
 END: "pair"
 
 ## genome and annotation files
-GENOME: "data/example/ref/genome/Homo_sapiens.GRCh38.dna.chromosome.1.1.10M.fa"
-ANNOTATION: "data/example/ref/annotation/Homo_sapiens.GRCh38.93.1.1.10M.gtf"
+GENOME: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/ref/genome/Gadus_morhua.gadMor1.dna.toplevel.fa"
+ANNOTATION: "/export/jonassenfs/xiaokangz/project/data/RNA-Seq-analysis/ref/annotation/Gadus_morhua.gadMor1.96.gtf"
 ATTRIBUTE: "gene_id"  # the attribute used in annotation file. It's usually "gene_id", but double check that since it may also be "gene", "ID"...
 
 ## number of cores you want to allocate to this workflow
-NCORE: "30"  # Use command "getconf _NPROCESSORS_ONLN" to check the number of cores/CPU on your machine
+NCORE: "40"  # Use command "getconf _NPROCESSORS_ONLN" to check the number of cores/CPU on your machine
 
 ## aligner
 ALIGNER: "hisat2"  # default is "hisat2", or you may want to use "STAR"

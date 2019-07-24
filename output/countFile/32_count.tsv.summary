@@ -1,0 +1,13 @@
+Status	data/output/bamFileSort/32.sort.bam
+Assigned	29363752
+Unassigned_Unmapped	1524030
+Unassigned_MappingQuality	0
+Unassigned_Chimera	0
+Unassigned_FragmentLength	0
+Unassigned_Duplicate	0
+Unassigned_MultiMapping	5345485
+Unassigned_Secondary	0
+Unassigned_NonSplit	0
+Unassigned_NoFeatures	17542743
+Unassigned_Overlapping_Length	0
+Unassigned_Ambiguity	312603

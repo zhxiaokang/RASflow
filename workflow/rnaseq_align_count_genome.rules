@@ -15,8 +15,8 @@ if end == "pair":
             forward = temp(config["OUTPUTPATH"] + "/reads/{sample}_forward.fastq.gz"),
             reverse = temp(config["OUTPUTPATH"] + "/reads/{sample}_reverse.fastq.gz")
         run:
-            shell("cp {config[INPUTPATH]}/{wildcards.sample}_*R1*.fastq.gz {output.forward}"),
-            shell("cp {config[INPUTPATH]}/{wildcards.sample}_*R2*.fastq.gz {output.reverse}")
+            shell("scp -i {config[KEY]} {config[INPUTPATH]}/{wildcards.sample}_*R1*.fastq.gz {output.forward}"),
+            shell("scp -i {config[KEY]} {config[INPUTPATH]}/{wildcards.sample}_*R2*.fastq.gz {output.reverse}")
 else:
     rule getReads:
         output:
