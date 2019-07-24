@@ -22,3 +22,4 @@ dependencies:
   - bioconductor-edger=3.26.0
   - r-statmod=1.4.30
   - qualimap=2.2.2a
+  - bioconductor-mygene=1.18.0
