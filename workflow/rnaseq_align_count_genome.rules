@@ -76,7 +76,7 @@ rule sortIndex:
     output:
         sort = config["OUTPUTPATH"] + "/bamFileSort/{sample}.sort.bam"
     shell:
-        "samtools sort -n -@ {config[NCORE]} {input.bam} -o {output.sort}"
+        "samtools sort -@ {config[NCORE]} {input.bam} -o {output.sort}"
 
 rule featureCount:
     input:
