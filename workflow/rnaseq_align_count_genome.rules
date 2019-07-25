@@ -5,9 +5,9 @@ samples = pd.read_csv(config["METAFILE"], sep = '\t', header = 0)['sample']
 indexes = list(range(1, 9))
 end = config["END"]
 
-rule all:
+rule end:
     input:
-        formatCount = expand(config["FINALOUTPUT"] + "/countFile/{sample}_count.tsv", sample = samples)
+        report = config["FINALOUTPUT"] + "/report_align_count.html"
 
 if end == "pair":
     rule getReads:
@@ -70,7 +70,7 @@ else:
             shell("hisat2 -p {config[NCORE]} --known-splicesite-infile {input.splicesites} -x {params.index} -U {input.forward} -S {output.sam}")
             shell("samtools view -@ {config[NCORE]} -b -S {output.sam} > {output.bam}")
 
-rule sortIndex:
+rule sortBAM:
     input:
         bam = config["OUTPUTPATH"] + "/bamFile/{sample}.bam"
     output:
@@ -78,12 +78,21 @@ rule sortIndex:
     shell:
         "samtools sort -@ {config[NCORE]} {input.bam} -o {output.sort}"
 
+rule alignmentQC:
+    input:
+        sort = config["OUTPUTPATH"] + "/bamFileSort/{sample}.sort.bam"
+    output:
+        bamqc = directory(config["FINALOUTPUT"] + "/alignmentQC/{sample}_BAMqc")
+    shell:
+        "qualimap bamqc -bam {input.sort} -outdir {output.bamqc}"
+
 rule featureCount:
     input:
         sort = config["OUTPUTPATH"] + "/bamFileSort/{sample}.sort.bam",
         annotation = config["ANNOTATION"]
     output:
-        count = config["FINALOUTPUT"] + "/countFile/{sample}_count.tsv"
+        count = config["FINALOUTPUT"] + "/countFile/{sample}_count.tsv",
+        count_summary = config["FINALOUTPUT"] + "/countFile/{sample}_count.tsv.summary"
     run:
         if config["COUNTER"]=="featureCounts":
             if config["END"]=="pair":
@@ -92,3 +101,12 @@ rule featureCount:
                 shell("featureCounts -T {config[NCORE]} -t exon -g {config[ATTRIBUTE]} -a {input.annotation} -o {output.count} {input.sort} && tail -n +3 {output.count} | cut -f1,7 > temp.{wildcards.sample} && mv temp.{wildcards.sample} {output.count}")
         elif config["COUNTER"]=="htseq-count":
             shell("htseq-count -f bam -i {config[ATTRIBUTE]} -s no -t exon {input.sort} {input.annotation} | sed '/^__/ d' > {output.count}")
+
+rule summaryReport:
+    input:
+        bamqc = expand(config["FINALOUTPUT"] + "/alignmentQC/{sample}_BAMqc", sample = samples),
+        count_summary = expand(config["FINALOUTPUT"] + "/countFile/{sample}_count.tsv.summary", sample = samples)
+    output:
+        report = config["FINALOUTPUT"] + "/report_align_count.html"
+    shell:
+        "multiqc {input.bamqc} {input.count_summary} --filename {output.report}"
