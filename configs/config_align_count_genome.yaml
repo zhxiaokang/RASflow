@@ -10,8 +10,8 @@ KEY: "/Home/ii/xiaokangz/key/u11bd@nelstor0.cbu.uib.no.txt"
 METAFILE: "configs/metadata.tsv"
 
 ## paths for intermediate and final outputs
-OUTPUTPATH: "data/output"  # intermediate output. do not upload to github
-FINALOUTPUT: "output"
+OUTPUTPATH: "data/output_genome"  # intermediate output. do not upload to github
+FINALOUTPUT: "output_genome"
 
 ## is the sequencing paired-end or pair-end? Options: "pair", "single"
 END: "pair"
