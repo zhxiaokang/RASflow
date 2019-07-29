@@ -1,0 +1,13 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	Lars-Erik_14_forward	/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/output/fastqc/Lars-Erik_14_forward_fastqc.zip
+FastQC	all_sections	Lars-Erik_1_forward	/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/output/fastqc/Lars-Erik_1_forward_fastqc.zip
+FastQC	all_sections	Lars-Erik_2_forward	/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/output/fastqc/Lars-Erik_2_forward_fastqc.zip
+FastQC	all_sections	Lars-Erik_15_forward	/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/output/fastqc/Lars-Erik_15_forward_fastqc.zip
+FastQC	all_sections	Lars-Erik_13_forward	/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/output/fastqc/Lars-Erik_13_forward_fastqc.zip
+FastQC	all_sections	Lars-Erik_14_reverse	/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/output/fastqc/Lars-Erik_14_reverse_fastqc.zip
+FastQC	all_sections	Lars-Erik_3_forward	/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/output/fastqc/Lars-Erik_3_forward_fastqc.zip
+FastQC	all_sections	Lars-Erik_1_reverse	/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/output/fastqc/Lars-Erik_1_reverse_fastqc.zip
+FastQC	all_sections	Lars-Erik_2_reverse	/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/output/fastqc/Lars-Erik_2_reverse_fastqc.zip
+FastQC	all_sections	Lars-Erik_15_reverse	/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/output/fastqc/Lars-Erik_15_reverse_fastqc.zip
+FastQC	all_sections	Lars-Erik_13_reverse	/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/output/fastqc/Lars-Erik_13_reverse_fastqc.zip
+FastQC	all_sections	Lars-Erik_3_reverse	/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/output/fastqc/Lars-Erik_3_reverse_fastqc.zip
