@@ -30,7 +30,7 @@ if end == "pair":
             "fastqc -t $(({config[NCORE]}+0)) -o {params.outputpath} {input.forward} && "
             "fastqc -t $(({config[NCORE]}+0)) -o {params.outputpath} {input.reverse}"
 
-    rule summaryRport:
+    rule summaryReport:
         input:
             fastqc_forward = expand(config["FINALOUTPUT"] + "/fastqc/{sample}_forward_fastqc.html", sample = samples),
             fastqc_reverse = expand(config["FINALOUTPUT"] + "/fastqc/{sample}_reverse_fastqc.html", sample = samples)
@@ -58,7 +58,7 @@ else:
         shell:
             "fastqc -t config[NCORE] -o {params.outputpath} {input.read}"
 
-    rule summaryRport:
+    rule summaryReport:
         input:
             fastqc = expand(config["FINALOUTPUT"] + "/fastqc/{sample}_fastqc.html", sample = samples)
         output:
