@@ -56,7 +56,7 @@ else:
         params:
             outputpath = config["FINALOUTPUT"] + "/fastqc"
         shell:
-            "fastqc -t config[NCORE] -o {params.outputpath} {input.read}"
+            "fastqc -t $(({config[NCORE]}+0)) -o {params.outputpath} {input.read}"
             
     rule summaryReport:
         input:
