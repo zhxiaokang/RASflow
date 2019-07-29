@@ -17,4 +17,5 @@ FINALOUTPUT: "output"
 END: "pair"
 
 ## number of cores you want to allocate to this workflow
-NCORE: "6"  # number of files that fastqc processes simultaneously
+NCORE: 6  # number of files that fastqc processes simultaneously
+
