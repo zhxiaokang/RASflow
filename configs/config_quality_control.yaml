@@ -1,10 +1,20 @@
 # Please check the parameters, and adjust them according to your circumstance
 
 ## the path to fastq files
-INPUTPATH: "data/example/fastq"
+INPUTPATH: "u11bd@nelstor0.cbu.uib.no:Projects/UiB_Goksoyr_dCod_1_2017/dCod_Batch5_20190416/Liver_Invivo7/fastq_files"
 
-## paths for intermediate outputs
-OUTPUTPATH: "data/example/fastqc"  # intermediate output. do not upload to github
+## if you use a key to access to the data, otherwise ignore this
+KEY: "/Home/ii/xiaokangz/key/u11bd@nelstor0.cbu.uib.no.txt"
+
+## the meta file describing the experiment settings
+METAFILE: "configs/metadata.tsv"
+
+## paths for intermediate and final outputs
+OUTPUTPATH: "data/output"  # intermediate output. do not upload to github
+FINALOUTPUT: "output"
+
+## is the sequencing paired-end or pair-end? Options: "pair", "single"
+END: "pair"
 
 ## number of cores you want to allocate to this workflow
 NCORE: "6"  # number of files that fastqc processes simultaneously
