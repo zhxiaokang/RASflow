@@ -1,12 +1,29 @@
 import pandas as pd
-configfile: "../configs/config_align_count.yaml"
+configfile: "configs/config_align_count_trans.yaml"
 
-samples = pd.read_table(config["METAFILE"], header = 0)['sample']
+samples = pd.read_csv(config["METAFILE"], sep = '\t', header = 0)['sample']
 indexes = list(range(1, 9))
+end = config["END"]
 
-rule all:
+rule end:
     input:
+        report = config["FINALOUTPUT"] + "/report_align.html",
         formatCount = expand(config["FINALOUTPUT"] + "/countFile/{sample}_count.csv", sample = samples)
+
+if end == "pair":
+    rule getReads:
+        output:
+            forward = temp(config["OUTPUTPATH"] + "/reads/{sample}_forward.fastq.gz"),
+            reverse = temp(config["OUTPUTPATH"] + "/reads/{sample}_reverse.fastq.gz")
+        run:
+            shell("scp -i {config[KEY]} {config[INPUTPATH]}/{wildcards.sample}_*R1*.fastq.gz {output.forward}")
+            shell("scp -i {config[KEY]} {config[INPUTPATH]}/{wildcards.sample}_*R2*.fastq.gz {output.reverse}")
+else:
+    rule getReads:
+        output:
+            forward = temp(config["OUTPUTPATH"] + "/reads/{sample}.fastq.gz")
+        run:
+            shell("scp -i {config[KEY]} {config[INPUTPATH]}/{wildcards.sample}*.fastq.gz {output.forward}")
 
 rule indexTrans:
     input:
@@ -18,59 +35,77 @@ rule indexTrans:
     shell:
         "hisat2-build -p {config[NCORE]} {input.trans} {params.index}"
 
-rule getReads:
-    input:
-        key = config["KEY"]
-    output:
-        forward = temp(config["OUTPUTPATH"] + "/reads/{sample}_forward.fastq.gz"),
-        reverse = temp(config["OUTPUTPATH"] + "/reads/{sample}_reverse.fastq.gz")
-    run:
-        shell("scp -i {input.key} {config[NELSIN]}/{wildcards.sample}_*_R1_001.fastq.gz {output.forward}")
-        shell("scp -i {input.key} {config[NELSIN]}/{wildcards.sample}_*_R2_001.fastq.gz {output.reverse}")
+if end == "pair":
+    rule alignment:
+        input:
+            index = expand(config["OUTPUTPATH"] + "/indexes/index.{index}.ht2", index = indexes),
+            forward = config["OUTPUTPATH"] + "/reads/{sample}_forward.fastq.gz",
+            reverse = config["OUTPUTPATH"] + "/reads/{sample}_reverse.fastq.gz"
+        output:
+            sam = temp(config["OUTPUTPATH"] + "/samFile/{sample}.sam"),
+            bam = temp(config["OUTPUTPATH"] + "/bamFile/{sample}.bam")
+        params:
+            index = config["OUTPUTPATH"] + "/indexes/index"
+        shell:
+            "hisat2 -p {config[NCORE]} -x {params.index} -1 {input.forward} -2 {input.reverse} -S {output.sam} && "
+            "samtools view -@ {config[NCORE]} -b -S {output.sam} > {output.bam}"
+else:
+    rule alignment:
+        input:
+            index = expand(config["OUTPUTPATH"] + "/indexes/index.{index}.ht2", index = indexes),
+            forward = config["OUTPUTPATH"] + "/reads/{sample}.fastq.gz"
+        output:
+            sam = temp(config["OUTPUTPATH"] + "/samFile/{sample}.sam"),
+            bam = temp(config["OUTPUTPATH"] + "/bamFile/{sample}.bam")
+        params:
+            index = config["OUTPUTPATH"] + "/indexes/index"
+        shell:
+            "hisat2 -p {config[NCORE]} -x {params.index} -U {input.forward} -S {output.sam} && "
+            "samtools view -@ {config[NCORE]} -b -S {output.sam} > {output.bam}"
 
-rule alignment:
+rule sortBAM:
     input:
-        index = expand(config["OUTPUTPATH"] + "/indexes/index.{index}.ht2", index = indexes),
-        forward = config["OUTPUTPATH"] + "/reads/{sample}_forward.fastq.gz",
-        reverse = config["OUTPUTPATH"] + "/reads/{sample}_reverse.fastq.gz"
-    output:
-        sam = temp(config["OUTPUTPATH"] + "/samFile/{sample}.sam"),
         bam = config["OUTPUTPATH"] + "/bamFile/{sample}.bam"
-    params:
-        index = config["OUTPUTPATH"] + "/indexes/index"
-    benchmark:
-        config["OUTPUTPATH"] + "/benchmarks/{sample}.hisat2.benchmark.txt"
+    output:
+        sort = config["OUTPUTPATH"] + "/bamFileSort/{sample}.sort.bam"
     shell:
-        "hisat2 -p {config[NCORE]} -x {params.index} -1 {input.forward} -2 {input.reverse} -S {output.sam}"
-        " && samtools view -b -S {output.sam} > {output.bam}"
+        "samtools sort -@ {config[NCORE]} {input.bam} -o {output.sort} && samtools index {output.sort}"
 
-rule sortIndex:
+rule alignmentQC:
     input:
-        bam = config["OUTPUTPATH"] + "/bamFile/{sample}.bam"
+        sort = config["OUTPUTPATH"] + "/bamFileSort/{sample}.sort.bam"
     output:
-        sort = temp(config["OUTPUTPATH"] + "/bamFileSort/{sample}.sort.bam")
+        bamqc = directory(config["FINALOUTPUT"] + "/alignmentQC/{sample}_BAMqc")
     shell:
-        "samtools sort {input.bam} -o {output.sort} && samtools index {output.sort}"
+        "qualimap bamqc -bam {input.sort} -outdir {output.bamqc}"
+
+rule summaryReportQC:
+    input:
+        bamqc = expand(config["FINALOUTPUT"] + "/alignmentQC/{sample}_BAMqc", sample = samples)
+    output:
+        report = config["FINALOUTPUT"] + "/report_align.html"
+    shell:
+        "multiqc {input.bamqc} --filename {output.report}"
 
 rule featureCount:
     input:
         sort = config["OUTPUTPATH"] + "/bamFileSort/{sample}.sort.bam"
     output:
-        count = config["OUTPUTPATH"] + "/countFile/{sample}.count"
+        count = config["FINALOUTPUT"] + "/countFile/{sample}.count"
     shell:
         "samtools idxstats {input.sort} > {output.count}"
 
 rule mergeTransGene:
     input:
-        transCount = config["OUTPUTPATH"] + "/countFile/{sample}.count"
+        transCount = config["FINALOUTPUT"] + "/countFile/{sample}.count"
     output:
-        geneCount = config["OUTPUTPATH"] + "/countFile/{sample}.countmerged.idx"
+        geneCount = config["FINALOUTPUT"] + "/countFile/{sample}.countmerged.idx"
     shell:
         "cd ../scripts && javac -cp opencsv-1.8.jar:. sumgenescod.java && java -cp opencsv-1.8.jar:. sumgenescod codgenelist.csv {input}"
 
 rule formatCount:
     input:
-        geneCount = config["OUTPUTPATH"] + "/countFile/{sample}.countmerged.idx"
+        geneCount = config["FINALOUTPUT"] + "/countFile/{sample}.countmerged.idx"
     output:
         formatCount = config["FINALOUTPUT"] + "/countFile/{sample}_count.csv"
     shell:
