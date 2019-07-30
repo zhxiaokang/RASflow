@@ -101,7 +101,7 @@ rule mergeTransGene:
     output:
         geneCount = config["FINALOUTPUT"] + "/countFile/{sample}.countmerged.idx"
     shell:
-        "cd ../scripts && javac -cp opencsv-1.8.jar:. sumgenescod.java && java -cp opencsv-1.8.jar:. sumgenescod codgenelist.csv {input}"
+        "cd scripts && javac -cp opencsv-1.8.jar:. sumgenescod.java && java -cp opencsv-1.8.jar:. sumgenescod codgenelist.csv {input}"
 
 rule formatCount:
     input:
@@ -109,4 +109,4 @@ rule formatCount:
     output:
         formatCount = config["FINALOUTPUT"] + "/countFile/{sample}_count.csv"
     shell:
-        "sh ../scripts/formatCount.sh {input.geneCount} {output.formatCount}"
+        "sh scripts/formatCount.sh {input.geneCount} {output.formatCount}"
