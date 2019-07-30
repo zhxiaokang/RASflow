@@ -7,11 +7,11 @@ INPUTPATH: "u11bd@nelstor0.cbu.uib.no:Projects/UiB_Goksoyr_dCod_1_2017/dCod_Batc
 KEY: "/Home/ii/xiaokangz/key/u11bd@nelstor0.cbu.uib.no.txt" 
 
 ## the meta file describing the experiment settings
-METAFILE: "configs/metadata.tsv"
+METAFILE: "/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/configs/metadata.tsv"
 
 ## paths for intermediate and final outputs
-OUTPUTPATH: "data/output_trans"  # intermediate output. do not upload to github
-FINALOUTPUT: "output_trans"
+OUTPUTPATH: "/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/data/output_trans"  # intermediate output. do not upload to github
+FINALOUTPUT: "/export/jonassenfs/xiaokangz/project/RNA-Seq-analysis/output_trans"
 
 ## is the sequencing paired-end or pair-end? Options: "pair", "single"
 END: "pair"
