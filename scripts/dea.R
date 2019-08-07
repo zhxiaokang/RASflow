@@ -32,8 +32,8 @@ if (num.control != num.treat) {
 num.comparison <- num.control
 
 DEA <- function(control, treat) {
-  count.control <- read.table(output.path, paste('/countFile/', control, '_count.tsv', sep = ''), header = TRUE, row.names = 1)
-  count.treat <- read.table(output.path, paste('/countFile/', treat, '_count.tsv', sep = ''), header = TRUE, row.names = 1)
+  count.control <- read.table(output.path, paste('/countGroup/', control, '_count.tsv', sep = ''), header = TRUE, row.names = 1)
+  count.treat <- read.table(output.path, paste('/countGroup/', treat, '_count.tsv', sep = ''), header = TRUE, row.names = 1)
   count.table <- cbind(count.control, count.treat)  # merge the control and treat tables together
   
   # number of samples in control and treat groups (should be the same if it's a pair test)
