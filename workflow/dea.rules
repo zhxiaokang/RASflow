@@ -17,15 +17,15 @@ rule combineSamples:
         sampleCount = expand(config["INPUTPATH"] + "/{sample}_count.tsv", sample = samples),
         metafile = config["METAFILE"]
     output:
-        groupCount = expand(config["OUTPUTPATH"] + "/countFile/{group}_count.tsv", group = groups)
+        groupCount = expand(config["OUTPUTPATH"] + "/countGroup/{group}_count.tsv", group = groups)
     params:
-        path = config["OUTPUTPATH"] + "countFile"
+        path = config["OUTPUTPATH"] + "countGroup"
     shell:
         "python scripts/combine2group.py"
 
 rule DEA:
     input:
-        groupCount = expand(config["OUTPUTPATH"] + "/countFile/{group}_count.tsv", group = groups)
+        groupCount = expand(config["OUTPUTPATH"] + "/countGroup/{group}_count.tsv", group = groups)
     output:
         normCount = config["OUTPUTPATH"] + "/DEA/" + control + "_" + treat + "_norm.csv",
         dea = config["OUTPUTPATH"] + "/DEA/" + "dea_" + control + "_" + treat + ".csv", 
