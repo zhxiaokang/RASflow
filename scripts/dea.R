@@ -13,6 +13,7 @@ filter.need <- yaml.file$FILTER$yesOrNo
 cpm.threshold <- yaml.file$FILTER$cpm
 pair.test <- yaml.file$PAIR
 meta.file <- yaml.file$METAFILE
+output.path <- yaml.file$OUTPUTPATH
 
 # extract the metadata
 meta.data <- read.csv(meta.file, header = TRUE, sep = '\t')
@@ -31,8 +32,8 @@ if (num.control != num.treat) {
 num.comparison <- num.control
 
 DEA <- function(control, treat) {
-  count.control <- read.table(paste('output/dea/countFile/', control, '_count.tsv', sep = ''), header = TRUE, row.names = 1)
-  count.treat <- read.table(paste('output/dea/countFile/', treat, '_count.tsv', sep = ''), header = TRUE, row.names = 1)
+  count.control <- read.table(output.path, paste('/countFile/', control, '_count.tsv', sep = ''), header = TRUE, row.names = 1)
+  count.treat <- read.table(output.path, paste('/countFile/', treat, '_count.tsv', sep = ''), header = TRUE, row.names = 1)
   count.table <- cbind(count.control, count.treat)  # merge the control and treat tables together
   
   # number of samples in control and treat groups (should be the same if it's a pair test)
@@ -61,7 +62,7 @@ DEA <- function(control, treat) {
   
   # save the normalized count table
   count.table.norm <- cpm(y)
-  write.csv(count.table.norm, paste('output/dea/DEA/', control, '_', treat, '_norm.csv', sep = ''))
+  write.csv(count.table.norm, paste(output.path, '/dea/DEA/', control, '_', treat, '_norm.csv', sep = ''))
   
   # Do DEA !!!
   # define the group
@@ -104,8 +105,8 @@ DEA <- function(control, treat) {
   deg <- toptag$table
   
   # save the DEA result and DEGs to files
-  write.csv(dea, paste('output/dea/DEA/dea_', control, '_', treat, '.csv', sep = ''), row.names = F)
-  write.csv(deg, paste('output/dea/DEA/deg_', control, '_', treat, '.csv', sep = ''), row.names = F) 
+  write.csv(dea, paste(output.path, '/DEA/dea_', control, '_', treat, '.csv', sep = ''), row.names = F)
+  write.csv(deg, paste(output.path, '/DEA/deg_', control, '_', treat, '.csv', sep = ''), row.names = F) 
 }
 
 # the main function
