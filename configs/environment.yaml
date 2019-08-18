@@ -20,6 +20,7 @@ dependencies:
   - fastqc=0.11.8
   - trim-galore=0.6.2
   - multiqc=1.5
+  - salmon=0.14.1
   - hisat2=2.1.0
   - samtools=1.9
   - subread=1.6.4  # featureCounts included
@@ -27,4 +28,5 @@ dependencies:
   - bioconductor-edger=3.26.0
   - qualimap=2.2.2a
   - bioconductor-mygene=1.18.0
+  - bioconductor-tximport=1.12.3
   - bioconductor-enhancedvolcano=1.2.0
