@@ -28,5 +28,5 @@ dependencies:
   - bioconductor-edger=3.26.0
   - qualimap=2.2.2a
   - bioconductor-mygene=1.18.0
-  - bioconductor-tximport=1.12.3
+  - bioconductor-tximport=1.12.1
   - bioconductor-enhancedvolcano=1.2.0
