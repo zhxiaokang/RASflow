@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-configfile: "configs/config_dea.yaml"
+configfile: "configs/config_dea_genome.yaml"
 
 samples = np.array(pd.read_table(config["METAFILE"], header = 0)['sample'])
 groups = np.unique(np.array(pd.read_table(config["METAFILE"], header = 0)['group']))
