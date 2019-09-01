@@ -1,0 +1,69 @@
+import pandas as pd
+configfile: "configs/config_quantify_trans.yaml"
+
+samples = pd.read_csv(config["METAFILE"], sep = '\t', header = 0)['sample']
+end = config["END"]
+
+rule end:
+    input:
+        report = config["FINALOUTPUT"] + "/report_quantify.html"
+
+if end == "pair":
+    rule getReads:
+        output:
+            forward = temp(config["OUTPUTPATH"] + "/reads/{sample}_forward.fastq.gz"),
+            reverse = temp(config["OUTPUTPATH"] + "/reads/{sample}_reverse.fastq.gz")
+        run:
+            shell("cp {config[INPUTPATH]}/{wildcards.sample}_*R1*.fastq.gz {output.forward}"),
+            shell("cp {config[INPUTPATH]}/{wildcards.sample}_*R2*.fastq.gz {output.reverse}")
+else:
+    rule getReads:
+        output:
+            forward = temp(config["OUTPUTPATH"] + "/reads/{sample}.fastq.gz")
+        run:
+            shell("cp {config[INPUTPATH]}/{wildcards.sample}*.fastq.gz {output.forward}")
+
+rule indexTrans:
+    input:
+        trans = config["TRANS"]
+    output:
+        index = directory(config["OUTPUTPATH"] + "/transcripts_index")
+    shell:
+        "salmon index -t {input} -i {output} --type quasi -k 31 -p {config[NCORE]}"
+
+if end == "pair":
+    rule quantify:
+        input:
+            forward = temp(config["OUTPUTPATH"] + "/reads/{sample}_forward.fastq.gz"),
+            reverse = temp(config["OUTPUTPATH"] + "/reads/{sample}_reverse.fastq.gz"),
+            index = directory(config["OUTPUTPATH"] + "/transcripts_index")
+        output:
+            quant_dir = directory(config["FINALOUTPUT"] + "/quants/quant_{sample}"),
+            tpm = config["FINALOUTPUT"] + "/tpmFile/{sample}_tpm.tsv"
+        shell:
+            """
+            salmon quant -i {input.index} -l A -1 {input.forward} -2 {input.reverse} -o {output.quant_dir} -p {config[NCORE]} --seqBias --useVBOpt --validateMappings
+            awk 'NR==1{{next}}{{print $1"\\t"$4}}' {output.quant_dir}/quant.sf > {output.tpm}
+            """
+else:
+    rule quantify:
+        input:
+            forward = temp(config["OUTPUTPATH"] + "/reads/{sample}.fastq.gz"),
+            index = directory(config["OUTPUTPATH"] + "/transcripts_index")
+        output:
+            quant_dir = directory(config["FINALOUTPUT"] + "/quants/quant_{sample}"),
+            tpm = config["FINALOUTPUT"] + "/tpmFile/{sample}_tpm.tsv"
+        shell:
+            """
+            salmon quant -i {input.index} -l A -r {input.forward} -o {output.quant_dir} -p {config[NCORE]} --seqBias --useVBOpt --validateMappings
+            awk 'NR==1{{next}}{{print $1"\\t"$4}}' {output.quant}/quant.sf > {output.tpm}
+            """
+
+rule summaryReport:
+    input:
+        quant_dir = directory(expand(config["FINALOUTPUT"] + "/quants/quant_{sample}", sample = samples))
+    output:
+        report = config["FINALOUTPUT"] + "/report_quantify.html"
+    shell:
+        "multiqc {input} --filename {output}"
+        
