@@ -10,8 +10,8 @@ KEY: ""
 METAFILE: "configs/metadata.tsv"
 
 ## paths for intermediate and final outputs
-OUTPUTPATH: "data/output"  # intermediate output. do not upload to github
-FINALOUTPUT: "output"
+OUTPUTPATH: "data/output/trans"  # intermediate output. do not upload to github
+FINALOUTPUT: "output/trans"
 
 ## is the sequencing paired-end or pair-end?
 END: "pair"
