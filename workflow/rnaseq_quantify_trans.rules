@@ -38,7 +38,7 @@ if end == "pair":
             reverse = temp(config["OUTPUTPATH"] + "/reads/{sample}_reverse.fastq.gz"),
             index = directory(config["OUTPUTPATH"] + "/transcripts_index")
         output:
-            quant_dir = directory(config["FINALOUTPUT"] + "/quants/quant_{sample}"),
+            quant_dir = directory(config["FINALOUTPUT"] + "/quant/{sample}"),
             tpm = config["FINALOUTPUT"] + "/tpmFile/{sample}_tpm.tsv"
         shell:
             """
@@ -51,7 +51,7 @@ else:
             forward = temp(config["OUTPUTPATH"] + "/reads/{sample}.fastq.gz"),
             index = directory(config["OUTPUTPATH"] + "/transcripts_index")
         output:
-            quant_dir = directory(config["FINALOUTPUT"] + "/quants/quant_{sample}"),
+            quant_dir = directory(config["FINALOUTPUT"] + "/quant/{sample}"),
             tpm = config["FINALOUTPUT"] + "/tpmFile/{sample}_tpm.tsv"
         shell:
             """
@@ -61,7 +61,7 @@ else:
 
 rule summaryReport:
     input:
-        quant_dir = directory(expand(config["FINALOUTPUT"] + "/quants/quant_{sample}", sample = samples))
+        quant_dir = directory(expand(config["FINALOUTPUT"] + "/quant/{sample}", sample = samples))
     output:
         report = config["FINALOUTPUT"] + "/report_quantify.html"
     shell:
