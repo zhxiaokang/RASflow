@@ -4,7 +4,7 @@ library(edgeR)
 # Use edgeR to do DEA
 
 # load the config file
-yaml.file <- yaml.load_file('configs/config_dea.yaml')
+yaml.file <- yaml.load_file('configs/config_dea_genome.yaml')
 
 # extract the information from the yaml file
 controls <- yaml.file$CONTROL  # all groups used as control

@@ -1,0 +1,191 @@
+dataset,description,version
+abrachyrhynchus_gene_ensembl,Pink-footed goose genes (ASM259213v1),ASM259213v1
+acalliptera_gene_ensembl,Eastern happy genes (fAstCal1.2),fAstCal1.2
+acarolinensis_gene_ensembl,Anole lizard genes (AnoCar2.0),AnoCar2.0
+acitrinellus_gene_ensembl,Midas cichlid genes (Midas_v5),Midas_v5
+ahaastii_gene_ensembl,Great spotted kiwi genes (aptHaa1),aptHaa1
+amelanoleuca_gene_ensembl,Panda genes (ailMel1),ailMel1
+amexicanus_gene_ensembl,Mexican tetra genes (Astyanax_mexicanus-2.0),Astyanax_mexicanus-2.0
+anancymaae_gene_ensembl,Ma's night monkey genes (Anan_2.0),Anan_2.0
+aocellaris_gene_ensembl,Clown anemonefish genes (AmpOce1.0),AmpOce1.0
+aowenii_gene_ensembl,Little spotted kiwi genes (aptOwe1),aptOwe1
+apercula_gene_ensembl,Orange clownfish genes (Nemo_v1),Nemo_v1
+aplatyrhynchos_gene_ensembl,Duck genes (CAU_duck1.0),CAU_duck1.0
+apolyacanthus_gene_ensembl,Spiny chromis genes (ASM210954v1),ASM210954v1
+arowi_gene_ensembl,Okarito brown kiwi genes (aptRow1),aptRow1
+atestudineus_gene_ensembl,Climbing perch genes (fAnaTes1.1),fAnaTes1.1
+bbison_gene_ensembl,American bison genes (Bison_UMD1.0),Bison_UMD1.0
+bmutus_gene_ensembl,Wild yak genes (BosGru_v2.0),BosGru_v2.0
+btaurus_gene_ensembl,Cow genes (ARS-UCD1.2),ARS-UCD1.2
+cabingdonii_gene_ensembl,Abingdon island giant tortoise genes (ASM359739v1),ASM359739v1
+caperea_gene_ensembl,Brazilian guinea pig genes (CavAp1.0),CavAp1.0
+catys_gene_ensembl,Sooty mangabey genes (Caty_1.0),Caty_1.0
+cbellii_gene_ensembl,Painted turtle genes (Chrysemys_picta_bellii-3.0.3),Chrysemys_picta_bellii-3.0.3
+ccaeruleus_gene_ensembl,Blue tit genes (cyaCae2),cyaCae2
+ccanadensis_gene_ensembl,American beaver genes (C.can_genome_v1.0),C.can_genome_v1.0
+ccapucinus_gene_ensembl,Capuchin genes (Cebus_imitator-1.0),Cebus_imitator-1.0
+cchok1gshd_gene_ensembl,Chinese hamster CHOK1GS genes (CHOK1GS_HDv1),CHOK1GS_HDv1
+ccrigri_gene_ensembl,Chinese hamster CriGri genes (CriGri_1.0),CriGri_1.0
+cdingo_gene_ensembl,Dingo genes (ASM325472v1),ASM325472v1
+celegans_gene_ensembl,Caenorhabditis elegans genes (WBcel235),WBcel235
+cfamiliaris_gene_ensembl,Dog genes (CanFam3.1),CanFam3.1
+chircus_gene_ensembl,Goat genes (ARS1),ARS1
+choffmanni_gene_ensembl,Sloth genes (choHof1),choHof1
+cintestinalis_gene_ensembl,C.intestinalis genes (KH),KH
+cjacchus_gene_ensembl,Marmoset genes (ASM275486v1),ASM275486v1
+cjaponica_gene_ensembl,Japanese quail genes (Coturnix_japonica_2.0),Coturnix_japonica_2.0
+clanigera_gene_ensembl,Long-tailed chinchilla genes (ChiLan1.0),ChiLan1.0
+cmilii_gene_ensembl,Elephant shark genes (Callorhinchus_milii-6.1.3),Callorhinchus_milii-6.1.3
+cpalliatus_gene_ensembl,Angola colobus genes (Cang.pa_1.0),Cang.pa_1.0
+cpicr_gene_ensembl,Chinese hamster PICR genes (CriGri-PICR),CriGri-PICR
+cporcellus_gene_ensembl,Guinea Pig genes (Cavpor3.0),Cavpor3.0
+cporosus_gene_ensembl,Australian saltwater crocodile genes (CroPor_comp1),CroPor_comp1
+cpugnax_gene_ensembl,Ruff genes (ASM143184v1),ASM143184v1
+cpygmaea_gene_ensembl,Spoon-billed sandpiper genes (ASM369795v1),ASM369795v1
+csabaeus_gene_ensembl,Vervet-AGM genes (ChlSab1.1),ChlSab1.1
+csavignyi_gene_ensembl,C.savignyi genes (CSAV 2.0),CSAV 2.0
+csemilaevis_gene_ensembl,Tongue sole genes (Cse_v1.0),Cse_v1.0
+csyrichta_gene_ensembl,Tarsier genes (Tarsius_syrichta-2.0.1),Tarsius_syrichta-2.0.1
+cvariegatus_gene_ensembl,Sheepshead minnow genes (C_variegatus-1.0),C_variegatus-1.0
+dmelanogaster_gene_ensembl,Drosophila melanogaster genes (BDGP6.22),BDGP6.22
+dnovaehollandiae_gene_ensembl,Emu genes (droNov1),droNov1
+dnovemcinctus_gene_ensembl,Armadillo genes (Dasnov3.0),Dasnov3.0
+dordii_gene_ensembl,Kangaroo rat genes (Dord_2.0),Dord_2.0
+drerio_gene_ensembl,Zebrafish genes (GRCz11),GRCz11
+easinus_gene_ensembl,Donkey genes (ASM303372v1),ASM303372v1
+eburgeri_gene_ensembl,Hagfish genes (Eburgeri_3.2),Eburgeri_3.2
+ecaballus_gene_ensembl,Horse genes (EquCab3.0),EquCab3.0
+eelectricus_gene_ensembl,Electric eel genes (Ee_SOAP_WITH_SSPACE),Ee_SOAP_WITH_SSPACE
+eeuropaeus_gene_ensembl,Hedgehog genes (eriEur1),eriEur1
+elucius_gene_ensembl,Northern pike genes (Eluc_V3),Eluc_V3
+etelfairi_gene_ensembl,Lesser hedgehog tenrec genes (TENREC),TENREC
+falbicollis_gene_ensembl,Flycatcher genes (FicAlb_1.4),FicAlb_1.4
+fcatus_gene_ensembl,Cat genes (Felis_catus_9.0),Felis_catus_9.0
+fdamarensis_gene_ensembl,Damara mole rat genes (DMR_v1.0),DMR_v1.0
+fheteroclitus_gene_ensembl,Mummichog genes (Fundulus_heteroclitus-3.0.2),Fundulus_heteroclitus-3.0.2
+gaculeatus_gene_ensembl,Stickleback genes (BROAD S1),BROAD S1
+gaffinis_gene_ensembl,Western mosquitofish genes (ASM309773v1),ASM309773v1
+gagassizii_gene_ensembl,Agassiz's desert tortoise genes (ASM289641v1),ASM289641v1
+ggallus_gene_ensembl,Chicken genes (GRCg6a),GRCg6a
+ggorilla_gene_ensembl,Gorilla genes (gorGor4),gorGor4
+gmorhua_gene_ensembl,Cod genes (gadMor1),gadMor1
+hburtoni_gene_ensembl,Burton's mouthbrooder genes (AstBur1.0),AstBur1.0
+hcomes_gene_ensembl,Tiger tail seahorse genes (H_comes_QL1_v1),H_comes_QL1_v1
+hfemale_gene_ensembl,Naked mole-rat female genes (HetGla_female_1.0),HetGla_female_1.0
+hhucho_gene_ensembl,Huchen genes (ASM331708v1),ASM331708v1
+hmale_gene_ensembl,Naked mole-rat male genes (HetGla_1.0),HetGla_1.0
+hsapiens_gene_ensembl,Human genes (GRCh38.p12),GRCh38.p12
+ipunctatus_gene_ensembl,Channel catfish genes (IpCoco_1.2),IpCoco_1.2
+itridecemlineatus_gene_ensembl,Squirrel genes (SpeTri2.0),SpeTri2.0
+jhyemalis_gene_ensembl,Dark-eyed junco genes (ASM382977v1),ASM382977v1
+jjaculus_gene_ensembl,Lesser Egyptian jerboa genes (JacJac1.0),JacJac1.0
+kmarmoratus_gene_ensembl,Mangrove rivulus genes (ASM164957v1),ASM164957v1
+lafricana_gene_ensembl,Elephant genes (Loxafr3.0),Loxafr3.0
+lbergylta_gene_ensembl,Ballan wrasse genes (BallGen_V1),BallGen_V1
+lcalcarifer_gene_ensembl,Barramundi perch genes (ASB_HGAPassembly_v1),ASB_HGAPassembly_v1
+lchalumnae_gene_ensembl,Coelacanth genes (LatCha1),LatCha1
+lcoronata_gene_ensembl,Blue-crowned manakin genes (Lepidothrix_coronata-1.0),Lepidothrix_coronata-1.0
+ldomestica_gene_ensembl,Bengalese finch genes (LonStrDom1),LonStrDom1
+loculatus_gene_ensembl,Spotted gar genes (LepOcu1),LepOcu1
+malbus_gene_ensembl,Swamp eel genes (M_albus_1.0),M_albus_1.0
+marmatus_gene_ensembl,Zig-zag eel genes (fMasArm1.1),fMasArm1.1
+mauratus_gene_ensembl,Golden Hamster genes (MesAur1.0),MesAur1.0
+mcaroli_gene_ensembl,Ryukyu mouse genes (CAROLI_EIJ_v1.1),CAROLI_EIJ_v1.1
+mdomestica_gene_ensembl,Opossum genes (monDom5),monDom5
+mfascicularis_gene_ensembl,Crab-eating macaque genes (Macaca_fascicularis_5.0),Macaca_fascicularis_5.0
+mfuro_gene_ensembl,Ferret genes (MusPutFur1.0),MusPutFur1.0
+mgallopavo_gene_ensembl,Turkey genes (Turkey_2.01),Turkey_2.01
+mleucophaeus_gene_ensembl,Drill genes (Mleu.le_1.0),Mleu.le_1.0
+mlucifugus_gene_ensembl,Microbat genes (Myoluc2.0),Myoluc2.0
+mmarmota_gene_ensembl,Alpine marmot genes (marMar2.1),marMar2.1
+mmola_gene_ensembl,Ocean sunfish genes (ASM169857v1),ASM169857v1
+mmulatta_gene_ensembl,Macaque genes (Mmul_8.0.1),Mmul_8.0.1
+mmurinus_gene_ensembl,Mouse Lemur genes (Mmur_3.0),Mmur_3.0
+mmusculus_gene_ensembl,Mouse genes (GRCm38.p6),GRCm38.p6
+mnemestrina_gene_ensembl,Pig-tailed macaque genes (Mnem_1.0),Mnem_1.0
+mochrogaster_gene_ensembl,Prairie vole genes (MicOch1.0),MicOch1.0
+mpahari_gene_ensembl,Shrew mouse genes (PAHARI_EIJ_v1.1),PAHARI_EIJ_v1.1
+mspicilegus_gene_ensembl,Steppe mouse genes (MUSP714),MUSP714
+mspretus_gene_ensembl,Algerian mouse genes (SPRET_EiJ_v1),SPRET_EiJ_v1
+mundulatus_gene_ensembl,Budgerigar genes (Melopsittacus_undulatus_6.3),Melopsittacus_undulatus_6.3
+munguiculatus_gene_ensembl,Mongolian gerbil genes (MunDraft-v1.0),MunDraft-v1.0
+mvitellinus_gene_ensembl,Golden-collared manakin genes (ASM171598v2),ASM171598v2
+mzebra_gene_ensembl,Zebra mbuna genes (M_zebra_UMD2a),M_zebra_UMD2a
+nbrichardi_gene_ensembl,Lyretail cichlid genes (NeoBri1.0),NeoBri1.0
+neugenii_gene_ensembl,Wallaby genes (Meug_1.0),Meug_1.0
+ngalili_gene_ensembl,Upper Galilee mountains blind mole rat genes (S.galili_v1.0),S.galili_v1.0
+nleucogenys_gene_ensembl,Gibbon genes (Nleu_3.0),Nleu_3.0
+nmeleagris_gene_ensembl,Helmeted guineafowl genes (NumMel1.0),NumMel1.0
+nperdicaria_gene_ensembl,Chilean tinamou genes (notPer1),notPer1
+nscutatus_gene_ensembl,Mainland tiger snake genes (TS10Xv2-PRI),TS10Xv2-PRI
+nvison_gene_ensembl,American mink genes (NNQGG.v01),NNQGG.v01
+oanatinus_gene_ensembl,Platypus genes (OANA5),OANA5
+oaries_gene_ensembl,Sheep genes (Oar_v3.1),Oar_v3.1
+ocuniculus_gene_ensembl,Rabbit genes (OryCun2.0),OryCun2.0
+odegus_gene_ensembl,Degu genes (OctDeg1.0),OctDeg1.0
+ogarnettii_gene_ensembl,Bushbaby genes (OtoGar3),OtoGar3
+ohni_gene_ensembl,Japanese medaka HNI genes (ASM223471v1),ASM223471v1
+ohsok_gene_ensembl,Japanese medaka HSOK genes (ASM223469v1),ASM223469v1
+olatipes_gene_ensembl,Japanese medaka HdrR genes (ASM223467v1),ASM223467v1
+omelastigma_gene_ensembl,Indian medaka genes (Om_v0.7.RACA),Om_v0.7.RACA
+oniloticus_gene_ensembl,Tilapia genes (Orenil1.0),Orenil1.0
+oprinceps_gene_ensembl,Pika genes (OchPri2.0-Ens),OchPri2.0-Ens
+pabelii_gene_ensembl,Orangutan genes (PPYG2),PPYG2
+paltaica_gene_ensembl,Tiger genes (PanTig1.0),PanTig1.0
+panubis_gene_ensembl,Olive baboon genes (Panu_3.0),Panu_3.0
+pbairdii_gene_ensembl,Northern American deer mouse genes (HU_Pman_2.1),HU_Pman_2.1
+pcapensis_gene_ensembl,Hyrax genes (proCap1),proCap1
+pcinereus_gene_ensembl,Koala genes (phaCin_unsw_v4.1),phaCin_unsw_v4.1
+pcoquereli_gene_ensembl,Coquerel's sifaka genes (Pcoq_1.0),Pcoq_1.0
+pformosa_gene_ensembl,Amazon molly genes (Poecilia_formosa-5.1.2),Poecilia_formosa-5.1.2
+pkingsleyae_gene_ensembl,Paramormyrops kingsleyae genes (PKINGS_0.1),PKINGS_0.1
+platipinna_gene_ensembl,Sailfin molly genes (P_latipinna-1.0),P_latipinna-1.0
+pmagnuspinnatus_gene_ensembl,Periophthalmus magnuspinnatus genes (PM.fa),PM.fa
+pmajor_gene_ensembl,Great Tit genes (Parus_major1.1),Parus_major1.1
+pmarinus_gene_ensembl,Lamprey genes (Pmarinus_7.0),Pmarinus_7.0
+pmexicana_gene_ensembl,Shortfin molly genes (P_mexicana-1.0),P_mexicana-1.0
+pnattereri_gene_ensembl,Red-bellied piranha genes (Pygocentrus_nattereri-1.0.2),Pygocentrus_nattereri-1.0.2
+pnyererei_gene_ensembl,Makobe Island cichlid genes (PunNye1.0),PunNye1.0
+ppaniscus_gene_ensembl,Bonobo genes (panpan1.1),panpan1.1
+ppardus_gene_ensembl,Leopard genes (PanPar1.0),PanPar1.0
+preticulata_gene_ensembl,Guppy genes (Guppy_female_1.0_MT),Guppy_female_1.0_MT
+psimus_gene_ensembl,Greater bamboo lemur genes (Prosim_1.0),Prosim_1.0
+psinensis_gene_ensembl,Chinese softshell turtle genes (PelSin_1.0),PelSin_1.0
+ptephrosceles_gene_ensembl,Ugandan red Colobus genes (ASM277652v2),ASM277652v2
+ptroglodytes_gene_ensembl,Chimpanzee genes (Pan_tro_3.0),Pan_tro_3.0
+pvampyrus_gene_ensembl,Megabat genes (pteVam1),pteVam1
+pvitticeps_gene_ensembl,Central bearded dragon genes (pvi1.1),pvi1.1
+rbieti_gene_ensembl,Black snub-nosed monkey genes (ASM169854v1),ASM169854v1
+rnorvegicus_gene_ensembl,Rat genes (Rnor_6.0),Rnor_6.0
+rroxellana_gene_ensembl,Golden snub-nosed monkey genes (Rrox_v1),Rrox_v1
+saraneus_gene_ensembl,Shrew genes (sorAra1),sorAra1
+sboliviensis_gene_ensembl,Bolivian squirrel monkey genes (SaiBol1.0),SaiBol1.0
+scanaria_gene_ensembl,Common canary genes (SCA1),SCA1
+scerevisiae_gene_ensembl,Saccharomyces cerevisiae genes (R64-1-1),R64-1-1
+sdauricus_gene_ensembl,Daurian ground squirrel genes (ASM240643v1),ASM240643v1
+sdorsalis_gene_ensembl,Yellowtail amberjack genes (Sedor1),Sedor1
+sdumerili_gene_ensembl,Greater amberjack genes (Sdu_1.0),Sdu_1.0
+sformosus_gene_ensembl,Asian bonytongue genes (ASM162426v1),ASM162426v1
+sharrisii_gene_ensembl,Tasmanian devil genes (Devil_ref v7.0),Devil_ref v7.0
+smaximus_gene_ensembl,Turbot genes (ASM318616v1),ASM318616v1
+smerianae_gene_ensembl,Argentine black and white tegu genes (HLtupMer3),HLtupMer3
+spartitus_gene_ensembl,Bicolor damselfish genes (Stegastes_partitus-1.0.2),Stegastes_partitus-1.0.2
+spunctatus_gene_ensembl,Tuatara genes (ASM311381v1),ASM311381v1
+sscrofa_gene_ensembl,Pig genes (Sscrofa11.1),Sscrofa11.1
+susmarc_gene_ensembl,Pig USMARC genes (USMARCv1.0),USMARCv1.0
+tbelangeri_gene_ensembl,Tree Shrew genes (tupBel1),tupBel1
+tgelada_gene_ensembl,Gelada genes (Tgel_1.0),Tgel_1.0
+tguttata_gene_ensembl,Zebra Finch genes (taeGut3.2.4),taeGut3.2.4
+tnigroviridis_gene_ensembl,Tetraodon genes (TETRAODON 8.0),TETRAODON 8.0
+trubripes_gene_ensembl,Fugu genes (FUGU5),FUGU5
+ttruncatus_gene_ensembl,Dolphin genes (turTru1),turTru1
+uamericanus_gene_ensembl,American black bear genes (ASM334442v1),ASM334442v1
+umaritimus_gene_ensembl,Polar bear genes (UrsMar_1.0),UrsMar_1.0
+uparryii_gene_ensembl,Arctic ground squirrel genes (ASM342692v1),ASM342692v1
+vpacos_gene_ensembl,Alpaca genes (vicPac1),vicPac1
+vursinus_gene_ensembl,Common wombat genes (bare-nosed_wombat_genome_assembly),bare-nosed_wombat_genome_assembly
+vvulpes_gene_ensembl,Red fox genes (VulVul2.2),VulVul2.2
+xcouchianus_gene_ensembl,Monterrey platyfish genes (Xiphophorus_couchianus-4.0.1),Xiphophorus_couchianus-4.0.1
+xmaculatus_gene_ensembl,Platyfish genes (X_maculatus-5.0-male),X_maculatus-5.0-male
+xtropicalis_gene_ensembl,Xenopus genes (JGI 4.2),JGI 4.2
+zalbicollis_gene_ensembl,White-throated sparrow genes (Zonotrichia_albicollis-1.0.1),Zonotrichia_albicollis-1.0.1
