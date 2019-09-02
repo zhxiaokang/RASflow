@@ -1,5 +1,5 @@
 # Please check the parameters, and adjust them according to your circumstance
-INPUTPATH: "output/countFile"
+INPUTPATH: "output/quant"
 OUTPUTPATH: "output/dea"
 METAFILE: "configs/metadata.tsv"
 

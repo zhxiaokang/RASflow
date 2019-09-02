@@ -8,15 +8,29 @@ library(edgeR)
 
 args = commandArgs(trailingOnly=TRUE)
 
-## load the config file
+# load the config file
 yaml.file <- yaml.load_file('configs/config_dea_trans.yaml')
-dataset <- yaml.file$EnsemblDataSet
-meta.file <- yaml.file$METAFILE
-meta.data <- read.csv(meta.file, sep = "\t")
 
-samples <- args[1]
-file.output <- args[2]
-quant.file <- 'quant.sf'
+# extract the information from the yaml file
+inputpath <- yaml.file$INPUTPATH
+controls <- yaml.file$CONTROL  # all groups used as control
+treats <- yaml.file$TREAT  # all groups used as treat, should correspond to control
+filter.need <- yaml.file$FILTER$yesOrNo
+cpm.threshold <- yaml.file$FILTER$cpm
+pair.test <- yaml.file$PAIR
+meta.file <- yaml.file$METAFILE
+dataset <- yaml.file$EnsemblDataSet
+output.path <- yaml.file$OUTPUTPATH
+
+# extract the metadata
+meta.data <- read.csv(meta.file, header = TRUE, sep = '\t', stringsAsFactors = FALSE)
+samples <- meta.data$sample
+group.all <- meta.data$group
+subject.all <- meta.data$subject
+
+# the quant files
+files <- file.path(inputpath, samples, "quant.sf")
+
 quant.table <- read.table(quant.file, header = TRUE, stringsAsFactors = FALSE)
 
 write.table(output, file = file.output)
