@@ -53,7 +53,7 @@ DEA <- function(control, treat) {
   if (filter.need) {
     countsPerMillion <- cpm(y)
     countCheck <- countsPerMillion > cpm.threshold
-    keep <- which(rowSums(countCheck) >= 2)
+    keep <- which(rowSums(countCheck) >= min(num.sample.control, num.sample.treat))
     y <- y[keep, ]
   }
   
