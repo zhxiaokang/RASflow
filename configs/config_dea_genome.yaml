@@ -1,6 +1,6 @@
 # Please check the parameters, and adjust them according to your circumstance
-INPUTPATH: "output/countFile"
-OUTPUTPATH: "output/dea"
+INPUTPATH: "output/genome/countFile"
+OUTPUTPATH: "output/genome/dea"
 METAFILE: "configs/metadata.tsv"
 
 PAIR: FALSE  # Is this a pair test or not? (TRUE or FALSE)
