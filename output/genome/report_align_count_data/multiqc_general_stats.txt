@@ -1,0 +1,9 @@
+Sample	QualiMap_mqc-generalstats-percentage_aligned	QualiMap_mqc-generalstats-mapped_reads	QualiMap_mqc-generalstats-total_reads	QualiMap_mqc-generalstats-general_error_rate	featureCounts_mqc-generalstats-percent_assigned	featureCounts_mqc-generalstats-Assigned	QualiMap_mqc-generalstats-avg_gc	QualiMap_mqc-generalstats-median_insert_size	QualiMap_mqc-generalstats-1_x_pc	QualiMap_mqc-generalstats-5_x_pc	QualiMap_mqc-generalstats-10_x_pc	QualiMap_mqc-generalstats-30_x_pc	QualiMap_mqc-generalstats-50_x_pc	QualiMap_mqc-generalstats-median_coverage
+SRR1039508.sort	89.0746118969516	85264.0	95722.0	0.21	78.13581358135814	39064								
+SRR1039508_BAMqc							48.41356478167503	139	3.15578	0.61832	0.255	0.10842	0.0715	0
+SRR1039509.sort	89.10423925667828	85925.0	96432.0	0.22999999999999998	79.7164514317799	39753								
+SRR1039509_BAMqc							48.07571987202276	141	2.66838	0.48278	0.22577	0.10211	0.07108	0
+SRR1039512.sort	93.013759253299	92478.0	99424.0	0.89	84.02502647785667	42841								
+SRR1039512_BAMqc							46.35055225148684	149	0.69268	0.12302	0.07599	0.05195	0.05116	0
+SRR1039513.sort	87.14756889030748	81910.0	93990.0	0.18	77.95508760384963	37908								
+SRR1039513_BAMqc							47.88775130305287	141	3.41016	0.64003	0.32693	0.10231	0.07484	0

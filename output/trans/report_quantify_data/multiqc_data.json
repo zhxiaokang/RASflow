@@ -2,16 +2,16 @@
     "report_data_sources": {
         "Salmon": {
             "all_sections": {
-                "quant_SRR1039508": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quants/quant_SRR1039508/libParams/flenDist.txt",
-                "quant_SRR1039509": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quants/quant_SRR1039509/libParams/flenDist.txt",
-                "quant_SRR1039512": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quants/quant_SRR1039512/libParams/flenDist.txt",
-                "quant_SRR1039513": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quants/quant_SRR1039513/libParams/flenDist.txt"
+                "SRR1039508": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quant/SRR1039508/libParams/flenDist.txt",
+                "SRR1039509": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quant/SRR1039509/libParams/flenDist.txt",
+                "SRR1039512": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quant/SRR1039512/libParams/flenDist.txt",
+                "SRR1039513": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quant/SRR1039513/libParams/flenDist.txt"
             }
         }
     },
     "report_general_stats_data": [
         {
-            "quant_SRR1039508": {
+            "SRR1039508": {
                 "salmon_version": "0.14.1",
                 "samp_type": "none",
                 "opt_type": "vb",
@@ -55,7 +55,7 @@
                 "start_time": "Sun Sep  1 17:35:31 2019",
                 "end_time": "Sun Sep  1 17:35:32 2019"
             },
-            "quant_SRR1039509": {
+            "SRR1039509": {
                 "salmon_version": "0.14.1",
                 "samp_type": "none",
                 "opt_type": "vb",
@@ -99,7 +99,7 @@
                 "start_time": "Sun Sep  1 17:35:26 2019",
                 "end_time": "Sun Sep  1 17:35:27 2019"
             },
-            "quant_SRR1039512": {
+            "SRR1039512": {
                 "salmon_version": "0.14.1",
                 "samp_type": "none",
                 "opt_type": "vb",
@@ -143,7 +143,7 @@
                 "start_time": "Sun Sep  1 17:35:20 2019",
                 "end_time": "Sun Sep  1 17:35:22 2019"
             },
-            "quant_SRR1039513": {
+            "SRR1039513": {
                 "salmon_version": "0.14.1",
                 "samp_type": "none",
                 "opt_type": "vb",
@@ -234,14 +234,14 @@
             }
         }
     ],
-    "report_multiqc_command": "/export/jonassenfs/xiaokangz/tools/miniconda3/envs/temp/bin/multiqc output/trans/quants/quant_SRR1039508 output/trans/quants/quant_SRR1039509 output/trans/quants/quant_SRR1039512 output/trans/quants/quant_SRR1039513 --filename output/trans/report_quantify.html",
+    "report_multiqc_command": "/export/jonassenfs/xiaokangz/tools/miniconda3/envs/temp/bin/multiqc output/trans/quant/SRR1039508 output/trans/quant/SRR1039509 output/trans/quant/SRR1039512 output/trans/quant/SRR1039513 --filename output/trans/report_quantify.html",
     "report_plot_data": {
         "salmon_plot": {
             "plot_type": "xy_line",
             "datasets": [
                 [
                     {
-                        "name": "quant_SRR1039508",
+                        "name": "SRR1039508",
                         "data": [
                             [
                                 3,
@@ -1246,7 +1246,7 @@
                         ]
                     },
                     {
-                        "name": "quant_SRR1039509",
+                        "name": "SRR1039509",
                         "data": [
                             [
                                 3,
@@ -2251,7 +2251,7 @@
                         ]
                     },
                     {
-                        "name": "quant_SRR1039512",
+                        "name": "SRR1039512",
                         "data": [
                             [
                                 3,
@@ -3256,7 +3256,7 @@
                         ]
                     },
                     {
-                        "name": "quant_SRR1039513",
+                        "name": "SRR1039513",
                         "data": [
                             [
                                 3,
@@ -4276,7 +4276,7 @@
     },
     "report_saved_raw_data": {
         "multiqc_salmon": {
-            "quant_SRR1039508": {
+            "SRR1039508": {
                 "salmon_version": "0.14.1",
                 "samp_type": "none",
                 "opt_type": "vb",
@@ -4320,7 +4320,7 @@
                 "start_time": "Sun Sep  1 17:35:31 2019",
                 "end_time": "Sun Sep  1 17:35:32 2019"
             },
-            "quant_SRR1039509": {
+            "SRR1039509": {
                 "salmon_version": "0.14.1",
                 "samp_type": "none",
                 "opt_type": "vb",
@@ -4364,7 +4364,7 @@
                 "start_time": "Sun Sep  1 17:35:26 2019",
                 "end_time": "Sun Sep  1 17:35:27 2019"
             },
-            "quant_SRR1039512": {
+            "SRR1039512": {
                 "salmon_version": "0.14.1",
                 "samp_type": "none",
                 "opt_type": "vb",
@@ -4408,7 +4408,7 @@
                 "start_time": "Sun Sep  1 17:35:20 2019",
                 "end_time": "Sun Sep  1 17:35:22 2019"
             },
-            "quant_SRR1039513": {
+            "SRR1039513": {
                 "salmon_version": "0.14.1",
                 "samp_type": "none",
                 "opt_type": "vb",
@@ -4454,37 +4454,37 @@
             }
         },
         "multiqc_general_stats": {
-            "quant_SRR1039508": {
+            "SRR1039508": {
                 "Salmon_mqc-generalstats-percent_mapped": 86.45870332838845,
                 "Salmon_mqc-generalstats-num_mapped": 41380
             },
-            "quant_SRR1039509": {
+            "SRR1039509": {
                 "Salmon_mqc-generalstats-percent_mapped": 87.44607599137217,
                 "Salmon_mqc-generalstats-num_mapped": 42163
             },
-            "quant_SRR1039512": {
+            "SRR1039512": {
                 "Salmon_mqc-generalstats-percent_mapped": 89.23801094303187,
                 "Salmon_mqc-generalstats-num_mapped": 44362
             },
-            "quant_SRR1039513": {
+            "SRR1039513": {
                 "Salmon_mqc-generalstats-percent_mapped": 85.95595276093202,
                 "Salmon_mqc-generalstats-num_mapped": 40395
             }
         }
     },
     "config_analysis_dir_abs": [
-        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quants/quant_SRR1039508",
-        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quants/quant_SRR1039509",
-        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quants/quant_SRR1039512",
-        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quants/quant_SRR1039513"
+        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quant/SRR1039508",
+        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quant/SRR1039509",
+        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quant/SRR1039512",
+        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quant/SRR1039513"
     ],
     "config_analysis_dir": [
-        "output/trans/quants/quant_SRR1039508",
-        "output/trans/quants/quant_SRR1039509",
-        "output/trans/quants/quant_SRR1039512",
-        "output/trans/quants/quant_SRR1039513"
+        "output/trans/quant/SRR1039508",
+        "output/trans/quant/SRR1039509",
+        "output/trans/quant/SRR1039512",
+        "output/trans/quant/SRR1039513"
     ],
-    "config_creation_date": "2019-09-01, 17:35",
+    "config_creation_date": "2019-09-08, 21:12",
     "config_git_hash": null,
     "config_intro_text": null,
     "config_report_comment": null,

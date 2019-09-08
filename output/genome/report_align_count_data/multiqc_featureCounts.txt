@@ -1,0 +1,5 @@
+Sample	Total	Assigned	Unassigned_Unmapped	Unassigned_MappingQuality	Unassigned_Chimera	Unassigned_FragmentLength	Unassigned_Duplicate	Unassigned_MultiMapping	Unassigned_Secondary	Unassigned_NonSplit	Unassigned_NoFeatures	Unassigned_Overlapping_Length	Unassigned_Ambiguity	percent_assigned
+SRR1039508.sort	49995	39064	2078	0	0	0	0	3342	0	0	2225	0	3286	78.13581358135814
+SRR1039509.sort	49868	39753	2000	0	0	0	0	2580	0	0	1928	0	3607	79.7164514317799
+SRR1039512.sort	50986	42841	691	0	0	0	0	1967	0	0	1380	0	4107	84.02502647785667
+SRR1039513.sort	48628	37908	2963	0	0	0	0	2594	0	0	2146	0	3017	77.95508760384963

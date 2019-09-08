@@ -1,0 +1,13 @@
+Status	data/output/genome/bamFileSort/SRR1039508.sort.bam
+Assigned	39064
+Unassigned_Unmapped	2078
+Unassigned_MappingQuality	0
+Unassigned_Chimera	0
+Unassigned_FragmentLength	0
+Unassigned_Duplicate	0
+Unassigned_MultiMapping	3342
+Unassigned_Secondary	0
+Unassigned_NonSplit	0
+Unassigned_NoFeatures	2225
+Unassigned_Overlapping_Length	0
+Unassigned_Ambiguity	3286
