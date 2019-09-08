@@ -8,36 +8,29 @@ groups = np.unique(np.array(pd.read_table(config["METAFILE"], header = 0)['group
 control = config["CONTROL"][0]
 treat = config["TREAT"][0]
 
-rule all:
+rule end:
     input:
-        "output_test.txt"
-
-rule DEA:
-    input:
-    output:
-        "output_test.txt"
-    shell:
-    """
-    Rscript scripts/dea_trans.R {output}
-    """
+        degTrans = config["OUTPUTPATH"] + "/DEA/transcript-level/" + "deg_" + control + "_" + treat + ".csv",
+        degGene = config["OUTPUTPATH"] + "/DEA/gene-level/" + "deg_" + control + "_" + treat + ".csv"
 
 rule combineSamples:
     input:
-        sampleCount = expand(config["INPUTPATH"] + "/{sample}_count.tsv", sample = samples),
+        sampleCount = expand(config["INPUTPATH"] + "/{sample}/quant.sf", sample = samples),
         metafile = config["METAFILE"]
     output:
-        groupCount = expand(config["OUTPUTPATH"] + "/countGroup/{group}_count.tsv", group = groups)
-    params:
-        path = config["OUTPUTPATH"] + "countFile"
+        groupCountTrans = expand(config["OUTPUTPATH"] + "/countGroup/{group}_trans_norm.tsv", group = groups),
+        groupCountGene = expand(config["OUTPUTPATH"] + "/countGroup/{group}_gene_norm.tsv", group = groups)
     shell:
-        "python scripts/combine2group.py"
+        "Rscript scripts/combine2group.R"
 
-rule DEA_genome:
+rule DEA:
     input:
-        groupCount = expand(config["OUTPUTPATH"] + "/countGroup/{group}_count.tsv", group = groups)
+        groupCountTrans = expand(config["OUTPUTPATH"] + "/countGroup/{group}_trans_norm.tsv", group = groups),
+        groupCountGene = expand(config["OUTPUTPATH"] + "/countGroup/{group}_gene_norm.tsv", group = groups)
     output:
-        normCount = config["OUTPUTPATH"] + "/DEA/" + control + "_" + treat + "_norm.csv",
-        dea = config["OUTPUTPATH"] + "/DEA/" + "dea_" + control + "_" + treat + ".csv", 
-        deg = config["OUTPUTPATH"] + "/DEA/" + "deg_" + control + "_" + treat + ".csv"
+        deaTrans = config["OUTPUTPATH"] + "/DEA/transcript-level/" + "dea_" + control + "_" + treat + ".csv", 
+        degTrans = config["OUTPUTPATH"] + "/DEA/transcript-level/" + "deg_" + control + "_" + treat + ".csv",
+        deaGene = config["OUTPUTPATH"] + "/DEA/gene-level/" + "dea_" + control + "_" + treat + ".csv", 
+        degGene = config["OUTPUTPATH"] + "/DEA/gene-level/" + "deg_" + control + "_" + treat + ".csv"
     shell:
-        "Rscript scripts/dea.R"
+        "Rscript scripts/dea_trans.R"

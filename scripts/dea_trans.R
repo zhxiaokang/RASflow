@@ -3,24 +3,107 @@
 library(biomaRt)
 library(yaml)
 library(edgeR)
+library(tximport)
 
-# define the global variables
+# ====================== define the function of DEA ======================
 
-args = commandArgs(trailingOnly=TRUE)
+DEA <- function(control, treat, file.control, file.treat, output.path.dea) {
+  count.control <- read.table(file.control, header = TRUE, row.names = 1)
+  count.treat <- read.table(file.treat, header = TRUE, row.names = 1)
+  count.table <- cbind(count.control, count.treat)  # merge the control and treat tables together
+  
+  # number of samples in control and treat groups (should be the same if it's a pair test)
+  num.sample.control <- ncol(count.control)
+  num.sample.treat <- ncol(count.treat)
+  
+  # save gene list in gene.list for extracting gene names later
+  gene.list <- rownames(count.table)
+  
+  # get the sample id
+  samples <- colnames(count.table)
+  
+  # Put the data into a DGEList object
+  y <- DGEList(counts = count.table, genes = gene.list)
+  
+  # Filtering
+  if (filter.need) {
+    tpm <- y$counts
+    countCheck <- tpm > tpm.threshold
+    keep <- which(rowSums(countCheck) > 1)
+    y <- y[keep, ]
+  }
+  
+  # Do DEA !!!
+  # define the group
+  subject <- factor(subject.all[c(which(group.all == control), which(group.all == treat))])
+  group <- factor(group.all[c(which(group.all == control), which(group.all == treat))])
+  
+  y$samples$subject <- subject
+  y$samples$group <- group
+  
+  # The design matrix
+  if (pair.test) {
+    design <- model.matrix(~subject+group)
+  }
+  else {
+    design <- model.matrix(~group)
+  }
+  rownames(design) <- colnames(y)
+  
+  # Estimating the dispersion
+  
+  # estimate the NB dispersion for the dataset
+  y <- estimateDisp(y, design, robust = TRUE)
+  
+  # Differential expression
+  
+  # determine differentially expressed genes
+  # fit genewise glms
+  fit <- glmFit(y, design)
+  
+  # conduct likelihood ratio tests for tumour vs normal tissue differences and show the top genes
+  lrt <- glmLRT(fit)
+  
+  # the DEA result for all the genes
+  # dea <- lrt$table
+  toptag <- topTags(lrt, n = nrow(y$genes), p.value = 1)
+  dea <- toptag$table  # just to add one more column of FDR
+  
+  # differentially expressed genes
+  toptag <- topTags(lrt, n = nrow(y$genes), p.value = 0.05)
+  deg <- toptag$table
+  
+  # save the DEA result and DEGs to files
+  write.csv(dea, paste(output.path.dea, '/dea_', control, '_', treat, '.csv', sep = ''), row.names = F)
+  write.csv(deg, paste(output.path.dea, '/deg_', control, '_', treat, '.csv', sep = ''), row.names = F)
+}
+
+# ====================== load parameters in config file ======================
 
 # load the config file
 yaml.file <- yaml.load_file('configs/config_dea_trans.yaml')
 
 # extract the information from the yaml file
-inputpath <- yaml.file$INPUTPATH
+input.path <- yaml.file$INPUTPATH
 controls <- yaml.file$CONTROL  # all groups used as control
 treats <- yaml.file$TREAT  # all groups used as treat, should correspond to control
 filter.need <- yaml.file$FILTER$yesOrNo
-cpm.threshold <- yaml.file$FILTER$cpm
+tpm.threshold <- yaml.file$FILTER$tpm
 pair.test <- yaml.file$PAIR
 meta.file <- yaml.file$METAFILE
 dataset <- yaml.file$EnsemblDataSet
 output.path <- yaml.file$OUTPUTPATH
+
+num.control <- length(controls)  # number of comparisons that the user wants to do
+num.treat <- length(treats)  # should equals to num.control
+
+if (num.control != num.treat) {
+  message("Error: Control groups don't mathch with treat groups!")
+  message("Please check config_dea.yaml")
+  quit(save = 'no')
+}
+
+num.comparison <- num.control
 
 # extract the metadata
 meta.data <- read.csv(meta.file, header = TRUE, sep = '\t', stringsAsFactors = FALSE)
@@ -28,54 +111,24 @@ samples <- meta.data$sample
 group.all <- meta.data$group
 subject.all <- meta.data$subject
 
-# the quant files
-files <- file.path(inputpath, samples, "quant.sf")
+# ====================== Do DEA ======================
 
-quant.table <- read.table(quant.file, header = TRUE, stringsAsFactors = FALSE)
-
-write.table(output, file = file.output)
-
-for (i in c(1:nrow(quant.table))) {
-  quant.table$Name[i] <- unlist(strsplit(quant.table$Name[i], split = '[.]'))[1]
+for (ith.comparison in c(1:num.comparison)) {
+  control <- controls[ith.comparison]
+  treat <- treats[ith.comparison]
+  
+  # --------------------- On transctipt level ---------------------
+  file.control <- paste(output.path, '/countGroup/', control, '_trans_norm.tsv', sep = '')
+  file.treat <- paste(output.path, '/countGroup/', treat, '_trans_norm.tsv', sep = '')
+  output.path.dea <- paste(output.path, '/DEA/transcript-level', sep = '')
+  
+  DEA(control, treat, file.control, file.treat, output.path.dea)
+  
+  # --------------------- On gene level ---------------------
+  file.control <- paste(output.path, '/countGroup/', control, '_gene_norm.tsv', sep = '')
+  file.treat <- paste(output.path, '/countGroup/', treat, '_gene_norm.tsv', sep = '')
+  output.path.dea <- paste(output.path, '/DEA/gene-level', sep = '')
+  
+  DEA(control, treat, file.control, file.treat, output.path.dea)
 }
-
-ensembl <- useEnsembl(biomart = "ensembl", dataset = 'hsapiens_gene_ensembl')
-datasets <- listDatasets(ensembl)
-
-attributes <- listAttributes(mart = ensembl)
-
-trans.id <- quant.table[, 1]
-
-tx2gene <- getBM(attributes=c('ensembl_transcript_id', 'ensembl_gene_id'),
-                           filters = 'ensembl_transcript_id', values = trans.id, mart = ensembl)
-
-txi.tx <- tximport(quant.file, type = "salmon", txOut = TRUE)
-
-txi <- tximport(quant.file, type = "salmon", tx2gene = tx2gene)
-
-cts <- txi$counts
-normMat <- txi$length
-
-# Obtaining per-observation scaling factors for length, adjusted to avoid
-# changing the magnitude of the counts.
-normMat <- normMat/exp(rowMeans(log(normMat)))
-normCts <- cts/normMat
-
-# Computing effective library sizes from scaled counts, to account for
-# composition biases between samples.
-library(edgeR)
-eff.lib <- calcNormFactors(normCts) * colSums(normCts)
-
-# Combining effective library sizes with the length factors, and calculating
-# offsets for a log-link GLM.
-normMat <- sweep(normMat, 2, eff.lib, "*")
-normMat <- log(normMat)
-
-# Creating a DGEList object for use in edgeR.
-y <- DGEList(cts)
-y <- scaleOffset(y, normMat)
-# filtering
-keep <- filterByExpr(y)
-y <- y[keep, ]
-# y is now ready for estimate dispersion functions see edgeR User's Guide
 

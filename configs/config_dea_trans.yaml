@@ -1,6 +1,6 @@
 # Please check the parameters, and adjust them according to your circumstance
-INPUTPATH: "output/quant"
-OUTPUTPATH: "output/dea"
+INPUTPATH: "output/trans/quant"
+OUTPUTPATH: "output/trans/dea"
 METAFILE: "configs/metadata.tsv"
 
 PAIR: FALSE  # Is this a pair test or not? (TRUE or FALSE)
@@ -16,4 +16,4 @@ TREAT: ["Dexamethasone"]
 
 FILTER:
   yesOrNo: TRUE  # Filter out low expressed genes or not? (TRUE or FALSE)
-  cpm: 1  # if yes for filter, what's the threshold of cpm?
+  tpm: 1  # if yes for filter, what's the threshold of tpm?
