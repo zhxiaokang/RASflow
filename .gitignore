@@ -1,5 +1,9 @@
+# ignore the files with the following extensions
 .snakemake
 .log
 .temp
 .swp
 .Rhistory
+
+# ignore the following folders
+data/output/
