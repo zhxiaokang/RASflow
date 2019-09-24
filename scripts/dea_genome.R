@@ -75,8 +75,7 @@ DEA <- function(control, treat) {
   # The design matrix
   if (pair.test) {
     design <- model.matrix(~subject+group)
-  }
-  else {
+  } else {
     design <- model.matrix(~group)
   }
   rownames(design) <- colnames(y)

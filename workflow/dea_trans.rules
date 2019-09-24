@@ -21,7 +21,7 @@ rule combineSamples:
         groupCountTrans = expand(config["OUTPUTPATH"] + "/countGroup/{group}_trans_norm.tsv", group = groups),
         groupCountGene = expand(config["OUTPUTPATH"] + "/countGroup/{group}_gene_norm.tsv", group = groups)
     shell:
-        "Rscript scripts/combine2group.R"
+        "Rscript scripts/combine2group_trans.R"
 
 rule DEA:
     input:
