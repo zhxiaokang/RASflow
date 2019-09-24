@@ -9,7 +9,7 @@ def load_globals():
 	
 	global samples; global groups; global config
 
-	with open('configs/config_dea.yaml') as yamlfile:
+	with open('configs/config_dea_genome.yaml') as yamlfile:
 		config = yaml.load(yamlfile)
     
 	samples = np.array(pd.read_table(config["METAFILE"], header = 0)['sample'])
