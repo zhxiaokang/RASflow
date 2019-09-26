@@ -10,6 +10,7 @@ treat = config["TREAT"][0]
 
 rule all:
     input:
+        normControl = config["OUTPUTPATH"] + "/countGroup/" + control + "_norm.csv",
         dea = config["OUTPUTPATH"] + "/DEA/" + "dea_" + control + "_" + treat + ".csv"
 
 rule combineSamples:
@@ -27,8 +28,10 @@ rule DEA:
     input:
         groupCount = expand(config["OUTPUTPATH"] + "/countGroup/{group}_count.tsv", group = groups)
     output:
-        normCount = config["OUTPUTPATH"] + "/DEA/" + control + "_" + treat + "_norm.csv",
+        normControl = config["OUTPUTPATH"] + "/countGroup/" + control + "_norm.csv",
+        normTreat = config["OUTPUTPATH"] + "/countGroup/" + treat + "_norm.csv",
         dea = config["OUTPUTPATH"] + "/DEA/" + "dea_" + control + "_" + treat + ".csv", 
         deg = config["OUTPUTPATH"] + "/DEA/" + "deg_" + control + "_" + treat + ".csv"
     shell:
         "Rscript scripts/dea_genome.R"
+

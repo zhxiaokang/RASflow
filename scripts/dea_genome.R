@@ -45,7 +45,19 @@ DEA <- function(control, treat) {
   
   # get the sample id
   samples <- colnames(count.table)
-  
+ 
+  # normalize the two groups and save the normalized count table
+  y.control <- DGEList(counts = count.control, genes = gene.list)
+  y.treat <- DGEList(counts = count.treat, genes = gene.list)
+
+  y.control <- calcNormFactors(y.control, method="TMM")
+  count.table.control.norm <- cpm(y.control)
+  write.csv(count.table.control.norm, paste(output.path, '/countGroup/', control, '_norm.csv', sep = ''))
+
+  y.treat <- calcNormFactors(y.treat, method="TMM")
+  count.table.treat.norm <- cpm(y.treat)
+  write.csv(count.table.treat.norm, paste(output.path, '/countGroup/', treat, '_norm.csv', sep = ''))
+
   # Put the data into a DGEList object
   y <- DGEList(counts = count.table, genes = gene.list)
   
@@ -59,10 +71,6 @@ DEA <- function(control, treat) {
   
   # Normalization
   y <- calcNormFactors(y, method="TMM")
-  
-  # save the normalized count table
-  count.table.norm <- cpm(y)
-  write.csv(count.table.norm, paste(output.path, '/DEA/', control, '_', treat, '_norm.csv', sep = ''))
   
   # Do DEA !!!
   # define the group
