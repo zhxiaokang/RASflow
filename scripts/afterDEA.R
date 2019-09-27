@@ -2,7 +2,7 @@
 library(yaml)
 library(mygene)
 library(EnhancedVolcano)
-library(randomcoloR)
+library(RColorBrewer)
 library(data.table)
 
 # ====================== load parameters in config file ======================
@@ -56,7 +56,7 @@ row.names(norm.table) <- unlist(norm.table.temp[, 1])
 
 index.deg <- which(row.names(norm.table) %in% gene.id.deg)
 norm.table.deg <- norm.table[index.deg,]
-palette <- distinctColorPalette(length(levels(group.all)))
+palette <- brewer.pal(n = length(levels(group.all)), name = "Set1")
 palette.group <- group.all
 for (i in c(1:length(levels(palette.group)))) {
   levels(palette.group)[levels(palette.group) == levels(palette.group)[i]] <- palette[i]
