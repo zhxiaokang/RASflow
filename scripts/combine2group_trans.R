@@ -65,7 +65,7 @@ names(files.noVersion) <- samples
 
 # ====================== prepare the tx2gene table ======================
 
-ensembl <- useEnsembl(biomart = "ensembl", dataset = 'hsapiens_gene_ensembl')
+ensembl <- useEnsembl(biomart = "ensembl", dataset = dataset)
 datasets <- listDatasets(ensembl)
 
 attributes <- listAttributes(mart = ensembl)
