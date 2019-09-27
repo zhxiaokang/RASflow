@@ -1,0 +1,7 @@
+# Please check the parameters, and adjust them according to your circumstance
+DEAFILE: "data/example/dea/DEA/dea_oil_control_oil_low.csv"  # the dea table
+DEGFILE: "data/example/dea/DEA/deg_oil_control_oil_low.csv"  # the deg table
+COUNTPATH: "data/example/dea/countGroup"  # the folder containing the normalized count tables of interesting groups
+OUTPUTPATH: "output/genome/after_dea"
+METAFILE: "data/example/dea/metadata.tsv"
+
