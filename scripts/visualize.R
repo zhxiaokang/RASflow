@@ -39,7 +39,7 @@ for (i in c(1:length(gene.dea))) {
 }
 
 # volcano plot
-pdf(file = paste(output.path, '/volcano_plot.pdf'), width = 6, height = 3.5)
+pdf(file = paste(output.path, '/volcano_plot.pdf', sep = ''), width = 6, height = 3.5)
 EnhancedVolcano(dea.table, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'logFC', y = 'FDR', pCutoff = 10e-5,
                 FCcutoff = 1, xlim = c(-5, 5), ylim = c(0, 10), transcriptPointSize = 1.5)
 dev.off()
@@ -61,6 +61,6 @@ for (i in c(1:length(levels(palette.group)))) {
   levels(palette.group)[levels(palette.group) == levels(palette.group)[i]] <- palette[i]
 }
 ## draw heatmap
-pdf(file = paste(output.path, '/heatmap.pdf'), width = 6, height = 3.5)
+pdf(file = paste(output.path, '/heatmap.pdf', sep = ''), width = 6, height = 3.5)
 heatmap(as.matrix(norm.table.deg), ColSideColors = as.character(palette.group))
 dev.off()
