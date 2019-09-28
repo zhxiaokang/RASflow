@@ -1,5 +1,5 @@
 # load the libraries
-install.packages('scripts/plotscale_0.1.6.tar.gz', repos = NULL, type="source")
+if (!require("plotscale")) install.packages('scripts/plotscale_0.1.6.tar.gz', repos = NULL, type="source")
 library(yaml)
 library(mygene)
 library(EnhancedVolcano)
