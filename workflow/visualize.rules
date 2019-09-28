@@ -13,9 +13,8 @@ rule end:
 rule plot:
     input:
         dea = config["DEAFILE"],
-        deg = config["DEGFILE"]
-    dir:
-        countpath = config["COUNTPATH"]
+        deg = config["DEGFILE"],
+        countpath = directory(config["COUNTPATH"])
     output:
         volcano = outputpath + "/volcano_plot.pdf",
         heatmap = outputpath + "/heatmap.pdf"
