@@ -14,7 +14,7 @@ OUTPUTPATH: "data/output/genome"  # intermediate output. do not upload to github
 FINALOUTPUT: "output/genome"
 
 ## is the sequencing paired-end or pair-end?
-END: "pair"
+END: "pair"  # "single" or "pair"?
 
 ## genome and annotation files
 GENOME: "data/example/ref/genome/Homo_sapiens.GRCh38.dna.chromosome.1.1.10M.fa"

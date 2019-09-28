@@ -14,7 +14,7 @@ OUTPUTPATH: "data/output/trans"  # intermediate output. do not upload to github
 FINALOUTPUT: "output/trans"
 
 ## is the sequencing paired-end or pair-end?
-END: "pair"
+END: "pair"  # "single" or "pair"?
 
 ## transcriptome file
 TRANS: "data/example/ref/transcriptome/Homo_sapiens.GRCh38.cdna.all.1.1.10M.fa.gz"
