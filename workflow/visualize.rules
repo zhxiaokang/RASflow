@@ -1,0 +1,24 @@
+import pandas as pd
+import numpy as np
+
+configfile: "configs/config_visualize.yaml"
+
+outputpath = config["OUTPUTPATH"]
+
+rule end:
+    input:
+        volcano = outputpath + "/volcano_plot.pdf",
+        heatmap = outputpath + "/heatmap.pdf"
+
+rule plot:
+    input:
+        dea = config["DEAFILE"],
+        deg = config["DEGFILE"]
+    dir:
+        countpath = config["COUNTPATH"]
+    output:
+        volcano = outputpath + "/volcano_plot.pdf",
+        heatmap = outputpath + "/heatmap.pdf"
+    shell:
+        "Rscript scripts/visualize.R"
+
