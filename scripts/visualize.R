@@ -42,7 +42,7 @@ for (i in c(1:length(gene.dea))) {
 
 # volcano plot
 fig.volcano <- EnhancedVolcano(dea.table, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'logFC', y = 'FDR', pCutoff = 10e-5,
-                               FCcutoff = 1, xlim = c(-5, 5), ylim = c(0, 10), transcriptPointSize = 1.5)
+                               FCcutoff = 1, xlim = c(-5, 5), ylim = c(0, 10), transcriptPointSize = 1.5, title = 'Volcano plot for DEA', subtitle = NULL)
 as.pdf(fig.volcano, width = 8, height = 5, scaled = TRUE, file = paste(output.path, '/volcano_plot.pdf', sep = ''))
 
 # heatmap
@@ -83,6 +83,8 @@ for (i in c(1:length(levels(palette.group)))) {
   levels(palette.group)[levels(palette.group) == levels(palette.group)[i]] <- palette[i]
 }
 ## draw heatmap
-pdf(file = paste(output.path, '/heatmap.pdf', sep = ''), width = 15, height = 12)
+pdf(file = paste(output.path, '/heatmap.pdf', sep = ''), width = 15, height = 12, title = 'Heatmap using the top features')
 heatmap(as.matrix(norm.table.deg), ColSideColors = as.character(palette.group), margins = c(8,5))
+legend("topleft", title = 'Group', legend=groups, text.font = 2,
+       col=as.character(levels(palette.group)), fill=as.character(levels(palette.group)), cex=0.8)
 dev.off()
