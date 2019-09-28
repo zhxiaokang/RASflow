@@ -25,13 +25,10 @@ groups <- levels(group.all)
 dea.table <- read.csv(dea.table, header = TRUE, row.names = 1)
 deg.table <- read.csv(deg.table, header = TRUE, row.names = 1)
 
-gene.id.norm <- row.names(norm.table)
 gene.id.dea <- row.names(dea.table)
 gene.id.deg <- row.names(deg.table)
 
-gene.symbol.norm <- queryMany(gene.id.norm, scopes = 'ensembl.gene', fields = 'symbol')$symbol
 gene.symbol.dea <- queryMany(gene.id.dea, scopes = 'ensembl.gene', fields = 'symbol')$symbol
-gene.symbol.deg <- queryMany(gene.id.deg, scopes = 'ensembl.gene', fields = 'symbol')$symbol
 
 # if can't find a symbol for the id, then keep the id as it is
 gene.dea <- gene.symbol.dea
