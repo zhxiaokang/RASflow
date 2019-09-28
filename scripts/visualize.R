@@ -1,6 +1,5 @@
 # load the libraries
-if (!require("plotscale")) install.packages("ploscale")
-
+install.packages('scripts/plotscale_0.1.6.tar.gz', repos = NULL, type="source")
 library(yaml)
 library(mygene)
 library(EnhancedVolcano)
@@ -45,7 +44,6 @@ for (i in c(1:length(gene.dea))) {
 fig.volcano <- EnhancedVolcano(dea.table, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'logFC', y = 'FDR', pCutoff = 10e-5,
                                FCcutoff = 1, xlim = c(-5, 5), ylim = c(0, 10), transcriptPointSize = 1.5)
 as.pdf(fig.volcano, width = 8, height = 5, scaled = TRUE, file = paste(output.path, '/volcano_plot.pdf', sep = ''))
-dev.off()
 
 # heatmap
 ## collect all the files
