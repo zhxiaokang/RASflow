@@ -2,6 +2,6 @@
 DEAFILE: "data/example/dea/DEA/dea_oil_control_oil_low.csv"  # the dea table
 DEGFILE: "data/example/dea/DEA/deg_oil_control_oil_low.csv"  # the deg table
 COUNTPATH: "data/example/dea/countGroup"  # the folder containing the normalized count tables of interesting groups
-OUTPUTPATH: "output/genome/after_dea"
+OUTPUTPATH: "output/genome/dea/visualize"
 METAFILE: "data/example/dea/metadata.tsv"
 
