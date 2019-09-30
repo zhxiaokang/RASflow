@@ -11,7 +11,7 @@ METAFILE: "configs/metadata.tsv"
 
 ## paths for intermediate and final outputs
 OUTPUTPATH: "data/output/genome"  # intermediate output. do not upload to github
-FINALOUTPUT: "output/genome"
+FINALOUTPUT: "output_example/genome"
 
 ## is the sequencing paired-end or pair-end?
 END: "pair"  # "single" or "pair"?

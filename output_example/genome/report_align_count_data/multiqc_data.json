@@ -2,36 +2,36 @@
     "report_data_sources": {
         "QualiMap": {
             "genome_results": {
-                "SRR1039508.sort": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039508_BAMqc/genome_results.txt",
-                "SRR1039509.sort": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039509_BAMqc/genome_results.txt",
-                "SRR1039512.sort": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039512_BAMqc/genome_results.txt",
-                "SRR1039513.sort": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039513_BAMqc/genome_results.txt"
+                "SRR1039508.sort": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039508_BAMqc/genome_results.txt",
+                "SRR1039509.sort": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039509_BAMqc/genome_results.txt",
+                "SRR1039512.sort": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039512_BAMqc/genome_results.txt",
+                "SRR1039513.sort": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039513_BAMqc/genome_results.txt"
             },
             "coverage_histogram": {
-                "SRR1039508_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039508_BAMqc/raw_data_qualimapReport/coverage_histogram.txt",
-                "SRR1039509_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039509_BAMqc/raw_data_qualimapReport/coverage_histogram.txt",
-                "SRR1039512_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039512_BAMqc/raw_data_qualimapReport/coverage_histogram.txt",
-                "SRR1039513_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039513_BAMqc/raw_data_qualimapReport/coverage_histogram.txt"
+                "SRR1039508_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039508_BAMqc/raw_data_qualimapReport/coverage_histogram.txt",
+                "SRR1039509_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039509_BAMqc/raw_data_qualimapReport/coverage_histogram.txt",
+                "SRR1039512_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039512_BAMqc/raw_data_qualimapReport/coverage_histogram.txt",
+                "SRR1039513_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039513_BAMqc/raw_data_qualimapReport/coverage_histogram.txt"
             },
             "insert_size_histogram": {
-                "SRR1039508_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039508_BAMqc/raw_data_qualimapReport/insert_size_histogram.txt",
-                "SRR1039509_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039509_BAMqc/raw_data_qualimapReport/insert_size_histogram.txt",
-                "SRR1039512_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039512_BAMqc/raw_data_qualimapReport/insert_size_histogram.txt",
-                "SRR1039513_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039513_BAMqc/raw_data_qualimapReport/insert_size_histogram.txt"
+                "SRR1039508_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039508_BAMqc/raw_data_qualimapReport/insert_size_histogram.txt",
+                "SRR1039509_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039509_BAMqc/raw_data_qualimapReport/insert_size_histogram.txt",
+                "SRR1039512_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039512_BAMqc/raw_data_qualimapReport/insert_size_histogram.txt",
+                "SRR1039513_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039513_BAMqc/raw_data_qualimapReport/insert_size_histogram.txt"
             },
             "mapped_gc_distribution": {
-                "SRR1039508_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039508_BAMqc/raw_data_qualimapReport/mapped_reads_gc-content_distribution.txt",
-                "SRR1039509_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039509_BAMqc/raw_data_qualimapReport/mapped_reads_gc-content_distribution.txt",
-                "SRR1039512_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039512_BAMqc/raw_data_qualimapReport/mapped_reads_gc-content_distribution.txt",
-                "SRR1039513_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039513_BAMqc/raw_data_qualimapReport/mapped_reads_gc-content_distribution.txt"
+                "SRR1039508_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039508_BAMqc/raw_data_qualimapReport/mapped_reads_gc-content_distribution.txt",
+                "SRR1039509_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039509_BAMqc/raw_data_qualimapReport/mapped_reads_gc-content_distribution.txt",
+                "SRR1039512_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039512_BAMqc/raw_data_qualimapReport/mapped_reads_gc-content_distribution.txt",
+                "SRR1039513_BAMqc": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039513_BAMqc/raw_data_qualimapReport/mapped_reads_gc-content_distribution.txt"
             }
         },
         "featureCounts": {
             "all_sections": {
-                "SRR1039508.sort": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/countFile/SRR1039508_count.tsv.summary",
-                "SRR1039509.sort": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/countFile/SRR1039509_count.tsv.summary",
-                "SRR1039512.sort": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/countFile/SRR1039512_count.tsv.summary",
-                "SRR1039513.sort": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/countFile/SRR1039513_count.tsv.summary"
+                "SRR1039508.sort": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/countFile/SRR1039508_count.tsv.summary",
+                "SRR1039509.sort": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/countFile/SRR1039509_count.tsv.summary",
+                "SRR1039512.sort": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/countFile/SRR1039512_count.tsv.summary",
+                "SRR1039513.sort": "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/countFile/SRR1039513_count.tsv.summary"
             }
         }
     },
@@ -465,7 +465,7 @@
             }
         }
     ],
-    "report_multiqc_command": "/export/jonassenfs/xiaokangz/tools/miniconda3/envs/temp/bin/multiqc output/genome/alignmentQC/SRR1039508_BAMqc output/genome/alignmentQC/SRR1039509_BAMqc output/genome/alignmentQC/SRR1039512_BAMqc output/genome/alignmentQC/SRR1039513_BAMqc output/genome/countFile/SRR1039508_count.tsv.summary output/genome/countFile/SRR1039509_count.tsv.summary output/genome/countFile/SRR1039512_count.tsv.summary output/genome/countFile/SRR1039513_count.tsv.summary --filename output/genome/report_align_count.html",
+    "report_multiqc_command": "/export/jonassenfs/xiaokangz/tools/miniconda3/envs/temp/bin/multiqc output_example/genome/alignmentQC/SRR1039508_BAMqc output_example/genome/alignmentQC/SRR1039509_BAMqc output_example/genome/alignmentQC/SRR1039512_BAMqc output_example/genome/alignmentQC/SRR1039513_BAMqc output_example/genome/countFile/SRR1039508_count.tsv.summary output_example/genome/countFile/SRR1039509_count.tsv.summary output_example/genome/countFile/SRR1039512_count.tsv.summary output_example/genome/countFile/SRR1039513_count.tsv.summary --filename output_example/genome/report_align_count.html",
     "report_plot_data": {
         "qualimap_coverage_histogram": {
             "plot_type": "xy_line",
@@ -7547,26 +7547,26 @@
         }
     },
     "config_analysis_dir_abs": [
-        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039508_BAMqc",
-        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039509_BAMqc",
-        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039512_BAMqc",
-        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/alignmentQC/SRR1039513_BAMqc",
-        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/countFile/SRR1039508_count.tsv.summary",
-        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/countFile/SRR1039509_count.tsv.summary",
-        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/countFile/SRR1039512_count.tsv.summary",
-        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/genome/countFile/SRR1039513_count.tsv.summary"
+        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039508_BAMqc",
+        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039509_BAMqc",
+        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039512_BAMqc",
+        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/alignmentQC/SRR1039513_BAMqc",
+        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/countFile/SRR1039508_count.tsv.summary",
+        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/countFile/SRR1039509_count.tsv.summary",
+        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/countFile/SRR1039512_count.tsv.summary",
+        "/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output_example/genome/countFile/SRR1039513_count.tsv.summary"
     ],
     "config_analysis_dir": [
-        "output/genome/alignmentQC/SRR1039508_BAMqc",
-        "output/genome/alignmentQC/SRR1039509_BAMqc",
-        "output/genome/alignmentQC/SRR1039512_BAMqc",
-        "output/genome/alignmentQC/SRR1039513_BAMqc",
-        "output/genome/countFile/SRR1039508_count.tsv.summary",
-        "output/genome/countFile/SRR1039509_count.tsv.summary",
-        "output/genome/countFile/SRR1039512_count.tsv.summary",
-        "output/genome/countFile/SRR1039513_count.tsv.summary"
+        "output_example/genome/alignmentQC/SRR1039508_BAMqc",
+        "output_example/genome/alignmentQC/SRR1039509_BAMqc",
+        "output_example/genome/alignmentQC/SRR1039512_BAMqc",
+        "output_example/genome/alignmentQC/SRR1039513_BAMqc",
+        "output_example/genome/countFile/SRR1039508_count.tsv.summary",
+        "output_example/genome/countFile/SRR1039509_count.tsv.summary",
+        "output_example/genome/countFile/SRR1039512_count.tsv.summary",
+        "output_example/genome/countFile/SRR1039513_count.tsv.summary"
     ],
-    "config_creation_date": "2019-09-08, 21:18",
+    "config_creation_date": "2019-09-30, 23:06",
     "config_git_hash": null,
     "config_intro_text": null,
     "config_report_comment": null,

@@ -2,7 +2,7 @@
 .snakemake
 .log
 .temp
-.swp
+*.swp
 .Rhistory
 
 # ignore the following folders
