@@ -8,7 +8,7 @@ METAFILE: "configs/metadata.tsv"
 
 ## paths for intermediate outputs and final outputs
 OUTPUTPATH: "data/output"  # intermediate output. do not upload to github
-FINALOUTPUT: "output"
+FINALOUTPUT: "output_example"
 
 ## is the sequencing paired-end or pair-end? Options: "pair", "single"
 END: "pair"
