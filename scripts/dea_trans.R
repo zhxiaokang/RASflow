@@ -83,7 +83,7 @@ DEA <- function(control, treat, file.control, file.treat, output.path.dea) {
 yaml.file <- yaml.load_file('configs/config_dea_trans.yaml')
 
 # extract the information from the yaml file
-input.path <- yaml.file$INPUTPATH
+project <- yaml.file$PROJECT  # project name
 controls <- yaml.file$CONTROL  # all groups used as control
 treats <- yaml.file$TREAT  # all groups used as treat, should correspond to control
 filter.need <- yaml.file$FILTER$yesOrNo
@@ -91,7 +91,7 @@ tpm.threshold <- yaml.file$FILTER$tpm
 pair.test <- yaml.file$PAIR
 meta.file <- yaml.file$METAFILE
 dataset <- yaml.file$EnsemblDataSet
-output.path <- yaml.file$OUTPUTPATH
+output.path <- file.path(yaml.file$OUTPUTPATH, project, "trans/dea")
 
 num.control <- length(controls)  # number of comparisons that the user wants to do
 num.treat <- length(treats)  # should equals to num.control

@@ -1,14 +1,17 @@
 # Please check the parameters, and adjust them according to your circumstance
 
+# project name
+PROJECT: test
+
 ## the path to fastq files
-INPUTPATH: "data/example/fastq_pair"
+INPUTPATH: data/example/fastq_pair
 
 ## paths for intermediate outputs
-OUTPUTPATH: "data/example/trim"  # intermediate output. do not upload to github
+OUTPUTPATH: data/output  # intermediate output. do not upload to github
 
 ## the meta file describing the experiment settings
-METAFILE: "configs/metadata.tsv"
+METAFILE: configs/metadata.tsv
 
 ## is the sequencing paired-end or single-end?
-END: "pair"  # "pair" or "single"
+END: pair  # "pair" or "single"
 

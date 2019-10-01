@@ -1,0 +1,25 @@
+{
+    "read_files": [
+        "data/output/test/trans/reads/SRR1039513_forward.fastq.gz",
+        "data/output/test/trans/reads/SRR1039513_reverse.fastq.gz"
+    ],
+    "expected_format": "IU",
+    "compatible_fragment_ratio": 1.0,
+    "num_compatible_fragments": 40395,
+    "num_assigned_fragments": 40395,
+    "num_frags_with_concordant_consistent_mappings": 31022,
+    "num_frags_with_inconsistent_or_orphan_mappings": 10052,
+    "strand_mapping_bias": 0.5029334021017342,
+    "MSF": 0,
+    "OSF": 0,
+    "ISF": 15420,
+    "MSR": 0,
+    "OSR": 0,
+    "ISR": 15602,
+    "SF": 5259,
+    "SR": 4793,
+    "MU": 0,
+    "OU": 0,
+    "IU": 0,
+    "U": 0
+}

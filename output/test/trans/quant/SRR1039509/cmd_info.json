@@ -1,0 +1,13 @@
+{
+    "salmon_version": "0.14.1",
+    "index": "data/output/test/trans/transcripts_index",
+    "libType": "A",
+    "mates1": "data/output/test/trans/reads/SRR1039509_forward.fastq.gz",
+    "mates2": "data/output/test/trans/reads/SRR1039509_reverse.fastq.gz",
+    "output": "output/test/trans/quant/SRR1039509",
+    "threads": "30",
+    "seqBias": [],
+    "useVBOpt": [],
+    "validateMappings": [],
+    "auxDir": "aux_info"
+}

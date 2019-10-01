@@ -1,12 +1,16 @@
 # Please check the parameters, and adjust them according to your circumstance
-INPUTPATH: "output/trans/quant"
-OUTPUTPATH: "output/trans/dea"
-METAFILE: "configs/metadata.tsv"
+
+# project name
+PROJECT: test
+
+INPUTPATH: output
+OUTPUTPATH: output
+METAFILE: configs/metadata.tsv
 
 PAIR: FALSE  # Is this a pair test or not? (TRUE or FALSE)
 
 ## The corresponding dataset in ENSEMBL for your interested organism
-EnsemblDataSet: "hsapiens_gene_ensembl"  # search for your dataset in the file EnsemblDataSet_look_up_table.csv 
+EnsemblDataSet: hsapiens_gene_ensembl  # search for your dataset in the file EnsemblDataSet_look_up_table.csv 
 
 ## the comparison(s) you want to do. If multiple comparisons, specify each pair (CONTROL & TREAT) in order respectively
 CONTROL: ["Untreated"]

@@ -3,13 +3,14 @@ configfile: "configs/config_trim.yaml"
 
 samples = pd.read_csv(config["METAFILE"], sep = '\t', header = 0)['sample']
 end = config["END"]
+intermediate_path = config["OUTPUTPATH"] + "/" + config["PROJECT"] + "/trim"
 
 def trimFiles(wildcards):
     if (end == "pair"):
-        forward_trim = expand(config["OUTPUTPATH"] + "/{sample}_R1_val_1.fq.gz", sample = samples)
+        forward_trim = expand(intermediate_path + "/{sample}_R1_val_1.fq.gz", sample = samples)
         return forward_trim
     else:
-        read_trim = expand(config["OUTPUTPATH"] + "/{sample}_trimmed.fq.gz", sample = samples)
+        read_trim = expand(intermediate_path + "/{sample}_trimmed.fq.gz", sample = samples)
         return read_trim
 
 rule all:
@@ -18,10 +19,10 @@ rule all:
 
 rule trim:
     output:
-        read_trim = config["OUTPUTPATH"] + "/{sample}_R1_val_1.fq.gz" if config["END"]=="pair" else config["OUTPUTPATH"] + "/{sample}_trimmed.fq.gz",
+        read_trim = intermediate_path + "/{sample}_R1_val_1.fq.gz" if config["END"]=="pair" else intermediate_path + "/{sample}_trimmed.fq.gz",
     params:
         inputpath = config["INPUTPATH"],
-        outputpath = config["OUTPUTPATH"]
+        outputpath = intermediate_path
     run:
         if config["END"]=="pair":
             shell("trim_galore --fastqc -j 4 --paired --basename {wildcards.sample} -o {params.outputpath} {params.inputpath}/{wildcards.sample}*R1*fastq.gz {params.inputpath}/{wildcards.sample}*R2*fastq.gz")

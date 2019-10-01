@@ -3,6 +3,8 @@ import numpy as np
 
 configfile: "configs/config_dea_genome.yaml"
 
+input_path = config["INPUTPATH"] + "/" + config["PROJECT"] + "/genome/countFile"
+output_path = config["OUTPUTPATH"] + "/" + config["PROJECT"] + "/genome/dea"
 samples = np.array(pd.read_table(config["METAFILE"], header = 0)['sample'])
 groups = np.unique(np.array(pd.read_table(config["METAFILE"], header = 0)['group']))
 control = config["CONTROL"][0]
@@ -10,28 +12,28 @@ treat = config["TREAT"][0]
 
 rule all:
     input:
-        normControl = config["OUTPUTPATH"] + "/countGroup/" + control + "_norm.csv",
-        dea = config["OUTPUTPATH"] + "/DEA/" + "dea_" + control + "_" + treat + ".csv"
+        normControl = output_path + "/countGroup/" + control + "_norm.csv",
+        dea = output_path + "/DEA/" + "dea_" + control + "_" + treat + ".csv"
 
 rule combineSamples:
     input:
-        sampleCount = expand(config["INPUTPATH"] + "/{sample}_count.tsv", sample = samples),
+        sampleCount = expand(input_path + "/{sample}_count.tsv", sample = samples),
         metafile = config["METAFILE"]
     output:
-        groupCount = expand(config["OUTPUTPATH"] + "/countGroup/{group}_count.tsv", group = groups)
+        groupCount = expand(output_path + "/countGroup/{group}_count.tsv", group = groups)
     params:
-        path = config["OUTPUTPATH"] + "countFile"
+        path = output_path + "countFile"
     shell:
         "python scripts/combine2group_genome.py"
 
 rule DEA:
     input:
-        groupCount = expand(config["OUTPUTPATH"] + "/countGroup/{group}_count.tsv", group = groups)
+        groupCount = expand(output_path + "/countGroup/{group}_count.tsv", group = groups)
     output:
-        normControl = config["OUTPUTPATH"] + "/countGroup/" + control + "_norm.csv",
-        normTreat = config["OUTPUTPATH"] + "/countGroup/" + treat + "_norm.csv",
-        dea = config["OUTPUTPATH"] + "/DEA/" + "dea_" + control + "_" + treat + ".csv", 
-        deg = config["OUTPUTPATH"] + "/DEA/" + "deg_" + control + "_" + treat + ".csv"
+        normControl = output_path + "/countGroup/" + control + "_norm.csv",
+        normTreat = output_path + "/countGroup/" + treat + "_norm.csv",
+        dea = output_path + "/DEA/" + "dea_" + control + "_" + treat + ".csv", 
+        deg = output_path + "/DEA/" + "deg_" + control + "_" + treat + ".csv"
     shell:
         "Rscript scripts/dea_genome.R"
 

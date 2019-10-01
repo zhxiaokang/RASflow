@@ -1,7 +1,7 @@
 # Please check the parameters, and adjust them according to your circumstance
 
 # project name
-PROJECT: example
+PROJECT: test
 
 ## the path to fastq files
 INPUTPATH: data/example/fastq_pair
@@ -13,22 +13,23 @@ KEY: ""
 METAFILE: configs/metadata.tsv
 
 ## paths for intermediate and final outputs
-OUTPUTPATH: data/output/genome  # intermediate output. do not upload to github
-FINALOUTPUT: output_example/genome
+OUTPUTPATH: data/output  # intermediate output. do not upload to github
+FINALOUTPUT: output
 
 ## is the sequencing paired-end or pair-end?
-END: "pair"  # "single" or "pair"?
+END: pair  # "single" or "pair"?
 
 ## genome and annotation files
-GENOME: "data/example/ref/genome/Homo_sapiens.GRCh38.dna.chromosome.1.1.10M.fa"
-ANNOTATION: "data/example/ref/annotation/Homo_sapiens.GRCh38.93.1.1.10M.gtf"
-ATTRIBUTE: "gene_id"  # the attribute used in annotation file. It's usually "gene_id", but double check that since it may also be "gene", "ID"...
+GENOME: data/example/ref/genome/Homo_sapiens.GRCh38.dna.chromosome.1.1.10M.fa
+ANNOTATION: data/example/ref/annotation/Homo_sapiens.GRCh38.93.1.1.10M.gtf
+ATTRIBUTE: gene_id  # the attribute used in annotation file. It's usually "gene_id", but double check that since it may also be "gene", "ID"...
 
 ## number of cores you want to allocate to this workflow
-NCORE: "30"  # Use command "getconf _NPROCESSORS_ONLN" to check the number of cores/CPU on your machine
+NCORE: 30  # Use command "getconf _NPROCESSORS_ONLN" to check the number of cores/CPU on your machine
 
 ## aligner
-ALIGNER: "hisat2"  
+ALIGNER: hisat2 
 
 ## tool for feature count
-COUNTER: "featureCounts"  # default is "featureCounts", or you may want to use "htseq-count"
+COUNTER: featureCounts  # default is "featureCounts", or you may want to use "htseq-count"
+

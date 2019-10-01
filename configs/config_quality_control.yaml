@@ -1,20 +1,20 @@
 # Please check the parameters, and adjust them according to your circumstance
 
 # project name
-PROJECT: "example"
+PROJECT: test
 
 ## the path to fastq files
-INPUTPATH: "data/example/fastq_pair"
+INPUTPATH: data/example/fastq_pair
 
 ## the meta file describing the experiment settings
-METAFILE: "configs/metadata.tsv"
+METAFILE: configs/metadata.tsv
 
 ## paths for intermediate outputs and final outputs
-OUTPUTPATH: "data/output" # intermediate output. do not upload to github
-FINALOUTPUT: "output"
+OUTPUTPATH: data/output # intermediate output. do not upload to github
+FINALOUTPUT: output
 
 ## is the sequencing paired-end or pair-end? Options: "pair", "single"
-END: "pair"
+END: pair
 
 ## number of cores you want to allocate to this workflow
-NCORE: "6"  # number of files that fastqc processes simultaneously
+NCORE: 6  # number of files that fastqc processes simultaneously

@@ -1,0 +1,9 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	SRR1039513_forward	/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/test/fastqc/SRR1039513_forward_fastqc.zip
+FastQC	all_sections	SRR1039513_reverse	/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/test/fastqc/SRR1039513_reverse_fastqc.zip
+FastQC	all_sections	SRR1039508_forward	/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/test/fastqc/SRR1039508_forward_fastqc.zip
+FastQC	all_sections	SRR1039508_reverse	/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/test/fastqc/SRR1039508_reverse_fastqc.zip
+FastQC	all_sections	SRR1039509_forward	/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/test/fastqc/SRR1039509_forward_fastqc.zip
+FastQC	all_sections	SRR1039509_reverse	/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/test/fastqc/SRR1039509_reverse_fastqc.zip
+FastQC	all_sections	SRR1039512_forward	/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/test/fastqc/SRR1039512_forward_fastqc.zip
+FastQC	all_sections	SRR1039512_reverse	/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/test/fastqc/SRR1039512_reverse_fastqc.zip
