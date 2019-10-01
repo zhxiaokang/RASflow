@@ -1,5 +1,7 @@
 # Please check the parameters, and adjust them according to your circumstance
 
+# project name
+PROJECT: "example"
 ## the path to fastq files
 INPUTPATH: "data/example/fastq_pair"
 
@@ -7,8 +9,8 @@ INPUTPATH: "data/example/fastq_pair"
 METAFILE: "configs/metadata.tsv"
 
 ## paths for intermediate outputs and final outputs
-OUTPUTPATH: "data/output"  # intermediate output. do not upload to github
-FINALOUTPUT: "output_example"
+OUTPUTPATH: "data/output" # intermediate output. do not upload to github
+FINALOUTPUT: "output"
 
 ## is the sequencing paired-end or pair-end? Options: "pair", "single"
 END: "pair"
