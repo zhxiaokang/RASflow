@@ -3,68 +3,70 @@ configfile: "configs/config_quality_control.yaml"
 
 samples = pd.read_csv(config["METAFILE"], sep = '\t', header = 0)['sample']
 end = config["END"]
+intermediate_path = config["OUTPUTPATH"] + "/" + config["PROJECT"]
+final_path = config["FINALOUTPUT"] + "/" + config["PROJECT"]
 
 rule end:
     input:
-        report = config["FINALOUTPUT"] + "/fastqc/report_quality_control.html"
+        report = final_path + "/fastqc/report_quality_control.html"
         
 if end == "pair":
     rule getReads:
         output:
-            forward = temp(config["OUTPUTPATH"] + "/reads/{sample}_forward.fastq.gz"),
-            reverse = temp(config["OUTPUTPATH"] + "/reads/{sample}_reverse.fastq.gz")
+            forward = temp(intermediate_path + "/reads/{sample}_forward.fastq.gz"),
+            reverse = temp(intermediate_path + "/reads/{sample}_reverse.fastq.gz")
         run:
             shell("cp {config[INPUTPATH]}/{wildcards.sample}_*R1*.fastq.gz {output.forward}"),
             shell("cp {config[INPUTPATH]}/{wildcards.sample}_*R2*.fastq.gz {output.reverse}")
             
     rule qualityControl:
         input:
-            forward = config["OUTPUTPATH"] + "/reads/{sample}_forward.fastq.gz",
-            reverse = config["OUTPUTPATH"] + "/reads/{sample}_reverse.fastq.gz"
+            forward = intermediate_path + "/reads/{sample}_forward.fastq.gz",
+            reverse = intermediate_path + "/reads/{sample}_reverse.fastq.gz"
         output:
-            fastqc_forward = config["FINALOUTPUT"] + "/fastqc/{sample}_forward_fastqc.html",
-            fastqc_reverse = config["FINALOUTPUT"] + "/fastqc/{sample}_reverse_fastqc.html"
+            fastqc_forward = final_path + "/fastqc/{sample}_forward_fastqc.html",
+            fastqc_reverse = final_path + "/fastqc/{sample}_reverse_fastqc.html"
         params:
-            outputpath = config["FINALOUTPUT"] + "/fastqc"
+            outputpath = final_path + "/fastqc"
         shell:
             "fastqc -t $(({config[NCORE]}+0)) -o {params.outputpath} {input.forward} && "
             "fastqc -t $(({config[NCORE]}+0)) -o {params.outputpath} {input.reverse}"
             
     rule summaryReport:
         input:
-            fastqc_forward = expand(config["FINALOUTPUT"] + "/fastqc/{sample}_forward_fastqc.html", sample = samples),
-            fastqc_reverse = expand(config["FINALOUTPUT"] + "/fastqc/{sample}_reverse_fastqc.html", sample = samples)
+            fastqc_forward = expand(final_path + "/fastqc/{sample}_forward_fastqc.html", sample = samples),
+            fastqc_reverse = expand(final_path + "/fastqc/{sample}_reverse_fastqc.html", sample = samples)
         output:
-            report = config["FINALOUTPUT"] + "/fastqc/report_quality_control.html"
+            report = final_path + "/fastqc/report_quality_control.html"
         params:
-            path = config["FINALOUTPUT"] + "/fastqc"
+            path = final_path + "/fastqc"
         shell:
             "multiqc {params.path} --filename {output.report}"
             
 else:
     rule getReads:
         output:
-            read = temp(config["OUTPUTPATH"] + "/reads/{sample}.fastq.gz")
+            read = temp(intermediate_path + "/reads/{sample}.fastq.gz")
         run:
             shell("cp {config[INPUTPATH]}/{wildcards.sample}*.fastq.gz {output.read}")
             
     rule qualityControl:
         input:
-            read = config["OUTPUTPATH"] + "/reads/{sample}.fastq.gz"
+            read = intermediate_path + "/reads/{sample}.fastq.gz"
         output:
-            fastqc = config["FINALOUTPUT"] + "/fastqc/{sample}_fastqc.html"
+            fastqc = final_path + "/fastqc/{sample}_fastqc.html"
         params:
-            outputpath = config["FINALOUTPUT"] + "/fastqc"
+            outputpath = final_path + "/fastqc"
         shell:
             "fastqc -t $(({config[NCORE]}+0)) -o {params.outputpath} {input.read}"
             
     rule summaryReport:
         input:
-            fastqc = expand(config["FINALOUTPUT"] + "/fastqc/{sample}_fastqc.html", sample = samples)
+            fastqc = expand(final_path + "/fastqc/{sample}_fastqc.html", sample = samples)
         output:
-            report = config["FINALOUTPUT"] + "/fastqc/report_quality_control.html"
+            report = final_path + "/fastqc/report_quality_control.html"
         params:
-            path = config["FINALOUTPUT"] + "/fastqc"
+            path = final_path + "/fastqc"
         shell:
             "multiqc {params.path} --filename {output.report}"
     
