@@ -7,3 +7,4 @@
 
 # ignore the following folders
 data/output/
+logs/
