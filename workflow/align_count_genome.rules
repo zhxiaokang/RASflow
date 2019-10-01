@@ -4,23 +4,25 @@ configfile: "configs/config_align_count_genome.yaml"
 samples = pd.read_csv(config["METAFILE"], sep = '\t', header = 0)['sample']
 indexes = list(range(1, 9))
 end = config["END"]
+intermediate_path = config["OUTPUTPATH"] + "/" + config["PROJECT"]
+final_path = config["FINALOUTPUT"] + "/" + config["PROJECT"]
 
 rule end:
     input:
-        report = config["FINALOUTPUT"] + "/report_align_count.html"
+        report = final_path + "/report_align_count.html"
 
 if end == "pair":
     rule getReads:
         output:
-            forward = temp(config["OUTPUTPATH"] + "/reads/{sample}_forward.fastq.gz"),
-            reverse = temp(config["OUTPUTPATH"] + "/reads/{sample}_reverse.fastq.gz")
+            forward = temp(intermediate_path + "/reads/{sample}_forward.fastq.gz"),
+            reverse = temp(intermediate_path + "/reads/{sample}_reverse.fastq.gz")
         run:
             shell("cp {config[INPUTPATH]}/{wildcards.sample}_*R1*.fastq.gz {output.forward}"),
             shell("cp {config[INPUTPATH]}/{wildcards.sample}_*R2*.fastq.gz {output.reverse}")
 else:
     rule getReads:
         output:
-            forward = temp(config["OUTPUTPATH"] + "/reads/{sample}.fastq.gz")
+            forward = temp(intermediate_path + "/reads/{sample}.fastq.gz")
         run:
             shell("cp {config[INPUTPATH]}/{wildcards.sample}*.fastq.gz {output.forward}")
 
@@ -28,10 +30,10 @@ rule indexGenome:
     input:
         genome = config["GENOME"]
     output:
-        indexes = expand(config["OUTPUTPATH"] + "/indexes/index.{index}.ht2", index = indexes),
-        splicesites = config["OUTPUTPATH"] + "/splicesites.txt"
+        indexes = expand(intermediate_path + "/indexes/index.{index}.ht2", index = indexes),
+        splicesites = intermediate_path + "/splicesites.txt"
     params:
-        index = config["OUTPUTPATH"] + "/indexes/index"
+        index = intermediate_path + "/indexes/index"
     shell:
         "hisat2-build -p {config[NCORE]} {input.genome} {params.index}"
         "&& hisat2_extract_splice_sites.py {config[ANNOTATION]} > {output.splicesites}"
@@ -39,60 +41,60 @@ rule indexGenome:
 if end == "pair":
     rule alignment:
         input:
-            index = expand(config["OUTPUTPATH"] + "/indexes/index.{index}.ht2", index = indexes),
-            splicesites = config["OUTPUTPATH"] + "/splicesites.txt",
-            forward = config["OUTPUTPATH"] + "/reads/{sample}_forward.fastq.gz",
-            reverse = config["OUTPUTPATH"] + "/reads/{sample}_reverse.fastq.gz"
+            index = expand(intermediate_path + "/indexes/index.{index}.ht2", index = indexes),
+            splicesites = intermediate_path + "/splicesites.txt",
+            forward = intermediate_path + "/reads/{sample}_forward.fastq.gz",
+            reverse = intermediate_path + "/reads/{sample}_reverse.fastq.gz"
         output:
-            sam = temp(config["OUTPUTPATH"] + "/samFile/{sample}.sam"),
-            bam = temp(config["OUTPUTPATH"] + "/bamFile/{sample}.bam")
+            sam = temp(intermediate_path + "/samFile/{sample}.sam"),
+            bam = temp(intermediate_path + "/bamFile/{sample}.bam")
         params:
-            index = config["OUTPUTPATH"] + "/indexes/index"
+            index = intermediate_path + "/indexes/index"
         benchmark:
-            config["OUTPUTPATH"] + "/benchmarks/{sample}.hisat2.benchmark.txt"
+            intermediate_path + "/benchmarks/{sample}.hisat2.benchmark.txt"
         run:
             shell("hisat2 -p {config[NCORE]} --known-splicesite-infile {input.splicesites} -x {params.index} -1 {input.forward} -2 {input.reverse} -S {output.sam}")
             shell("samtools view -@ {config[NCORE]} -b -S {output.sam} > {output.bam}")
 else:
     rule alignment:
         input:
-            index = expand(config["OUTPUTPATH"] + "/indexes/index.{index}.ht2", index = indexes),
-            splicesites = config["OUTPUTPATH"] + "/splicesites.txt",
-            forward = config["OUTPUTPATH"] + "/reads/{sample}.fastq.gz"
+            index = expand(intermediate_path + "/indexes/index.{index}.ht2", index = indexes),
+            splicesites = intermediate_path + "/splicesites.txt",
+            forward = intermediate_path + "/reads/{sample}.fastq.gz"
         output:
-            sam = temp(config["OUTPUTPATH"] + "/samFile/{sample}.sam"),
-            bam = temp(config["OUTPUTPATH"] + "/bamFile/{sample}.bam")
+            sam = temp(intermediate_path + "/samFile/{sample}.sam"),
+            bam = temp(intermediate_path + "/bamFile/{sample}.bam")
         params:
-            index = config["OUTPUTPATH"] + "/indexes/index"
+            index = intermediate_path + "/indexes/index"
         benchmark:
-            config["OUTPUTPATH"] + "/benchmarks/{sample}.hisat2.benchmark.txt"
+            intermediate_path + "/benchmarks/{sample}.hisat2.benchmark.txt"
         run:
             shell("hisat2 -p {config[NCORE]} --known-splicesite-infile {input.splicesites} -x {params.index} -U {input.forward} -S {output.sam}")
             shell("samtools view -@ {config[NCORE]} -b -S {output.sam} > {output.bam}")
 
 rule sortBAM:
     input:
-        bam = config["OUTPUTPATH"] + "/bamFile/{sample}.bam"
+        bam = intermediate_path + "/bamFile/{sample}.bam"
     output:
-        sort = config["OUTPUTPATH"] + "/bamFileSort/{sample}.sort.bam"
+        sort = intermediate_path + "/bamFileSort/{sample}.sort.bam"
     shell:
         "samtools sort -@ {config[NCORE]} {input.bam} -o {output.sort}"
 
 rule alignmentQC:
     input:
-        sort = config["OUTPUTPATH"] + "/bamFileSort/{sample}.sort.bam"
+        sort = intermediate_path + "/bamFileSort/{sample}.sort.bam"
     output:
-        bamqc = directory(config["FINALOUTPUT"] + "/alignmentQC/{sample}_BAMqc")
+        bamqc = directory(final_path + "/alignmentQC/{sample}_BAMqc")
     shell:
         "qualimap bamqc -bam {input.sort} -outdir {output.bamqc}"
 
 rule featureCount:
     input:
-        sort = config["OUTPUTPATH"] + "/bamFileSort/{sample}.sort.bam",
+        sort = intermediate_path + "/bamFileSort/{sample}.sort.bam",
         annotation = config["ANNOTATION"]
     output:
-        count = config["FINALOUTPUT"] + "/countFile/{sample}_count.tsv",
-        count_summary = config["FINALOUTPUT"] + "/countFile/{sample}_count.tsv.summary"
+        count = final_path + "/countFile/{sample}_count.tsv",
+        count_summary = final_path + "/countFile/{sample}_count.tsv.summary"
     run:
         if config["COUNTER"]=="featureCounts":
             if config["END"]=="pair":
@@ -104,9 +106,9 @@ rule featureCount:
 
 rule summaryReport:
     input:
-        bamqc = expand(config["FINALOUTPUT"] + "/alignmentQC/{sample}_BAMqc", sample = samples),
-        count_summary = expand(config["FINALOUTPUT"] + "/countFile/{sample}_count.tsv.summary", sample = samples)
+        bamqc = expand(final_path + "/alignmentQC/{sample}_BAMqc", sample = samples),
+        count_summary = expand(final_path + "/countFile/{sample}_count.tsv.summary", sample = samples)
     output:
-        report = config["FINALOUTPUT"] + "/report_align_count.html"
+        report = final_path + "/report_align_count.html"
     shell:
         "multiqc {input.bamqc} {input.count_summary} --filename {output.report}"

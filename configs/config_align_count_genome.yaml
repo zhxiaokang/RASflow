@@ -1,17 +1,20 @@
 # Please check the parameters, and adjust them according to your circumstance
 
+# project name
+PROJECT: example
+
 ## the path to fastq files
-INPUTPATH: "data/example/fastq_pair"
+INPUTPATH: data/example/fastq_pair
 
 ## if you use a key to access to the data, otherwise ignore this
 KEY: "" 
 
 ## the meta file describing the experiment settings
-METAFILE: "configs/metadata.tsv"
+METAFILE: configs/metadata.tsv
 
 ## paths for intermediate and final outputs
-OUTPUTPATH: "data/output/genome"  # intermediate output. do not upload to github
-FINALOUTPUT: "output_example/genome"
+OUTPUTPATH: data/output/genome  # intermediate output. do not upload to github
+FINALOUTPUT: output_example/genome
 
 ## is the sequencing paired-end or pair-end?
 END: "pair"  # "single" or "pair"?
