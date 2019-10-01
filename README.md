@@ -1,4 +1,4 @@
-# RASflow: RNA-Seq Analysis Workflow with Snakemake
+# RASflow: RNA-Seq Analysis Snakemake Workflow
 RNA-Seq analysis workflow using Snakemake
 ## Workflow
 <img src="https://github.com/zhxiaokang/RNA-Seq-analysis/blob/master/workflow/workflow_chart.jpg" width="450">
