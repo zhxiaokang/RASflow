@@ -2,6 +2,7 @@
 
 # project name
 PROJECT: "example"
+
 ## the path to fastq files
 INPUTPATH: "data/example/fastq_pair"
 
