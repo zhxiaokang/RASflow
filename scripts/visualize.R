@@ -48,11 +48,13 @@ as.pdf(fig.volcano, width = 8, height = 5, scaled = TRUE, file = paste(output.pa
 # heatmap
 ## collect all the files
 files <- file.path(count.path, paste(groups, "_norm.csv", sep = ''))
-norm.tables <- lapply(files, fread)
-norm.table.temp <- do.call(merge, norm.tables)
-norm.table.temp <- as.data.frame(norm.table.temp)
-norm.table <- norm.table.temp[, -1]
-row.names(norm.table) <- unlist(norm.table.temp[, 1])
+norm.tables <- lapply(files, fread, data.table = FALSE)
+rownames.norm.table <- norm.tables[[1]][, 1]
+for (i in c(1:length(norm.tables))) {
+  norm.tables[[i]] <- norm.tables[[i]][, -1]
+  rownames(norm.tables[[i]]) <- rownames.norm.table
+}
+norm.table <- do.call(cbind, norm.tables)
 
 # instead using all genes, only use the top 50 degs if there are more than 50
 if (length(gene.id.deg) > 50) {
