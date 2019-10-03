@@ -80,7 +80,7 @@ palette.group <- as.factor(c(rep(name.control, num.control), rep(name.treat, num
 
 # replace the group name with color code
 for (i in c(1:length(levels(palette.group)))) {
-  levels(palette.group)[levels(palette.group) == levels(palette.group)[i]] <- palette[i+1]
+  levels(palette.group)[levels(palette.group) == levels(palette.group)[i]] <- palette[i]
 }
 
 ## draw heatmap
