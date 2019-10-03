@@ -1,5 +1,0 @@
-Module	Section	Sample Name	Source
-Salmon	all_sections	SRR1039508	/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quant/SRR1039508/libParams/flenDist.txt
-Salmon	all_sections	SRR1039509	/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quant/SRR1039509/libParams/flenDist.txt
-Salmon	all_sections	SRR1039512	/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quant/SRR1039512/libParams/flenDist.txt
-Salmon	all_sections	SRR1039513	/export/jonassenfs/xiaokangz/project/temp/RNA-Seq-analysis/output/trans/quant/SRR1039513/libParams/flenDist.txt
