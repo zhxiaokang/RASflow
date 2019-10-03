@@ -53,11 +53,11 @@ DEA <- function(control, treat) {
 
   y.control <- calcNormFactors(y.control, method="TMM")
   count.table.control.norm <- cpm(y.control)
-  write.csv(count.table.control.norm, paste(output.path, '/countGroup/', control, '_norm.csv', sep = ''), quote = FALSE, sep = "\t")
+  write.table(count.table.control.norm, paste(output.path, '/countGroup/', control, '_norm.tsv', sep = ''), quote = FALSE, sep = "\t")
 
   y.treat <- calcNormFactors(y.treat, method="TMM")
   count.table.treat.norm <- cpm(y.treat)
-  write.csv(count.table.treat.norm, paste(output.path, '/countGroup/', treat, '_norm.csv', sep = ''), quote = FALSE, sep = "\t")
+  write.table(count.table.treat.norm, paste(output.path, '/countGroup/', treat, '_norm.tsv', sep = ''), quote = FALSE, sep = "\t")
 
   # Put the data into a DGEList object
   y <- DGEList(counts = count.table, genes = gene.list)
@@ -113,8 +113,8 @@ DEA <- function(control, treat) {
   deg <- toptag$table
   
   # save the DEA result and DEGs to files
-  write.csv(dea, paste(output.path, '/DEA/dea_', control, '_', treat, '.csv', sep = ''), row.names = F)
-  write.csv(deg, paste(output.path, '/DEA/deg_', control, '_', treat, '.csv', sep = ''), row.names = F) 
+  write.table(dea, paste(output.path, '/DEA/dea_', control, '_', treat, '.tsv', sep = ''), row.names = F, quote = FALSE, sep = '\t')
+  write.table(deg, paste(output.path, '/DEA/deg_', control, '_', treat, '.tsv', sep = ''), row.names = F, quote = FALSE, sep = '\t') 
 }
 
 # the main function

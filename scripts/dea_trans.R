@@ -73,8 +73,8 @@ DEA <- function(control, treat, file.control, file.treat, output.path.dea) {
   deg <- toptag$table
   
   # save the DEA result and DEGs to files
-  write.csv(dea, paste(output.path.dea, '/dea_', control, '_', treat, '.csv', sep = ''), row.names = F)
-  write.csv(deg, paste(output.path.dea, '/deg_', control, '_', treat, '.csv', sep = ''), row.names = F)
+  write.table(dea, paste(output.path.dea, '/dea_', control, '_', treat, '.tsv', sep = ''), row.names = F, quote = FALSE, sep = '\t')
+  write.table(deg, paste(output.path.dea, '/deg_', control, '_', treat, '.tsv', sep = ''), row.names = F, quote = FALSE, sep = '\t')
 }
 
 # ====================== load parameters in config file ======================
