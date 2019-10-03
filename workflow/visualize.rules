@@ -1,23 +1,24 @@
-import pandas as pd
-import numpy as np
+import os
 
 configfile: "configs/config_visualize.yaml"
 
-outputpath = config["OUTPUTPATH"]
+volcano_path = os.path.dirname(config["DEAFILE"])
+heatmap_path = os.path.dirname(config["NORMFILES"]["control"])
+name_control = config["NAME_CONTROL"]
+name_treat = config["NAME_TREAT"]
 
 rule end:
     input:
-        volcano = outputpath + "/volcano_plot.pdf",
-        heatmap = outputpath + "/heatmap.pdf"
+        volcano = volcano_path + "/volcano_plot_" + name_control + "_" + name_treat + ".pdf",
+        heatmap = heatmap_path + "/heatmap_plot_" + name_control + "_" + name_treat + ".pdf"
 
 rule plot:
     input:
         dea = config["DEAFILE"],
-        deg = config["DEGFILE"],
-        countpath = directory(config["COUNTPATH"])
+        deg = config["DEGFILE"]
     output:
-        volcano = outputpath + "/volcano_plot.pdf",
-        heatmap = outputpath + "/heatmap.pdf"
+        volcano = volcano_path + "/volcano_plot_" + name_control + "_" + name_treat + ".pdf",
+        heatmap = heatmap_path + "/heatmap_plot_" + name_control + "_" + name_treat + ".pdf"
     shell:
         "Rscript scripts/visualize.R"
 
