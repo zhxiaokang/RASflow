@@ -72,9 +72,6 @@ for (i in c(1:length(gene.norm.table))) {
   }
 }
 
-# replace the rownames
-rownames(norm.table.deg) <- gene.norm.table
-
 palette <- c("#4DAF4A", "#377EB8")
 palette.group <- as.factor(c(rep(name.control, num.control), rep(name.treat, num.treat)))
 
@@ -85,7 +82,7 @@ for (i in c(1:length(levels(palette.group)))) {
 
 ## draw heatmap
 pdf(file = file.path(outpath.heatmap, paste('heatmap_', name.control, '_', name.treat, '.pdf', sep = '')), width = 15, height = 12, title = 'Heatmap using the top features')
-heatmap(as.matrix(norm.table.deg), ColSideColors = as.character(palette.group), margins = c(8,5))
+heatmap(as.matrix(norm.table.deg), ColSideColors = as.character(palette.group), margins = c(8,5), labRow = gene.norm.table)
 legend("topleft", title = 'Group', legend=groups, text.font = 2,
        col=as.character(levels(palette.group)), fill=as.character(levels(palette.group)), cex=0.8)
 dev.off()
