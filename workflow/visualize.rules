@@ -10,7 +10,7 @@ name_treat = config["NAME_TREAT"]
 rule end:
     input:
         volcano = volcano_path + "/volcano_plot_" + name_control + "_" + name_treat + ".pdf",
-        heatmap = heatmap_path + "/heatmap_plot_" + name_control + "_" + name_treat + ".pdf"
+        heatmap = heatmap_path + "/heatmap_" + name_control + "_" + name_treat + ".pdf"
 
 rule plot:
     input:
@@ -18,7 +18,7 @@ rule plot:
         deg = config["DEGFILE"]
     output:
         volcano = volcano_path + "/volcano_plot_" + name_control + "_" + name_treat + ".pdf",
-        heatmap = heatmap_path + "/heatmap_plot_" + name_control + "_" + name_treat + ".pdf"
+        heatmap = heatmap_path + "/heatmap_" + name_control + "_" + name_treat + ".pdf"
     shell:
         "Rscript scripts/visualize.R"
 
