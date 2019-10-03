@@ -53,11 +53,11 @@ DEA <- function(control, treat) {
 
   y.control <- calcNormFactors(y.control, method="TMM")
   count.table.control.norm <- cpm(y.control)
-  write.csv(count.table.control.norm, paste(output.path, '/countGroup/', control, '_norm.csv', sep = ''))
+  write.csv(count.table.control.norm, paste(output.path, '/countGroup/', control, '_norm.csv', sep = ''), quote = FALSE, sep = "\t")
 
   y.treat <- calcNormFactors(y.treat, method="TMM")
   count.table.treat.norm <- cpm(y.treat)
-  write.csv(count.table.treat.norm, paste(output.path, '/countGroup/', treat, '_norm.csv', sep = ''))
+  write.csv(count.table.treat.norm, paste(output.path, '/countGroup/', treat, '_norm.csv', sep = ''), quote = FALSE, sep = "\t")
 
   # Put the data into a DGEList object
   y <- DGEList(counts = count.table, genes = gene.list)
