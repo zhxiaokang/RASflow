@@ -1,8 +1,8 @@
 # Please check the parameters, and adjust them according to your circumstance
-DEAFILE: data/example/dea/DEA/dea_oil_control_oil_low.csv  # the dea table
-DEGFILE: data/example/dea/DEA/deg_oil_control_oil_low.csv  # the deg table
+DEAFILE: data/example/dea/DEA/dea_oil_control_oil_low.tsv  # the dea table
+DEGFILE: data/example/dea/DEA/deg_oil_control_oil_low.tsv  # the deg table
 NORMFILES:  # normalized count tables 
-  control: data/example/dea/countGroup/oil_control_norm.csv
-  treat: data/example/dea/countGroup/oil_low_norm.csv
-METAFILE: data/example/dea/metadata.tsv
-
+  control: data/example/dea/countGroup/oil_control_norm.tsv
+  treat: data/example/dea/countGroup/oil_low_norm.tsv
+NAME_CONTROL: Oil control
+NAME_TREAT: Oil low-dose

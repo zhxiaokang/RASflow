@@ -3,8 +3,6 @@ if (!require("plotscale")) install.packages('scripts/plotscale_0.1.6.tar.gz', re
 library(yaml)
 library(mygene)
 library(EnhancedVolcano)
-library(RColorBrewer)
-library(data.table)
 library(plotscale)
 
 # ====================== load parameters in config file ======================
@@ -13,19 +11,18 @@ library(plotscale)
 yaml.file <- yaml.load_file('configs/config_visualize.yaml')
 
 # extract the information from the yaml file
-dea.table <- yaml.file$DEAFILE
-deg.table <- yaml.file$DEGFILE
-count.path <- yaml.file$COUNTPATH  # the folder where all the normalized count tables are stored
-output.path <- yaml.file$OUTPUTPATH
-meta.file <- yaml.file$METAFILE
+file.dea.table <- yaml.file$DEAFILE
+file.deg.table <- yaml.file$DEGFILE
+norm.control <- yaml.file$NORMFILES$control
+norm.treat <- yaml.file$NORMFILES$treat
+name.control <- yaml.file$NAME_CONTROL
+name.treat <- yaml.file$NAME_TREAT
 
-# extract the metadata
-meta.data <- read.csv(meta.file, header = TRUE, sep = '\t')
-group.all <- meta.data$group
-groups <- levels(group.all)
+outpath.volcano <- dirname(file.dea.table)
+outpath.heatmap <- dirname(norm.control)
 
-dea.table <- read.csv(dea.table, header = TRUE, row.names = 1)
-deg.table <- read.csv(deg.table, header = TRUE, row.names = 1)
+dea.table <- read.table(file.dea.table, header = TRUE, row.names = 1)
+deg.table <- read.table(file.deg.table, header = TRUE, row.names = 1)
 
 gene.id.dea <- row.names(dea.table)
 gene.id.deg <- row.names(deg.table)
@@ -43,18 +40,17 @@ for (i in c(1:length(gene.dea))) {
 # volcano plot
 fig.volcano <- EnhancedVolcano(dea.table, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'logFC', y = 'FDR', pCutoff = 10e-5,
                                FCcutoff = 1, xlim = c(-5, 5), ylim = c(0, 10), transcriptPointSize = 1.5, title = 'Volcano plot for DEA', subtitle = NULL)
-as.pdf(fig.volcano, width = 8, height = 5, scaled = TRUE, file = paste(output.path, '/volcano_plot.pdf', sep = ''))
+as.pdf(fig.volcano, width = 8, height = 5, scaled = TRUE, file = file.path(outpath.volcano, paste('volcano_plot_', name.control, '_', name.treat, '.pdf', sep = '')))
 
 # heatmap
-## collect all the files
-files <- file.path(count.path, paste(groups, "_norm.csv", sep = ''))
-norm.tables <- lapply(files, fread, data.table = FALSE)
-rownames.norm.table <- norm.tables[[1]][, 1]
-for (i in c(1:length(norm.tables))) {
-  norm.tables[[i]] <- norm.tables[[i]][, -1]
-  rownames(norm.tables[[i]]) <- rownames.norm.table
-}
-norm.table <- do.call(cbind, norm.tables)
+norm.table.control <- read.table(norm.control, header = TRUE, row.names = 1)
+norm.table.treat <- read.table(norm.treat, header = TRUE, row.names = 1)
+
+num.control <- dim(norm.table.control)[2]
+num.treat <- dim(norm.table.treat)[2]
+
+norm.table <- cbind(norm.table.control, norm.table.treat)
+groups <- c(name.control, name.treat)
 
 # instead using all genes, only use the top 50 degs if there are more than 50
 if (length(gene.id.deg) > 50) {
@@ -79,13 +75,16 @@ for (i in c(1:length(gene.norm.table))) {
 # replace the rownames
 rownames(norm.table.deg) <- gene.norm.table
 
-palette <- brewer.pal(n = length(levels(group.all)), name = "Set1")
-palette.group <- group.all
+palette <- c("#4DAF4A", "#377EB8")
+palette.group <- as.factor(c(rep(name.control, num.control), rep(name.treat, num.treat)))
+
+# replace the group name with color code
 for (i in c(1:length(levels(palette.group)))) {
-  levels(palette.group)[levels(palette.group) == levels(palette.group)[i]] <- palette[i]
+  levels(palette.group)[levels(palette.group) == levels(palette.group)[i]] <- palette[i+1]
 }
+
 ## draw heatmap
-pdf(file = paste(output.path, '/heatmap.pdf', sep = ''), width = 15, height = 12, title = 'Heatmap using the top features')
+pdf(file = file.path(outpath.heatmap, paste('heatmap_', name.control, '_', name.treat, '.pdf', sep = '')), width = 15, height = 12, title = 'Heatmap using the top features')
 heatmap(as.matrix(norm.table.deg), ColSideColors = as.character(palette.group), margins = c(8,5))
 legend("topleft", title = 'Group', legend=groups, text.font = 2,
        col=as.character(levels(palette.group)), fill=as.character(levels(palette.group)), cex=0.8)
