@@ -7,9 +7,9 @@ PROJECT: test
 ### are the sequences trimmed?
 TRIMMED: yes  # "yes" or "no"?
 ### if "yes"
-INPUTPATH: data/example/fastq_pair  # path to the original sequences
-### if "no"
 INPUTPATH_TRIM: data/output/test/trim  # path to the trimmed sequences
+### if "no"
+INPUTPATH: data/example/fastq_pair  # path to the original sequences
 
 ## if you use a key to access to the data, otherwise ignore this
 KEY: "" 
