@@ -67,7 +67,7 @@ else:
         shell:
             """
             salmon quant -i {input.index} -l A -r {input.forward} -o {output.quant_dir} -p {config[NCORE]} --seqBias --useVBOpt --validateMappings
-            awk 'NR==1{{next}}{{print $1"\\t"$4}}' {output.quant}/quant.sf > {output.tpm}
+            awk 'NR==1{{next}}{{print $1"\\t"$4}}' {output.quant_dir}/quant.sf > {output.tpm}
             """
 
 rule summaryReport:
