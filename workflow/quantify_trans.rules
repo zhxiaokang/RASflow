@@ -2,6 +2,11 @@ import pandas as pd
 configfile: "configs/config_quantify_trans.yaml"
 
 samples = pd.read_csv(config["METAFILE"], sep = '\t', header = 0)['sample']
+trimmed = config["TRIMMED"]
+if trimmed == "no":
+    input_path = config["INPUTPATH"]
+else:
+    input_path = config["INPUTPATH_TRIM"]
 end = config["END"]
 intermediate_path = config["OUTPUTPATH"] + "/" + config["PROJECT"] + "/trans"
 final_path = config["FINALOUTPUT"] + "/" + config["PROJECT"] + "/trans"
@@ -12,18 +17,22 @@ rule end:
 
 if end == "pair":
     rule getReads:
+        input:
+            input_path = directory(input_path)
         output:
             forward = temp(intermediate_path + "/reads/{sample}_forward.fastq.gz"),
             reverse = temp(intermediate_path + "/reads/{sample}_reverse.fastq.gz")
         run:
-            shell("cp {config[INPUTPATH]}/{wildcards.sample}_*R1*.fastq.gz {output.forward}"),
-            shell("cp {config[INPUTPATH]}/{wildcards.sample}_*R2*.fastq.gz {output.reverse}")
+            shell("cp {input.input_path}/{wildcards.sample}_*R1*.f*q.gz {output.forward}"),
+            shell("cp {input.input_path}/{wildcards.sample}_*R2*.f*q.gz {output.reverse}")
 else:
     rule getReads:
+        input:
+            input_path = directory(input_path)
         output:
             forward = temp(intermediate_path + "/reads/{sample}.fastq.gz")
         run:
-            shell("cp {config[INPUTPATH]}/{wildcards.sample}*.fastq.gz {output.forward}")
+            shell("cp {input.input_path}/{wildcards.sample}*.f*q.gz {output.forward}")
 
 rule indexTrans:
     input:

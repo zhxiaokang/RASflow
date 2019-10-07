@@ -4,7 +4,12 @@
 PROJECT: test
 
 ## the path to fastq files
-INPUTPATH: data/example/fastq_pair
+### are the sequences trimmed?
+TRIMMED: yes  # "yes" or "no"?
+### if "yes"
+INPUTPATH_TRIM: data/output/test/trim  # path to the trimmed sequences
+### if "no"
+INPUTPATH: data/example/fastq_single  # path to the original sequences
 
 ## if you use a key to access to the data, otherwise ignore this
 KEY: "" 
@@ -17,7 +22,7 @@ OUTPUTPATH: data/output  # intermediate output. do not upload to github
 FINALOUTPUT: output
 
 ## is the sequencing paired-end or pair-end?
-END: pair  # "single" or "pair"?
+END: single  # "single" or "pair"?
 
 ## transcriptome file
 TRANS: data/example/ref/transcriptome/Homo_sapiens.GRCh38.cdna.all.1.1.10M.fa.gz
