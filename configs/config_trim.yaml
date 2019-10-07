@@ -4,7 +4,7 @@
 PROJECT: test
 
 ## the path to fastq files
-INPUTPATH: data/example/fastq_pair
+INPUTPATH: data/example/fastq_single
 
 ## paths for intermediate outputs
 OUTPUTPATH: data/output  # intermediate output. do not upload to github
@@ -13,5 +13,5 @@ OUTPUTPATH: data/output  # intermediate output. do not upload to github
 METAFILE: configs/metadata.tsv
 
 ## is the sequencing paired-end or single-end?
-END: pair  # "pair" or "single"
+END: single  # "pair" or "single"
 

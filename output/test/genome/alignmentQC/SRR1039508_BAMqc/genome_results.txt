@@ -17,69 +17,69 @@ BamQC report
 
      number of windows = 400
 
-     number of reads = 95,722
-     number of mapped reads = 85,264 (89.07%)
-     number of secondary alignments = 3,754
+     number of reads = 95,554
+     number of mapped reads = 85,525 (89.5%)
+     number of secondary alignments = 3,811
 
-     number of mapped paired reads (first in pair) = 43,053
-     number of mapped paired reads (second in pair) = 42,211
-     number of mapped paired reads (both in pair) = 78,962
-     number of mapped paired reads (singletons) = 6,302
+     number of mapped paired reads (first in pair) = 43,139
+     number of mapped paired reads (second in pair) = 42,386
+     number of mapped paired reads (both in pair) = 79,346
+     number of mapped paired reads (singletons) = 6,179
 
-     number of mapped bases = 27,511,906 bp
-     number of sequenced bases = 5,346,287 bp
+     number of mapped bases = 28,385,602 bp
+     number of sequenced bases = 5,307,615 bp
      number of aligned bases = 0 bp
-     number of duplicated reads (estimated) = 65,974
-     duplication rate = 30.75%
+     number of duplicated reads (estimated) = 66,529
+     duplication rate = 30.44%
 
 
 >>>>>>> Insert size
 
-     mean insert size = 4,731.7617
-     std insert size = 127,170.3593
+     mean insert size = 4,735.3923
+     std insert size = 126,117.8253
      median insert size = 141
 
 
 >>>>>>> Mapping quality
 
-     mean mapping quality = 7.9124
+     mean mapping quality = 7.8089
 
 
 >>>>>>> ACTG content
 
-     number of A's = 1,443,845 bp (27.01%)
-     number of C's = 1,620,331 bp (30.31%)
-     number of T's = 1,352,575 bp (25.3%)
-     number of G's = 929,536 bp (17.39%)
-     number of N's = 22,164,602 bp (414.58%)
+     number of A's = 1,429,519 bp (26.93%)
+     number of C's = 1,615,376 bp (30.44%)
+     number of T's = 1,336,740 bp (25.19%)
+     number of G's = 925,980 bp (17.45%)
+     number of N's = 23,076,981 bp (434.79%)
 
-     GC percentage = 47.69%
+     GC percentage = 47.88%
 
 
 >>>>>>> Mismatches and indels
 
-    general error rate = 0.0021
-    number of mismatches = 57,743
-    number of insertions = 223
+    general error rate = 0.002
+    number of mismatches = 56,934
+    number of insertions = 221
     mapped reads with insertion percentage = 0.26%
-    number of deletions = 1,008
-    mapped reads with deletion percentage = 1.18%
-    homopolymer indels = 97.16%
+    number of deletions = 997
+    mapped reads with deletion percentage = 1.17%
+    homopolymer indels = 97.29%
 
 
 >>>>>>> Coverage
 
-     mean coverageData = 2.7512X
-     std coverageData = 22.8087X
+     mean coverageData = 2.8386X
+     std coverageData = 22.6659X
 
      There is a 3.16% of reference with a coverageData >= 1X
-     There is a 1.53% of reference with a coverageData >= 2X
-     There is a 1.03% of reference with a coverageData >= 3X
-     There is a 0.79% of reference with a coverageData >= 4X
-     There is a 0.62% of reference with a coverageData >= 5X
-     There is a 0.5% of reference with a coverageData >= 6X
-     There is a 0.41% of reference with a coverageData >= 7X
-     There is a 0.34% of reference with a coverageData >= 8X
+     There is a 1.52% of reference with a coverageData >= 2X
+     There is a 1.02% of reference with a coverageData >= 3X
+     There is a 0.78% of reference with a coverageData >= 4X
+     There is a 0.61% of reference with a coverageData >= 5X
+     There is a 0.49% of reference with a coverageData >= 6X
+     There is a 0.4% of reference with a coverageData >= 7X
+     There is a 0.33% of reference with a coverageData >= 8X
      There is a 0.29% of reference with a coverageData >= 9X
      There is a 0.25% of reference with a coverageData >= 10X
      There is a 0.23% of reference with a coverageData >= 11X
@@ -90,7 +90,7 @@ BamQC report
      There is a 0.16% of reference with a coverageData >= 16X
      There is a 0.16% of reference with a coverageData >= 17X
      There is a 0.15% of reference with a coverageData >= 18X
-     There is a 0.15% of reference with a coverageData >= 19X
+     There is a 0.14% of reference with a coverageData >= 19X
      There is a 0.14% of reference with a coverageData >= 20X
      There is a 0.14% of reference with a coverageData >= 21X
      There is a 0.13% of reference with a coverageData >= 22X
@@ -102,7 +102,7 @@ BamQC report
      There is a 0.11% of reference with a coverageData >= 28X
      There is a 0.11% of reference with a coverageData >= 29X
      There is a 0.11% of reference with a coverageData >= 30X
-     There is a 0.11% of reference with a coverageData >= 31X
+     There is a 0.1% of reference with a coverageData >= 31X
      There is a 0.1% of reference with a coverageData >= 32X
      There is a 0.1% of reference with a coverageData >= 33X
      There is a 0.1% of reference with a coverageData >= 34X
@@ -127,6 +127,6 @@ BamQC report
 
 >>>>>>> Coverage per contig
 
-	1	10000000	27511906	2.7511906	22.808666679787926
+	1	10000000	28385602	2.8385602	22.66593386935203
 
 

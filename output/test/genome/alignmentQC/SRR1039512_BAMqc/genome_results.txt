@@ -17,68 +17,68 @@ BamQC report
 
      number of windows = 400
 
-     number of reads = 99,424
-     number of mapped reads = 92,478 (93.01%)
-     number of secondary alignments = 2,369
+     number of reads = 98,826
+     number of mapped reads = 92,420 (93.52%)
+     number of secondary alignments = 2,441
 
-     number of mapped paired reads (first in pair) = 46,196
-     number of mapped paired reads (second in pair) = 46,282
-     number of mapped paired reads (both in pair) = 86,914
-     number of mapped paired reads (singletons) = 5,564
+     number of mapped paired reads (first in pair) = 46,141
+     number of mapped paired reads (second in pair) = 46,279
+     number of mapped paired reads (both in pair) = 87,300
+     number of mapped paired reads (singletons) = 5,120
 
-     number of mapped bases = 7,888,155 bp
-     number of sequenced bases = 5,802,762 bp
+     number of mapped bases = 7,684,754 bp
+     number of sequenced bases = 5,714,454 bp
      number of aligned bases = 0 bp
-     number of duplicated reads (estimated) = 86,043
-     duplication rate = 61.99%
+     number of duplicated reads (estimated) = 86,096
+     duplication rate = 60.17%
 
 
 >>>>>>> Insert size
 
-     mean insert size = 1,996.3931
-     std insert size = 67,562.4133
+     mean insert size = 1,971.1968
+     std insert size = 67,428.6706
      median insert size = 150
 
 
 >>>>>>> Mapping quality
 
-     mean mapping quality = 4.8204
+     mean mapping quality = 4.7788
 
 
 >>>>>>> ACTG content
 
-     number of A's = 1,645,002 bp (28.35%)
-     number of C's = 1,824,224 bp (31.44%)
-     number of T's = 1,495,504 bp (25.77%)
-     number of G's = 838,032 bp (14.44%)
-     number of N's = 2,084,240 bp (35.92%)
+     number of A's = 1,614,772 bp (28.26%)
+     number of C's = 1,803,051 bp (31.55%)
+     number of T's = 1,466,348 bp (25.66%)
+     number of G's = 830,283 bp (14.53%)
+     number of N's = 1,969,154 bp (34.46%)
 
-     GC percentage = 45.88%
+     GC percentage = 46.08%
 
 
 >>>>>>> Mismatches and indels
 
-    general error rate = 0.0089
-    number of mismatches = 70,331
+    general error rate = 0.0088
+    number of mismatches = 67,560
     number of insertions = 73
     mapped reads with insertion percentage = 0.08%
-    number of deletions = 1,145
-    mapped reads with deletion percentage = 1.24%
-    homopolymer indels = 98.77%
+    number of deletions = 1,138
+    mapped reads with deletion percentage = 1.23%
+    homopolymer indels = 98.93%
 
 
 >>>>>>> Coverage
 
-     mean coverageData = 0.7888X
-     std coverageData = 30.7431X
+     mean coverageData = 0.7685X
+     std coverageData = 30.3229X
 
      There is a 0.69% of reference with a coverageData >= 1X
-     There is a 0.32% of reference with a coverageData >= 2X
-     There is a 0.21% of reference with a coverageData >= 3X
-     There is a 0.16% of reference with a coverageData >= 4X
+     There is a 0.31% of reference with a coverageData >= 2X
+     There is a 0.2% of reference with a coverageData >= 3X
+     There is a 0.15% of reference with a coverageData >= 4X
      There is a 0.12% of reference with a coverageData >= 5X
      There is a 0.11% of reference with a coverageData >= 6X
-     There is a 0.09% of reference with a coverageData >= 7X
+     There is a 0.1% of reference with a coverageData >= 7X
      There is a 0.09% of reference with a coverageData >= 8X
      There is a 0.08% of reference with a coverageData >= 9X
      There is a 0.08% of reference with a coverageData >= 10X
@@ -127,6 +127,6 @@ BamQC report
 
 >>>>>>> Coverage per contig
 
-	1	10000000	7888155	0.7888155	30.74313722721476
+	1	10000000	7684754	0.7684754	30.322884661188137
 
 
