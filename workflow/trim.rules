@@ -10,16 +10,15 @@ final_path = config["FINALOUTPUT"] + "/" + config["PROJECT"]
 
 def trimFiles(wildcards):
     if (end == "pair"):
-        forward_trim = expand(intermediate_path + "/{sample}_val_1.fq.gz", sample = samples)
-        reverse_trim = expand(intermediate_path + "/{sample}_val_2.fq.gz", sample = samples)
-        return forward_trim, reverse_trim
+        forward_trim = expand(intermediate_path + "/{sample}_R1_val_1.fq.gz", sample = samples)
+        return forward_trim
     else:
         read_trim = expand(intermediate_path + "/{sample}_trimmed.fq.gz", sample = samples)
         return read_trim
 
 rule all:
     input:
-        trimFiles
+        report = final_path + "/fastqc_after_trimming/report_quality_control_after_trimming.html"
 
 if end == "pair":
     rule getReads:
@@ -42,8 +41,8 @@ if end == "pair":
             forward = intermediate_path + "/reads/{sample}_forward.fastq.gz",
             reverse = intermediate_path + "/reads/{sample}_reverse.fastq.gz"
         output:
-            read_trim_forward = intermediate_path + "/{sample}_val_1.fq.gz",
-            read_trim_reverse = intermediate_path + "/{sample}_val_2.fq.gz"
+            read_trim_forward = intermediate_path + "/{sample}_R1_val_1.fq.gz",
+            read_trim_reverse = intermediate_path + "/{sample}_R2_val_2.fq.gz"
         params:
             outputpath = intermediate_path
         shell:
