@@ -95,7 +95,7 @@ rule alignmentQC:
     output:
         bamqc = directory(final_path + "/alignmentQC/{sample}_BAMqc")
     shell:
-        "qualimap bamqc -bam {input.sort} -outdir {output.bamqc}"
+        "qualimap bamqc -bam {input.sort} --java-mem-size=4G -outdir {output.bamqc}"
 
 rule featureCount:
     input:
