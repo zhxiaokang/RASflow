@@ -1,14 +1,18 @@
 import pandas as pd
 configfile: "configs/config_trim.yaml"
 
+key = config["KEY"]
+input_path = config["INPUTPATH"]
 samples = pd.read_csv(config["METAFILE"], sep = '\t', header = 0)['sample']
 end = config["END"]
 intermediate_path = config["OUTPUTPATH"] + "/" + config["PROJECT"] + "/trim"
+final_path = config["FINALOUTPUT"] + "/" + config["PROJECT"]
 
 def trimFiles(wildcards):
     if (end == "pair"):
-        forward_trim = expand(intermediate_path + "/{sample}_R1_val_1.fq.gz", sample = samples)
-        return forward_trim
+        forward_trim = expand(intermediate_path + "/{sample}_val_1.fq.gz", sample = samples)
+        reverse_trim = expand(intermediate_path + "/{sample}_val_2.fq.gz", sample = samples)
+        return forward_trim, reverse_trim
     else:
         read_trim = expand(intermediate_path + "/{sample}_trimmed.fq.gz", sample = samples)
         return read_trim
@@ -17,15 +21,64 @@ rule all:
     input:
         trimFiles
 
-rule trim:
+if end == "pair":
+    rule getReads:
+        output:
+            forward = temp(intermediate_path + "/reads/{sample}_forward.fastq.gz"),
+            reverse = temp(intermediate_path + "/reads/{sample}_reverse.fastq.gz")
+        params:
+            key = key,
+            input_path = input_path
+        run:
+            if len({params.key}) < 1:
+                shell("cp {params.input_path}/{wildcards.sample}_*R1*.f*q.gz {output.forward}"),
+                shell("cp {params.input_path}/{wildcards.sample}_*R2*.f*q.gz {output.reverse}")
+            else:
+                shell("scp -i {params.key} {params.input_path}/{wildcards.sample}_*R1*.f*q.gz {output.forward}"),
+                shell("scp -i {params.key} {params.input_path}/{wildcards.sample}_*R2*.f*q.gz {output.reverse}")
+            
+    rule trim:
+        input:
+            forward = intermediate_path + "/reads/{sample}_forward.fastq.gz",
+            reverse = intermediate_path + "/reads/{sample}_reverse.fastq.gz"
+        output:
+            read_trim_forward = intermediate_path + "/{sample}_val_1.fq.gz",
+            read_trim_reverse = intermediate_path + "/{sample}_val_2.fq.gz"
+        params:
+            outputpath = intermediate_path
+        shell:
+            "trim_galore --fastqc -j 4 --paired --basename {wildcards.sample} -o {params.outputpath} {input.forward} {input.reverse}"
+            
+else:
+    rule getReads:
+        output:
+            read = temp(intermediate_path + "/reads/{sample}.fastq.gz")
+        params:
+            key = key,
+            input_path = input_path
+        run:
+            if len({params.key}) < 1:
+                shell("cp {params.input_path}/{wildcards.sample}*.f*q.gz {output.read}")
+            else:
+                shell("scp -i {params.key} {params.input_path}/{wildcards.sample}*.f*q.gz {output.read}")
+            
+    rule trim:
+        input:
+            read = intermediate_path + "/reads/{sample}.fastq.gz"
+        output:
+            read_trim = intermediate_path + "/{sample}_trimmed.fq.gz"
+        params:
+            outputpath = intermediate_path
+        shell:
+            "trim_galore --fastqc -j 4 --basename {wildcards.sample} -o {params.outputpath} {input.read}"
+
+rule summaryReport:
+    input:
+        trimFiles
     output:
-        read_trim = intermediate_path + "/{sample}_R1_val_1.fq.gz" if config["END"]=="pair" else intermediate_path + "/{sample}_trimmed.fq.gz",
+        report = final_path + "/fastqc_after_trimming/report_quality_control_after_trimming.html"
     params:
-        inputpath = config["INPUTPATH"],
-        outputpath = intermediate_path
-    run:
-        if config["END"]=="pair":
-            shell("trim_galore --fastqc -j 4 --paired --basename {wildcards.sample} -o {params.outputpath} {params.inputpath}/{wildcards.sample}*R1*fastq.gz {params.inputpath}/{wildcards.sample}*R2*fastq.gz")
-        else:
-            shell("trim_galore --fastqc -j 4 --basename {wildcards.sample} -o {params.outputpath} {params.inputpath}/{wildcards.sample}*fastq.gz")
+        path = intermediate_path
+    shell:
+        "multiqc {params.path} --filename {output.report}"
 

@@ -3,11 +3,15 @@
 # project name
 PROJECT: test
 
+# key file if the data is stored remotely, otherwise leave it as tempty
+KEY: 
+
 ## the path to fastq files
 INPUTPATH: data/example/fastq_single
 
 ## paths for intermediate outputs
 OUTPUTPATH: data/output  # intermediate output. do not upload to github
+FINALOUTPUT: output
 
 ## the meta file describing the experiment settings
 METAFILE: configs/metadata.tsv
