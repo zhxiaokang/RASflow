@@ -12,7 +12,7 @@ INPUTPATH_TRIM: data/output/test/trim  # path to the trimmed sequences
 INPUTPATH: data/example/fastq_single  # path to the original sequences
 
 ## if you use a key to access to the data, otherwise ignore this
-KEY: "" 
+KEY:
 
 ## the meta file describing the experiment settings
 METAFILE: configs/metadata.tsv
