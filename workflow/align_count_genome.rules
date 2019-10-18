@@ -4,10 +4,10 @@ configfile: "configs/config_align_count_genome.yaml"
 samples = pd.read_csv(config["METAFILE"], sep = '\t', header = 0)['sample']
 indexes = list(range(1, 9))
 trimmed = config["TRIMMED"]
-if trimmed == "no":
-    input_path = config["INPUTPATH"]
-else:
+if trimmed:
     input_path = config["INPUTPATH_TRIM"]
+else:
+    input_path = config["INPUTPATH"]
 end = config["END"]
 intermediate_path = config["OUTPUTPATH"] + "/" + config["PROJECT"] + "/genome"
 final_path = config["FINALOUTPUT"] + "/" + config["PROJECT"] + "/genome"
