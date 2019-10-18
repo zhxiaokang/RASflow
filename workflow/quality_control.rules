@@ -1,6 +1,8 @@
 import pandas as pd
 configfile: "configs/config_quality_control.yaml"
 
+key = config["KEY"]
+input_path = config["INPUTPATH"]
 samples = pd.read_csv(config["METAFILE"], sep = '\t', header = 0)['sample']
 end = config["END"]
 intermediate_path = config["OUTPUTPATH"] + "/" + config["PROJECT"]
@@ -12,12 +14,20 @@ rule end:
         
 if end == "pair":
     rule getReads:
+        input:
+            key = key
         output:
             forward = temp(intermediate_path + "/reads/{sample}_forward.fastq.gz"),
             reverse = temp(intermediate_path + "/reads/{sample}_reverse.fastq.gz")
+        params:
+            input_path = input_path
         run:
-            shell("cp {config[INPUTPATH]}/{wildcards.sample}_*R1*.fastq.gz {output.forward}"),
-            shell("cp {config[INPUTPATH]}/{wildcards.sample}_*R2*.fastq.gz {output.reverse}")
+            if len(key) < 1:
+                shell("cp {params.input_path}/{wildcards.sample}_*R1*.fastq.gz {output.forward}"),
+                shell("cp {params.input_path}/{wildcards.sample}_*R2*.fastq.gz {output.reverse}")
+            else:
+                shell("scp -i {input.key} {params.input_path}/{wildcards.sample}_*R1*.fastq.gz {output.forward}"),
+                shell("scp -i {input.key} {params.input_path}/{wildcards.sample}_*R2*.fastq.gz {output.reverse}")
             
     rule qualityControl:
         input:
@@ -45,10 +55,17 @@ if end == "pair":
             
 else:
     rule getReads:
+        input:
+            key = key
         output:
             read = temp(intermediate_path + "/reads/{sample}.fastq.gz")
+        params:
+            input_path = input_path
         run:
-            shell("cp {config[INPUTPATH]}/{wildcards.sample}*.fastq.gz {output.read}")
+            if len(key) < 1:
+                shell("cp {params.input_path}/{wildcards.sample}*.fastq.gz {output.read}")
+            else:
+                shell("scp -i {input.key} {params.input_path}/{wildcards.sample}*.fastq.gz {output.read}")
             
     rule qualityControl:
         input:
