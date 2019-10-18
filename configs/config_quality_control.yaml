@@ -4,7 +4,7 @@
 PROJECT: test
 
 # key file if the data is stored remotely, otherwise leave it as tempty
-KEY:
+KEY: 
 
 ## the path to fastq files
 INPUTPATH: data/example/fastq_pair

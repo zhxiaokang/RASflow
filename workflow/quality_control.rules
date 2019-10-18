@@ -14,20 +14,19 @@ rule end:
         
 if end == "pair":
     rule getReads:
-        input:
-            key = key
         output:
             forward = temp(intermediate_path + "/reads/{sample}_forward.fastq.gz"),
             reverse = temp(intermediate_path + "/reads/{sample}_reverse.fastq.gz")
         params:
+            key = key,
             input_path = input_path
         run:
-            if len(key) < 1:
+            if len({params.key}) < 1:
                 shell("cp {params.input_path}/{wildcards.sample}_*R1*.fastq.gz {output.forward}"),
                 shell("cp {params.input_path}/{wildcards.sample}_*R2*.fastq.gz {output.reverse}")
             else:
-                shell("scp -i {input.key} {params.input_path}/{wildcards.sample}_*R1*.fastq.gz {output.forward}"),
-                shell("scp -i {input.key} {params.input_path}/{wildcards.sample}_*R2*.fastq.gz {output.reverse}")
+                shell("scp -i {params.key} {params.input_path}/{wildcards.sample}_*R1*.fastq.gz {output.forward}"),
+                shell("scp -i {params.key} {params.input_path}/{wildcards.sample}_*R2*.fastq.gz {output.reverse}")
             
     rule qualityControl:
         input:
@@ -55,17 +54,16 @@ if end == "pair":
             
 else:
     rule getReads:
-        input:
-            key = key
         output:
             read = temp(intermediate_path + "/reads/{sample}.fastq.gz")
         params:
+            key = key,
             input_path = input_path
         run:
-            if len(key) < 1:
+            if len({params.key}) < 1:
                 shell("cp {params.input_path}/{wildcards.sample}*.fastq.gz {output.read}")
             else:
-                shell("scp -i {input.key} {params.input_path}/{wildcards.sample}*.fastq.gz {output.read}")
+                shell("scp -i {params.key} {params.input_path}/{wildcards.sample}*.fastq.gz {output.read}")
             
     rule qualityControl:
         input:
