@@ -14,8 +14,7 @@ rule end:
 
 rule plot:
     input:
-        dea = config["DEAFILE"],
-        deg = config["DEGFILE"]
+        dea = config["DEAFILE"]
     output:
         volcano = volcano_path + "/volcano_plot_" + name_control + "_" + name_treat + ".pdf",
         heatmap = heatmap_path + "/heatmap_" + name_control + "_" + name_treat + ".pdf"
