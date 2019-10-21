@@ -12,7 +12,6 @@ yaml.file <- yaml.load_file('configs/config_visualize.yaml')
 
 # extract the information from the yaml file
 file.dea.table <- yaml.file$DEAFILE
-file.deg.table <- yaml.file$DEGFILE
 norm.control <- yaml.file$NORMFILES$control
 norm.treat <- yaml.file$NORMFILES$treat
 name.control <- yaml.file$NAME_CONTROL
@@ -22,10 +21,10 @@ outpath.volcano <- dirname(file.dea.table)
 outpath.heatmap <- dirname(norm.control)
 
 dea.table <- read.table(file.dea.table, header = TRUE, row.names = 1)
-deg.table <- read.table(file.deg.table, header = TRUE, row.names = 1)
+# sort the dea table: ascending of FDR then descending of absolute valued of logFC
+dea.table <- dea.table[order(dea.table$FDR, -abs(dea.table$logFC), decreasing = FALSE), ]
 
 gene.id.dea <- row.names(dea.table)
-gene.id.deg <- row.names(deg.table)
 
 gene.symbol.dea <- queryMany(gene.id.dea, scopes = 'ensembl.gene', fields = 'symbol')$symbol
 
@@ -52,12 +51,8 @@ num.treat <- dim(norm.table.treat)[2]
 norm.table <- cbind(norm.table.control, norm.table.treat)
 groups <- c(name.control, name.treat)
 
-# instead using all genes, only use the top 50 degs if there are more than 50
-if (length(gene.id.deg) > 50) {
-  index.deg <- which(row.names(norm.table) %in% gene.id.deg[1:50])
-} else {
-  index.deg <- which(row.names(norm.table) %in% gene.id.deg)
-}
+# instead using all genes, only use the top 50 genes in dea.table
+index.deg <- which(row.names(norm.table) %in% gene.id.dea[1:50])
 norm.table.deg <- norm.table[index.deg,]
 
 gene.id.norm.table <- rownames(norm.table.deg)
