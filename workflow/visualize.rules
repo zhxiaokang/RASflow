@@ -2,22 +2,25 @@ import os
 
 configfile: "configs/config_visualize.yaml"
 
-volcano_path = os.path.dirname(config["DEAFILE"])
-heatmap_path = os.path.dirname(config["NORMFILES"]["control"])
-name_control = config["NAME_CONTROL"]
-name_treat = config["NAME_TREAT"]
+dea_path = config["DEAPATH"]
+norm_path = config["NORMPATH"]
+control = config["CONTROL"][0]
+treat = config["TREAT"][0]
+output_path = config["OUTPATH"]
 
 rule end:
     input:
-        volcano = volcano_path + "/volcano_plot_" + name_control + "_" + name_treat + ".pdf",
-        heatmap = heatmap_path + "/heatmap_" + name_control + "_" + name_treat + ".pdf"
+        volcano = output_path + "/volcano_plot_" + control + "_" + treat + ".pdf",
+        heatmap = output_path + "/heatmap_" + control + "_" + treat + ".pdf"
 
 rule plot:
     input:
-        dea = config["DEAFILE"]
+        dea = dea_path + "/dea_" + control + "_" + treat + ".tsv",
+        norm_control = norm_path + "/" + control + "_norm.tsv",
+        norm_treat = norm_path + "/" + treat + "_norm.tsv"
     output:
-        volcano = volcano_path + "/volcano_plot_" + name_control + "_" + name_treat + ".pdf",
-        heatmap = heatmap_path + "/heatmap_" + name_control + "_" + name_treat + ".pdf"
+        volcano = output_path + "/volcano_plot_" + control + "_" + treat + ".pdf",
+        heatmap = output_path + "/heatmap_" + control + "_" + treat + ".pdf"
     shell:
         "Rscript scripts/visualize.R"
 
