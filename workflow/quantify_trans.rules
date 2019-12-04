@@ -35,7 +35,7 @@ if end == "pair":
 else:
     rule getReads:
         output:
-            forward = temp(intermediate_path + "/reads/{sample}.fastq.gz")
+            read = temp(intermediate_path + "/reads/{sample}.fastq.gz")
         params:
             key = key,
             input_path = input_path
@@ -70,14 +70,14 @@ if end == "pair":
 else:
     rule quantify:
         input:
-            forward = temp(intermediate_path + "/reads/{sample}.fastq.gz"),
+            read = temp(intermediate_path + "/reads/{sample}.fastq.gz"),
             index = directory(intermediate_path + "/transcripts_index")
         output:
             quant_dir = directory(final_path + "/quant/{sample}"),
             tpm = final_path + "/tpmFile/{sample}_tpm.tsv"
         shell:
             """
-            salmon quant -i {input.index} -l A -r {input.forward} -o {output.quant_dir} -p {config[NCORE]} --seqBias --useVBOpt --validateMappings
+            salmon quant -i {input.index} -l A -r {input.read} -o {output.quant_dir} -p {config[NCORE]} --seqBias --useVBOpt --validateMappings
             awk 'NR==1{{next}}{{print $1"\\t"$4}}' {output.quant_dir}/quant.sf > {output.tpm}
             """
 
