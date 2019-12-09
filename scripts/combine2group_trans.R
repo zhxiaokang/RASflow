@@ -29,6 +29,7 @@ yaml.file <- yaml.load_file('configs/config_dea_trans.yaml')
 # extract the information from the yaml file
 project <- yaml.file$PROJECT  # project name
 input.path <- file.path(yaml.file$INPUTPATH, project, "trans/quant")
+gene.level <- yaml.file$GENE_LEVEL
 controls <- yaml.file$CONTROL  # all groups used as control
 treats <- yaml.file$TREAT  # all groups used as treat, should correspond to control
 filter.need <- yaml.file$FILTER$yesOrNo
@@ -57,30 +58,35 @@ subject.all <- meta.data$subject
 
 # the original quant files from Salmon
 files <- file.path(input.path, samples, "quant.sf")
-# remove the version
-trans.id <- remove_version(files)
+names(files) <- samples
 
 # get the normalized count tables for all samples (scaled up to library size ('scaledTPM'))
-files.noVersion <- file.path(input.path, samples, "quant_noVersion.sf")
-names(files.noVersion) <- samples
 
 # ====================== prepare the tx2gene table ======================
+if (gene.level) {
+    ensembl <- useEnsembl(biomart = "ensembl", dataset = dataset)
+    datasets <- listDatasets(ensembl)
 
-ensembl <- useEnsembl(biomart = "ensembl", dataset = dataset)
-datasets <- listDatasets(ensembl)
+    attributes <- listAttributes(mart = ensembl)
 
-attributes <- listAttributes(mart = ensembl)
+    # remove the version to get more matches
+    trans.id <- remove_version(files)
 
-tx2gene <- getBM(attributes=c('ensembl_transcript_id', 'ensembl_gene_id'),
-                 filters = 'ensembl_transcript_id', values = trans.id, mart = ensembl)
+    files.noVersion <- file.path(input.path, samples, "quant_noVersion.sf")
+    names(files.noVersion) <- samples
 
+    tx2gene <- getBM(attributes=c('ensembl_transcript_id', 'ensembl_gene_id'),
+                    filters = 'ensembl_transcript_id', values = trans.id, mart = ensembl)
+}
 # ====================== get normalized count tables ======================
 
-trans.matrix.tpm <- tximport(files.noVersion, type = "salmon", txOut = TRUE, countsFromAbundance = "scaledTPM")
-gene.matrix.tpm <- tximport(files.noVersion, type = "salmon", tx2gene = tx2gene, countsFromAbundance = "scaledTPM")
-
+trans.matrix.tpm <- tximport(files, type = "salmon", txOut = TRUE, countsFromAbundance = "scaledTPM")
 trans.count.tpm <- trans.matrix.tpm$counts
-gene.count.tpm <- gene.matrix.tpm$counts
+
+if (gene.level) {
+    gene.matrix.tpm <- tximport(files.noVersion, type = "salmon", tx2gene = tx2gene, countsFromAbundance = "scaledTPM")
+    gene.count.tpm <- gene.matrix.tpm$counts
+}
 
 # ====================== combine the samples to groups ======================
 
@@ -89,13 +95,17 @@ for (group in unique(group.all)) {
   samples.group = samples[index.group]  # the samples belonging to this group
   
   group.count.trans <- trans.count.tpm[, samples.group]
-  group.count.gene <- gene.count.tpm[, samples.group]
-  
+  if (gene.level) {
+    group.count.gene <- gene.count.tpm[, samples.group]
+  }
+
   # write to files
   output.file.trans <- file.path(output.path, "countGroup", paste(group, "_trans_norm.tsv", sep = ""))
-  output.file.gene <- file.path(output.path, "countGroup", paste(group, "_gene_norm.tsv", sep = ""))
   write.table(group.count.trans, output.file.trans, sep = '\t', quote = FALSE, row.names = TRUE, col.names = TRUE)
-  write.table(group.count.gene, output.file.gene, sep = '\t', quote = FALSE, row.names = TRUE, col.names = TRUE)
+  if (gene.level) {
+    output.file.gene <- file.path(output.path, "countGroup", paste(group, "_gene_norm.tsv", sep = ""))
+    write.table(group.count.gene, output.file.gene, sep = '\t', quote = FALSE, row.names = TRUE, col.names = TRUE)
+  }
 }
 
 

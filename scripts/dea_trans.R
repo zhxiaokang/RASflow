@@ -84,6 +84,7 @@ yaml.file <- yaml.load_file('configs/config_dea_trans.yaml')
 
 # extract the information from the yaml file
 project <- yaml.file$PROJECT  # project name
+gene.level <- yaml.file$GENE_LEVEL  # whether to do gene-level analysis
 controls <- yaml.file$CONTROL  # all groups used as control
 treats <- yaml.file$TREAT  # all groups used as treat, should correspond to control
 filter.need <- yaml.file$FILTER$yesOrNo
@@ -124,10 +125,12 @@ for (ith.comparison in c(1:num.comparison)) {
   DEA(control, treat, file.control, file.treat, output.path.dea)
   
   # --------------------- On gene level ---------------------
-  file.control <- paste(output.path, '/countGroup/', control, '_gene_norm.tsv', sep = '')
-  file.treat <- paste(output.path, '/countGroup/', treat, '_gene_norm.tsv', sep = '')
-  output.path.dea <- paste(output.path, '/DEA/gene-level', sep = '')
+  if (gene.level) {
+    file.control <- paste(output.path, '/countGroup/', control, '_gene_norm.tsv', sep = '')
+    file.treat <- paste(output.path, '/countGroup/', treat, '_gene_norm.tsv', sep = '')
+    output.path.dea <- paste(output.path, '/DEA/gene-level', sep = '')
   
-  DEA(control, treat, file.control, file.treat, output.path.dea)
+    DEA(control, treat, file.control, file.treat, output.path.dea)
+  }
 }
 

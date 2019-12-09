@@ -4,12 +4,14 @@
 PROJECT: test
 
 INPUTPATH: output
-OUTPUTPATH: output
+OUTPUTPATH: output/transcript_level_only
 METAFILE: configs/metadata.tsv
 
 PAIR: FALSE  # Is this a pair test or not? (TRUE or FALSE)
 
-## The corresponding dataset in ENSEMBL for your interested organism
+# Do you need to do gene-level differential expression analysis?
+GENE_LEVEL: FALSE  # TRUE or FALSE. But if you are using De Novo assembly or not using ENSEMBL, FALSE is the only option
+## If TRUE, specify the corresponding dataset in ENSEMBL for your interested organism
 EnsemblDataSet: hsapiens_gene_ensembl  # search for your dataset in the file EnsemblDataSet_look_up_table.csv 
 
 ## the comparison(s) you want to do. If multiple comparisons, specify each pair (CONTROL & TREAT) in order respectively

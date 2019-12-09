@@ -7,32 +7,57 @@ input_path = config["INPUTPATH"] + "/" + config["PROJECT"] + "/trans/quant"
 output_path = config["OUTPUTPATH"] + "/" + config["PROJECT"] + "/trans/dea"
 samples = np.array(pd.read_table(config["METAFILE"], header = 0)['sample'])
 groups = np.unique(np.array(pd.read_table(config["METAFILE"], header = 0)['group']))
+gene_level = config["GENE_LEVEL"]
 control = config["CONTROL"][0]
 treat = config["TREAT"][0]
 
-rule end:
-    input:
-        degTrans = output_path + "/DEA/transcript-level/" + "deg_" + control + "_" + treat + ".tsv",
-        degGene = output_path + "/DEA/gene-level/" + "deg_" + control + "_" + treat + ".tsv"
+if gene_level:
+    rule end:
+        input:
+            degTrans = output_path + "/DEA/transcript-level/" + "deg_" + control + "_" + treat + ".tsv",
+            degGene = output_path + "/DEA/gene-level/" + "deg_" + control + "_" + treat + ".tsv"
 
-rule combineSamples:
-    input:
-        sampleCount = expand(input_path + "/{sample}/quant.sf", sample = samples),
-        metafile = config["METAFILE"]
-    output:
-        groupCountTrans = expand(output_path + "/countGroup/{group}_trans_norm.tsv", group = groups),
-        groupCountGene = expand(output_path + "/countGroup/{group}_gene_norm.tsv", group = groups)
-    shell:
-        "Rscript scripts/combine2group_trans.R"
+    rule combineSamples:
+        input:
+            sampleCount = expand(input_path + "/{sample}/quant.sf", sample = samples),
+            metafile = config["METAFILE"]
+        output:
+            groupCountTrans = expand(output_path + "/countGroup/{group}_trans_norm.tsv", group = groups),
+            groupCountGene = expand(output_path + "/countGroup/{group}_gene_norm.tsv", group = groups)
+        shell:
+            "Rscript scripts/combine2group_trans.R"
 
-rule DEA:
-    input:
-        groupCountTrans = expand(output_path + "/countGroup/{group}_trans_norm.tsv", group = groups),
-        groupCountGene = expand(output_path + "/countGroup/{group}_gene_norm.tsv", group = groups)
-    output:
-        deaTrans = output_path + "/DEA/transcript-level/" + "dea_" + control + "_" + treat + ".tsv", 
-        degTrans = output_path + "/DEA/transcript-level/" + "deg_" + control + "_" + treat + ".tsv",
-        deaGene = output_path + "/DEA/gene-level/" + "dea_" + control + "_" + treat + ".tsv", 
-        degGene = output_path + "/DEA/gene-level/" + "deg_" + control + "_" + treat + ".tsv"
-    shell:
-        "Rscript scripts/dea_trans.R"
+    rule DEA:
+        input:
+            groupCountTrans = expand(output_path + "/countGroup/{group}_trans_norm.tsv", group = groups),
+            groupCountGene = expand(output_path + "/countGroup/{group}_gene_norm.tsv", group = groups)
+        output:
+            deaTrans = output_path + "/DEA/transcript-level/" + "dea_" + control + "_" + treat + ".tsv", 
+            degTrans = output_path + "/DEA/transcript-level/" + "deg_" + control + "_" + treat + ".tsv",
+            deaGene = output_path + "/DEA/gene-level/" + "dea_" + control + "_" + treat + ".tsv", 
+            degGene = output_path + "/DEA/gene-level/" + "deg_" + control + "_" + treat + ".tsv"
+        shell:
+            "Rscript scripts/dea_trans.R"
+
+else: 
+    rule end:
+        input:
+            degTrans = output_path + "/DEA/transcript-level/" + "deg_" + control + "_" + treat + ".tsv"
+
+    rule combineSamples:
+        input:
+            sampleCount = expand(input_path + "/{sample}/quant.sf", sample = samples),
+            metafile = config["METAFILE"]
+        output:
+            groupCountTrans = expand(output_path + "/countGroup/{group}_trans_norm.tsv", group = groups)
+        shell:
+            "Rscript scripts/combine2group_trans.R"
+
+    rule DEA:
+        input:
+            groupCountTrans = expand(output_path + "/countGroup/{group}_trans_norm.tsv", group = groups)
+        output:
+            deaTrans = output_path + "/DEA/transcript-level/" + "dea_" + control + "_" + treat + ".tsv", 
+            degTrans = output_path + "/DEA/transcript-level/" + "deg_" + control + "_" + treat + ".tsv"
+        shell:
+            "Rscript scripts/dea_trans.R"
