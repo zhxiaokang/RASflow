@@ -36,7 +36,7 @@ if end == "pair":
 else:
     rule getReads:
         output:
-            forward = temp(intermediate_path + "/reads/{sample}.fastq.gz")
+            read = temp(intermediate_path + "/reads/{sample}.fastq.gz")
         params:
             key = key,
             input_path = input_path
