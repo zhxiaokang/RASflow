@@ -1,11 +1,11 @@
 import pandas as pd
-configfile: "configs/config_trim.yaml"
+configfile: "configs/config_main.yaml"
 
 key = config["KEY"]
-input_path = config["INPUTPATH"]
+input_path = config["READSPATH"]
 samples = pd.read_csv(config["METAFILE"], sep = '\t', header = 0)['sample']
 end = config["END"]
-intermediate_path = config["OUTPUTPATH"] + "/" + config["PROJECT"] + "/trim"
+intermediate_path = config["OUTPUTPATH"] + "/trim"
 final_path = config["FINALOUTPUT"] + "/" + config["PROJECT"]
 
 def trimFiles(wildcards):

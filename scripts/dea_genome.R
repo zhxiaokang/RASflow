@@ -4,7 +4,7 @@ library(edgeR)
 # Use edgeR to do DEA
 
 # load the config file
-yaml.file <- yaml.load_file('configs/config_dea_genome.yaml')
+yaml.file <- yaml.load_file('configs/config_main.yaml')
 
 # extract the information from the yaml file
 project <- yaml.file$PROJECT  # project name of this analysis
@@ -14,7 +14,7 @@ filter.need <- yaml.file$FILTER$yesOrNo
 cpm.threshold <- yaml.file$FILTER$cpm
 pair.test <- yaml.file$PAIR
 meta.file <- yaml.file$METAFILE
-output.path <- file.path(yaml.file$OUTPUTPATH, project, "genome/dea")
+output.path <- file.path(yaml.file$FINALOUTPUT, project, "genome/dea")
 
 # extract the metadata
 meta.data <- read.csv(meta.file, header = TRUE, sep = '\t')

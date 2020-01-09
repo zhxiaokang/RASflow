@@ -1,10 +1,10 @@
 import pandas as pd
 import numpy as np
 
-configfile: "configs/config_dea_trans.yaml"
+configfile: "configs/config_main.yaml"
 
-input_path = config["INPUTPATH"] + "/" + config["PROJECT"] + "/trans/quant"
-output_path = config["OUTPUTPATH"] + "/" + config["PROJECT"] + "/trans/dea"
+input_path = config["FINALOUTPUT"] + "/" + config["PROJECT"] + "/trans/quant"
+output_path = config["FINALOUTPUT"] + "/" + config["PROJECT"] + "/trans/dea"
 samples = np.array(pd.read_table(config["METAFILE"], header = 0)['sample'])
 groups = np.unique(np.array(pd.read_table(config["METAFILE"], header = 0)['group']))
 gene_level = config["GENE_LEVEL"]

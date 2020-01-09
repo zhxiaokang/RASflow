@@ -80,7 +80,7 @@ DEA <- function(control, treat, file.control, file.treat, output.path.dea) {
 # ====================== load parameters in config file ======================
 
 # load the config file
-yaml.file <- yaml.load_file('configs/config_dea_trans.yaml')
+yaml.file <- yaml.load_file('configs/config_main.yaml')
 
 # extract the information from the yaml file
 project <- yaml.file$PROJECT  # project name
@@ -92,7 +92,7 @@ tpm.threshold <- yaml.file$FILTER$tpm
 pair.test <- yaml.file$PAIR
 meta.file <- yaml.file$METAFILE
 dataset <- yaml.file$EnsemblDataSet
-output.path <- file.path(yaml.file$OUTPUTPATH, project, "trans/dea")
+output.path <- file.path(yaml.file$FINALOUTPUT, project, "trans/dea")
 
 num.control <- length(controls)  # number of comparisons that the user wants to do
 num.treat <- length(treats)  # should equals to num.control
@@ -116,7 +116,7 @@ subject.all <- meta.data$subject
 for (ith.comparison in c(1:num.comparison)) {
   control <- controls[ith.comparison]
   treat <- treats[ith.comparison]
-  
+  print('So far no problem!')
   # --------------------- On transctipt level ---------------------
   file.control <- paste(output.path, '/countGroup/', control, '_trans_norm.tsv', sep = '')
   file.treat <- paste(output.path, '/countGroup/', treat, '_trans_norm.tsv', sep = '')

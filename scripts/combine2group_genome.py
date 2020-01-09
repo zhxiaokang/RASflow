@@ -9,15 +9,15 @@ def load_globals():
     
     global samples; global groups; global config; global input_path; global output_path
 
-    with open('configs/config_dea_genome.yaml') as yamlfile:
+    with open('configs/config_main.yaml') as yamlfile:
         config = yaml.load(yamlfile)
     
     samples = np.array(pd.read_table(config["METAFILE"], header = 0)['sample'])
 
     groups = np.array(pd.read_table(config["METAFILE"], header = 0)['group'])
 
-    input_path = config["INPUTPATH"] + "/" + config["PROJECT"] + "/genome/countFile"
-    output_path = config["OUTPUTPATH"] + "/" + config["PROJECT"] + "/genome/dea"
+    input_path = config["FINALOUTPUT"] + "/" + config["PROJECT"] + "/genome/countFile"
+    output_path = config["FINALOUTPUT"] + "/" + config["PROJECT"] + "/genome/dea"
 
 
 def main():

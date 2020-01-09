@@ -1,13 +1,13 @@
 import pandas as pd
-configfile: "configs/config_align_count_genome.yaml"
+configfile: "configs/config_main.yaml"
 
 samples = pd.read_csv(config["METAFILE"], sep = '\t', header = 0)['sample']
 indexes = list(range(1, 9))
 trimmed = config["TRIMMED"]
 if trimmed:
-    input_path = config["INPUTPATH_TRIM"]
+    input_path = config["OUTPUTPATH"] + "/trim"
 else:
-    input_path = config["INPUTPATH"]
+    input_path = config["READSPATH"]
 key = config["KEY"]
 end = config["END"]
 intermediate_path = config["OUTPUTPATH"] + "/" + config["PROJECT"] + "/genome"
@@ -36,7 +36,7 @@ if end == "pair":
 else:
     rule getReads:
         output:
-            forward = temp(intermediate_path + "/reads/{sample}.fastq.gz")
+            read = temp(intermediate_path + "/reads/{sample}.fastq.gz")
         params:
             key = key,
             input_path = input_path

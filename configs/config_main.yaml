@@ -1,0 +1,100 @@
+# Please check the parameters, and adjust them according to your circumstance
+
+# Project name
+PROJECT: test
+
+# ================== Control of the workflow ==================
+
+## Do you need to do quality control?
+QC: no  # "yes" or "no"
+
+## Do you need to do trimming?
+TRIMMED: no  # "yes" or "no"?
+
+## Which mapping reference do you want to use? Genome or transcriptome?
+REFERENCE: genome  # "genome" or "transcriptome"
+
+## Do you want to do Differential Expression Analysis (DEA)?
+DEA: no  # "yes" or "no"
+
+## Do you want to visualize the results of DEA?
+VISUALIZE: no  # "yes" or "no"
+
+# ================== Shared parameters for some or all of the subworkflows ==================
+
+## key file if the data is stored remotely, otherwise leave it tempty
+KEY: 
+
+## the path to fastq files
+READSPATH: data/example/fastq_single
+
+## the meta file describing the experiment settings
+METAFILE: configs/metadata.tsv
+
+## is the sequencing paired-end or single-end?
+END: single  # "pair" or "single"
+
+## number of cores you want to allocate to this workflow
+NCORE: 30  # Use command "getconf _NPROCESSORS_ONLN" to check the number of cores/CPU on your machine
+
+## paths for intermediate outputs and final outputs
+OUTPUTPATH: data/output # intermediate output. do not upload to github
+FINALOUTPUT: output
+
+# ================== Configuration for Quality Control ==================
+
+## All required params have already been defined in the public params
+
+# ================== Configuration for trimming ==================
+
+## All required params have already been defined in the public params
+
+# ================== Configuration for alignment to genome and feature count ==================
+
+## genome and annotation files
+GENOME: data/example/ref/genome/Homo_sapiens.GRCh38.dna.chromosome.1.1.10M.fa
+ANNOTATION: data/example/ref/annotation/Homo_sapiens.GRCh38.93.1.1.10M.gtf
+ATTRIBUTE: gene_id  # the attribute used in annotation file. It's usually "gene_id", but double check that since it may also be "gene", "ID"...
+
+## aligner
+ALIGNER: hisat2 
+
+## tool for feature count
+COUNTER: featureCounts  # default is "featureCounts", or you may want to use "htseq-count"
+
+# ================== Configuration for quantification using transcriptome ==================
+
+## transcriptome file
+TRANS: data/example/ref/transcriptome/Homo_sapiens.GRCh38.cdna.all.1.1.10M.fa.gz
+
+# ================== Configuration for DEA ==================
+
+## Is your experiment designed in a pair-wise way?
+PAIR: FALSE  # Is this a pair test or not? ("TRUE" or "FALSE")
+
+## the comparison(s) you want to do. If multiple comparisons, specify each pair (CONTROL & TREAT) in order respectively
+CONTROL: ["Untreated"]
+TREAT: ["Dexamethasone"]
+## length of 'CONTROL' should agree with that of 'TREAT'
+## what you fill in there should agree with the "group" column in metadata.tsv
+
+FILTER:
+  yesOrNo: FALSE  # Filter out low expressed genes or not? (TRUE or FALSE) It's better to be set to TRUE. FALSE is set as default only for testing fake toy data
+  cpm: 1  # if yes for filter, what's the threshold of cpm?
+
+## If transcriptome was used as mapping reference in the previous quantification step, the following params need to be specifed
+
+## Do you need to do gene-level differential expression analysis?
+GENE_LEVEL: TRUE  # TRUE or FALSE. But if you are using De Novo assembly or not using ENSEMBL, FALSE is the only option
+## If TRUE, specify the corresponding dataset in ENSEMBL for your interested organism
+EnsemblDataSet: hsapiens_gene_ensembl  # search for your dataset in the file EnsemblDataSet_look_up_table.csv 
+
+# ================== Configuration for visualization ==================
+
+DEAPATH: data/example/dea/DEA  # the directory of dea tables
+NORMPATH: data/example/dea/countGroup  # the directory of normalized count tables 
+
+# output path
+OUTPATH: data/example/dea/visualization
+
+

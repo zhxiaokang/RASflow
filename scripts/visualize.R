@@ -8,7 +8,7 @@ library(plotscale)
 # ====================== load parameters in config file ======================
 
 # load the config file
-yaml.file <- yaml.load_file('configs/config_visualize.yaml')
+yaml.file <- yaml.load_file('configs/config_main.yaml')
 
 # extract the information from the yaml file
 dea.path <- yaml.file$DEAPATH

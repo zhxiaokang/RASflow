@@ -1,8 +1,8 @@
 import pandas as pd
-configfile: "configs/config_quality_control.yaml"
+configfile: "configs/config_main.yaml"
 
 key = config["KEY"]
-input_path = config["INPUTPATH"]
+input_path = config["READSPATH"]
 samples = pd.read_csv(config["METAFILE"], sep = '\t', header = 0)['sample']
 end = config["END"]
 intermediate_path = config["OUTPUTPATH"] + "/" + config["PROJECT"]
