@@ -21,7 +21,7 @@ if end == "pair":
             key = key,
             input_path = input_path
         run:
-            if len({params.key}) < 1:
+            if len({params.key}) < 2:
                 shell("cp {params.input_path}/{wildcards.sample}_*R1*.f*q.gz {output.forward}"),
                 shell("cp {params.input_path}/{wildcards.sample}_*R2*.f*q.gz {output.reverse}")
             else:
@@ -60,7 +60,7 @@ else:
             key = key,
             input_path = input_path
         run:
-            if len({params.key}) < 1:
+            if len({params.key}) < 2:
                 shell("cp {params.input_path}/{wildcards.sample}*.f*q.gz {output.read}")
             else:
                 shell("scp -i {params.key} {params.input_path}/{wildcards.sample}*.f*q.gz {output.read}")
