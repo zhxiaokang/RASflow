@@ -1,0 +1,12 @@
+# Please check the parameters, and adjust them according to your circumstance
+DEAPATH: data/example/dea/DEA  # the directory of dea tables
+NORMPATH: data/example/dea/countGroup  # the directory of normalized count tables 
+
+## the comparison(s) you want to plot. If multiple comparisons, specify each pair (CONTROL & TREAT) in order respectively
+CONTROL: ["oil_control"]
+TREAT: ["oil_low"]
+## length of 'CONTROL' should agree with that of 'TREAT'
+## what you fill in there should agree with the "group" column in metadata.tsv
+
+# output path
+OUTPATH: data/example/dea/visualization

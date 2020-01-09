@@ -12,27 +12,27 @@ QC: no  # "yes" or "no"
 TRIMMED: no  # "yes" or "no"?
 
 ## Which mapping reference do you want to use? Genome or transcriptome?
-REFERENCE: genome  # "genome" or "transcriptome"
+REFERENCE: transcriptome  # "genome" or "transcriptome"
 
 ## Do you want to do Differential Expression Analysis (DEA)?
-DEA: no  # "yes" or "no"
+DEA: yes  # "yes" or "no"
 
 ## Do you want to visualize the results of DEA?
 VISUALIZE: no  # "yes" or "no"
 
-# ================== Shared parameters for some or all of the subworkflows ==================
+# ================== Shared parameters for some or all of the sub-workflows ==================
 
 ## key file if the data is stored remotely, otherwise leave it tempty
 KEY: 
 
 ## the path to fastq files
-READSPATH: data/example/fastq_single
+READSPATH: data/example/fastq_pair
 
 ## the meta file describing the experiment settings
 METAFILE: configs/metadata.tsv
 
 ## is the sequencing paired-end or single-end?
-END: single  # "pair" or "single"
+END: pair  # "pair" or "single"
 
 ## number of cores you want to allocate to this workflow
 NCORE: 30  # Use command "getconf _NPROCESSORS_ONLN" to check the number of cores/CPU on your machine
@@ -49,6 +49,11 @@ FINALOUTPUT: output
 
 ## All required params have already been defined in the public params
 
+# ================== Configuration for quantification using transcriptome ==================
+
+## transcriptome file
+TRANS: data/example/ref/transcriptome/Homo_sapiens.GRCh38.cdna.all.1.1.10M.fa.gz
+
 # ================== Configuration for alignment to genome and feature count ==================
 
 ## genome and annotation files
@@ -61,11 +66,6 @@ ALIGNER: hisat2
 
 ## tool for feature count
 COUNTER: featureCounts  # default is "featureCounts", or you may want to use "htseq-count"
-
-# ================== Configuration for quantification using transcriptome ==================
-
-## transcriptome file
-TRANS: data/example/ref/transcriptome/Homo_sapiens.GRCh38.cdna.all.1.1.10M.fa.gz
 
 # ================== Configuration for DEA ==================
 
@@ -91,10 +91,5 @@ EnsemblDataSet: hsapiens_gene_ensembl  # search for your dataset in the file Ens
 
 # ================== Configuration for visualization ==================
 
-DEAPATH: data/example/dea/DEA  # the directory of dea tables
-NORMPATH: data/example/dea/countGroup  # the directory of normalized count tables 
-
-# output path
-OUTPATH: data/example/dea/visualization
-
+## All required params have already been defined in the public params
 
