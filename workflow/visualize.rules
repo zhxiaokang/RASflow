@@ -5,7 +5,6 @@ configfile: "configs/config_main.yaml"
 control = config["CONTROL"][0]
 treat = config["TREAT"][0]
 
-
 reference = config["REFERENCE"]
 gene_level = config["GENE_LEVEL"]
 

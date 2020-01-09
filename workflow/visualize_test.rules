@@ -1,6 +1,6 @@
 import os
 
-configfile: "configs/config_visualize.yaml"
+configfile: "configs/config_visualize_test.yaml"
 
 dea_path = config["DEAPATH"]
 norm_path = config["NORMPATH"]
