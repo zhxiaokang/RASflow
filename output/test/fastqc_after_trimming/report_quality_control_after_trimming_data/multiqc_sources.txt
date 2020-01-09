@@ -1,0 +1,17 @@
+Module	Section	Sample Name	Source
+Cutadapt	all_sections	SRR1039513_reverse	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/data/output/trim/SRR1039513_reverse.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR1039512_reverse	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/data/output/trim/SRR1039512_reverse.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR1039508_reverse	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/data/output/trim/SRR1039508_reverse.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR1039509_reverse	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/data/output/trim/SRR1039509_reverse.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR1039512_forward	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/data/output/trim/SRR1039512_forward.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR1039513_forward	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/data/output/trim/SRR1039513_forward.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR1039509_forward	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/data/output/trim/SRR1039509_forward.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR1039508_forward	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/data/output/trim/SRR1039508_forward.fastq.gz_trimming_report.txt
+FastQC	all_sections	SRR1039509_R2_val_2	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/data/output/trim/SRR1039509_R2_val_2_fastqc.zip
+FastQC	all_sections	SRR1039508_R2_val_2	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/data/output/trim/SRR1039508_R2_val_2_fastqc.zip
+FastQC	all_sections	SRR1039512_R2_val_2	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/data/output/trim/SRR1039512_R2_val_2_fastqc.zip
+FastQC	all_sections	SRR1039513_R2_val_2	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/data/output/trim/SRR1039513_R2_val_2_fastqc.zip
+FastQC	all_sections	SRR1039513_R1_val_1	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/data/output/trim/SRR1039513_R1_val_1_fastqc.zip
+FastQC	all_sections	SRR1039512_R1_val_1	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/data/output/trim/SRR1039512_R1_val_1_fastqc.zip
+FastQC	all_sections	SRR1039508_R1_val_1	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/data/output/trim/SRR1039508_R1_val_1_fastqc.zip
+FastQC	all_sections	SRR1039509_R1_val_1	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/data/output/trim/SRR1039509_R1_val_1_fastqc.zip

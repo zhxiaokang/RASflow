@@ -1,0 +1,9 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	SRR1039513_reverse	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/output/test/fastqc/SRR1039513_reverse_fastqc.zip
+FastQC	all_sections	SRR1039512_forward	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/output/test/fastqc/SRR1039512_forward_fastqc.zip
+FastQC	all_sections	SRR1039509_forward	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/output/test/fastqc/SRR1039509_forward_fastqc.zip
+FastQC	all_sections	SRR1039508_reverse	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/output/test/fastqc/SRR1039508_reverse_fastqc.zip
+FastQC	all_sections	SRR1039509_reverse	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/output/test/fastqc/SRR1039509_reverse_fastqc.zip
+FastQC	all_sections	SRR1039508_forward	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/output/test/fastqc/SRR1039508_forward_fastqc.zip
+FastQC	all_sections	SRR1039513_forward	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/output/test/fastqc/SRR1039513_forward_fastqc.zip
+FastQC	all_sections	SRR1039512_reverse	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/output/test/fastqc/SRR1039512_reverse_fastqc.zip
