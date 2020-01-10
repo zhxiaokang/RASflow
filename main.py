@@ -42,8 +42,8 @@ else:
 print("Start RASflow on project: " + project)
 
 ## write the running time in a log file
-file_log_time = open("logs/log_running_time.txt")
-file_log_time.write("Project name: " + project + "\n")
+file_log_time = open("logs/log_running_time.txt", "a+")
+file_log_time.write("\nProject name: " + project + "\n")
 file_log_time.write("Start time: " + time.ctime() + "\n")
 
 def spend_time(start_time, end_time):
