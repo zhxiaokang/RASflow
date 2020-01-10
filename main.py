@@ -45,8 +45,8 @@ if qc:
     print("Are you sure that you want to do Quality Control?\n If yes, type 'y'; if not, type 'n' and set 'QC' to 'no' in the config file")
     qc_2nd = input()
     if qc_2nd == "y":
-    	print("Start Quality Control!")
-    	start_time = time.time()
+        print("Start Quality Control!")
+        start_time = time.time()
         os.system("nice -5 snakemake -s workflow/quality_control.rules 2>&1 | tee logs/log_quality_control.txt")
         end_time = time.time()
         print("Time of running QC: %s seconds" % (end_time - start_time))
@@ -56,8 +56,8 @@ if qc:
         os._exit(0)
 else:
     if trim:
-    	print("Start Trimming!")
-    	start_time = time.time()
+        print("Start Trimming!")
+        start_time = time.time()
         os.system("nice -5 snakemake -s workflow/trim.rules 2>&1 | tee logs/log_trim.txt")
         end_time = time.time()
         print("Time of running trimming: %s seconds" % (end_time - start_time))
@@ -68,12 +68,12 @@ else:
     print("Start mapping using ", reference, " as reference!")
 
     if reference == "transcriptome":
-    	start_time = time.time()
+        start_time = time.time()
         os.system("nice -5 snakemake -s workflow/quantify_trans.rules 2>&1 | tee logs/log_quantify_trans.txt")
         end_time = time.time()
         print("Time of running transcripts quantification: %s seconds" % (end_time - start_time))
     elif reference == "genome":
-    	start_time = time.time()
+        start_time = time.time()
         os.system("nice -5 snakemake -s workflow/align_count_genome.rules 2>&1 | tee logs/log_align_count_genome.txt")
         end_time = time.time()
         print("Time of running genome alignment: %s seconds" % (end_time - start_time))
@@ -81,12 +81,12 @@ else:
     if dea:
         print("Start doing DEA!")
         if reference == "transcriptome":
-        	start_time = time.time()
+            start_time = time.time()
             os.system("nice -5 snakemake -s workflow/dea_trans.rules 2>&1 | tee logs/log_dea_trans.txt")
             end_time = time.time()
             print("Time of running DEA transcriptome based: %s seconds" % (end_time - start_time))
         elif reference == "genome":
-        	start_time = time.time()
+            start_time = time.time()
             os.system("nice -5 snakemake -s workflow/dea_genome.rules 2>&1 | tee logs/log_dea_genome.txt")
             end_time = time.time()
             print("Time of running DEA genome based: %s seconds" % (end_time - start_time))
