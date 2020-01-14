@@ -94,9 +94,9 @@ for (group in unique(group.all)) {
   index.group = which(group.all == group)  # all the index of this group
   samples.group = samples[index.group]  # the samples belonging to this group
   
-  group.count.trans <- trans.count.tpm[, samples.group]
+  group.count.trans <- trans.count.tpm[, index.group]
   if (gene.level) {
-    group.count.gene <- gene.count.tpm[, samples.group]
+    group.count.gene <- gene.count.tpm[, index.group]
   }
 
   # write to files
