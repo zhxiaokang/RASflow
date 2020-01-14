@@ -29,12 +29,8 @@ if end == "pair":
             key = key,
             input_path = input_path
         run:
-            if len({params.key}) < 2:
-                shell("cp {params.input_path}/{wildcards.sample}_*R1*.f*q.gz {output.forward}"),
-                shell("cp {params.input_path}/{wildcards.sample}_*R2*.f*q.gz {output.reverse}")
-            else:
-                shell("scp -i {params.key} {params.input_path}/{wildcards.sample}_*R1*.f*q.gz {output.forward}"),
-                shell("scp -i {params.key} {params.input_path}/{wildcards.sample}_*R2*.f*q.gz {output.reverse}")
+            shell("scp -i {params.key} {params.input_path}/{wildcards.sample}_*R1*.f*q.gz {output.forward}"),
+            shell("scp -i {params.key} {params.input_path}/{wildcards.sample}_*R2*.f*q.gz {output.reverse}")
             
     rule trim:
         input:
@@ -56,10 +52,7 @@ else:
             key = key,
             input_path = input_path
         run:
-            if len({params.key}) < 2:
-                shell("cp {params.input_path}/{wildcards.sample}*.f*q.gz {output.read}")
-            else:
-                shell("scp -i {params.key} {params.input_path}/{wildcards.sample}*.f*q.gz {output.read}")
+            shell("scp -i {params.key} {params.input_path}/{wildcards.sample}*.f*q.gz {output.read}")
             
     rule trim:
         input:

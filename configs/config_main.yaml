@@ -80,7 +80,8 @@ TREAT: ["Dexamethasone"]
 
 FILTER:
   yesOrNo: FALSE  # Filter out low expressed genes or not? (TRUE or FALSE) It's better to be set to TRUE. FALSE is set as default only for testing fake toy data
-  cpm: 1  # if yes for filter, what's the threshold of cpm?
+  cpm: 1  # if yes for filter, what's the threshold of cpm? (cpm is used when genome was used as ref)
+  tpm: 1  # if yes for filter, what's the threshold of tpm? (tpm is used when transcriptome was used as ref)
 
 ## If transcriptome was used as mapping reference in the previous quantification step, the following params need to be specifed
 
