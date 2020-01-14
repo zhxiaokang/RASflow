@@ -20,14 +20,14 @@ if reference == "transcriptome" and gene_level:
 
     rule plot:
         input:
-            dea = dea_path + "/dea_" + control + "_" + treat + ".tsv",
-            norm_control = norm_path + "/" + control + "_gene_norm.tsv",
-            norm_treat = norm_path + "/" + treat + "_gene_norm.tsv"
+            norm_path = directory(norm_path),
+            dea_path = directory(dea_path),
+            output_path = directory(output_path)
         output:
             volcano = output_path + "/volcano_plot_" + control + "_" + treat + ".pdf",
             heatmap = output_path + "/heatmap_" + control + "_" + treat + ".pdf"
         shell:
-            "Rscript scripts/visualize.R"
+            "Rscript scripts/visualize.R {input.norm_path} {input.dea_path} {input.output_path}"
 
 elif reference == "genome":
     norm_path = config["FINALOUTPUT"] + "/" + config["PROJECT"] + "/genome/dea/countGroup"
@@ -41,14 +41,14 @@ elif reference == "genome":
 
     rule plot:
         input:
-            dea = dea_path + "/dea_" + control + "_" + treat + ".tsv",
-            norm_control = norm_path + "/" + control + "_norm.tsv",
-            norm_treat = norm_path + "/" + treat + "_norm.tsv"
+            norm_path = directory(norm_path),
+            dea_path = directory(dea_path),
+            output_path = directory(output_path)
         output:
             volcano = output_path + "/volcano_plot_" + control + "_" + treat + ".pdf",
             heatmap = output_path + "/heatmap_" + control + "_" + treat + ".pdf"
         shell:
-            "Rscript scripts/visualize.R"
+            "Rscript scripts/visualize.R {input.norm_path} {input.dea_path} {input.output_path}"
     
 
 

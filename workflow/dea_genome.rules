@@ -12,7 +12,7 @@ treat = config["TREAT"][0]
 
 rule all:
     input:
-        normControl = output_path + "/countGroup/" + control + "_norm.tsv",
+        normControl = output_path + "/countGroup/" + control + "_gene_norm.tsv",
         dea = output_path + "/DEA/" + "dea_" + control + "_" + treat + ".tsv"
 
 rule combineSamples:
@@ -30,8 +30,8 @@ rule DEA:
     input:
         groupCount = expand(output_path + "/countGroup/{group}_count.tsv", group = groups)
     output:
-        normControl = output_path + "/countGroup/" + control + "_norm.tsv",
-        normTreat = output_path + "/countGroup/" + treat + "_norm.tsv",
+        normControl = output_path + "/countGroup/" + control + "_gene_norm.tsv",
+        normTreat = output_path + "/countGroup/" + treat + "_gene_norm.tsv",
         dea = output_path + "/DEA/" + "dea_" + control + "_" + treat + ".tsv", 
         deg = output_path + "/DEA/" + "deg_" + control + "_" + treat + ".tsv"
     shell:

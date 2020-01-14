@@ -11,11 +11,14 @@ library(plotscale)
 yaml.file <- yaml.load_file('configs/config_main.yaml')
 
 # extract the information from the yaml file
-dea.path <- yaml.file$DEAPATH
-norm.path <- yaml.file$NORMPATH
 controls <- yaml.file$CONTROL
 treats <- yaml.file$TREAT
-out.path <- yaml.file$OUTPATH
+
+# passing the params from command line
+args <- commandArgs(TRUE)
+norm.path <- args[1]
+dea.path <- args[2]
+out.path <- args[3]
 
 # check the number of comparisons
 num.control <- length(controls)  # number of comparisons that the user wants to do
@@ -32,8 +35,8 @@ num.comparison <- num.control
 # function to plot volcano plot and heatmap
 plot.volcano.heatmap <- function(name.control, name.treat) {
   file.dea.table <- paste(dea.path, "/dea_", name.control, "_", name.treat, ".tsv", sep = "")
-  norm.control <- paste(norm.path, "/", name.control, "_norm.tsv", sep = "")  # normalized table of control
-  norm.treat <- paste(norm.path, "/", name.treat, "_norm.tsv", sep = "")  # normalized table of treat
+  norm.control <- paste(norm.path, "/", name.control, "_gene_norm.tsv", sep = "")  # normalized table of control
+  norm.treat <- paste(norm.path, "/", name.treat, "_gene_norm.tsv", sep = "")  # normalized table of treat
 
   dea.table <- read.table(file.dea.table, header = TRUE, row.names = 1)
   # sort the dea table: ascending of FDR then descending of absolute valued of logFC
