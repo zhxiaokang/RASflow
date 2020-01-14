@@ -16,7 +16,7 @@ print("Is quality control required?\n", qc)
 
 ## Do you need to do trimming?
 trim = config["TRIMMED"]
-print("Is trimming requred?\n", trim)
+print("Is trimming required?\n", trim)
 
 ## Which mapping reference do you want to use? Genome or transcriptome?
 reference = config["REFERENCE"]
@@ -24,11 +24,11 @@ print("Which mapping reference will be used?\n", reference)
 
 ## Do you want to do Differential Expression Analysis (DEA)?
 dea = config["DEA"]
-print("Is DEA requred?\n", dea)
+print("Is DEA required?\n", dea)
 
 ## Do you want to visualize the results of DEA?
 visualize = config["VISUALIZE"]
-print("Is visualization requred?\n", visualize)
+print("Is visualization required?\n", visualize)
 
 # Double check with the user about the requested sub-workflows to be run
 print("Please double check the information above\nDo you want to continue? (y/n)")
