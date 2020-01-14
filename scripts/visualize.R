@@ -1,6 +1,7 @@
 # load the libraries
 if (!require("plotscale")) install.packages('scripts/plotscale_0.1.6.tar.gz', repos = NULL, type="source")
 library(yaml)
+library(hash)
 library(mygene)
 library(EnhancedVolcano)
 library(plotscale)
@@ -44,14 +45,26 @@ plot.volcano.heatmap <- function(name.control, name.treat) {
 
   gene.id.dea <- row.names(dea.table)
 
-  gene.symbol.dea <- queryMany(gene.id.dea, scopes = 'ensembl.gene', fields = 'symbol')$symbol
-
-  # if can't find a symbol for the id, then keep the id as it is
-  gene.dea <- gene.symbol.dea
-  for (i in c(1:length(gene.dea))) {
-    if (is.na(gene.dea[i])) {
-      gene.dea[i] <- gene.id.dea[i]
+  gene.symbol.dea.all <- queryMany(gene.id.dea, scopes = 'ensembl.gene', fields = 'symbol')
+  
+  h <- hash()
+  for (i in 1:nrow(gene.symbol.dea.all)) {
+    query <- gene.symbol.dea.all$query[i]
+    symbol <- gene.symbol.dea.all$symbol[i]
+    if (has.key(query, h)) {  # if there's duplicate for the same query
+      h[[query]] <- paste(hash::values(h, keys = query), symbol, sep = ', ')
+    } else {
+      if (is.na(symbol)) {  # if there's no hit for the query, keep the original id
+        h[[query]] <- query
+      } else {
+        h[[query]] <- symbol
+      }
     }
+  }
+  
+  gene.dea <- gene.id.dea
+  for (i in c(1:length(gene.dea))) {
+    gene.dea[i] <- h[[gene.id.dea[i]]]
   }
 
   # volcano plot
