@@ -43,7 +43,7 @@ rule indexGenome:
     input:
         genome = config["GENOME"]
     output:
-        indexes = expand(intermediate_path + "/indexes/index.{index}.ht2", index = indexes),
+        indexes = expand(intermediate_path + "/indexes/index.{index}.ht2*", index = indexes),
         splicesites = intermediate_path + "/splicesites.txt"
     params:
         index = intermediate_path + "/indexes/index"
@@ -54,7 +54,7 @@ rule indexGenome:
 if end == "pair":
     rule alignment:
         input:
-            index = expand(intermediate_path + "/indexes/index.{index}.ht2", index = indexes),
+            index = expand(intermediate_path + "/indexes/index.{index}.ht2*", index = indexes),
             splicesites = intermediate_path + "/splicesites.txt",
             forward = intermediate_path + "/reads/{sample}_forward.fastq.gz",
             reverse = intermediate_path + "/reads/{sample}_reverse.fastq.gz"
@@ -71,7 +71,7 @@ if end == "pair":
 else:
     rule alignment:
         input:
-            index = expand(intermediate_path + "/indexes/index.{index}.ht2", index = indexes),
+            index = expand(intermediate_path + "/indexes/index.{index}.ht2*", index = indexes),
             splicesites = intermediate_path + "/splicesites.txt",
             forward = intermediate_path + "/reads/{sample}.fastq.gz"
         output:
