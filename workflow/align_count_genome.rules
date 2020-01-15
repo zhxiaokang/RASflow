@@ -2,7 +2,6 @@ import pandas as pd
 configfile: "configs/config_main.yaml"
 
 samples = pd.read_csv(config["METAFILE"], sep = '\t', header = 0)['sample']
-indexes = list(range(1, 9))
 trimmed = config["TRIMMED"]
 if trimmed:
     input_path = config["OUTPUTPATH"] + "/trim"
@@ -43,18 +42,18 @@ rule indexGenome:
     input:
         genome = config["GENOME"]
     output:
-        indexes = expand(intermediate_path + "/indexes/index.{index}.ht2*", index = indexes),
+        indexes = directory(intermediate_path + "/indexes"),
         splicesites = intermediate_path + "/splicesites.txt"
     params:
         index = intermediate_path + "/indexes/index"
     shell:
-        "hisat2-build -p {config[NCORE]} {input.genome} {params.index}"
+        "mkdir {output.indexes} && hisat2-build -p {config[NCORE]} {input.genome} {params.index}"
         "&& hisat2_extract_splice_sites.py {config[ANNOTATION]} > {output.splicesites}"
 
 if end == "pair":
     rule alignment:
         input:
-            index = expand(intermediate_path + "/indexes/index.{index}.ht2*", index = indexes),
+            indexes = directory(intermediate_path + "/indexes"),
             splicesites = intermediate_path + "/splicesites.txt",
             forward = intermediate_path + "/reads/{sample}_forward.fastq.gz",
             reverse = intermediate_path + "/reads/{sample}_reverse.fastq.gz"
@@ -71,7 +70,7 @@ if end == "pair":
 else:
     rule alignment:
         input:
-            index = expand(intermediate_path + "/indexes/index.{index}.ht2*", index = indexes),
+            indexes = directory(intermediate_path + "/indexes"),
             splicesites = intermediate_path + "/splicesites.txt",
             forward = intermediate_path + "/reads/{sample}.fastq.gz"
         output:
