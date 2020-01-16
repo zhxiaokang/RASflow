@@ -62,10 +62,13 @@ ANNOTATION: data/example/ref/annotation/Homo_sapiens.GRCh38.93.1.1.10M.gtf
 ATTRIBUTE: gene_id  # the attribute used in annotation file. It's usually "gene_id", but double check that since it may also be "gene", "ID"...
 
 ## aligner
-ALIGNER: hisat2 
+ALIGNER: hisat2
 
 ## tool for feature count
 COUNTER: featureCounts  # default is "featureCounts", or you may want to use "htseq-count"
+
+## alignment quality control
+alignmentQC: no  # "yes" or "no" to specify whether you want to do alignment QC
 
 # ================== Configuration for DEA ==================
 

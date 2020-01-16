@@ -11,6 +11,7 @@ key = config["KEY"]
 end = config["END"]
 intermediate_path = config["OUTPUTPATH"] + "/" + config["PROJECT"] + "/genome"
 final_path = config["FINALOUTPUT"] + "/" + config["PROJECT"] + "/genome"
+alignmentQC = config["alignmentQC"]
 
 rule end:
     input:
@@ -92,14 +93,6 @@ rule sortBAM:
     shell:
         "samtools sort -@ {config[NCORE]} {input.bam} -o {output.sort}"
 
-rule alignmentQC:
-    input:
-        sort = intermediate_path + "/bamFileSort/{sample}.sort.bam"
-    output:
-        bamqc = directory(final_path + "/alignmentQC/{sample}_BAMqc")
-    shell:
-        "qualimap bamqc -bam {input.sort} -nt {config[NCORE]} --java-mem-size=4G -outdir {output.bamqc}"
-
 rule featureCount:
     input:
         sort = intermediate_path + "/bamFileSort/{sample}.sort.bam",
@@ -116,11 +109,28 @@ rule featureCount:
         elif config["COUNTER"]=="htseq-count":
             shell("htseq-count -f bam -i {config[ATTRIBUTE]} -s no -t exon {input.sort} {input.annotation} | sed '/^__/ d' > {output.count}")
 
-rule summaryReport:
-    input:
-        bamqc = expand(final_path + "/alignmentQC/{sample}_BAMqc", sample = samples),
-        count_summary = expand(final_path + "/countFile/{sample}_count.tsv.summary", sample = samples)
-    output:
-        report = final_path + "/report_align_count.html"
-    shell:
-        "multiqc {input.bamqc} {input.count_summary} --filename {output.report}"
+if alignmentQC:
+    rule alignmentQC:
+        input:
+            sort = intermediate_path + "/bamFileSort/{sample}.sort.bam"
+        output:
+            bamqc = directory(final_path + "/alignmentQC/{sample}_BAMqc")
+        shell:
+            "qualimap bamqc -bam {input.sort} -nt {config[NCORE]} --java-mem-size=6G -outdir {output.bamqc}"
+
+    rule summaryReport:
+        input:
+            bamqc = expand(final_path + "/alignmentQC/{sample}_BAMqc", sample = samples),
+            count_summary = expand(final_path + "/countFile/{sample}_count.tsv.summary", sample = samples)
+        output:
+            report = final_path + "/report_align_count.html"
+        shell:
+            "multiqc {input.bamqc} {input.count_summary} --filename {output.report}"
+else:
+    rule summaryReport:
+        input:
+            count_summary = expand(final_path + "/countFile/{sample}_count.tsv.summary", sample = samples)
+        output:
+            report = final_path + "/report_align_count.html"
+        shell:
+            "multiqc {input.count_summary} --filename {output.report}"
