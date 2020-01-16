@@ -15,12 +15,14 @@ rule end:
 
 rule plot:
     input:
-        dea = dea_path + "/dea_" + control + "_" + treat + ".tsv",
-        norm_control = norm_path + "/" + control + "_norm.tsv",
-        norm_treat = norm_path + "/" + treat + "_norm.tsv"
+        norm_path = directory(norm_path),
+        dea_path = directory(dea_path),
+        config_file = "configs/config_visualize_test.yaml"
     output:
         volcano = output_path + "/volcano_plot_" + control + "_" + treat + ".pdf",
         heatmap = output_path + "/heatmap_" + control + "_" + treat + ".pdf"
+    params:
+        output_path = directory(output_path)
     shell:
-        "Rscript scripts/visualize.R"
+        "Rscript scripts/visualize.R {input.norm_path} {input.dea_path} {params.output_path} {input.config_file}"
 

@@ -8,18 +8,22 @@ library(plotscale)
 
 # ====================== load parameters in config file ======================
 
-# load the config file
-yaml.file <- yaml.load_file('configs/config_main.yaml')
-
-# extract the information from the yaml file
-controls <- yaml.file$CONTROL
-treats <- yaml.file$TREAT
-
 # passing the params from command line
 args <- commandArgs(TRUE)
 norm.path <- args[1]
 dea.path <- args[2]
 out.path <- args[3]
+
+# load the config file
+if (length(args) > 3) {  # this script is used in  visualize_test.rules
+    yaml.file <- yaml.load_file(args[4])
+} else {  # this script is used in visualize.rules
+    yaml.file <- yaml.load_file('configs/config_main.yaml')
+}
+
+# extract the information from the yaml file
+controls <- yaml.file$CONTROL
+treats <- yaml.file$TREAT
 
 # check the number of comparisons
 num.control <- length(controls)  # number of comparisons that the user wants to do
