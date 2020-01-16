@@ -7566,7 +7566,7 @@
         "output/test/genome/countFile/SRR1039512_count.tsv.summary",
         "output/test/genome/countFile/SRR1039513_count.tsv.summary"
     ],
-    "config_creation_date": "2020-01-14, 21:43",
+    "config_creation_date": "2020-01-16, 11:52",
     "config_git_hash": null,
     "config_intro_text": null,
     "config_report_comment": null,
