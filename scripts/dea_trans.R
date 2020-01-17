@@ -82,12 +82,26 @@ DEA <- function(control, treat, file.control, file.treat, output.path.dea) {
     write.table(dea, paste(output.path.dea, '/dea_', control, '_', treat, '.tsv', sep = ''), row.names = F, quote = FALSE, sep = '\t')
     write.table(deg, paste(output.path.dea, '/deg_', control, '_', treat, '.tsv', sep = ''), row.names = F, quote = FALSE, sep = '\t')
   } else if (dea.tool == "DESeq2") {  # use DESeq2 for DEA
+
     ## prepare txi
-    ### the original quant files from Salmon
-    files <- file.path(quant.path, samples, "quant.sf")
-    names(files) <- samples
-    ### import them as txi
-    txi <- tximport(files, type = "salmon", txOut = TRUE, countsFromAbundance = "no")
+
+    if (gene.level) {
+      ### load tx2gene
+      load(file.path(output.path, "countGroup", 'tx2gene.RData'))
+
+      files.noVersion <- file.path(quant.path, samples, "quant_noVersion.sf")
+      names(files.noVersion) <- samples
+
+      ### import quantification as txi
+      txi <- tximport(files.noVersion, type = "salmon", tx2gene = tx2gene, countsFromAbundance = "no")
+    } else {
+      ### the original quant files from Salmon
+      files <- file.path(quant.path, samples, "quant.sf")
+      names(files) <- samples
+
+      ### import quantification as txi
+      txi <- tximport(files, type = "salmon", txOut = TRUE, countsFromAbundance = "no")
+    }
 
     ## create the DESeqDataSet
     colData = data.frame(samples, subject, group)

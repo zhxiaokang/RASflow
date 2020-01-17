@@ -77,6 +77,9 @@ if (gene.level) {
 
     tx2gene <- getBM(attributes=c('ensembl_transcript_id', 'ensembl_gene_id'),
                     filters = 'ensembl_transcript_id', values = trans.id, mart = ensembl)
+    # save tx2gene
+    output.file.tx2gene <- file.path(output.path, "countGroup", 'tx2gene.RData')
+    save(tx2gene, file = output.file.tx2gene)
 }
 # ====================== get raw and normalized abundance tables ======================
 

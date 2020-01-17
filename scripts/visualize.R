@@ -51,7 +51,6 @@ plot.volcano.heatmap <- function(name.control, name.treat) {
   } else if (dea.tool == 'DESeq2') {
     dea.table <- dea.table[order(dea.table$padj, -abs(dea.table$log2FoldChange), decreasing = FALSE), ]
   }
-  
 
   gene.id.dea <- row.names(dea.table)
 
