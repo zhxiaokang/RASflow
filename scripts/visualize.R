@@ -72,9 +72,9 @@ plot.volcano.heatmap <- function(name.control, name.treat) {
   }
 
   # volcano plot
-  fig.volcano <- EnhancedVolcano(dea.table, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'logFC', y = 'FDR', pCutoff = 10e-5,
+  fig.volcano <- EnhancedVolcano(dea.table, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'logFC', y = 'FDR', pCutoff = 10e-5, col = c("grey30", "yellow3", "royalblue", "red2"),
                                  FCcutoff = 1, xlim = c(-5, 5), ylim = c(0, 10), transcriptPointSize = 1.5, title = 'Volcano plot for DEA', subtitle = NULL)
-  as.pdf(fig.volcano, width = 8, height = 5, scaled = TRUE, file = file.path(out.path, paste('volcano_plot_', name.control, '_', name.treat, '.pdf', sep = '')))
+  as.pdf(fig.volcano, width = 9, height = 6, scaled = TRUE, file = file.path(out.path, paste('volcano_plot_', name.control, '_', name.treat, '.pdf', sep = '')))
 
   # heatmap
   norm.table.control <- read.table(norm.control, header = TRUE, row.names = 1)
@@ -86,8 +86,8 @@ plot.volcano.heatmap <- function(name.control, name.treat) {
   norm.table <- cbind(norm.table.control, norm.table.treat)
   groups <- c(name.control, name.treat)
 
-  # instead using all genes, only use the top 50 genes in dea.table
-  index.deg <- which(row.names(norm.table) %in% gene.id.dea[1:50])
+  # instead using all genes, only use the top 20 genes in dea.table
+  index.deg <- which(row.names(norm.table) %in% gene.id.dea[1:20])
   norm.table.deg <- norm.table[index.deg,]
 
   gene.id.norm.table <- rownames(norm.table.deg)
@@ -102,14 +102,14 @@ plot.volcano.heatmap <- function(name.control, name.treat) {
     }
   }
 
-  palette <- c("#4DAF4A", "#377EB8")
+  palette <- c("#999999", "#377EB8")
   palette.group <- c(rep(palette[1], num.control), rep(palette[2], num.treat))
 
   ## draw heatmap
   pdf(file = file.path(out.path, paste('heatmap_', name.control, '_', name.treat, '.pdf', sep = '')), width = 15, height = 12, title = 'Heatmap using the top features')
-  heatmap(as.matrix(norm.table.deg), ColSideColors = palette.group, margins = c(8,5), labRow = gene.norm.table)
-  legend("topleft", title = 'Group', legend=groups, text.font = 2,
-         col = palette, fill = palette, cex=0.8)
+  heatmap(as.matrix(norm.table.deg), ColSideColors = palette.group, margins = c(9,5.5), labRow = gene.norm.table, cexRow = 1.9, cexCol = 1.9)
+  legend("topleft", title = 'Group', legend=groups, text.font = 15,
+         col = palette, fill = palette, cex=1.8)
   dev.off()
 }
 
