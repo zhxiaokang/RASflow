@@ -14,7 +14,7 @@
     "mapping_type": "mapping",
     "num_valid_targets": 1109,
     "num_decoy_targets": 0,
-    "num_eq_classes": 1184,
+    "num_eq_classes": 1197,
     "serialized_eq_classes": false,
     "eq_class_properties": [
         "range_factorized"
@@ -31,14 +31,14 @@
     "index_seq_hash512": "6f8d65decd695d1c09609e74502d53a0bc8f561dbf96b0a76f629e6b13821a641c37d80b3c16a08fbf7bde12003fc18a0ff9fbeb6bd4c416c63af5f875a441d3",
     "index_name_hash512": "89477ee3bf1ff96baf3520bc858268121bb5439b2eff064c1e46a3a31db09a1508b952f4b4d0ef44b947e299ac3746f43531c36b98b1589fb2001b27fb52a0fc",
     "num_bootstraps": 0,
-    "num_processed": 48077,
-    "num_mapped": 42068,
+    "num_processed": 48216,
+    "num_mapped": 42163,
     "num_decoy_fragments": 0,
     "num_dovetail_fragments": 33,
-    "num_fragments_filtered_vm": 947,
-    "num_alignments_below_threshold_for_mapped_fragments_vm": 755,
-    "percent_mapped": 87.50129999792,
+    "num_fragments_filtered_vm": 990,
+    "num_alignments_below_threshold_for_mapped_fragments_vm": 843,
+    "percent_mapped": 87.44607599137217,
     "call": "quant",
-    "start_time": "Wed Jan  8 21:35:45 2020",
-    "end_time": "Wed Jan  8 21:35:45 2020"
+    "start_time": "Fri Jan 17 11:20:23 2020",
+    "end_time": "Fri Jan 17 11:20:24 2020"
 }

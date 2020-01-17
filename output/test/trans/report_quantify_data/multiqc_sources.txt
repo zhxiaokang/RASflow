@@ -1,5 +1,5 @@
 Module	Section	Sample Name	Source
-Salmon	all_sections	SRR1039508	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/output/test/trans/quant/SRR1039508/libParams/flenDist.txt
-Salmon	all_sections	SRR1039509	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/output/test/trans/quant/SRR1039509/libParams/flenDist.txt
-Salmon	all_sections	SRR1039512	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/output/test/trans/quant/SRR1039512/libParams/flenDist.txt
-Salmon	all_sections	SRR1039513	/Users/xzh004/Desktop/research/paper_writing/RASflow/revise/RASflow/output/test/trans/quant/SRR1039513/libParams/flenDist.txt
+Salmon	all_sections	SRR1039508	/Users/xzh004/GitHub/RASflow/output/test/trans/quant/SRR1039508/libParams/flenDist.txt
+Salmon	all_sections	SRR1039509	/Users/xzh004/GitHub/RASflow/output/test/trans/quant/SRR1039509/libParams/flenDist.txt
+Salmon	all_sections	SRR1039512	/Users/xzh004/GitHub/RASflow/output/test/trans/quant/SRR1039512/libParams/flenDist.txt
+Salmon	all_sections	SRR1039513	/Users/xzh004/GitHub/RASflow/output/test/trans/quant/SRR1039513/libParams/flenDist.txt
