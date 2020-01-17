@@ -14,8 +14,10 @@ treat = config["TREAT"][0]
 if gene_level:
     rule end:
         input:
-            degTrans = output_path + "/DEA/transcript-level/" + "deg_" + control + "_" + treat + ".tsv",
-            degGene = output_path + "/DEA/gene-level/" + "deg_" + control + "_" + treat + ".tsv"
+            deaTrans_edger = output_path + "/DEA/transcript-level/" + "dea_" + control + "_" + treat + "_edgeR.tsv", 
+            deaGene_edger = output_path + "/DEA/gene-level/" + "dea_" + control + "_" + treat + "_edgeR.tsv", 
+            deaTrans = output_path + "/DEA/transcript-level/" + "dea_" + control + "_" + treat + "_DESeq2.tsv", 
+            deaGene = output_path + "/DEA/gene-level/" + "dea_" + control + "_" + treat + "_DESeq2.tsv"
 
     rule combineSamples:
         input:
@@ -32,17 +34,18 @@ if gene_level:
             groupCountTrans = expand(output_path + "/countGroup/{group}_trans_norm.tsv", group = groups),
             groupCountGene = expand(output_path + "/countGroup/{group}_gene_norm.tsv", group = groups)
         output:
-            deaTrans = output_path + "/DEA/transcript-level/" + "dea_" + control + "_" + treat + ".tsv", 
-            degTrans = output_path + "/DEA/transcript-level/" + "deg_" + control + "_" + treat + ".tsv",
-            deaGene = output_path + "/DEA/gene-level/" + "dea_" + control + "_" + treat + ".tsv", 
-            degGene = output_path + "/DEA/gene-level/" + "deg_" + control + "_" + treat + ".tsv"
+            deaTrans_edger = output_path + "/DEA/transcript-level/" + "dea_" + control + "_" + treat + "_edgeR.tsv", 
+            deaGene_edger = output_path + "/DEA/gene-level/" + "dea_" + control + "_" + treat + "_edgeR.tsv", 
+            deaTrans = output_path + "/DEA/transcript-level/" + "dea_" + control + "_" + treat + "_DESeq2.tsv", 
+            deaGene = output_path + "/DEA/gene-level/" + "dea_" + control + "_" + treat + "_DESeq2.tsv"
         shell:
             "Rscript scripts/dea_trans.R"
 
 else: 
     rule end:
         input:
-            degTrans = output_path + "/DEA/transcript-level/" + "deg_" + control + "_" + treat + ".tsv"
+            deaTrans_edger = output_path + "/DEA/transcript-level/" + "dea_" + control + "_" + treat + "_edgeR.tsv",
+            deaTrans_deseq2 = output_path + "/DEA/transcript-level/" + "dea_" + control + "_" + treat + "_DESeq2.tsv"
 
     rule combineSamples:
         input:
@@ -57,7 +60,7 @@ else:
         input:
             groupCountTrans = expand(output_path + "/countGroup/{group}_trans_norm.tsv", group = groups)
         output:
-            deaTrans = output_path + "/DEA/transcript-level/" + "dea_" + control + "_" + treat + ".tsv", 
-            degTrans = output_path + "/DEA/transcript-level/" + "deg_" + control + "_" + treat + ".tsv"
+            deaTrans_edger = output_path + "/DEA/transcript-level/" + "dea_" + control + "_" + treat + "_edgeR.tsv", 
+            deaTrans_deseq2 = output_path + "/DEA/transcript-level/" + "dea_" + control + "_" + treat + "_DESeq2.tsv"
         shell:
             "Rscript scripts/dea_trans.R"

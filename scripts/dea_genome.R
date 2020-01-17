@@ -1,5 +1,6 @@
 library(yaml)
 library(edgeR)
+library(DESeq2)
 
 # Use edgeR to do DEA
 
@@ -33,8 +34,8 @@ if (num.control != num.treat) {
 num.comparison <- num.control
 
 DEA <- function(control, treat) {
-  count.control <- read.table(paste(output.path, '/countGroup/', control, '_count.tsv', sep = ''), header = TRUE, row.names = 1)
-  count.treat <- read.table(paste(output.path, '/countGroup/', treat, '_count.tsv', sep = ''), header = TRUE, row.names = 1)
+  count.control <- read.table(paste(output.path, '/countGroup/', control, '_gene_count.tsv', sep = ''), header = TRUE, row.names = 1)
+  count.treat <- read.table(paste(output.path, '/countGroup/', treat, '_gene_count.tsv', sep = ''), header = TRUE, row.names = 1)
   count.table <- cbind(count.control, count.treat)  # merge the control and treat tables together
   
   # number of samples in control and treat groups (should be the same if it's a pair test)
@@ -106,15 +107,40 @@ DEA <- function(control, treat) {
   # the DEA result for all the genes
   # dea <- lrt$table
   toptag <- topTags(lrt, n = nrow(y$genes), p.value = 1)
-  dea <- toptag$table  # just to add one more column of FDR
+  dea.edger <- toptag$table  # just to add one more column of FDR
   
   # differentially expressed genes
   toptag <- topTags(lrt, n = nrow(y$genes), p.value = 0.05)
-  deg <- toptag$table
+  deg.edger <- toptag$table
   
   # save the DEA result and DEGs to files
-  write.table(dea, paste(output.path, '/DEA/dea_', control, '_', treat, '.tsv', sep = ''), row.names = F, quote = FALSE, sep = '\t')
-  write.table(deg, paste(output.path, '/DEA/deg_', control, '_', treat, '.tsv', sep = ''), row.names = F, quote = FALSE, sep = '\t') 
+  write.table(dea.edger, paste(output.path, '/DEA/dea_', control, '_', treat, '_edgeR.tsv', sep = ''), row.names = F, quote = FALSE, sep = '\t')
+  write.table(deg.edger, paste(output.path, '/DEA/deg_', control, '_', treat, '_edgeR.tsv', sep = ''), row.names = F, quote = FALSE, sep = '\t') 
+
+  # use DESeq2 for DEA
+
+  ## create the DESeqDataSet
+  colData = data.frame(samples, subject, group)
+  dds <- DESeqDataSetFromMatrix(count.table, colData = colData, design = design)
+
+  ## filtering
+  keep <- rowSums(counts(dds)) >= 10
+  dds <- dds[keep,]
+  
+  ## specify the control group
+  dds$group <- relevel(dds$group, ref = control)
+  
+  ## perform DEA
+  dds.deseq2 <- DESeq(dds)
+  
+  ## export the results
+  res.dea <- results(dds.deseq2)
+  dea.deseq2 <- as.data.frame(res.dea)
+  deg.deseq2 <- dea.deseq2[dea.deseq2$padj < 0.05, ]
+
+  # save the DEA result and DEGs to files
+  write.table(dea.deseq2, paste(output.path, '/DEA/dea_', control, '_', treat, '_DESeq2.tsv', sep = ''), row.names = T, quote = FALSE, sep = '\t')
+  write.table(deg.deseq2, paste(output.path, '/DEA/deg_', control, '_', treat, '_DESeq2.tsv', sep = ''), row.names = T, quote = FALSE, sep = '\t')
 }
 
 # the main function

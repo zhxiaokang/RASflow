@@ -60,7 +60,7 @@ subject.all <- meta.data$subject
 files <- file.path(input.path, samples, "quant.sf")
 names(files) <- samples
 
-# get the normalized count tables for all samples (scaled up to library size ('scaledTPM'))
+# get the normalized abundance tables for all samples (scaled using the average transcript length over samples and then the library size (lengthScaledTPM))
 
 # ====================== prepare the tx2gene table ======================
 if (gene.level) {
@@ -78,13 +78,19 @@ if (gene.level) {
     tx2gene <- getBM(attributes=c('ensembl_transcript_id', 'ensembl_gene_id'),
                     filters = 'ensembl_transcript_id', values = trans.id, mart = ensembl)
 }
-# ====================== get normalized count tables ======================
+# ====================== get raw and normalized abundance tables ======================
 
-trans.matrix.tpm <- tximport(files, type = "salmon", txOut = TRUE, countsFromAbundance = "scaledTPM")
+trans.matrix <- tximport(files, type = "salmon", txOut = TRUE, countsFromAbundance = "no")
+trans.count <- trans.matrix$counts
+
+trans.matrix.tpm <- tximport(files, type = "salmon", txOut = TRUE, countsFromAbundance = "lengthScaledTPM")
 trans.count.tpm <- trans.matrix.tpm$counts
 
 if (gene.level) {
-    gene.matrix.tpm <- tximport(files.noVersion, type = "salmon", tx2gene = tx2gene, countsFromAbundance = "scaledTPM")
+    gene.matrix <- tximport(files.noVersion, type = "salmon", tx2gene = tx2gene, countsFromAbundance = "no")
+    gene.count <- gene.matrix$counts
+
+    gene.matrix.tpm <- tximport(files.noVersion, type = "salmon", tx2gene = tx2gene, countsFromAbundance = "lengthScaledTPM")
     gene.count.tpm <- gene.matrix.tpm$counts
 }
 
@@ -94,17 +100,27 @@ for (group in unique(group.all)) {
   index.group = which(group.all == group)  # all the index of this group
   samples.group = samples[index.group]  # the samples belonging to this group
   
-  group.count.trans <- trans.count.tpm[, index.group]
+  group.count.trans <- trans.count[, index.group]
+  group.count.trans.tpm <- trans.count.tpm[, index.group]
+
   if (gene.level) {
-    group.count.gene <- gene.count.tpm[, index.group]
+    group.count.gene <- gene.count[, index.group]
+    group.count.gene.tpm <- gene.count.tpm[, index.group]
   }
 
   # write to files
-  output.file.trans <- file.path(output.path, "countGroup", paste(group, "_trans_norm.tsv", sep = ""))
+  output.file.trans <- file.path(output.path, "countGroup", paste(group, "_trans_abundance.tsv", sep = ""))
   write.table(group.count.trans, output.file.trans, sep = '\t', quote = FALSE, row.names = TRUE, col.names = TRUE)
+
+  output.file.trans.norm <- file.path(output.path, "countGroup", paste(group, "_trans_norm.tsv", sep = ""))
+  write.table(group.count.trans.tpm, output.file.trans.norm, sep = '\t', quote = FALSE, row.names = TRUE, col.names = TRUE)
+
   if (gene.level) {
-    output.file.gene <- file.path(output.path, "countGroup", paste(group, "_gene_norm.tsv", sep = ""))
+    output.file.gene <- file.path(output.path, "countGroup", paste(group, "_gene_abundance.tsv", sep = ""))
     write.table(group.count.gene, output.file.gene, sep = '\t', quote = FALSE, row.names = TRUE, col.names = TRUE)
+
+    output.file.gene.norm <- file.path(output.path, "countGroup", paste(group, "_gene_norm.tsv", sep = ""))
+    write.table(group.count.gene.tpm, output.file.gene.norm, sep = '\t', quote = FALSE, row.names = TRUE, col.names = TRUE)
   }
 }
 

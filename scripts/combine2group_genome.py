@@ -45,7 +45,7 @@ def combine_group(name_group, id_list):
         group_count["sample_" + str(sample)] = np.array(pd.read_table(input_path + "/" + str(sample) + "_count.tsv", header = None))[:, 1]
     
     # write to file
-    group_count.to_csv(output_path + "/countGroup/" + str(name_group) + "_count.tsv", sep = "\t", header = True, index = False)
+    group_count.to_csv(output_path + "/countGroup/" + str(name_group) + "_gene_count.tsv", sep = "\t", header = True, index = False)
 
 def get_id_list():
 
