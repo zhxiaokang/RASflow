@@ -5,7 +5,7 @@ key = config["KEY"]
 input_path = config["READSPATH"]
 samples = pd.read_csv(config["METAFILE"], sep = '\t', header = 0)['sample']
 end = config["END"]
-intermediate_path = config["OUTPUTPATH"] + "/trim"
+intermediate_path = config["OUTPUTPATH"] + "/" + config["PROJECT"] + "/trim"
 final_path = config["FINALOUTPUT"] + "/" + config["PROJECT"]
 
 def trimFiles(wildcards):
