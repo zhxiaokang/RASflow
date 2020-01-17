@@ -22,95 +22,96 @@ DEA <- function(control, treat, file.control, file.treat, output.path.dea) {
   
   # get the sample id
   samples <- colnames(count.table)
-  
-  # Put the data into a DGEList object
-  y <- DGEList(counts = count.table, genes = gene.list)
-  
-  # Filtering
-  if (filter.need) {
-    countsPerMillion <- cpm(y)
-    countCheck <- countsPerMillion > cpm.threshold
-    keep <- which(rowSums(countCheck) > 1)
-    y <- y[keep, ]
-  }
-  
-  # Normalization
-  y <- calcNormFactors(y, method="TMM")
-  
-  # Do DEA !!!
+
   # define the group
   subject <- factor(subject.all[c(which(group.all == control), which(group.all == treat))])
   group <- factor(group.all[c(which(group.all == control), which(group.all == treat))])
-  
-  y$samples$subject <- subject
-  y$samples$group <- group
-  
+
   # The design matrix
   if (pair.test) {
     design <- model.matrix(~subject+group)
   } else {
     design <- model.matrix(~group)
   }
-  rownames(design) <- colnames(y)
-  
-  # Estimating the dispersion
-  
-  # estimate the NB dispersion for the dataset
-  y <- estimateDisp(y, design, robust = TRUE)
-  
-  # Differential expression
-  
-  # determine differentially expressed genes
-  # fit genewise glms
-  fit <- glmFit(y, design)
-  
-  # conduct likelihood ratio tests for tumour vs normal tissue differences and show the top genes
-  lrt <- glmLRT(fit)
-  
-  # the DEA result for all the genes
-  # dea <- lrt$table
-  toptag <- topTags(lrt, n = nrow(y$genes), p.value = 1)
-  dea.edger <- toptag$table  # just to add one more column of FDR
-  
-  # differentially expressed genes
-  toptag <- topTags(lrt, n = nrow(y$genes), p.value = 0.05)
-  deg.edger <- toptag$table
-  
-  # save the DEA result and DEGs to files
-  write.table(dea.edger, paste(output.path.dea, '/dea_', control, '_', treat, '_edgeR.tsv', sep = ''), row.names = F, quote = FALSE, sep = '\t')
-  write.table(deg.edger, paste(output.path.dea, '/deg_', control, '_', treat, '_edgeR.tsv', sep = ''), row.names = F, quote = FALSE, sep = '\t')
 
-  # use DESeq2 for DEA
-  
-  ## prepare txi
-  ### the original quant files from Salmon
-  files <- file.path(quant.path, samples, "quant.sf")
-  names(files) <- samples
-  ### import them as txi
-  txi <- tximport(files, type = "salmon", txOut = TRUE, countsFromAbundance = "no")
+  if (dea.tool == 'edgeR') {  # use edgeR for DEA
+    # Put the data into a DGEList object
+    y <- DGEList(counts = count.table, genes = gene.list)
+    
+    # Filtering
+    if (filter.need) {
+      countsPerMillion <- cpm(y)
+      countCheck <- countsPerMillion > cpm.threshold
+      keep <- which(rowSums(countCheck) > 1)
+      y <- y[keep, ]
+    }
+    
+    # Normalization
+    y <- calcNormFactors(y, method="TMM")
 
-  ## create the DESeqDataSet
-  colData = data.frame(samples, subject, group)
-  dds <- DESeqDataSetFromTximport(txi, colData = colData, design = design)
+    y$samples$subject <- subject
+    y$samples$group <- group
+    
+    
+    rownames(design) <- colnames(y)
+    
+    # Estimating the dispersion
+    
+    # estimate the NB dispersion for the dataset
+    y <- estimateDisp(y, design, robust = TRUE)
+    
+    # Differential expression
+    
+    # determine differentially expressed genes
+    # fit genewise glms
+    fit <- glmFit(y, design)
+    
+    # conduct likelihood ratio tests for tumour vs normal tissue differences and show the top genes
+    lrt <- glmLRT(fit)
+    
+    # the DEA result for all the genes
+    # dea <- lrt$table
+    toptag <- topTags(lrt, n = nrow(y$genes), p.value = 1)
+    dea <- toptag$table  # just to add one more column of FDR
+    
+    # differentially expressed genes
+    toptag <- topTags(lrt, n = nrow(y$genes), p.value = 0.05)
+    deg <- toptag$table
+    
+    # save the DEA result and DEGs to files
+    write.table(dea, paste(output.path.dea, '/dea_', control, '_', treat, '.tsv', sep = ''), row.names = F, quote = FALSE, sep = '\t')
+    write.table(deg, paste(output.path.dea, '/deg_', control, '_', treat, '.tsv', sep = ''), row.names = F, quote = FALSE, sep = '\t')
+  } else if (dea.tool == "DESeq2") {  # use DESeq2 for DEA
+    ## prepare txi
+    ### the original quant files from Salmon
+    files <- file.path(quant.path, samples, "quant.sf")
+    names(files) <- samples
+    ### import them as txi
+    txi <- tximport(files, type = "salmon", txOut = TRUE, countsFromAbundance = "no")
 
-  ## filtering
-  keep <- rowSums(counts(dds)) >= 10
-  dds <- dds[keep,]
-  
-  ## specify the control group
-  dds$group <- relevel(dds$group, ref = control)
-  
-  ## perform DEA
-  dds.deseq2 <- DESeq(dds)
-  
-  ## export the results
-  res.dea <- results(dds.deseq2)
-  dea.deseq2 <- as.data.frame(res.dea)
-  deg.deseq2 <- dea.deseq2[dea.deseq2$padj < 0.05, ]
+    ## create the DESeqDataSet
+    colData = data.frame(samples, subject, group)
+    dds <- DESeqDataSetFromTximport(txi, colData = colData, design = design)
 
-  # save the DEA result and DEGs to files
-  write.table(dea.deseq2, paste(output.path.dea, '/dea_', control, '_', treat, '_DESeq2.tsv', sep = ''), row.names = T, quote = FALSE, sep = '\t')
-  write.table(deg.deseq2, paste(output.path.dea, '/deg_', control, '_', treat, '_DESeq2.tsv', sep = ''), row.names = T, quote = FALSE, sep = '\t')
+    ## filtering
+    keep <- rowSums(counts(dds)) >= 10
+    dds <- dds[keep,]
+    
+    ## specify the control group
+    dds$group <- relevel(dds$group, ref = control)
+    
+    ## perform DEA
+    dds <- DESeq(dds)
+    
+    ## export the results
+    res.dea <- results(dds)
+    dea <- as.data.frame(res.dea)
+    deg <- dea[dea$padj < 0.05, ]
+
+    # save the DEA result and DEGs to files
+    write.table(dea, paste(output.path.dea, '/dea_', control, '_', treat, '.tsv', sep = ''), row.names = T, quote = FALSE, sep = '\t')
+    write.table(deg, paste(output.path.dea, '/deg_', control, '_', treat, '.tsv', sep = ''), row.names = T, quote = FALSE, sep = '\t')
+  }
 }
 
 # ====================== load parameters in config file ======================
@@ -120,6 +121,7 @@ yaml.file <- yaml.load_file('configs/config_main.yaml')
 
 # extract the information from the yaml file
 project <- yaml.file$PROJECT  # project name
+dea.tool <- yaml.file$DEATOOL  # tool used for DEA
 quant.path <- file.path(yaml.file$FINALOUTPUT, project, "trans/quant")
 gene.level <- yaml.file$GENE_LEVEL  # whether to do gene-level analysis
 controls <- yaml.file$CONTROL  # all groups used as control

@@ -12,13 +12,13 @@ QC: no  # "yes" or "no"
 TRIMMED: no  # "yes" or "no"?
 
 ## Which mapping reference do you want to use? Genome or transcriptome?
-REFERENCE: transcriptome  # "genome" or "transcriptome"
+REFERENCE: genome  # "genome" or "transcriptome"
 
 ## Do you want to do Differential Expression Analysis (DEA)?
 DEA: yes  # "yes" or "no"
 
 ## Do you want to visualize the results of DEA?
-VISUALIZE: no  # "yes" or "no"
+VISUALIZE: yes  # "yes" or "no"
 
 # ================== Shared parameters for some or all of the sub-workflows ==================
 
@@ -71,6 +71,9 @@ COUNTER: featureCounts  # default is "featureCounts", or you may want to use "ht
 alignmentQC: no  # "yes" or "no" to specify whether you want to do alignment QC
 
 # ================== Configuration for DEA ==================
+
+## Do you want to use edgeR or DESeq2 to do DEA?
+DEATOOL: DESeq2  # "edgeR" or "DESeq2"?
 
 ## Is your experiment designed in a pair-wise way?
 PAIR: FALSE  # Is this a pair test or not? ("TRUE" or "FALSE")

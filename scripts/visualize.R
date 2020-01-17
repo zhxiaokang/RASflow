@@ -24,6 +24,7 @@ if (length(args) > 3) {  # this script is used in  visualize_test.rules
 # extract the information from the yaml file
 controls <- yaml.file$CONTROL
 treats <- yaml.file$TREAT
+dea.tool <- yaml.file$DEATOOL
 
 # check the number of comparisons
 num.control <- length(controls)  # number of comparisons that the user wants to do
@@ -45,7 +46,12 @@ plot.volcano.heatmap <- function(name.control, name.treat) {
 
   dea.table <- read.table(file.dea.table, header = TRUE, row.names = 1)
   # sort the dea table: ascending of FDR then descending of absolute valued of logFC
-  dea.table <- dea.table[order(dea.table$FDR, -abs(dea.table$logFC), decreasing = FALSE), ]
+  if (dea.tool == 'edgeR') {
+    dea.table <- dea.table[order(dea.table$FDR, -abs(dea.table$logFC), decreasing = FALSE), ]  
+  } else if (dea.tool == 'DESeq2') {
+    dea.table <- dea.table[order(dea.table$padj, -abs(dea.table$log2FoldChange), decreasing = FALSE), ]
+  }
+  
 
   gene.id.dea <- row.names(dea.table)
 
@@ -72,8 +78,14 @@ plot.volcano.heatmap <- function(name.control, name.treat) {
   }
 
   # volcano plot
-  fig.volcano <- EnhancedVolcano(dea.table, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'logFC', y = 'FDR', pCutoff = 10e-5, col = c("grey30", "yellow3", "royalblue", "red2"),
+  if (dea.tool == 'edgeR') {
+    fig.volcano <- EnhancedVolcano(dea.table, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'logFC', y = 'FDR', pCutoff = 10e-5, col = c("grey30", "yellow3", "royalblue", "red2"),
+                                 FCcutoff = 1, xlim = c(-5, 5), ylim = c(0, 10), transcriptPointSize = 1.5, title = 'Volcano plot for DEA', subtitle = NULL)  
+  } else if (dea.tool == 'DESeq2') {
+    fig.volcano <- EnhancedVolcano(dea.table, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'log2FoldChange', y = 'padj', pCutoff = 10e-5, col = c("grey30", "yellow3", "royalblue", "red2"),
                                  FCcutoff = 1, xlim = c(-5, 5), ylim = c(0, 10), transcriptPointSize = 1.5, title = 'Volcano plot for DEA', subtitle = NULL)
+  }
+  
   as.pdf(fig.volcano, width = 9, height = 6, scaled = TRUE, file = file.path(out.path, paste('volcano_plot_', name.control, '_', name.treat, '.pdf', sep = '')))
 
   # heatmap

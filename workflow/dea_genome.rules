@@ -13,8 +13,7 @@ treat = config["TREAT"][0]
 rule all:
     input:
         normControl = output_path + "/countGroup/" + control + "_gene_norm.tsv",
-        dea_edgeR = output_path + "/DEA/" + "dea_" + control + "_" + treat + "_edgeR.tsv",
-        dea_DESeq2 = output_path + "/DEA/" + "dea_" + control + "_" + treat + "_DESeq2.tsv"
+        dea = output_path + "/DEA/" + "dea_" + control + "_" + treat + ".tsv"
 
 rule combineSamples:
     input:
@@ -33,8 +32,8 @@ rule DEA:
     output:
         normControl = output_path + "/countGroup/" + control + "_gene_norm.tsv",
         normTreat = output_path + "/countGroup/" + treat + "_gene_norm.tsv",
-        dea_edgeR = output_path + "/DEA/" + "dea_" + control + "_" + treat + "_edgeR.tsv", 
-        dea_DESeq2 = output_path + "/DEA/" + "dea_" + control + "_" + treat + "_DESeq2.tsv"
+        dea = output_path + "/DEA/" + "dea_" + control + "_" + treat + ".tsv", 
+        deg = output_path + "/DEA/" + "deg_" + control + "_" + treat + ".tsv"
     shell:
         "Rscript scripts/dea_genome.R"
 
