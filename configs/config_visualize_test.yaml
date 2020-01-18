@@ -10,3 +10,6 @@ TREAT: ["oil_low"]
 
 # output path
 OUTPATH: data/example/dea/visualization
+
+# DEA tool
+DEATOOL: edgeR  # the example data is in format of edgeR output
