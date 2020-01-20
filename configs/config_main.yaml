@@ -73,7 +73,7 @@ alignmentQC: no  # "yes" or "no" to specify whether you want to do alignment QC
 # ================== Configuration for DEA ==================
 
 ## Do you want to use edgeR or DESeq2 to do DEA?
-DEATOOL: edgeR  # "edgeR" or "DESeq2"?
+DEATOOL: edgeR  # "edgeR" or "DESeq2"? DESeq2 is recommended for transcriptome-based quantification and DEA
 
 ## Is your experiment designed in a pair-wise way?
 PAIR: FALSE  # Is this a pair test or not? ("TRUE" or "FALSE")
