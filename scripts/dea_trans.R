@@ -41,7 +41,7 @@ DEA <- function(control, treat, file.control, file.treat, output.path.dea) {
     # Filtering
     if (filter.need) {
       countsPerMillion <- cpm(y)
-      countCheck <- countsPerMillion > cpm.threshold
+      countCheck <- countsPerMillion > 1
       keep <- which(rowSums(countCheck) > 1)
       y <- y[keep, ]
     }
@@ -107,10 +107,12 @@ DEA <- function(control, treat, file.control, file.treat, output.path.dea) {
     colData = data.frame(samples, subject, group)
     dds <- DESeqDataSetFromTximport(txi, colData = colData, design = design)
 
-    ## filtering
-    keep <- rowSums(counts(dds)) >= 10
-    dds <- dds[keep,]
-    
+    # Filtering
+    if (filter.need) {
+      keep <- rowSums(counts(dds)) >= 10
+      dds <- dds[keep,]
+    }
+
     ## specify the control group
     dds$group <- relevel(dds$group, ref = control)
     
@@ -141,7 +143,6 @@ gene.level <- yaml.file$GENE_LEVEL  # whether to do gene-level analysis
 controls <- yaml.file$CONTROL  # all groups used as control
 treats <- yaml.file$TREAT  # all groups used as treat, should correspond to control
 filter.need <- yaml.file$FILTER$yesOrNo
-cpm.threshold <- yaml.file$FILTER$cpm
 pair.test <- yaml.file$PAIR
 meta.file <- yaml.file$METAFILE
 dataset <- yaml.file$EnsemblDataSet

@@ -56,7 +56,7 @@ DEA <- function(control, treat) {
     # Filtering
     if (filter.need) {
       countsPerMillion <- cpm(y)
-      countCheck <- countsPerMillion > cpm.threshold
+      countCheck <- countsPerMillion > 1
       keep <- which(rowSums(countCheck) > 1)
       y <- y[keep, ]
     }
@@ -111,9 +111,11 @@ DEA <- function(control, treat) {
     normalized_counts.treat <- normalized_counts[, colnames(normalized_counts) == sample.treat]
     write.table(normalized_counts.treat, paste(output.path, '/countGroup/', treat, '_gene_norm.tsv', sep = ''), quote = FALSE, sep = "\t")
 
-    ## filtering
-    keep <- rowSums(counts(dds)) >= 10
-    dds <- dds[keep,]
+    ## Filtering
+    if (filter.need) {
+      keep <- rowSums(counts(dds)) >= 10
+      dds <- dds[keep,]
+    }
     
     ## specify the control group
     dds$group <- relevel(dds$group, ref = control)
@@ -141,7 +143,6 @@ dea.tool <- yaml.file$DEATOOL  # tool used for DEA
 controls <- yaml.file$CONTROL  # all groups used as control
 treats <- yaml.file$TREAT  # all groups used as treat, should correspond to control
 filter.need <- yaml.file$FILTER$yesOrNo
-cpm.threshold <- yaml.file$FILTER$cpm
 pair.test <- yaml.file$PAIR
 meta.file <- yaml.file$METAFILE
 output.path <- file.path(yaml.file$FINALOUTPUT, project, "genome/dea")

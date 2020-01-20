@@ -32,9 +32,6 @@ input.path <- file.path(yaml.file$FINALOUTPUT, project, "trans/quant")
 gene.level <- yaml.file$GENE_LEVEL
 controls <- yaml.file$CONTROL  # all groups used as control
 treats <- yaml.file$TREAT  # all groups used as treat, should correspond to control
-filter.need <- yaml.file$FILTER$yesOrNo
-cpm.threshold <- yaml.file$FILTER$cpm
-pair.test <- yaml.file$PAIR
 meta.file <- yaml.file$METAFILE
 dataset <- yaml.file$EnsemblDataSet
 output.path <- file.path(yaml.file$FINALOUTPUT, project, "trans/dea")

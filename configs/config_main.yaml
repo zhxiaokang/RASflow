@@ -73,7 +73,7 @@ alignmentQC: no  # "yes" or "no" to specify whether you want to do alignment QC
 # ================== Configuration for DEA ==================
 
 ## Do you want to use edgeR or DESeq2 to do DEA?
-DEATOOL: edgeR  # "edgeR" or "DESeq2"? DESeq2 is recommended for transcriptome-based quantification and DEA
+DEATOOL: edgeR  # "edgeR" or "DESeq2"? DESeq2 is recommended for transcriptome-based and DEA
 
 ## Is your experiment designed in a pair-wise way?
 PAIR: FALSE  # Is this a pair test or not? ("TRUE" or "FALSE")
@@ -85,8 +85,7 @@ TREAT: ["Dexamethasone"]
 ## what you fill in there should agree with the "group" column in metadata.tsv
 
 FILTER:
-  yesOrNo: FALSE  # Filter out low expressed genes or not? (TRUE or FALSE) It's better to be set to TRUE. FALSE is set as default only for testing fake toy data
-  cpm: 1  # if yes for filter, what's the threshold of cpm?
+  yesOrNo: FALSE  # Filter out low expressed transcripts/genes or not? (TRUE or FALSE) It's better to be set to TRUE. FALSE is set as default only for testing fake toy data
 
 ## If transcriptome was used as mapping reference in the previous quantification step, the following params need to be specifed
 
