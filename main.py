@@ -47,8 +47,13 @@ file_log_time.write("\nProject name: " + project + "\n")
 file_log_time.write("Start time: " + time.ctime() + "\n")
 
 def spend_time(start_time, end_time):
-    spent_time = time.strftime("%H:%M:%S", time.gmtime(end_time - start_time))
-    return spent_time
+    seconds = end_time - start_time
+    hours = seconds // 3600
+    seconds %= 3600
+    minutes = seconds // 60
+    seconds %= 60
+    
+    return "%d:%02d:%02d" % (hours, minutes, seconds)
 
 if qc:
     # Double check that the user really wants to do QC instead of forgetting to change the param after doing QC
