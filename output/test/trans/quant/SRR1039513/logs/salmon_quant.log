@@ -1,0 +1,43 @@
+[2020-01-17 11:20:30.180] [jointLog] [info] Fragment incompatibility prior below threshold.  Incompatible fragments will be ignored.
+[2020-01-17 11:20:30.180] [jointLog] [info] Usage of --validateMappings implies use of minScoreFraction. Since not explicitly specified, it is being set to 0.65
+[2020-01-17 11:20:30.180] [jointLog] [info] Usage of --validateMappings, without --hardFilter implies use of range factorization. rangeFactorizationBins is being set to 4
+[2020-01-17 11:20:30.180] [jointLog] [info] Usage of --validateMappings implies a default consensus slack of 0.2. Setting consensusSlack to 0.2.
+[2020-01-17 11:20:30.180] [jointLog] [info] parsing read library format
+[2020-01-17 11:20:30.180] [jointLog] [info] There is 1 library.
+[2020-01-17 11:20:30.254] [jointLog] [info] Loading Quasi index
+[2020-01-17 11:20:30.254] [jointLog] [info] Loading 32-bit quasi index
+[2020-01-17 11:20:30.287] [jointLog] [info] done
+[2020-01-17 11:20:30.287] [jointLog] [info] Index contained 1,109 targets
+[2020-01-17 11:20:30.838] [fileLog] [info] 
+At end of round 0
+==================
+Observed 46995 total fragments (46995 in most recent round)
+
+[2020-01-17 11:20:30.807] [jointLog] [info] Automatically detected most likely library type as IU
+[2020-01-17 11:20:30.837] [jointLog] [info] Computed 1,362 rich equivalence classes for further processing
+[2020-01-17 11:20:30.837] [jointLog] [info] Counted 40,395 total reads in the equivalence classes 
+[2020-01-17 11:20:30.861] [jointLog] [info] Number of mappings discarded because of alignment score : 1,137
+[2020-01-17 11:20:30.861] [jointLog] [info] Number of fragments entirely discarded because of alignment score : 1,116
+[2020-01-17 11:20:30.861] [jointLog] [info] Number of fragments discarded because they are best-mapped to decoys : 0
+[2020-01-17 11:20:30.861] [jointLog] [info] Number of fragments discarded because they have only dovetail (discordant) mappings : 52
+[2020-01-17 11:20:30.867] [jointLog] [warning] Only 40395 fragments were mapped, but the number of burn-in fragments was set to 5000000.
+The effective lengths have been computed using the observed mappings.
+
+[2020-01-17 11:20:30.867] [jointLog] [info] Mapping rate = 85.956%
+
+[2020-01-17 11:20:30.867] [jointLog] [info] finished quantifyLibrary()
+[2020-01-17 11:20:30.867] [jointLog] [info] Starting optimizer
+[2020-01-17 11:20:30.871] [jointLog] [info] Marked 0 weighted equivalence classes as degenerate
+[2020-01-17 11:20:30.871] [jointLog] [info] iteration = 0 | max rel diff. = 996.357
+[2020-01-17 11:20:30.874] [jointLog] [info] iteration 11, adjusting effective lengths to account for biases
+[2020-01-17 11:20:30.913] [jointLog] [info] Computed expected counts (for bias correction)
+[2020-01-17 11:20:30.914] [jointLog] [info] processed bias for 0.1% of the transcripts
+[2020-01-17 11:20:30.950] [jointLog] [info] processed bias for 10.0% of the transcripts
+[2020-01-17 11:20:30.973] [jointLog] [info] processed bias for 19.9% of the transcripts
+[2020-01-17 11:20:31.001] [jointLog] [info] processed bias for 29.8% of the transcripts
+[2020-01-17 11:20:31.024] [jointLog] [info] processed bias for 100.0% of the transcripts
+[2020-01-17 11:20:31.040] [jointLog] [info] iteration = 100 | max rel diff. = 10.0562
+[2020-01-17 11:20:31.044] [jointLog] [info] iteration = 118 | max rel diff. = 0.00554183
+[2020-01-17 11:20:31.044] [jointLog] [info] Finished optimizer
+[2020-01-17 11:20:31.044] [jointLog] [info] writing output 
+
