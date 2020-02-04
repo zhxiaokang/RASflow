@@ -87,11 +87,13 @@ DEA <- function(control, treat) {
     # dea <- lrt$table
     toptag <- topTags(lrt, n = nrow(y$genes), p.value = 1)
     dea <- toptag$table  # just to add one more column of FDR
-    
+    dea <- dea[order(dea$FDR, -abs(dea$logFC), decreasing = FALSE), ]  # sort the table: ascending of FDR then descending of absolute valued of logFC
+
     # differentially expressed genes
     toptag <- topTags(lrt, n = nrow(y$genes), p.value = 0.05)
     deg <- toptag$table
-    
+    deg <- deg[order(deg$FDR, -abs(deg$logFC), decreasing = FALSE), ]  # sort the table: ascending of FDR then descending of absolute valued of logFC
+
     # save the DEA result and DEGs to files
     write.table(dea, paste(output.path, '/DEA/dea_', control, '_', treat, '.tsv', sep = ''), row.names = F, quote = FALSE, sep = '\t')
     write.table(deg, paste(output.path, '/DEA/deg_', control, '_', treat, '.tsv', sep = ''), row.names = F, quote = FALSE, sep = '\t') 
@@ -125,8 +127,13 @@ DEA <- function(control, treat) {
     
     ## export the results
     res.dea <- results(dds)
+    res.dea <- res.dea[complete.cases(res.dea), ]  # remove any rows with NA
+
     dea <- as.data.frame(res.dea)
+    dea <- dea[order(dea$padj, -abs(dea$log2FoldChange), decreasing = FALSE), ]  # sort the table: ascending of FDR then descending of absolute valued of logFC
+    
     deg <- dea[dea$padj < 0.05, ]
+    deg <- deg[order(deg$padj, -abs(deg$log2FoldChange), decreasing = FALSE), ]  # sort the table: ascending of FDR then descending of absolute valued of logFC
 
     # save the DEA result and DEGs to files
     write.table(dea, paste(output.path, '/DEA/dea_', control, '_', treat, '.tsv', sep = ''), row.names = T, quote = FALSE, sep = '\t')
