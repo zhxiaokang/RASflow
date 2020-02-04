@@ -105,10 +105,10 @@ DEA <- function(control, treat) {
     dds <- estimateSizeFactors(dds)
     normalized_counts <- counts(dds, normalized=TRUE)
 
-    normalized_counts.control <- normalized_counts[, colnames(normalized_counts) == sample.control]
+    normalized_counts.control <- normalized_counts[, which(colnames(normalized_counts) %in% sample.control)]
     write.table(normalized_counts.control, paste(output.path, '/countGroup/', control, '_gene_norm.tsv', sep = ''), quote = FALSE, sep = "\t")
 
-    normalized_counts.treat <- normalized_counts[, colnames(normalized_counts) == sample.treat]
+    normalized_counts.treat <- normalized_counts[, which(colnames(normalized_counts) %in% sample.treat)]
     write.table(normalized_counts.treat, paste(output.path, '/countGroup/', treat, '_gene_norm.tsv', sep = ''), quote = FALSE, sep = "\t")
 
     ## Filtering
