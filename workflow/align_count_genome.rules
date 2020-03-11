@@ -4,7 +4,7 @@ configfile: "configs/config_main.yaml"
 samples = pd.read_csv(config["METAFILE"], sep = '\t', header = 0)['sample']
 trimmed = config["TRIMMED"]
 if trimmed:
-    input_path = config["OUTPUTPATH"] + "/trim"
+    input_path = config["OUTPUTPATH"] + "/" + config["PROJECT"] + "/trim"
 else:
     input_path = config["READSPATH"]
 key = config["KEY"]
