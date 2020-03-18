@@ -32,4 +32,4 @@ A more detailed tutorial of how to use this workflow can be found here: [Tutoria
 RASflow has been evaluated on 4 datasets including two model organisms (human and mouse) and a non-model organism (Atlantic cod). To keep this repository as light as possible, the evaluation of RASflow on real datasets is deposited here: [RASflow_realData](https://git.app.uib.no/Xiaokang.Zhang/rasflow_realdata)
 
 ## References
-RASflow is available as a preprint on bioRxiv: [Zhang X, Jonassen I. RASflow: An RNA-Seq Analysis Workflow with Snakemake. bioRxiv. 2019 Nov 839191.](https://www.biorxiv.org/content/10.1101/839191v1) Recently accepted by BMC Bioinformatics.
+Zhang, X., Jonassen, I. RASflow: an RNA-Seq analysis workflow with Snakemake. BMC Bioinformatics 21, 110 (2020). https://doi.org/10.1186/s12859-020-3433-x
