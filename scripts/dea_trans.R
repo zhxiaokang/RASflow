@@ -9,8 +9,8 @@ library(tximport)
 # ====================== define the function of DEA ======================
 
 DEA <- function(control, treat, file.control, file.treat, output.path.dea) {
-  count.control <- read.table(file.control, header = TRUE, row.names = 1)
-  count.treat <- read.table(file.treat, header = TRUE, row.names = 1)
+  count.control <- read.table(file.control, header = TRUE, row.names = 1, check.names = FALSE)
+  count.treat <- read.table(file.treat, header = TRUE, row.names = 1, check.names = FALSE)
   count.table <- cbind(count.control, count.treat)  # merge the control and treat tables together
   
   # number of samples in control and treat groups (should be the same if it's a pair test)
@@ -89,15 +89,24 @@ DEA <- function(control, treat, file.control, file.treat, output.path.dea) {
 
     ## prepare txi
 
-    if (gene.level) {
+    if (gene.level & gene.level.flag) {
       ### load tx2gene
       load(file.path(output.path, "countGroup", 'tx2gene.RData'))
 
-      files.noVersion <- file.path(quant.path, samples, "quant_noVersion.sf")
-      names(files.noVersion) <- samples
+      if (ENSEMBL) {
+          files.noVersion <- file.path(quant.path, samples, "quant_noVersion.sf")
+          names(files.noVersion) <- samples
 
-      ### import quantification as txi
-      txi <- tximport(files.noVersion, type = "salmon", tx2gene = tx2gene, countsFromAbundance = "no")
+          ### import quantification as txi
+          txi <- tximport(files.noVersion, type = "salmon", tx2gene = tx2gene, countsFromAbundance = "no")
+      } else {
+          ### the original quant files from Salmon
+          files <- file.path(quant.path, samples, "quant.sf")
+          names(files) <- samples
+
+          ### import quantification as txi
+          txi <- tximport(files, type = "salmon", tx2gene = tx2gene, countsFromAbundance = "no")
+      }
     } else {
       ### the original quant files from Salmon
       files <- file.path(quant.path, samples, "quant.sf")
@@ -156,6 +165,7 @@ treats <- yaml.file$TREAT  # all groups used as treat, should correspond to cont
 filter.need <- yaml.file$FILTER$yesOrNo
 pair.test <- yaml.file$PAIR
 meta.file <- yaml.file$METAFILE
+ENSEMBL <- yaml.file$ENSEMBL
 dataset <- yaml.file$EnsemblDataSet
 output.path <- file.path(yaml.file$FINALOUTPUT, project, "trans/dea")
 
@@ -187,6 +197,7 @@ for (ith.comparison in c(1:num.comparison)) {
   file.treat <- paste(output.path, '/countGroup/', treat, '_trans_abundance.tsv', sep = '')
   output.path.dea <- paste(output.path, '/DEA/transcript-level', sep = '')
   
+  gene.level.flag <- FALSE
   DEA(control, treat, file.control, file.treat, output.path.dea)
   
   # --------------------- On gene level ---------------------
@@ -195,6 +206,7 @@ for (ith.comparison in c(1:num.comparison)) {
     file.treat <- paste(output.path, '/countGroup/', treat, '_gene_abundance.tsv', sep = '')
     output.path.dea <- paste(output.path, '/DEA/gene-level', sep = '')
   
+    gene.level.flag <- TRUE
     DEA(control, treat, file.control, file.treat, output.path.dea)
   }
 }

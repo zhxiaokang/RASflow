@@ -91,8 +91,10 @@ FILTER:
 
 ## Do you need to do gene-level differential expression analysis?
 GENE_LEVEL: TRUE  # TRUE or FALSE. But if you are using De Novo assembly or not using ENSEMBL, FALSE is the only option
-## If TRUE, specify the corresponding dataset in ENSEMBL for your interested organism
+## If TRUE, specify the corresponding dataset in ENSEMBL for your interested organism or do you provide your own tx2gene
+ENSEMBL: FALSE  # TRUE or FALSE. Specify whether you're using transcriptome from Ensembl or you provide your homemade one: then you need to specify the corresponding Ensembl dataset or your tx2gene file (two columns, 1st col: transcript ID; 2nd col: gene ID)
 EnsemblDataSet: hsapiens_gene_ensembl  # search for your dataset in the file EnsemblDataSet_look_up_table.csv 
+TX2GENE: /export/jonassenfs/xiaokangz/dcod/data/genome/tx2gene_gadMor3.tsv
 
 # ================== Configuration for visualization ==================
 

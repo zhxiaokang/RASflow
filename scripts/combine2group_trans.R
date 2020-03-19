@@ -33,7 +33,9 @@ gene.level <- yaml.file$GENE_LEVEL
 controls <- yaml.file$CONTROL  # all groups used as control
 treats <- yaml.file$TREAT  # all groups used as treat, should correspond to control
 meta.file <- yaml.file$METAFILE
+ENSEMBL <- yaml.file$ENSEMBL
 dataset <- yaml.file$EnsemblDataSet
+tx2gene.file <- yaml.file$TX2GENE
 output.path <- file.path(yaml.file$FINALOUTPUT, project, "trans/dea")
 
 num.control <- length(controls)  # number of comparisons that the user wants to do
@@ -61,23 +63,28 @@ names(files) <- samples
 
 # ====================== prepare the tx2gene table ======================
 if (gene.level) {
-    ensembl <- useEnsembl(biomart = "ensembl", dataset = dataset)
-    datasets <- listDatasets(ensembl)
+    if (ENSEMBL) {
+        ensembl <- useEnsembl(biomart = "ensembl", dataset = dataset)
+        datasets <- listDatasets(ensembl)
 
-    attributes <- listAttributes(mart = ensembl)
+        attributes <- listAttributes(mart = ensembl)
 
-    # remove the version to get more matches
-    trans.id <- remove_version(files)
+        # remove the version to get more matches
+        trans.id <- remove_version(files)
 
-    files.noVersion <- file.path(input.path, samples, "quant_noVersion.sf")
-    names(files.noVersion) <- samples
+        files.noVersion <- file.path(input.path, samples, "quant_noVersion.sf")
+        names(files.noVersion) <- samples
 
-    tx2gene <- getBM(attributes=c('ensembl_transcript_id', 'ensembl_gene_id'),
-                    filters = 'ensembl_transcript_id', values = trans.id, mart = ensembl)
+        tx2gene <- getBM(attributes=c('ensembl_transcript_id', 'ensembl_gene_id'),
+                        filters = 'ensembl_transcript_id', values = trans.id, mart = ensembl)
+    } else {
+        tx2gene <- read.csv(tx2gene.file, header = FALSE, sep = "\t")
+    }
     # save tx2gene
     output.file.tx2gene <- file.path(output.path, "countGroup", 'tx2gene.RData')
     save(tx2gene, file = output.file.tx2gene)
 }
+
 # ====================== get raw and normalized abundance tables ======================
 
 trans.matrix <- tximport(files, type = "salmon", txOut = TRUE, countsFromAbundance = "no")
@@ -87,11 +94,19 @@ trans.matrix.tpm <- tximport(files, type = "salmon", txOut = TRUE, countsFromAbu
 trans.count.tpm <- trans.matrix.tpm$counts
 
 if (gene.level) {
-    gene.matrix <- tximport(files.noVersion, type = "salmon", tx2gene = tx2gene, countsFromAbundance = "no")
-    gene.count <- gene.matrix$counts
+    if (ENSEMBL) {
+        gene.matrix <- tximport(files.noVersion, type = "salmon", tx2gene = tx2gene, countsFromAbundance = "no")
+        gene.count <- gene.matrix$counts
 
-    gene.matrix.tpm <- tximport(files.noVersion, type = "salmon", tx2gene = tx2gene, countsFromAbundance = "lengthScaledTPM")
-    gene.count.tpm <- gene.matrix.tpm$counts
+        gene.matrix.tpm <- tximport(files.noVersion, type = "salmon", tx2gene = tx2gene, countsFromAbundance = "lengthScaledTPM")
+        gene.count.tpm <- gene.matrix.tpm$counts
+    } else {
+        gene.matrix <- tximport(files, type = "salmon", tx2gene = tx2gene, countsFromAbundance = "no")
+        gene.count <- gene.matrix$counts
+
+        gene.matrix.tpm <- tximport(files, type = "salmon", tx2gene = tx2gene, countsFromAbundance = "lengthScaledTPM")
+        gene.count.tpm <- gene.matrix.tpm$counts
+    }
 }
 
 # ====================== combine the samples to groups ======================
