@@ -1,0 +1,10 @@
+
+Project name: bwa
+Start time: Mon Mar 30 19:59:12 2020
+Time of running genome alignment:0:00:35
+Finish time: Mon Mar 30 19:59:47 2020
+
+Project name: bwa
+Start time: Mon Mar 30 20:02:42 2020
+Time of running genome alignment:0:05:58
+Finish time: Mon Mar 30 20:08:41 2020

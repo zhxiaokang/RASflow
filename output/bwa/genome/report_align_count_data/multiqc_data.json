@@ -1,0 +1,293 @@
+{
+    "report_data_sources": {
+        "featureCounts": {
+            "all_sections": {
+                "SRR1039508.sort": "/export/jonassenfs/xiaokangz/project/RASflow/output/bwa/genome/countFile/SRR1039508_count.tsv.summary",
+                "SRR1039509.sort": "/export/jonassenfs/xiaokangz/project/RASflow/output/bwa/genome/countFile/SRR1039509_count.tsv.summary",
+                "SRR1039512.sort": "/export/jonassenfs/xiaokangz/project/RASflow/output/bwa/genome/countFile/SRR1039512_count.tsv.summary",
+                "SRR1039513.sort": "/export/jonassenfs/xiaokangz/project/RASflow/output/bwa/genome/countFile/SRR1039513_count.tsv.summary"
+            }
+        }
+    },
+    "report_general_stats_data": [
+        {
+            "SRR1039508.sort": {
+                "Total": 48229,
+                "Assigned": 41274,
+                "Unassigned_Unmapped": 12,
+                "Unassigned_MappingQuality": 0,
+                "Unassigned_Chimera": 0,
+                "Unassigned_FragmentLength": 0,
+                "Unassigned_Duplicate": 0,
+                "Unassigned_MultiMapping": 0,
+                "Unassigned_Secondary": 0,
+                "Unassigned_NonSplit": 0,
+                "Unassigned_NoFeatures": 3851,
+                "Unassigned_Overlapping_Length": 0,
+                "Unassigned_Ambiguity": 3092,
+                "percent_assigned": 85.57921582450393
+            },
+            "SRR1039509.sort": {
+                "Total": 48565,
+                "Assigned": 41779,
+                "Unassigned_Unmapped": 7,
+                "Unassigned_MappingQuality": 0,
+                "Unassigned_Chimera": 0,
+                "Unassigned_FragmentLength": 0,
+                "Unassigned_Duplicate": 0,
+                "Unassigned_MultiMapping": 0,
+                "Unassigned_Secondary": 0,
+                "Unassigned_NonSplit": 0,
+                "Unassigned_NoFeatures": 3407,
+                "Unassigned_Overlapping_Length": 0,
+                "Unassigned_Ambiguity": 3372,
+                "percent_assigned": 86.02697415834449
+            },
+            "SRR1039512.sort": {
+                "Total": 49793,
+                "Assigned": 44022,
+                "Unassigned_Unmapped": 1,
+                "Unassigned_MappingQuality": 0,
+                "Unassigned_Chimera": 0,
+                "Unassigned_FragmentLength": 0,
+                "Unassigned_Duplicate": 0,
+                "Unassigned_MultiMapping": 0,
+                "Unassigned_Secondary": 0,
+                "Unassigned_NonSplit": 0,
+                "Unassigned_NoFeatures": 1867,
+                "Unassigned_Overlapping_Length": 0,
+                "Unassigned_Ambiguity": 3903,
+                "percent_assigned": 88.41001747233547
+            },
+            "SRR1039513.sort": {
+                "Total": 47359,
+                "Assigned": 40251,
+                "Unassigned_Unmapped": 9,
+                "Unassigned_MappingQuality": 0,
+                "Unassigned_Chimera": 0,
+                "Unassigned_FragmentLength": 0,
+                "Unassigned_Duplicate": 0,
+                "Unassigned_MultiMapping": 0,
+                "Unassigned_Secondary": 0,
+                "Unassigned_NonSplit": 0,
+                "Unassigned_NoFeatures": 4203,
+                "Unassigned_Overlapping_Length": 0,
+                "Unassigned_Ambiguity": 2896,
+                "percent_assigned": 84.9912371460546
+            }
+        }
+    ],
+    "report_general_stats_headers": [
+        {
+            "percent_assigned": {
+                "title": "% Assigned",
+                "description": "% Assigned reads",
+                "max": 100,
+                "min": 0,
+                "suffix": "%",
+                "scale": "RdYlGn",
+                "namespace": "featureCounts",
+                "rid": "mqc-generalstats-percent_assigned",
+                "format": "{:,.1f}",
+                "colour": "55,126,184",
+                "hidden": null,
+                "ceiling": null,
+                "floor": null,
+                "minRange": null,
+                "shared_key": null,
+                "modify": null,
+                "placement": 1000.0,
+                "dmax": 100.0,
+                "dmin": 0.0
+            },
+            "Assigned": {
+                "title": "M Assigned",
+                "description": "Assigned reads (millions)",
+                "min": 0,
+                "scale": "PuBu",
+                "modify": 1e-06,
+                "shared_key": "read_count",
+                "namespace": "featureCounts",
+                "rid": "mqc-generalstats-Assigned",
+                "format": "{:,.1f}",
+                "colour": "55,126,184",
+                "hidden": null,
+                "max": null,
+                "ceiling": null,
+                "floor": null,
+                "minRange": null,
+                "placement": 1000.0,
+                "dmax": 0.044022,
+                "dmin": 0.0
+            }
+        }
+    ],
+    "report_multiqc_command": "/export/jonassenfs/xiaokangz/tools/miniconda3/envs/rasflow/bin/multiqc output/bwa/genome/countFile/SRR1039508_count.tsv.summary output/bwa/genome/countFile/SRR1039509_count.tsv.summary output/bwa/genome/countFile/SRR1039512_count.tsv.summary output/bwa/genome/countFile/SRR1039513_count.tsv.summary --filename output/bwa/genome/report_align_count.html",
+    "report_plot_data": {
+        "featureCounts_assignment_plot": {
+            "plot_type": "bar_graph",
+            "samples": [
+                [
+                    "SRR1039508.sort",
+                    "SRR1039509.sort",
+                    "SRR1039512.sort",
+                    "SRR1039513.sort"
+                ]
+            ],
+            "datasets": [
+                [
+                    {
+                        "name": "Assigned",
+                        "data": [
+                            41274.0,
+                            41779.0,
+                            44022.0,
+                            40251.0
+                        ]
+                    },
+                    {
+                        "name": "Unassigned_Unmapped",
+                        "data": [
+                            12.0,
+                            7.0,
+                            1.0,
+                            9.0
+                        ]
+                    },
+                    {
+                        "name": "Unassigned_NoFeatures",
+                        "data": [
+                            3851.0,
+                            3407.0,
+                            1867.0,
+                            4203.0
+                        ]
+                    },
+                    {
+                        "name": "Unassigned_Ambiguity",
+                        "data": [
+                            3092.0,
+                            3372.0,
+                            3903.0,
+                            2896.0
+                        ]
+                    }
+                ]
+            ],
+            "config": {
+                "id": "featureCounts_assignment_plot",
+                "title": "featureCounts: Assignments",
+                "ylab": "# Reads",
+                "cpswitch_counts_label": "Number of Reads"
+            }
+        }
+    },
+    "report_saved_raw_data": {
+        "multiqc_featureCounts": {
+            "SRR1039508.sort": {
+                "Total": 48229,
+                "Assigned": 41274,
+                "Unassigned_Unmapped": 12,
+                "Unassigned_MappingQuality": 0,
+                "Unassigned_Chimera": 0,
+                "Unassigned_FragmentLength": 0,
+                "Unassigned_Duplicate": 0,
+                "Unassigned_MultiMapping": 0,
+                "Unassigned_Secondary": 0,
+                "Unassigned_NonSplit": 0,
+                "Unassigned_NoFeatures": 3851,
+                "Unassigned_Overlapping_Length": 0,
+                "Unassigned_Ambiguity": 3092,
+                "percent_assigned": 85.57921582450393
+            },
+            "SRR1039509.sort": {
+                "Total": 48565,
+                "Assigned": 41779,
+                "Unassigned_Unmapped": 7,
+                "Unassigned_MappingQuality": 0,
+                "Unassigned_Chimera": 0,
+                "Unassigned_FragmentLength": 0,
+                "Unassigned_Duplicate": 0,
+                "Unassigned_MultiMapping": 0,
+                "Unassigned_Secondary": 0,
+                "Unassigned_NonSplit": 0,
+                "Unassigned_NoFeatures": 3407,
+                "Unassigned_Overlapping_Length": 0,
+                "Unassigned_Ambiguity": 3372,
+                "percent_assigned": 86.02697415834449
+            },
+            "SRR1039512.sort": {
+                "Total": 49793,
+                "Assigned": 44022,
+                "Unassigned_Unmapped": 1,
+                "Unassigned_MappingQuality": 0,
+                "Unassigned_Chimera": 0,
+                "Unassigned_FragmentLength": 0,
+                "Unassigned_Duplicate": 0,
+                "Unassigned_MultiMapping": 0,
+                "Unassigned_Secondary": 0,
+                "Unassigned_NonSplit": 0,
+                "Unassigned_NoFeatures": 1867,
+                "Unassigned_Overlapping_Length": 0,
+                "Unassigned_Ambiguity": 3903,
+                "percent_assigned": 88.41001747233547
+            },
+            "SRR1039513.sort": {
+                "Total": 47359,
+                "Assigned": 40251,
+                "Unassigned_Unmapped": 9,
+                "Unassigned_MappingQuality": 0,
+                "Unassigned_Chimera": 0,
+                "Unassigned_FragmentLength": 0,
+                "Unassigned_Duplicate": 0,
+                "Unassigned_MultiMapping": 0,
+                "Unassigned_Secondary": 0,
+                "Unassigned_NonSplit": 0,
+                "Unassigned_NoFeatures": 4203,
+                "Unassigned_Overlapping_Length": 0,
+                "Unassigned_Ambiguity": 2896,
+                "percent_assigned": 84.9912371460546
+            }
+        },
+        "multiqc_general_stats": {
+            "SRR1039508.sort": {
+                "featureCounts_mqc-generalstats-percent_assigned": 85.57921582450393,
+                "featureCounts_mqc-generalstats-Assigned": 41274
+            },
+            "SRR1039509.sort": {
+                "featureCounts_mqc-generalstats-percent_assigned": 86.02697415834449,
+                "featureCounts_mqc-generalstats-Assigned": 41779
+            },
+            "SRR1039512.sort": {
+                "featureCounts_mqc-generalstats-percent_assigned": 88.41001747233547,
+                "featureCounts_mqc-generalstats-Assigned": 44022
+            },
+            "SRR1039513.sort": {
+                "featureCounts_mqc-generalstats-percent_assigned": 84.9912371460546,
+                "featureCounts_mqc-generalstats-Assigned": 40251
+            }
+        }
+    },
+    "config_analysis_dir_abs": [
+        "/export/jonassenfs/xiaokangz/project/RASflow/output/bwa/genome/countFile/SRR1039508_count.tsv.summary",
+        "/export/jonassenfs/xiaokangz/project/RASflow/output/bwa/genome/countFile/SRR1039509_count.tsv.summary",
+        "/export/jonassenfs/xiaokangz/project/RASflow/output/bwa/genome/countFile/SRR1039512_count.tsv.summary",
+        "/export/jonassenfs/xiaokangz/project/RASflow/output/bwa/genome/countFile/SRR1039513_count.tsv.summary"
+    ],
+    "config_analysis_dir": [
+        "output/bwa/genome/countFile/SRR1039508_count.tsv.summary",
+        "output/bwa/genome/countFile/SRR1039509_count.tsv.summary",
+        "output/bwa/genome/countFile/SRR1039512_count.tsv.summary",
+        "output/bwa/genome/countFile/SRR1039513_count.tsv.summary"
+    ],
+    "config_creation_date": "2020-03-30, 20:08",
+    "config_git_hash": null,
+    "config_intro_text": null,
+    "config_report_comment": null,
+    "config_report_header_info": null,
+    "config_script_path": "/export/jonassenfs/xiaokangz/tools/miniconda3/envs/rasflow/lib/python3.6/site-packages/multiqc/utils",
+    "config_short_version": "1.5.dev0",
+    "config_subtitle": null,
+    "config_title": null,
+    "config_version": "1.5.dev0"
+}

@@ -1,7 +1,7 @@
 # Please check the parameters, and adjust them according to your circumstance
 
 # Project name
-PROJECT: test
+PROJECT: bwa
 
 # ================== Control of the workflow ==================
 
@@ -12,13 +12,13 @@ QC: no  # "yes" or "no"
 TRIMMED: no  # "yes" or "no"?
 
 ## Which mapping reference do you want to use? Genome or transcriptome?
-REFERENCE: transcriptome  # "genome" or "transcriptome"
+REFERENCE: genome  # "genome" or "transcriptome"
 
 ## Do you want to do Differential Expression Analysis (DEA)?
-DEA: yes  # "yes" or "no"
+DEA: no  # "yes" or "no"
 
 ## Do you want to visualize the results of DEA?
-VISUALIZE: yes  # "yes" or "no"
+VISUALIZE: no  # "yes" or "no"
 
 # ================== Shared parameters for some or all of the sub-workflows ==================
 

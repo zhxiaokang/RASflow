@@ -1,0 +1,663 @@
+main.py:8: YAMLLoadWarning: calling yaml.load() without Loader=... is deprecated, as the default Loader is unsafe. Please read https://msg.pyyaml.org/load for full details.
+  config = yaml.load(yamlfile)
+Is quality control required?
+ False
+Is trimming required?
+ False
+Which mapping reference will be used?
+ genome
+Is DEA required?
+ False
+Is visualization required?
+ False
+Please double check the information above
+Do you want to continue? (y/n)
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	4	alignment
+	1	end
+	4	featureCount
+	4	getReads
+	1	indexGenome
+	4	sortBAM
+	1	summaryReport
+	19
+
+[Mon Mar 30 20:02:57 2020]
+rule indexGenome:
+    input: data/example/ref/genome/Homo_sapiens.GRCh38.dna.chromosome.1.1.10M.fa
+    output: data/output/bwa/genome/indexes
+    jobid: 14
+
+[bwa_index] Pack FASTA... 0.23 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 5.37 seconds elapse.
+[bwa_index] Update BWT... 0.08 sec
+[bwa_index] Pack forward-only FASTA... 0.09 sec
+[bwa_index] Construct SA from BWT and Occ... 1.82 sec
+[main] Version: 0.7.17-r1188
+[main] CMD: bwa index -p data/output/bwa/genome/indexes/index data/example/ref/genome/Homo_sapiens.GRCh38.dna.chromosome.1.1.10M.fa
+[main] Real time: 8.154 sec; CPU: 7.604 sec
+[Mon Mar 30 20:03:05 2020]
+Finished job 14.
+1 of 19 steps (5%) done
+
+[Mon Mar 30 20:03:05 2020]
+rule getReads:
+    output: data/output/bwa/genome/reads/SRR1039509_forward.fastq.gz, data/output/bwa/genome/reads/SRR1039509_reverse.fastq.gz
+    jobid: 16
+    wildcards: sample=SRR1039509
+
+[33mJob counts:
+	count	jobs
+	1	getReads
+	1[0m
+[Mon Mar 30 20:03:27 2020]
+Finished job 16.
+2 of 19 steps (11%) done
+
+[Mon Mar 30 20:03:27 2020]
+rule alignment:
+    input: data/output/bwa/genome/indexes, data/output/bwa/genome/reads/SRR1039509_forward.fastq.gz, data/output/bwa/genome/reads/SRR1039509_reverse.fastq.gz
+    output: data/output/bwa/genome/samFile/SRR1039509.sam, data/output/bwa/genome/bamFile/SRR1039509.bam
+    jobid: 11
+    benchmark: data/output/bwa/genome/benchmarks/SRR1039509.hisat2.benchmark.txt
+    wildcards: sample=SRR1039509
+
+[33mJob counts:
+	count	jobs
+	1	alignment
+	1[0m
+[M::bwa_idx_load_from_disk] read 0 ALT contigs
+[M::process] read 96432 sequences (6075216 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (25, 44415, 6, 25)
+[M::mem_pestat] analyzing insert size distribution for orientation FF...
+[M::mem_pestat] (25, 50, 75) percentile: (35, 46, 112)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 266)
+[M::mem_pestat] mean and std.dev: (64.24, 46.94)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 343)
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (113, 140, 187)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 335)
+[M::mem_pestat] mean and std.dev: (149.76, 52.54)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 409)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation RR...
+[M::mem_pestat] (25, 50, 75) percentile: (36, 67, 125)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 303)
+[M::mem_pestat] mean and std.dev: (78.52, 50.49)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 392)
+[M::mem_pestat] skip orientation FF
+[M::mem_pestat] skip orientation RR
+[M::mem_process_seqs] Processed 96432 reads in 19.186 CPU sec, 1.046 real sec
+[main] Version: 0.7.17-r1188
+[main] CMD: bwa mem -t 30 data/output/bwa/genome/indexes/index data/output/bwa/genome/reads/SRR1039509_forward.fastq.gz data/output/bwa/genome/reads/SRR1039509_reverse.fastq.gz
+[main] Real time: 11.429 sec; CPU: 29.087 sec
+Removing temporary output file data/output/bwa/genome/reads/SRR1039509_forward.fastq.gz.
+Removing temporary output file data/output/bwa/genome/reads/SRR1039509_reverse.fastq.gz.
+Removing temporary output file data/output/bwa/genome/samFile/SRR1039509.sam.
+[Mon Mar 30 20:03:52 2020]
+Finished job 11.
+3 of 19 steps (16%) done
+
+[Mon Mar 30 20:03:52 2020]
+rule sortBAM:
+    input: data/output/bwa/genome/bamFile/SRR1039509.bam
+    output: data/output/bwa/genome/bamFileSort/SRR1039509.sort.bam
+    jobid: 7
+    wildcards: sample=SRR1039509
+
+[bam_sort_core] merging from 0 files and 30 in-memory blocks...
+Removing temporary output file data/output/bwa/genome/bamFile/SRR1039509.bam.
+[Mon Mar 30 20:04:12 2020]
+Finished job 7.
+4 of 19 steps (21%) done
+
+[Mon Mar 30 20:04:12 2020]
+rule featureCount:
+    input: data/output/bwa/genome/bamFileSort/SRR1039509.sort.bam, data/example/ref/annotation/Homo_sapiens.GRCh38.93.1.1.10M.gtf
+    output: output/bwa/genome/countFile/SRR1039509_count.tsv, output/bwa/genome/countFile/SRR1039509_count.tsv.summary
+    jobid: 3
+    wildcards: sample=SRR1039509
+
+[33mJob counts:
+	count	jobs
+	1	featureCount
+	1[0m
+
+        ==========     _____ _    _ ____  _____  ______          _____  
+        =====         / ____| |  | |  _ \|  __ \|  ____|   /\   |  __ \ 
+          =====      | (___ | |  | | |_) | |__) | |__     /  \  | |  | |
+            ====      \___ \| |  | |  _ <|  _  /|  __|   / /\ \ | |  | |
+              ====    ____) | |__| | |_) | | \ \| |____ / ____ \| |__| |
+        ==========   |_____/ \____/|____/|_|  \_\______/_/    \_\_____/
+	  v1.6.4
+
+//========================== featureCounts setting ===========================\\
+||                                                                            ||
+||             Input files : 1 BAM file                                       ||
+||                           P SRR1039509.sort.bam                            ||
+||                                                                            ||
+||             Output file : SRR1039509_count.tsv                             ||
+||                 Summary : SRR1039509_count.tsv.summary                     ||
+||              Annotation : Homo_sapiens.GRCh38.93.1.1.10M.gtf (GTF)         ||
+||      Dir for temp files : output/bwa/genome/countFile                      ||
+||                                                                            ||
+||                 Threads : 30                                               ||
+||                   Level : meta-feature level                               ||
+||              Paired-end : yes                                              ||
+||      Multimapping reads : not counted                                      ||
+|| Multi-overlapping reads : not counted                                      ||
+||   Min overlapping bases : 1                                                ||
+||                                                                            ||
+||          Chimeric reads : counted                                          ||
+||        Both ends mapped : not required                                     ||
+||                                                                            ||
+\\============================================================================//
+
+//================================= Running ==================================\\
+||                                                                            ||
+|| Load annotation file Homo_sapiens.GRCh38.93.1.1.10M.gtf ...                ||
+||    Features : 8478                                                         ||
+||    Meta-features : 336                                                     ||
+||    Chromosomes/contigs : 1                                                 ||
+||                                                                            ||
+|| Process BAM file SRR1039509.sort.bam...                                    ||
+||    Paired-end reads are included.                                          ||
+||    Assign alignments (paired-end) to features...                           ||
+||                                                                            ||
+||    WARNING: reads from the same pair were found not adjacent to each       ||
+||             other in the input (due to read sorting by location or         ||
+||             reporting of multi-mapping read pairs).                        ||
+||                                                                            ||
+||    Pairing up the read pairs.                                              ||
+||                                                                            ||
+||    Total alignments : 48565                                                ||
+||    Successfully assigned alignments : 41779 (86.0%)                        ||
+||    Running time : 0.30 minutes                                             ||
+||                                                                            ||
+||                                                                            ||
+|| Summary of counting results can be found in file "output/bwa/genome/count  ||
+|| File/SRR1039509_count.tsv.summary"                                         ||
+||                                                                            ||
+\\============================================================================//
+
+[Mon Mar 30 20:04:53 2020]
+Finished job 3.
+5 of 19 steps (26%) done
+
+[Mon Mar 30 20:04:53 2020]
+rule getReads:
+    output: data/output/bwa/genome/reads/SRR1039512_forward.fastq.gz, data/output/bwa/genome/reads/SRR1039512_reverse.fastq.gz
+    jobid: 15
+    wildcards: sample=SRR1039512
+
+[33mJob counts:
+	count	jobs
+	1	getReads
+	1[0m
+[Mon Mar 30 20:05:04 2020]
+Finished job 15.
+6 of 19 steps (32%) done
+
+[Mon Mar 30 20:05:04 2020]
+rule alignment:
+    input: data/output/bwa/genome/indexes, data/output/bwa/genome/reads/SRR1039512_forward.fastq.gz, data/output/bwa/genome/reads/SRR1039512_reverse.fastq.gz
+    output: data/output/bwa/genome/samFile/SRR1039512.sam, data/output/bwa/genome/bamFile/SRR1039512.bam
+    jobid: 10
+    benchmark: data/output/bwa/genome/benchmarks/SRR1039512.hisat2.benchmark.txt
+    wildcards: sample=SRR1039512
+
+[33mJob counts:
+	count	jobs
+	1	alignment
+	1[0m
+[M::bwa_idx_load_from_disk] read 0 ALT contigs
+[M::process] read 99424 sequences (6263712 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (13, 47896, 3, 21)
+[M::mem_pestat] analyzing insert size distribution for orientation FF...
+[M::mem_pestat] (25, 50, 75) percentile: (67, 122, 175)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 391)
+[M::mem_pestat] mean and std.dev: (119.08, 70.92)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 499)
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (118, 148, 194)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 346)
+[M::mem_pestat] mean and std.dev: (159.05, 56.04)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 422)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation RR...
+[M::mem_pestat] (25, 50, 75) percentile: (68, 89, 130)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 254)
+[M::mem_pestat] mean and std.dev: (97.67, 48.29)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 316)
+[M::mem_pestat] skip orientation FF
+[M::mem_pestat] skip orientation RR
+[M::mem_process_seqs] Processed 99424 reads in 13.482 CPU sec, 0.737 real sec
+[main] Version: 0.7.17-r1188
+[main] CMD: bwa mem -t 30 data/output/bwa/genome/indexes/index data/output/bwa/genome/reads/SRR1039512_forward.fastq.gz data/output/bwa/genome/reads/SRR1039512_reverse.fastq.gz
+[main] Real time: 1.909 sec; CPU: 14.170 sec
+Removing temporary output file data/output/bwa/genome/reads/SRR1039512_forward.fastq.gz.
+Removing temporary output file data/output/bwa/genome/reads/SRR1039512_reverse.fastq.gz.
+Removing temporary output file data/output/bwa/genome/samFile/SRR1039512.sam.
+[Mon Mar 30 20:05:09 2020]
+Finished job 10.
+7 of 19 steps (37%) done
+
+[Mon Mar 30 20:05:09 2020]
+rule sortBAM:
+    input: data/output/bwa/genome/bamFile/SRR1039512.bam
+    output: data/output/bwa/genome/bamFileSort/SRR1039512.sort.bam
+    jobid: 6
+    wildcards: sample=SRR1039512
+
+[bam_sort_core] merging from 0 files and 30 in-memory blocks...
+Removing temporary output file data/output/bwa/genome/bamFile/SRR1039512.bam.
+[Mon Mar 30 20:05:09 2020]
+Finished job 6.
+8 of 19 steps (42%) done
+
+[Mon Mar 30 20:05:09 2020]
+rule featureCount:
+    input: data/output/bwa/genome/bamFileSort/SRR1039512.sort.bam, data/example/ref/annotation/Homo_sapiens.GRCh38.93.1.1.10M.gtf
+    output: output/bwa/genome/countFile/SRR1039512_count.tsv, output/bwa/genome/countFile/SRR1039512_count.tsv.summary
+    jobid: 2
+    wildcards: sample=SRR1039512
+
+[33mJob counts:
+	count	jobs
+	1	featureCount
+	1[0m
+
+        ==========     _____ _    _ ____  _____  ______          _____  
+        =====         / ____| |  | |  _ \|  __ \|  ____|   /\   |  __ \ 
+          =====      | (___ | |  | | |_) | |__) | |__     /  \  | |  | |
+            ====      \___ \| |  | |  _ <|  _  /|  __|   / /\ \ | |  | |
+              ====    ____) | |__| | |_) | | \ \| |____ / ____ \| |__| |
+        ==========   |_____/ \____/|____/|_|  \_\______/_/    \_\_____/
+	  v1.6.4
+
+//========================== featureCounts setting ===========================\\
+||                                                                            ||
+||             Input files : 1 BAM file                                       ||
+||                           P SRR1039512.sort.bam                            ||
+||                                                                            ||
+||             Output file : SRR1039512_count.tsv                             ||
+||                 Summary : SRR1039512_count.tsv.summary                     ||
+||              Annotation : Homo_sapiens.GRCh38.93.1.1.10M.gtf (GTF)         ||
+||      Dir for temp files : output/bwa/genome/countFile                      ||
+||                                                                            ||
+||                 Threads : 30                                               ||
+||                   Level : meta-feature level                               ||
+||              Paired-end : yes                                              ||
+||      Multimapping reads : not counted                                      ||
+|| Multi-overlapping reads : not counted                                      ||
+||   Min overlapping bases : 1                                                ||
+||                                                                            ||
+||          Chimeric reads : counted                                          ||
+||        Both ends mapped : not required                                     ||
+||                                                                            ||
+\\============================================================================//
+
+//================================= Running ==================================\\
+||                                                                            ||
+|| Load annotation file Homo_sapiens.GRCh38.93.1.1.10M.gtf ...                ||
+||    Features : 8478                                                         ||
+||    Meta-features : 336                                                     ||
+||    Chromosomes/contigs : 1                                                 ||
+||                                                                            ||
+|| Process BAM file SRR1039512.sort.bam...                                    ||
+||    Paired-end reads are included.                                          ||
+||    Assign alignments (paired-end) to features...                           ||
+||                                                                            ||
+||    WARNING: reads from the same pair were found not adjacent to each       ||
+||             other in the input (due to read sorting by location or         ||
+||             reporting of multi-mapping read pairs).                        ||
+||                                                                            ||
+||    Pairing up the read pairs.                                              ||
+||                                                                            ||
+||    Total alignments : 49793                                                ||
+||    Successfully assigned alignments : 44022 (88.4%)                        ||
+||    Running time : 0.30 minutes                                             ||
+||                                                                            ||
+||                                                                            ||
+|| Summary of counting results can be found in file "output/bwa/genome/count  ||
+|| File/SRR1039512_count.tsv.summary"                                         ||
+||                                                                            ||
+\\============================================================================//
+
+[Mon Mar 30 20:05:49 2020]
+Finished job 2.
+9 of 19 steps (47%) done
+
+[Mon Mar 30 20:05:49 2020]
+rule getReads:
+    output: data/output/bwa/genome/reads/SRR1039513_forward.fastq.gz, data/output/bwa/genome/reads/SRR1039513_reverse.fastq.gz
+    jobid: 17
+    wildcards: sample=SRR1039513
+
+[33mJob counts:
+	count	jobs
+	1	getReads
+	1[0m
+[Mon Mar 30 20:06:03 2020]
+Finished job 17.
+10 of 19 steps (53%) done
+
+[Mon Mar 30 20:06:03 2020]
+rule alignment:
+    input: data/output/bwa/genome/indexes, data/output/bwa/genome/reads/SRR1039513_forward.fastq.gz, data/output/bwa/genome/reads/SRR1039513_reverse.fastq.gz
+    output: data/output/bwa/genome/samFile/SRR1039513.sam, data/output/bwa/genome/bamFile/SRR1039513.bam
+    jobid: 12
+    benchmark: data/output/bwa/genome/benchmarks/SRR1039513.hisat2.benchmark.txt
+    wildcards: sample=SRR1039513
+
+[33mJob counts:
+	count	jobs
+	1	alignment
+	1[0m
+[M::bwa_idx_load_from_disk] read 0 ALT contigs
+[M::process] read 93990 sequences (5921370 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (17, 41907, 3, 14)
+[M::mem_pestat] analyzing insert size distribution for orientation FF...
+[M::mem_pestat] (25, 50, 75) percentile: (53, 82, 134)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 296)
+[M::mem_pestat] mean and std.dev: (93.88, 64.73)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 377)
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (114, 142, 187)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 333)
+[M::mem_pestat] mean and std.dev: (149.90, 51.47)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 406)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation RR...
+[M::mem_pestat] (25, 50, 75) percentile: (41, 86, 136)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 326)
+[M::mem_pestat] mean and std.dev: (79.42, 47.43)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 421)
+[M::mem_pestat] skip orientation FF
+[M::mem_pestat] skip orientation RR
+[M::mem_process_seqs] Processed 93990 reads in 24.856 CPU sec, 1.099 real sec
+[main] Version: 0.7.17-r1188
+[main] CMD: bwa mem -t 30 data/output/bwa/genome/indexes/index data/output/bwa/genome/reads/SRR1039513_forward.fastq.gz data/output/bwa/genome/reads/SRR1039513_reverse.fastq.gz
+[main] Real time: 2.270 sec; CPU: 25.457 sec
+Removing temporary output file data/output/bwa/genome/reads/SRR1039513_forward.fastq.gz.
+Removing temporary output file data/output/bwa/genome/reads/SRR1039513_reverse.fastq.gz.
+Removing temporary output file data/output/bwa/genome/samFile/SRR1039513.sam.
+[Mon Mar 30 20:06:08 2020]
+Finished job 12.
+11 of 19 steps (58%) done
+
+[Mon Mar 30 20:06:08 2020]
+rule sortBAM:
+    input: data/output/bwa/genome/bamFile/SRR1039513.bam
+    output: data/output/bwa/genome/bamFileSort/SRR1039513.sort.bam
+    jobid: 8
+    wildcards: sample=SRR1039513
+
+[bam_sort_core] merging from 0 files and 30 in-memory blocks...
+Removing temporary output file data/output/bwa/genome/bamFile/SRR1039513.bam.
+[Mon Mar 30 20:06:28 2020]
+Finished job 8.
+12 of 19 steps (63%) done
+
+[Mon Mar 30 20:06:28 2020]
+rule featureCount:
+    input: data/output/bwa/genome/bamFileSort/SRR1039513.sort.bam, data/example/ref/annotation/Homo_sapiens.GRCh38.93.1.1.10M.gtf
+    output: output/bwa/genome/countFile/SRR1039513_count.tsv, output/bwa/genome/countFile/SRR1039513_count.tsv.summary
+    jobid: 4
+    wildcards: sample=SRR1039513
+
+[33mJob counts:
+	count	jobs
+	1	featureCount
+	1[0m
+
+        ==========     _____ _    _ ____  _____  ______          _____  
+        =====         / ____| |  | |  _ \|  __ \|  ____|   /\   |  __ \ 
+          =====      | (___ | |  | | |_) | |__) | |__     /  \  | |  | |
+            ====      \___ \| |  | |  _ <|  _  /|  __|   / /\ \ | |  | |
+              ====    ____) | |__| | |_) | | \ \| |____ / ____ \| |__| |
+        ==========   |_____/ \____/|____/|_|  \_\______/_/    \_\_____/
+	  v1.6.4
+
+//========================== featureCounts setting ===========================\\
+||                                                                            ||
+||             Input files : 1 BAM file                                       ||
+||                           P SRR1039513.sort.bam                            ||
+||                                                                            ||
+||             Output file : SRR1039513_count.tsv                             ||
+||                 Summary : SRR1039513_count.tsv.summary                     ||
+||              Annotation : Homo_sapiens.GRCh38.93.1.1.10M.gtf (GTF)         ||
+||      Dir for temp files : output/bwa/genome/countFile                      ||
+||                                                                            ||
+||                 Threads : 30                                               ||
+||                   Level : meta-feature level                               ||
+||              Paired-end : yes                                              ||
+||      Multimapping reads : not counted                                      ||
+|| Multi-overlapping reads : not counted                                      ||
+||   Min overlapping bases : 1                                                ||
+||                                                                            ||
+||          Chimeric reads : counted                                          ||
+||        Both ends mapped : not required                                     ||
+||                                                                            ||
+\\============================================================================//
+
+//================================= Running ==================================\\
+||                                                                            ||
+|| Load annotation file Homo_sapiens.GRCh38.93.1.1.10M.gtf ...                ||
+||    Features : 8478                                                         ||
+||    Meta-features : 336                                                     ||
+||    Chromosomes/contigs : 1                                                 ||
+||                                                                            ||
+|| Process BAM file SRR1039513.sort.bam...                                    ||
+||    Paired-end reads are included.                                          ||
+||    Assign alignments (paired-end) to features...                           ||
+||                                                                            ||
+||    WARNING: reads from the same pair were found not adjacent to each       ||
+||             other in the input (due to read sorting by location or         ||
+||             reporting of multi-mapping read pairs).                        ||
+||                                                                            ||
+||    Pairing up the read pairs.                                              ||
+||                                                                            ||
+||    Total alignments : 47359                                                ||
+||    Successfully assigned alignments : 40251 (85.0%)                        ||
+||    Running time : 0.48 minutes                                             ||
+||                                                                            ||
+||                                                                            ||
+|| Summary of counting results can be found in file "output/bwa/genome/count  ||
+|| File/SRR1039513_count.tsv.summary"                                         ||
+||                                                                            ||
+\\============================================================================//
+
+[Mon Mar 30 20:07:09 2020]
+Finished job 4.
+13 of 19 steps (68%) done
+
+[Mon Mar 30 20:07:09 2020]
+rule getReads:
+    output: data/output/bwa/genome/reads/SRR1039508_forward.fastq.gz, data/output/bwa/genome/reads/SRR1039508_reverse.fastq.gz
+    jobid: 18
+    wildcards: sample=SRR1039508
+
+[33mJob counts:
+	count	jobs
+	1	getReads
+	1[0m
+[Mon Mar 30 20:07:22 2020]
+Finished job 18.
+14 of 19 steps (74%) done
+
+[Mon Mar 30 20:07:22 2020]
+rule alignment:
+    input: data/output/bwa/genome/indexes, data/output/bwa/genome/reads/SRR1039508_forward.fastq.gz, data/output/bwa/genome/reads/SRR1039508_reverse.fastq.gz
+    output: data/output/bwa/genome/samFile/SRR1039508.sam, data/output/bwa/genome/bamFile/SRR1039508.bam
+    jobid: 13
+    benchmark: data/output/bwa/genome/benchmarks/SRR1039508.hisat2.benchmark.txt
+    wildcards: sample=SRR1039508
+
+[33mJob counts:
+	count	jobs
+	1	alignment
+	1[0m
+[M::bwa_idx_load_from_disk] read 0 ALT contigs
+[M::process] read 95722 sequences (6030486 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (22, 43414, 8, 23)
+[M::mem_pestat] analyzing insert size distribution for orientation FF...
+[M::mem_pestat] (25, 50, 75) percentile: (29, 52, 98)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 236)
+[M::mem_pestat] mean and std.dev: (54.10, 40.74)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 305)
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (112, 139, 184)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 328)
+[M::mem_pestat] mean and std.dev: (147.84, 51.52)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 400)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation RR...
+[M::mem_pestat] (25, 50, 75) percentile: (33, 56, 120)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 294)
+[M::mem_pestat] mean and std.dev: (73.64, 53.03)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 381)
+[M::mem_pestat] skip orientation FF
+[M::mem_pestat] skip orientation RR
+[M::mem_process_seqs] Processed 95722 reads in 21.090 CPU sec, 0.937 real sec
+[main] Version: 0.7.17-r1188
+[main] CMD: bwa mem -t 30 data/output/bwa/genome/indexes/index data/output/bwa/genome/reads/SRR1039508_forward.fastq.gz data/output/bwa/genome/reads/SRR1039508_reverse.fastq.gz
+[main] Real time: 1.967 sec; CPU: 21.753 sec
+Removing temporary output file data/output/bwa/genome/reads/SRR1039508_reverse.fastq.gz.
+Removing temporary output file data/output/bwa/genome/reads/SRR1039508_forward.fastq.gz.
+Removing temporary output file data/output/bwa/genome/samFile/SRR1039508.sam.
+[Mon Mar 30 20:07:36 2020]
+Finished job 13.
+15 of 19 steps (79%) done
+
+[Mon Mar 30 20:07:36 2020]
+rule sortBAM:
+    input: data/output/bwa/genome/bamFile/SRR1039508.bam
+    output: data/output/bwa/genome/bamFileSort/SRR1039508.sort.bam
+    jobid: 9
+    wildcards: sample=SRR1039508
+
+[bam_sort_core] merging from 0 files and 30 in-memory blocks...
+Removing temporary output file data/output/bwa/genome/bamFile/SRR1039508.bam.
+[Mon Mar 30 20:07:36 2020]
+Finished job 9.
+16 of 19 steps (84%) done
+
+[Mon Mar 30 20:07:36 2020]
+rule featureCount:
+    input: data/output/bwa/genome/bamFileSort/SRR1039508.sort.bam, data/example/ref/annotation/Homo_sapiens.GRCh38.93.1.1.10M.gtf
+    output: output/bwa/genome/countFile/SRR1039508_count.tsv, output/bwa/genome/countFile/SRR1039508_count.tsv.summary
+    jobid: 5
+    wildcards: sample=SRR1039508
+
+[33mJob counts:
+	count	jobs
+	1	featureCount
+	1[0m
+
+        ==========     _____ _    _ ____  _____  ______          _____  
+        =====         / ____| |  | |  _ \|  __ \|  ____|   /\   |  __ \ 
+          =====      | (___ | |  | | |_) | |__) | |__     /  \  | |  | |
+            ====      \___ \| |  | |  _ <|  _  /|  __|   / /\ \ | |  | |
+              ====    ____) | |__| | |_) | | \ \| |____ / ____ \| |__| |
+        ==========   |_____/ \____/|____/|_|  \_\______/_/    \_\_____/
+	  v1.6.4
+
+//========================== featureCounts setting ===========================\\
+||                                                                            ||
+||             Input files : 1 BAM file                                       ||
+||                           P SRR1039508.sort.bam                            ||
+||                                                                            ||
+||             Output file : SRR1039508_count.tsv                             ||
+||                 Summary : SRR1039508_count.tsv.summary                     ||
+||              Annotation : Homo_sapiens.GRCh38.93.1.1.10M.gtf (GTF)         ||
+||      Dir for temp files : output/bwa/genome/countFile                      ||
+||                                                                            ||
+||                 Threads : 30                                               ||
+||                   Level : meta-feature level                               ||
+||              Paired-end : yes                                              ||
+||      Multimapping reads : not counted                                      ||
+|| Multi-overlapping reads : not counted                                      ||
+||   Min overlapping bases : 1                                                ||
+||                                                                            ||
+||          Chimeric reads : counted                                          ||
+||        Both ends mapped : not required                                     ||
+||                                                                            ||
+\\============================================================================//
+
+//================================= Running ==================================\\
+||                                                                            ||
+|| Load annotation file Homo_sapiens.GRCh38.93.1.1.10M.gtf ...                ||
+||    Features : 8478                                                         ||
+||    Meta-features : 336                                                     ||
+||    Chromosomes/contigs : 1                                                 ||
+||                                                                            ||
+|| Process BAM file SRR1039508.sort.bam...                                    ||
+||    Paired-end reads are included.                                          ||
+||    Assign alignments (paired-end) to features...                           ||
+||                                                                            ||
+||    WARNING: reads from the same pair were found not adjacent to each       ||
+||             other in the input (due to read sorting by location or         ||
+||             reporting of multi-mapping read pairs).                        ||
+||                                                                            ||
+||    Pairing up the read pairs.                                              ||
+||                                                                            ||
+||    Total alignments : 48229                                                ||
+||    Successfully assigned alignments : 41274 (85.6%)                        ||
+||    Running time : 0.37 minutes                                             ||
+||                                                                            ||
+||                                                                            ||
+|| Summary of counting results can be found in file "output/bwa/genome/count  ||
+|| File/SRR1039508_count.tsv.summary"                                         ||
+||                                                                            ||
+\\============================================================================//
+
+[Mon Mar 30 20:08:23 2020]
+Finished job 5.
+17 of 19 steps (89%) done
+
+[Mon Mar 30 20:08:23 2020]
+rule summaryReport:
+    input: output/bwa/genome/countFile/SRR1039508_count.tsv.summary, output/bwa/genome/countFile/SRR1039509_count.tsv.summary, output/bwa/genome/countFile/SRR1039512_count.tsv.summary, output/bwa/genome/countFile/SRR1039513_count.tsv.summary
+    output: output/bwa/genome/report_align_count.html
+    jobid: 1
+
+/export/jonassenfs/xiaokangz/tools/miniconda3/envs/rasflow/lib/python3.6/site-packages/multiqc/utils/config.py:45: YAMLLoadWarning: calling yaml.load() without Loader=... is deprecated, as the default Loader is unsafe. Please read https://msg.pyyaml.org/load for full details.
+  configs = yaml.load(f)
+/export/jonassenfs/xiaokangz/tools/miniconda3/envs/rasflow/lib/python3.6/site-packages/multiqc/utils/config.py:51: YAMLLoadWarning: calling yaml.load() without Loader=... is deprecated, as the default Loader is unsafe. Please read https://msg.pyyaml.org/load for full details.
+  sp = yaml.load(f)
+[WARNING]         multiqc : MultiQC Version v1.8 now available!
+[INFO   ]         multiqc : This is MultiQC v1.5.dev0
+[INFO   ]         multiqc : Template    : default
+[INFO   ]         multiqc : Searching 'output/bwa/genome/countFile/SRR1039508_count.tsv.summary'
+[INFO   ]         multiqc : Searching 'output/bwa/genome/countFile/SRR1039509_count.tsv.summary'
+[INFO   ]         multiqc : Searching 'output/bwa/genome/countFile/SRR1039512_count.tsv.summary'
+[INFO   ]         multiqc : Searching 'output/bwa/genome/countFile/SRR1039513_count.tsv.summary'
+[INFO   ]  feature_counts : Found 4 reports
+[INFO   ]         multiqc : Compressing plot data
+[INFO   ]         multiqc : Report      : output/bwa/genome/report_align_count.html
+[INFO   ]         multiqc : Data        : output/bwa/genome/report_align_count_data
+[INFO   ]         multiqc : MultiQC complete
+[Mon Mar 30 20:08:40 2020]
+Finished job 1.
+18 of 19 steps (95%) done
+
+[Mon Mar 30 20:08:41 2020]
+localrule end:
+    input: output/bwa/genome/report_align_count.html
+    jobid: 0
+
+[Mon Mar 30 20:08:41 2020]
+Finished job 0.
+19 of 19 steps (100%) done
+Complete log: /export/jonassenfs/xiaokangz/project/RASflow/.snakemake/log/2020-03-30T200243.281452.snakemake.log
+Start RASflow on project: bwa
+Trimming is not required
+Start mapping using  genome  as reference!
+DEA is not required and RASflow is done!

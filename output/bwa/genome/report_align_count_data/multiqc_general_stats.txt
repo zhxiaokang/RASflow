@@ -1,0 +1,5 @@
+Sample	featureCounts_mqc-generalstats-percent_assigned	featureCounts_mqc-generalstats-Assigned
+SRR1039508.sort	85.57921582450393	41274
+SRR1039509.sort	86.02697415834449	41779
+SRR1039512.sort	88.41001747233547	44022
+SRR1039513.sort	84.9912371460546	40251

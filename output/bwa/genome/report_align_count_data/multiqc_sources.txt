@@ -1,0 +1,5 @@
+Module	Section	Sample Name	Source
+featureCounts	all_sections	SRR1039508.sort	/export/jonassenfs/xiaokangz/project/RASflow/output/bwa/genome/countFile/SRR1039508_count.tsv.summary
+featureCounts	all_sections	SRR1039509.sort	/export/jonassenfs/xiaokangz/project/RASflow/output/bwa/genome/countFile/SRR1039509_count.tsv.summary
+featureCounts	all_sections	SRR1039512.sort	/export/jonassenfs/xiaokangz/project/RASflow/output/bwa/genome/countFile/SRR1039512_count.tsv.summary
+featureCounts	all_sections	SRR1039513.sort	/export/jonassenfs/xiaokangz/project/RASflow/output/bwa/genome/countFile/SRR1039513_count.tsv.summary

@@ -43,19 +43,16 @@ rule indexGenome:
     input:
         genome = config["GENOME"]
     output:
-        indexes = directory(intermediate_path + "/indexes"),
-        splicesites = intermediate_path + "/splicesites.txt"
+        indexes = directory(intermediate_path + "/indexes")
     params:
         index = intermediate_path + "/indexes/index"
     shell:
-        "mkdir {output.indexes} && hisat2-build -p {config[NCORE]} {input.genome} {params.index}"
-        "&& hisat2_extract_splice_sites.py {config[ANNOTATION]} > {output.splicesites}"
+        "mkdir {output.indexes} && bwa index {input.genome} -p {params.index}"
 
 if end == "pair":
     rule alignment:
         input:
             indexes = directory(intermediate_path + "/indexes"),
-            splicesites = intermediate_path + "/splicesites.txt",
             forward = intermediate_path + "/reads/{sample}_forward.fastq.gz",
             reverse = intermediate_path + "/reads/{sample}_reverse.fastq.gz"
         output:
@@ -66,13 +63,12 @@ if end == "pair":
         benchmark:
             intermediate_path + "/benchmarks/{sample}.hisat2.benchmark.txt"
         run:
-            shell("hisat2 -p {config[NCORE]} --known-splicesite-infile {input.splicesites} -x {params.index} -1 {input.forward} -2 {input.reverse} -S {output.sam}")
+            shell("bwa mem -t {config[NCORE]} {params.index} {input.forward} {input.reverse} > {output.sam}")
             shell("samtools view -@ {config[NCORE]} -b -S {output.sam} > {output.bam}")
 else:
     rule alignment:
         input:
             indexes = directory(intermediate_path + "/indexes"),
-            splicesites = intermediate_path + "/splicesites.txt",
             forward = intermediate_path + "/reads/{sample}.fastq.gz"
         output:
             sam = temp(intermediate_path + "/samFile/{sample}.sam"),
@@ -82,7 +78,7 @@ else:
         benchmark:
             intermediate_path + "/benchmarks/{sample}.hisat2.benchmark.txt"
         run:
-            shell("hisat2 -p {config[NCORE]} --known-splicesite-infile {input.splicesites} -x {params.index} -U {input.forward} -S {output.sam}")
+            shell("bwa mem -t {config[NCORE]} {params.index} {input.forward} {input.reverse} > {output.sam}")
             shell("samtools view -@ {config[NCORE]} -b -S {output.sam} > {output.bam}")
 
 rule sortBAM:
