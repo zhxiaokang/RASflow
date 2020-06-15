@@ -1,0 +1,24 @@
+
+Project name: test
+Start time: Mon Jun 15 15:47:25 2020
+Time of running genome alignment:0:00:01
+Time of running DEA genome based:0:00:09
+Finish time: Mon Jun 15 15:47:36 2020
+
+Project name: test
+Start time: Mon Jun 15 15:48:27 2020
+Time of running genome alignment:0:00:01
+Time of running DEA genome based:0:00:11
+Finish time: Mon Jun 15 15:48:39 2020
+
+Project name: test
+Start time: Mon Jun 15 15:50:09 2020
+Time of running transcripts quantification:0:00:01
+Time of running DEA transcriptome based:0:00:26
+Finish time: Mon Jun 15 15:50:37 2020
+
+Project name: test
+Start time: Mon Jun 15 15:51:22 2020
+Time of running transcripts quantification:0:00:01
+Time of running DEA transcriptome based:0:00:19
+Finish time: Mon Jun 15 15:51:42 2020

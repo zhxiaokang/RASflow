@@ -1,0 +1,123 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	DEA
+	1	all
+	1	combineSamples
+	3
+
+[Mon Jun 15 15:48:28 2020]
+rule combineSamples:
+    input: output/test/genome/countFile/SRR1039508_count.tsv, output/test/genome/countFile/SRR1039509_count.tsv, output/test/genome/countFile/SRR1039512_count.tsv, output/test/genome/countFile/SRR1039513_count.tsv, configs/metadata.tsv
+    output: output/test/genome/dea/countGroup/Dexamethasone_gene_count.tsv, output/test/genome/dea/countGroup/Untreated_gene_count.tsv
+    jobid: 2
+
+scripts/combine2group_genome.py:13: YAMLLoadWarning: calling yaml.load() without Loader=... is deprecated, as the default Loader is unsafe. Please read https://msg.pyyaml.org/load for full details.
+  config = yaml.load(yamlfile)
+[Mon Jun 15 15:48:30 2020]
+Finished job 2.
+1 of 3 steps (33%) done
+
+[Mon Jun 15 15:48:30 2020]
+rule DEA:
+    input: output/test/genome/dea/countGroup/Dexamethasone_gene_count.tsv, output/test/genome/dea/countGroup/Untreated_gene_count.tsv
+    output: output/test/genome/dea/countGroup/Untreated_gene_norm.tsv, output/test/genome/dea/countGroup/Dexamethasone_gene_norm.tsv, output/test/genome/dea/DEA/dea_Untreated_Dexamethasone.tsv, output/test/genome/dea/DEA/deg_Untreated_Dexamethasone.tsv
+    jobid: 1
+
+Le chargement a nécessité le package : limma
+Le chargement a nécessité le package : S4Vectors
+Le chargement a nécessité le package : stats4
+Le chargement a nécessité le package : BiocGenerics
+Le chargement a nécessité le package : parallel
+
+Attachement du package : ‘BiocGenerics’
+
+The following objects are masked from ‘package:parallel’:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB
+
+The following object is masked from ‘package:limma’:
+
+    plotMA
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, append,
+    as.data.frame, basename, cbind, colMeans, colSums, colnames,
+    dirname, do.call, duplicated, eval, evalq, get, grep, grepl,
+    intersect, is.unsorted, lapply, lengths, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, rank, rbind,
+    rowMeans, rowSums, rownames, sapply, setdiff, sort, table, tapply,
+    union, unique, unsplit, which, which.max, which.min
+
+
+Attachement du package : ‘S4Vectors’
+
+The following object is masked from ‘package:base’:
+
+    expand.grid
+
+Le chargement a nécessité le package : IRanges
+Le chargement a nécessité le package : GenomicRanges
+Le chargement a nécessité le package : GenomeInfoDb
+Le chargement a nécessité le package : SummarizedExperiment
+Le chargement a nécessité le package : Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Le chargement a nécessité le package : DelayedArray
+Le chargement a nécessité le package : matrixStats
+
+Attachement du package : ‘matrixStats’
+
+The following objects are masked from ‘package:Biobase’:
+
+    anyMissing, rowMedians
+
+Le chargement a nécessité le package : BiocParallel
+
+Attachement du package : ‘DelayedArray’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colMaxs, colMins, colRanges, rowMaxs, rowMins, rowRanges
+
+The following objects are masked from ‘package:base’:
+
+    aperm, apply
+
+using supplied model matrix
+using pre-existing size factors
+estimating dispersions
+gene-wise dispersion estimates
+mean-dispersion relationship
+-- note: fitType='parametric', but the dispersion trend was not well captured by the
+   function: y = a/x + b, and a local regression fit was automatically substituted.
+   specify fitType='local' or 'mean' to avoid this message next time.
+final dispersion estimates
+fitting model and testing
+[Mon Jun 15 15:48:39 2020]
+Finished job 1.
+2 of 3 steps (67%) done
+
+[Mon Jun 15 15:48:39 2020]
+localrule all:
+    input: output/test/genome/dea/countGroup/Untreated_gene_norm.tsv, output/test/genome/dea/DEA/dea_Untreated_Dexamethasone.tsv
+    jobid: 0
+
+[Mon Jun 15 15:48:39 2020]
+Finished job 0.
+3 of 3 steps (100%) done
+Complete log: /Users/xzh004/GitHub/RASflow/.snakemake/log/2020-06-15T154828.294187.snakemake.log

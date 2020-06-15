@@ -23,9 +23,9 @@ DEA <- function(control, treat, file.control, file.treat, output.path.dea) {
   # get the sample id
   samples <- colnames(count.table)
 
-  # define the group
+  # define the subject and group; define the reference group (control)
   subject <- factor(subject.all[c(which(group.all == control), which(group.all == treat))])
-  group <- factor(group.all[c(which(group.all == control), which(group.all == treat))])
+  group <- relevel(factor(group.all[c(which(group.all == control), which(group.all == treat))]), ref = control)
 
   # The design matrix
   if (pair.test) {

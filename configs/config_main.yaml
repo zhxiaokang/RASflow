@@ -18,7 +18,7 @@ REFERENCE: transcriptome  # "genome" or "transcriptome"
 DEA: yes  # "yes" or "no"
 
 ## Do you want to visualize the results of DEA?
-VISUALIZE: yes  # "yes" or "no"
+VISUALIZE: no  # "yes" or "no"
 
 # ================== Shared parameters for some or all of the sub-workflows ==================
 
@@ -76,7 +76,7 @@ alignmentQC: no  # "yes" or "no" to specify whether you want to do alignment QC
 DEATOOL: edgeR  # "edgeR" or "DESeq2"? DESeq2 is recommended for transcriptome-based and DEA
 
 ## Is your experiment designed in a pair-wise way?
-PAIR: FALSE  # Is this a pair test or not? ("TRUE" or "FALSE")
+PAIR: TRUE  # Is this a pair test or not? ("TRUE" or "FALSE")
 
 ## the comparison(s) you want to do. If multiple comparisons, specify each pair (CONTROL & TREAT) in order respectively
 CONTROL: ["Untreated"]
@@ -92,7 +92,7 @@ FILTER:
 ## Do you need to do gene-level differential expression analysis?
 GENE_LEVEL: TRUE  # TRUE or FALSE. If TRUE, ignore the following 3 parameters.
 ## If TRUE, specify the corresponding dataset in ENSEMBL for your interested organism or do you provide your own tx2gene
-ENSEMBL: FALSE  # TRUE or FALSE. Specify whether you're using transcriptome from Ensembl or you provide your homemade one: then you need to specify the corresponding Ensembl dataset or your tx2gene file (two columns, 1st col: transcript ID; 2nd col: gene ID)
+ENSEMBL: TRUE  # TRUE or FALSE. Specify whether you're using transcriptome from Ensembl or you provide your homemade one: then you need to specify the corresponding Ensembl dataset or your tx2gene file (two columns, 1st col: transcript ID; 2nd col: gene ID)
 EnsemblDataSet: hsapiens_gene_ensembl  # only if ENSEMBL was set to TRUE. Search for your dataset in the file EnsemblDataSet_look_up_table.csv 
 TX2GENE: /export/jonassenfs/xiaokangz/dcod/data/genome/tx2gene_gadMor3.tsv  # only if ENSEMBL was set to FALSE
 
