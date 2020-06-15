@@ -25,7 +25,7 @@ DEA <- function(control, treat, file.control, file.treat, output.path.dea) {
 
   # define the group
   subject <- factor(subject.all[c(which(group.all == control), which(group.all == treat))])
-  group <- factor(group.all[c(which(group.all == control), which(group.all == treat))])
+  group <- relevel(factor(group.all[c(which(group.all == control), which(group.all == treat))]), ref = control)
 
   # The design matrix
   if (pair.test) {
@@ -126,9 +126,6 @@ DEA <- function(control, treat, file.control, file.treat, output.path.dea) {
       dds <- dds[keep,]
     }
 
-    ## specify the control group
-    dds$group <- relevel(dds$group, ref = control)
-    
     ## perform DEA
     dds <- DESeq(dds)
     
