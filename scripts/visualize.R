@@ -77,21 +77,36 @@ plot.volcano.heatmap <- function(name.control, name.treat) {
   }
 
   # volcano plot
-  ## define the range of x-axis and y-axis
-  log2FC_lim <- max(abs(dea.table$log2FoldChange))
-  padj_lim <- -log10(min(dea.table$padj)) # NAs already removed from dea.table
+  dea.table.volcano <- dea.table  # for better volcano plot, 0 FDRs/padj will be changed to a very low value
   
   if (dea.tool == 'edgeR') {
-    fig.volcano <- EnhancedVolcano(dea.table, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'logFC', y = 'FDR', pCutoff = 10e-5, col = c("grey30", "orange2", "royalblue", "red2"),
-                                   FCcutoff = 1, xlim = c(-log2FC_lim-1, log2FC_lim+1), ylim = c(0, padj_lim), transcriptPointSize = 1.5, title = NULL, subtitle = NULL)  
+    # change the 0 FDR to a low value (100 times smaller than the minumum non-zero value)
+    FDR <- dea.table.volcano$FDR
+    FDR.min.non.zero <- min(FDR[FDR>0])
+    dea.table.volcano$FDR[FDR==0] <- FDR.min.non.zero/100
+    ## define the range of x-axis and y-axis
+    log2FC_lim <- max(abs(dea.table.volcano$logFC))
+    FDR_lim <- -log10(min(dea.table.volcano$FDR)) # NAs already removed from dea.table
+
+    fig.volcano <- EnhancedVolcano(dea.table.volcano, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'logFC', y = 'FDR', pCutoff = 10e-5, col = c("grey30", "orange2", "royalblue", "red2"),
+                                   FCcutoff = 1, xlim = c(-log2FC_lim-1, log2FC_lim+1), ylim = c(0, FDR_lim), title = NULL, subtitle = NULL)
   } else if (dea.tool == 'DESeq2') {
-    fig.volcano <- EnhancedVolcano(dea.table, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'log2FoldChange', y = 'padj', pCutoff = 10e-5, col = c("grey30", "orange2", "royalblue", "red2"),
-                                   FCcutoff = 1, xlim = c(-log2FC_lim-1, log2FC_lim+1), ylim = c(0, padj_lim), transcriptPointSize = 1.5, title = NULL, subtitle = NULL)
+    # change the 0 padj to a low value (100 times smaller than the minumum non-zero value)
+    padj <- dea.table.volcano$padj
+    padj.min.non.zero <- min(padj[padj>0])
+    dea.table.volcano$padj[padj==0] <- padj.min.non.zero/100
+    ## define the range of x-axis and y-axis
+    log2FC_lim <- max(abs(dea.table.volcano$log2FoldChange))
+    padj_lim <- -log10(min(dea.table.volcano$padj)) # NAs already removed from dea.table
+
+    fig.volcano <- EnhancedVolcano(dea.table.volcano, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'log2FoldChange', y = 'padj', pCutoff = 10e-5, col = c("grey30", "orange2", "royalblue", "red2"),
+                                   FCcutoff = 1, xlim = c(-log2FC_lim-1, log2FC_lim+1), ylim = c(0, padj_lim), title = NULL, subtitle = NULL)
   }
+  
   # ## if the range of x-axis or y-axis gets crazy, you may also manually define it to show a subset of the genes (but to be noted, the genes out of range will not be shown)
   # if (dea.tool == 'edgeR') {
   #   fig.volcano <- EnhancedVolcano(dea.table, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'logFC', y = 'FDR', pCutoff = 10e-5, col = c("grey30", "orange2", "royalblue", "red2"),
-  #                                FCcutoff = 1, xlim = c(-5, 5), ylim = c(0, 10), transcriptPointSize = 1.5, title = NULL, subtitle = NULL)  
+  #                                FCcutoff = 1, xlim = c(-5, 5), ylim = c(0, 10), transcriptPointSize = 1.5, title = NULL, subtitle = NULL)
   # } else if (dea.tool == 'DESeq2') {
   #   fig.volcano <- EnhancedVolcano(dea.table, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'log2FoldChange', y = 'padj', pCutoff = 10e-5, col = c("grey30", "orange2", "royalblue", "red2"),
   #                                FCcutoff = 1, xlim = c(-5, 5), ylim = c(0, 10), transcriptPointSize = 1.5, title = NULL, subtitle = NULL)
