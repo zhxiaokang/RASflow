@@ -77,13 +77,25 @@ plot.volcano.heatmap <- function(name.control, name.treat) {
   }
 
   # volcano plot
+  ## define the range of x-axis and y-axis
+  log2FC_lim <- max(abs(dea.table$log2FoldChange))
+  padj_lim <- -log10(min(dea.table$padj)) # NAs already removed from dea.table
+  
   if (dea.tool == 'edgeR') {
     fig.volcano <- EnhancedVolcano(dea.table, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'logFC', y = 'FDR', pCutoff = 10e-5, col = c("grey30", "orange2", "royalblue", "red2"),
-                                 FCcutoff = 1, xlim = c(-5, 5), ylim = c(0, 10), transcriptPointSize = 1.5, title = NULL, subtitle = NULL)  
+                                   FCcutoff = 1, xlim = c(-log2FC_lim-1, log2FC_lim+1), ylim = c(0, padj_lim), transcriptPointSize = 1.5, title = NULL, subtitle = NULL)  
   } else if (dea.tool == 'DESeq2') {
     fig.volcano <- EnhancedVolcano(dea.table, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'log2FoldChange', y = 'padj', pCutoff = 10e-5, col = c("grey30", "orange2", "royalblue", "red2"),
-                                 FCcutoff = 1, xlim = c(-5, 5), ylim = c(0, 10), transcriptPointSize = 1.5, title = NULL, subtitle = NULL)
+                                   FCcutoff = 1, xlim = c(-log2FC_lim-1, log2FC_lim+1), ylim = c(0, padj_lim), transcriptPointSize = 1.5, title = NULL, subtitle = NULL)
   }
+  # ## if the range of x-axis or y-axis gets crazy, you may also manually define it to show a subset of the genes (but to be noted, the genes out of range will not be shown)
+  # if (dea.tool == 'edgeR') {
+  #   fig.volcano <- EnhancedVolcano(dea.table, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'logFC', y = 'FDR', pCutoff = 10e-5, col = c("grey30", "orange2", "royalblue", "red2"),
+  #                                FCcutoff = 1, xlim = c(-5, 5), ylim = c(0, 10), transcriptPointSize = 1.5, title = NULL, subtitle = NULL)  
+  # } else if (dea.tool == 'DESeq2') {
+  #   fig.volcano <- EnhancedVolcano(dea.table, lab = gene.dea, xlab = bquote(~Log[2]~ "fold change"), x = 'log2FoldChange', y = 'padj', pCutoff = 10e-5, col = c("grey30", "orange2", "royalblue", "red2"),
+  #                                FCcutoff = 1, xlim = c(-5, 5), ylim = c(0, 10), transcriptPointSize = 1.5, title = NULL, subtitle = NULL)
+  # }
   
   as.pdf(fig.volcano, width = 9, height = 6, scaled = TRUE, file = file.path(out.path, paste('volcano_plot_', name.control, '_', name.treat, '.pdf', sep = '')))
 
