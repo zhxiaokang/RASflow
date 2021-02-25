@@ -58,7 +58,7 @@ else:
         shell:
             """
             shopt -s extglob
-            scp -i {params.key} {params.input_path}/{wildcards.sample}?(.*).f*q.gz {output.read}
+            scp -i {params.key} {params.input_path}/{wildcards.sample}?(_*)?(.*).f*q.gz {output.read}
             """
             
     rule qualityControl:

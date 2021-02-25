@@ -19,14 +19,14 @@ rule end:
 if end == "pair":
     rule getReads:
         output:
-            forward = temp(intermediate_path + "/reads/{sample}_forward.fastq.gz"),
-            reverse = temp(intermediate_path + "/reads/{sample}_reverse.fastq.gz")
+            forward_read = temp(intermediate_path + "/reads/{sample}_forward_read.fastq.gz"),
+            reverse_read = temp(intermediate_path + "/reads/{sample}_reverse_read.fastq.gz")
         params:
             key = key,
             input_path = input_path
         run:
-            shell("scp -i {params.key} {params.input_path}/{wildcards.sample}_*R1*.f*q.gz {output.forward}"),
-            shell("scp -i {params.key} {params.input_path}/{wildcards.sample}_*R2*.f*q.gz {output.reverse}")
+            shell("scp -i {params.key} {params.input_path}/{wildcards.sample}_*R1*.f*q.gz {output.forward_read}"),
+            shell("scp -i {params.key} {params.input_path}/{wildcards.sample}_*R2*.f*q.gz {output.reverse_read}")
 
 else:
     rule getReads:
@@ -38,7 +38,7 @@ else:
         shell:
             """
             shopt -s extglob
-            scp -i {params.key} {params.input_path}/{wildcards.sample}?(.*).f*q.gz {output.read}
+            scp -i {params.key} {params.input_path}/{wildcards.sample}?(_*)?(.*).f*q.gz {output.read}
             """
 
 rule indexTrans:
@@ -52,15 +52,15 @@ rule indexTrans:
 if end == "pair":
     rule quantify:
         input:
-            forward = temp(intermediate_path + "/reads/{sample}_forward.fastq.gz"),
-            reverse = temp(intermediate_path + "/reads/{sample}_reverse.fastq.gz"),
+            forward_read = temp(intermediate_path + "/reads/{sample}_forward_read.fastq.gz"),
+            reverse_read = temp(intermediate_path + "/reads/{sample}_reverse_read.fastq.gz"),
             index = directory(intermediate_path + "/transcripts_index")
         output:
             quant_dir = directory(final_path + "/quant/{sample}"),
             tpm = final_path + "/tpmFile/{sample}_tpm.tsv"
         shell:
             """
-            salmon quant -i {input.index} -l A -1 {input.forward} -2 {input.reverse} -o {output.quant_dir} -p {config[NCORE]} --seqBias --useVBOpt --validateMappings
+            salmon quant -i {input.index} -l A -1 {input.forward_read} -2 {input.reverse_read} -o {output.quant_dir} -p {config[NCORE]} --seqBias --useVBOpt --validateMappings
             awk 'NR==1{{next}}{{print $1"\\t"$4}}' {output.quant_dir}/quant.sf > {output.tpm}
             """
 else:
