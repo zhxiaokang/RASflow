@@ -76,7 +76,7 @@ DEA <- function(control, treat, file.control, file.treat, output.path.dea) {
     dea <- dea[order(dea$FDR, -abs(dea$logFC), decreasing = FALSE), ]  # sort the table: ascending of FDR then descending of absolute valued of logFC
 
     # differentially expressed genes
-    toptag <- topTags(lrt, n = nrow(y$genes), p.value = 0.05)
+    toptag <- topTags(lrt, n = nrow(y$genes), p.value = fdr.thr)
     deg <- toptag$table
     if (!is.null(deg)) {
       deg <- deg[order(deg$FDR, -abs(deg$logFC), decreasing = FALSE), ]  # sort the table: ascending of FDR then descending of absolute valued of logFC
@@ -139,7 +139,7 @@ DEA <- function(control, treat, file.control, file.treat, output.path.dea) {
     dea <- as.data.frame(res.dea)
     dea <- dea[order(dea$padj, -abs(dea$log2FoldChange), decreasing = FALSE), ]  # sort the table: ascending of FDR then descending of absolute valued of logFC
     
-    deg <- dea[dea$padj < 0.05, ]
+    deg <- dea[dea$padj < fdr.thr, ]
     if (nrow(deg) > 1) {
       deg <- deg[order(deg$padj, -abs(deg$log2FoldChange), decreasing = FALSE), ]  # sort the table: ascending of FDR then descending of absolute valued of logFC
     }    
@@ -168,7 +168,7 @@ meta.file <- yaml.file$METAFILE
 ENSEMBL <- yaml.file$ENSEMBL
 dataset <- yaml.file$EnsemblDataSet
 output.path <- file.path(yaml.file$FINALOUTPUT, project, "trans/dea")
-
+fdr.thr <- yaml.file$FDR  # threshold of FDR/adjusted P-value for significantlly differentially expressed genes
 num.control <- length(controls)  # number of comparisons that the user wants to do
 num.treat <- length(treats)  # should equals to num.control
 

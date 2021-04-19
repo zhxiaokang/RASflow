@@ -87,6 +87,9 @@ TREAT: ["Dexamethasone"]
 FILTER:
   yesOrNo: FALSE  # Filter out low expressed transcripts/genes or not? (TRUE or FALSE) It's better to be set to TRUE. FALSE is set as default only for testing fake toy data
 
+## The threshold of FDR/adjusted P-value for significantly differentially expressed genes
+FDR: 0.05
+
 ## If transcriptome was used as mapping reference in the previous quantification step, the following params need to be specifed
 
 ## Do you need to do gene-level differential expression analysis?
