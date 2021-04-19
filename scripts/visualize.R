@@ -38,6 +38,37 @@ if (num.control != num.treat) {
 
 num.comparison <- num.control
 
+convert.id2symbol <- function(gene.id) {
+  gene.symbol <- gene.id  # initialize the gene symbol with the gene id
+
+  # it may happen that no symbol can be found for any id. In that case, "queryMany" will throw an error
+  # so "try" is used here to take care of that error
+  try({
+    gene.symbol.all <- queryMany(gene.id.dea, scopes = 'ensembl.gene', fields = 'symbol')
+
+    h <- hash()
+    for (i in 1:nrow(gene.symbol.all)) {
+      query <- gene.symbol.all$query[i]
+      symbol <- gene.symbol.all$symbol[i]
+      if (has.key(query, h)) {  # if there's duplicate for the same query
+        h[[query]] <- paste(hash::values(h, keys = query), symbol, sep = ', ')
+      } else {
+        if (is.na(symbol)) {  # if there's no hit for the query, keep the original id
+          h[[query]] <- query
+        } else {
+          h[[query]] <- symbol
+        }
+      }
+    }
+    
+    for (i in c(1:length(gene.symbol))) {
+      gene.symbol[i] <- h[[gene.id[i]]]
+    }
+  })
+
+  return(gene.symbol)
+}
+
 # function to plot volcano plot and heatmap
 plot.volcano.heatmap <- function(name.control, name.treat) {
   file.dea.table <- paste(dea.path, "/dea_", name.control, "_", name.treat, ".tsv", sep = "")
@@ -54,27 +85,8 @@ plot.volcano.heatmap <- function(name.control, name.treat) {
 
   gene.id.dea <- row.names(dea.table)
 
-  gene.symbol.dea.all <- queryMany(gene.id.dea, scopes = 'ensembl.gene', fields = 'symbol')
-  
-  h <- hash()
-  for (i in 1:nrow(gene.symbol.dea.all)) {
-    query <- gene.symbol.dea.all$query[i]
-    symbol <- gene.symbol.dea.all$symbol[i]
-    if (has.key(query, h)) {  # if there's duplicate for the same query
-      h[[query]] <- paste(hash::values(h, keys = query), symbol, sep = ', ')
-    } else {
-      if (is.na(symbol)) {  # if there's no hit for the query, keep the original id
-        h[[query]] <- query
-      } else {
-        h[[query]] <- symbol
-      }
-    }
-  }
-  
-  gene.dea <- gene.id.dea
-  for (i in c(1:length(gene.dea))) {
-    gene.dea[i] <- h[[gene.id.dea[i]]]
-  }
+  # convert the gene id to gene symbol, and keep the ID if no symbol can be found for that ID
+  gene.dea <- convert.id2symbol(gene.id.dea)
 
   # volcano plot
   dea.table.volcano <- dea.table  # for better volcano plot, 0 FDRs/padj will be changed to a very low value
@@ -130,15 +142,8 @@ plot.volcano.heatmap <- function(name.control, name.treat) {
 
   gene.id.norm.table <- rownames(norm.table.deg)
 
-  gene.symbol.norm.table <- queryMany(gene.id.norm.table, scopes = 'ensembl.gene', fields = 'symbol')$symbol
-
-  # if can't find a symbol for the id, then keep the id as it is
-  gene.norm.table <- gene.symbol.norm.table
-  for (i in c(1:length(gene.norm.table))) {
-    if (is.na(gene.norm.table[i])) {
-      gene.norm.table[i] <- gene.id.norm.table[i]
-    }
-  }
+  # convert the gene id to gene symbol, and keep the ID if no symbol can be found for that ID
+  gene.norm.table <- convert.id2symbol(gene.id.norm.table)
 
   palette <- c("#999999", "#377EB8")
   palette.group <- c(rep(palette[1], num.control), rep(palette[2], num.treat))
