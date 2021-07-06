@@ -12,6 +12,8 @@ You can help support RASflow by citing our publication:
 
 ## Quick start
 ### Installation
+#### Manual mode
+
 Clone the repository:
 
 `git clone https://github.com/zhxiaokang/RASflow.git`
@@ -19,6 +21,18 @@ Clone the repository:
 Create the environment:
 
 `conda env create -n rasflow -f env.yaml`
+
+Activate the environment:
+
+`conda activate rasflow`
+
+#### Lazy mode
+
+Firstly, you need to have Docker installed on your machine.
+
+Create the container from RASflow image:
+
+`docker container run --name=rasflow -it zhxiaokang/rasflow`
 
 Activate the environment:
 
