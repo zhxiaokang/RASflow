@@ -10,7 +10,7 @@ final_path = config["FINALOUTPUT"] + "/" + config["PROJECT"]
 
 def trimFiles(wildcards):
     if (end == "pair"):
-        forward_trim = expand(intermediate_path + "/{sample}_R1_val_1.fq.gz", sample = samples)
+        forward_trim = expand(intermediate_path + "/{sample}_R1_val_1.fastq.gz", sample = samples)
         return forward_trim
     else:
         read_trim = expand(intermediate_path + "/{sample}_trimmed.fq.gz", sample = samples)
@@ -29,20 +29,33 @@ if end == "pair":
             key = key,
             input_path = input_path
         run:
-            shell("scp -i {params.key} {params.input_path}/{wildcards.sample}_*R1*.f*q.gz {output.forward}"),
-            shell("scp -i {params.key} {params.input_path}/{wildcards.sample}_*R2*.f*q.gz {output.reverse}")
+            shell("scp -i {params.key} {params.input_path}/{wildcards.sample}_*R1.f*q.gz {output.forward}"),
+            shell("scp -i {params.key} {params.input_path}/{wildcards.sample}_*R2.f*q.gz {output.reverse}")
             
     rule trim:
         input:
             forward = intermediate_path + "/reads/{sample}_forward.fastq.gz",
             reverse = intermediate_path + "/reads/{sample}_reverse.fastq.gz"
         output:
-            read_trim_forward = intermediate_path + "/{sample}_R1_val_1.fq.gz",
-            read_trim_reverse = intermediate_path + "/{sample}_R2_val_2.fq.gz"
+            read_trim_forward = intermediate_path + "/{sample}_val_1.fq.gz",
+            read_trim_reverse = intermediate_path + "/{sample}_val_2.fq.gz"
         params:
             outputpath = intermediate_path
         shell:
             "trim_galore --fastqc -j 4 --paired --basename {wildcards.sample} -o {params.outputpath} {input.forward} {input.reverse}"
+            
+    rule rename_trimmed_file:
+        input:
+            read_trim_forward = intermediate_path + "/{sample}_val_1.fq.gz",
+            read_trim_reverse = intermediate_path + "/{sample}_val_2.fq.gz"
+        output:
+            output_forward = intermediate_path + "/{sample}_R1_val_1.fastq.gz",
+            output_reverse = intermediate_path + "/{sample}_R2_val_2.fastq.gz"
+        run:
+            shell("mv {input.read_trim_forward} {output.output_forward}"),
+            shell("mv {input.read_trim_reverse} {output.output_reverse}")
+            
+            
             
 else:
     rule getReads:
