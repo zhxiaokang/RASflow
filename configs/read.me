@@ -1,0 +1,9 @@
+This is how the file EnsemblDataSet_look_up_table.csv was generated:
+===== R code =====
+library(biomaRt)
+
+ensembl <- useEnsembl(biomart = "ensembl")
+datasets <- listDatasets(mart = ensembl)
+write.csv(datasets, file = "EnsemblDataSet_look_up_table.csv", quote = FALSE, row.names = FALSE)
+
+
