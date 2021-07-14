@@ -44,7 +44,7 @@ convert.id2symbol <- function(gene.id) {
   # it may happen that no symbol can be found for any id. In that case, "queryMany" will throw an error
   # so "try" is used here to take care of that error
   try({
-    gene.symbol.all <- queryMany(gene.id.dea, scopes = 'ensembl.gene', fields = 'symbol')
+    gene.symbol.all <- queryMany(gene.id, scopes = 'ensembl.gene', fields = 'symbol')
 
     h <- hash()
     for (i in 1:nrow(gene.symbol.all)) {
